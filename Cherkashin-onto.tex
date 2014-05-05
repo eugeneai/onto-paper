@@ -63,6 +63,7 @@
 % should be used if it is desired that the figures are to be displayed in
 % draft mode.
 %
+
 \documentclass[conference]{IEEEtran}
 % Add the compsoc option for Computer Society conferences.
 %
@@ -70,6 +71,7 @@
 % manually specify the path to it like:
 % \documentclass[conference]{../sty/IEEEtran}
 
+\usepackage{color}
 
 
 
@@ -468,7 +470,7 @@ Addition of a triple might result in extending the document with new subjects an
 
 \section{Theoretical Generalization of the Acquisition Process}
 
-The above described approach is a stepwise implementation of polysystem analysis and synthesis \cite{father} (PSAS) procedure. This is a general procedure for system analysis of domains. The essence of the approach is that domain and any its object or process can be fibrated and represent it in multidimensional space of fiber"=coordinates. This approach is used in control problem solution, decomposition, analysis and synthesis of complex systems. In comparison to system approach, where the principle of interconnection of the elements is fundamental, polysystem analysis assumes the hypothesis of fibration, i.e., it supposes a possibility of representation of the object under investigation as disjoint subsets, thus, mutually unbound fibers (subdomains). So, in a generalized insight a polysystem is a system itself, and polysystem analysis is a new form of system analysis.
+The above described approach is a stepwise implementation of polysystem analysis and synthesis \cite{father} (PSAS) procedure. This is a general procedure for system analysis of domains. The essence of the approach is that domain and any its object or process can be fibrated and represent it in multidimensional space of fiber-coordinates. This approach is used in control problem solution, decomposition, analysis and synthesis of complex systems. In comparison to system approach, where the principle of interconnection of the elements is fundamental, polysystem analysis assumes the hypothesis of fibration, i.e., it supposes a possibility of representation of the object under investigation as disjoint subsets, thus, mutually unbound fibers (subdomains). So, in a generalized insight a polysystem is a system itself, and polysystem analysis is a new form of system analysis.
 
 The application of the PSAS to the process of data and knowledge acquisition in the documents expressed as simultaneus polysystem fibering the domain in various coordinate systems (aspects) as follows\,: structural organization of a document (mereological aspect), expressing domain of activity area, hierarchical inheritance of various kind of documents (domain system concept inheritance), people and organization relationship, deontic logic representation of the document meaning, etc.
 
@@ -481,7 +483,25 @@ Each of new concept (a class) as we described in the previous section is to be i
 Thus, the usage of the PSAS allows us to partially deal with the completeness (As \ldots{} \cite{sergey}) and consistency (by testing an ontology and morphing the results to other ones) of the ontological theories under construction.
 
 \subsection{Utilizing Polysystem of Ontologies in User Interview}
-As it was mentioned above any studied and modeled domain can be fibrated and represented as a polysystem of notions, objects and their relationships (fig. …). The polysystem from a general point of view is a tree of layers. Each layer contains a system of concepts, individual objects and corresponding relationships. In a fibrated polysystem concepts in a layer are morfed (mapped) into concepts in other layers via interpretation of the concepts of one layer (projection, theory, science, domain) into concepts of other layer. All the concepts are interpreted in the abstract system layer.
+As it was mentioned above any studied and modeled domain can be fibrated and represented as a polysystem of notions, objects and their relationships. The polysystem from a general point of view is a set of disjoint layers. Each layer contains a system of concepts, individual objects and corresponding relationships between them. In a fibrated polysystem, concepts belonging to a layer are morfed (mapped) into concepts in other layers via concept interpretation of one layer (projection, theory, science, domain) into concepts of other layer. All the concepts are interpreted by concepts of the abstract system layer. The interpretation feature of polysystem layers could be used to drive user interview dialog on the base of an inference by analogy represented as movement along relations and morphs in the polysystem of ontologies.
+
+Consider simple family relationships in fig.~\ref{OPSA}, where most of the obvious relations are hidden to make the figure more readable. There are four main layers in the figure, which model corresponding aspects of Bob's family: layer 1 represents the family itself, it is the only layer having a-box entities; layer 2 represent main roles of individuals in a family; layer 3 shows genders as two opposites; and later 4 corresponds to mereological metomodel ``whole--parts''.
+
+Let's construct a list of questions to determine a role of Jul in Bob's family. It is supposed we know only that Jul is a female. To put Jul in layer 1, we must ask a general question: ``Is Jul a part of Bob's family?'' The question is constructed according to a following intuitive inference. All relations between a family and its members are kinds of ``partOf:'' relation from layer 4. This fact is shown as an arrow from relation hasFather: of Layer 2 to ``partOf:'' of Layer 4, other four arrows are hidden. So, in order to determine the fact that Jul is a member of Bob's family, it is sufficient to ask ``Is Jul partOf: Bob's-family?''. The identifier of the example family is devised from the tradition to name families after their master of housekeeping (MOH) person, that is denoted by arrow from individual Bob (layer 1) to concept MOH (layer 2).
+
+If user answered positively (Jul is a part of the family), then we must refine her role, as partOf: is not a role allowed to be used in layer 1. Jul is a female (by definition), so she cannot be father and son. If she is, she must be male, but it is not as male and female are formally opposite concepts. If multiplicity of relations in the layer are defined, then we will also know, that the family already has mother. The only possible choice is Jul is daughter, resulting an another general question:''Is Jul daughter?'' If the answer to the second question is also positive, finally a new triple constructed <Bob's-family hasDaughter: Jul>.
+
+If, e.g., gender of Jul is unknown, then the second question is constructed as a special question ``What role has Jul in Bob's family?'' and a list of two possible answers is shown: ``hasDaughter:'' and ``hasSon:''. Or it can be constructed as an alternative question ``Is Jul plays hasDaughter: or hasSon: role in the family?'', but in this case the sentence is more weird with respect to English.
+
+\begin{figure}
+\centering\sf
+\def\svgwidth{0.9\linewidth}
+\input{layer.pdf_tex}
+\caption{An  Usage Example of an Ontology Polysystem}
+\label{OPSA}
+\end{figure}
+
+(HERE: a generalizing resume paragraph needed.)
 
 (About polysystem of ontologies).
 
@@ -493,13 +513,15 @@ As it was mentioned above any studied and modeled domain can be fibrated and rep
 
 (wikipedia and Google search systems).
 
+(!! Systems of complexes. !!)
+
 \section{An Office Usage of the Technique}
 
 One of the applications of the technology under development is document preparation automation of a notary office. Notary office in Russia generate vast amount of printed documents. The documents contain both formalized and unformalized data in a balance reasonable for our study. For example, formalized data are the passport data of individuals, registration data of vehicles. Data of this kind are passed from one document to other documents mostly sturcturized and unchanged, raising a bindles of related documents. The document content structure significantly depends on entry fields’ data filled in: form of notary signature field depends on legal capacities of the individuals mentioned in the main document body. At present templates of the documents are prepared by a programming engineer collaborating with a professional secretary and verified by supervising notary. Unformalized data are various enumerations of legal empowerments of the individuals, article codes, and explanatory text.
 
 Application of the semantic approach to the logical layer representation of the notary document content is aimed at involvement of the secretaries (people with low engineering skills) into the processes of the document instances preparation from the existing templates and into the development of the templates and constructing their hierarchical arrangement.
 
-Logical layer of a notary document consists of hierarchy of subjects. The subjects relate to each other on various abstraction levels, e.g., in a letter of attorney there are at least two individuals, the first one is principal, and the second one is trusted (proxy). For each individual passport, data and place of residence are defined. The letter can contain other person data, e.g., for partially capable children. All the individuals are in explicit relation to the document. The triples <letatt998 containsPrincipal indiv\_78> and <letatt998 containsProxy indiv\_79> could define a principal and proxy to the document. The mentioned relations are specifications of abstract hasIndividual and structuralElement relations. This multilevel approach allows us visually represent hierarchical structures of the document, having interpreted the relations as structural elements, and in the same time to associate individuals with other roles in new documents, swap roles during editing. The swap function is implemented as user interface widget, which recognizes certain subject-to-subject relation patterns in the document body and interprets semantics of the relations as possible action. A general graph structure of the abstract level of a notary office automation ontology is drawn in fig 2.
+Logical layer of a notary document consists of hierarchy of subjects. The subjects relate to each other on various abstraction levels, e.g., in a letter of attorney there are at least two individuals, the first one is principal, and the second one is trusted (proxy). For each individual passport, data and place of residence are defined. The letter can contain other person data, e.g., for partially capable children. All the individuals are in explicit relation to the document. The triples <letatt998 containsPrincipal indiv\_78> and <letatt998 containsProxy indiv\_79> could define a principal and proxy to the document. The mentioned relations are specifications of abstract hasIndividual and structuralElement relations. This multilevel approach allows us visually represent hierarchical structures of the document, having interpreted the relations as structural elements, and in the same time to associate individuals with other roles in new documents, swap roles during editing. The swap function is implemented as user interface widget, which recognizes certain subject-to-subject relation patterns in the document body and interprets semantics of the relations as possible action. A general graph structure of the abstract level of a notary office automation ontology is drawn in fig.~\ref{notaryontology}.
 
 [The flexibility and minimum resources and administration requirements criteria are of very importance to choosing database providing information resources storage as triples. The database management systems as DB2, Oracle and SQL Server cannot fulfill requirements because after running the operation is performed as a separate process. Also application and DBMS interaction should be implemented through interprocess communication form.
 
@@ -530,15 +552,15 @@ Availability of funds to work with triplets described in the standard RDF is an 
 % option should be used if it is desired that the figures are to be
 % displayed while in draft mode.
 %
-%\begin{figure}[!t]
-%\centering
-%\includegraphics[width=2.5in]{myfigure}
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\linewidth]{DocumentOntology-en.pdf}
 % where an .eps filename suffix will be assumed under latex,
 % and a .pdf suffix will be assumed for pdflatex; or what has been declared
 % via \DeclareGraphicsExtensions.
-%\caption{Simulation Results}
-%\label{fig_sim}
-%\end{figure}
+\caption{An upper layer of notary office ontology}
+\label{notaryontology}
+\end{figure}
 
 % Note that IEEE typically puts floats only at the top, even when this
 % results in a large percentage of a column being occupied by floats.
@@ -645,7 +667,7 @@ The research is carried on under support of Integration multidisciplinary projec
 % <OR> manually copy in the resultant .bbl file
 % set second argument of \begin to the number of references
 % (used to reserve space for the reference number labels box)
-\begin{thebibliography}{1}
+\begin{thebibliography}{11}
 
 \bibitem{IEEEhowto:kopka}
 H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
