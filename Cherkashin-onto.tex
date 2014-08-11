@@ -72,8 +72,7 @@
 % \documentclass[conference]{../sty/IEEEtran}
 
 \usepackage{color}
-
-
+\usepackage[english,russian]{babel}
 
 
 % Some very useful LaTeX packages include:
@@ -354,7 +353,7 @@
 %
 % paper title
 % can use linebreaks \\ within to get better formatting as desired
-\title{An Ontology Polysystem Driven Technique of Knowledge Acquisition from Edited Documents}
+\title{Методика извлечения знаний из текстовых документов, основанная на анализе ответов пользователя и полисистемы онтологий}
 
 
 % author names and affiliations
@@ -378,11 +377,14 @@
 % for over three affiliations, or if they all won't fit within the width
 % of the page, use this alternative format:
 %
-\author{\IEEEauthorblockN{Evgeny Cherkashin\IEEEauthorrefmark{1}\IEEEauthorrefmark{2},
-Polina Belykh\IEEEauthorrefmark{1} and
-Kristina Paskal\IEEEauthorrefmark{2}}
-\IEEEauthorblockA{\IEEEauthorrefmark{1}Institute of System Dynamics and Control Theory at SB RAS, Irkutsk, Lermontov str., 134, 664033, Russia}
-\IEEEauthorblockA{\IEEEauthorrefmark{2}National Research Irkutsk State Technical University, Irkutsk, Lermontov str.,  83, 664074, Russia}}
+\author{\IEEEauthorblockN{Е.А. Черкашин\IEEEauthorrefmark{1}\IEEEauthorrefmark{3},
+\IEEEauthorblockN{А.К. Черкашин\IEEEauthorrefmark{1},
+\IEEEauthorblockN{И.В. Бычков\IEEEauthorrefmark{1},
+П.В. Белых\IEEEauthorrefmark{1} and
+К.К. Паскал\IEEEauthorrefmark{3}}
+\IEEEauthorblockA{\IEEEauthorrefmark{1}Институт динамики систем и теории управления СО РАН, Иркутск, ул. Лермонтова 134, 664033}
+\IEEEauthorblockA{\IEEEauthorrefmark{2}Институт географии им. В.Б. Сочавы СО РАН, Иркутск, ул. Улан-Баторская 1, 664033}
+\IEEEauthorblockA{\IEEEauthorrefmark{3}Национальный исследовательский Иркутский государственный технический университет, Иркутск, ул. Лермонтова 83, 664074}}
 
 % use for special paper notices
 %\IEEEspecialpapernotice{(Invited Paper)}
@@ -397,6 +399,33 @@ Kristina Paskal\IEEEauthorrefmark{2}}
 \begin{abstract}
 %\boldmath
 An approach to an ontology based document logical content representation and induction is considered. The logical layer is induced during content editing by means of polysystem of ontologies of the domain, change structure analysis, data mining and user interview clarifying meaning of his/her actions. The polysystem of ontologies are used to drive the process of user interview. As a result new RDF triples representing a part of the domain are constructed. This results in the necessity to develop document and content management software as knowledge acquisition systems, where user plays basically the role of an information source. As a testing ground we have chosen document preparation automation of Russian notary office due to a balance of structured and unstructured data in legal documents. The workflow of documents between offices and individuals can be organized as distributed social network.
+
+В докладе представляется подход к представлению и индукции логического
+слоя представления контента, например, содержимого сайтов и юридических
+документов и т.п. Этот слой порождается на основе анализа результатов
+редактирования контента: как текстовой составляющей, так и данных в
+существующей логической структуре. Варианты интерпретации (исправление
+ошибки/значения или формирование нового высказывания) того или
+иного изменения уточняются в результате диалога с пользователем. Кроме
+того, исходными данными для принятия решения выступают результаты
+анализа поведения пользователя, например, выделяются повторяющиеся
+переходы между редактированием документов определенных классов.
+
+Теоретической основой методики является представление
+предметной области в виде полисистемы онтологий, т.е. многослойной
+структуры понятий и отношений, которые отображаются между слоями через
+интерпретацию. Полисистема онтологий, представленных в виде
+семантических сетей,  позволяет организовать диалог с пользователем,
+упорядочивать и классифицировать факты о предметной области, а также
+получать новые интерпретации формируемых концептов.
+
+В качестве тестовой среды для разрабатываемых технологий выбрана
+автоматизация деятельности нотариальной конторы и документооборот
+административных, хозяйственных и научных подразделений бюджетного
+учреждения. Документы, используемые в этих видах деятельности, обладают
+одним важным свойством - содержащаяся в них информация представляется
+как в неструктурируемом, так и в структурируемом виде.
+
 \end{abstract}
 % IEEEtran.cls defaults to using nonbold math in the Abstract.
 % This preserves the distinction between vectors and scalars. However,
@@ -424,9 +453,26 @@ An approach to an ontology based document logical content representation and ind
 
 \section{Introduction}
 % no \IEEEPARstart
-In 2001 Tim Berners-Lee proposed a blueprint \cite{b1} of the web development that is aimed at the implementation of network services with reasonable integration of logical layer of the information presented. The information should be marked up semantically and the program agents should take advantage of the markup as the logical layer for the information consumption and processing. The blueprint is referred to as Semantic Web (SW) \cite{b1}.
 
-One of the main problems of SW is the fact, that the regular users of the web resources are not fond of the technological aspects of SW. They are interested in their practical problems solutions. In order to involve users in SW content development, the technological aspects must be completely hidden from them. This results in the necessity to develop document and site content management software exploited within SW as knowledge acquisition systems, where user will play role of information source for a system-integrated decision-making engine.
+В 2001 году Т.-Б.Ли предложил план развития интернет-технологий
+(семантический веб), который направлен на реализацию сетевых сервисов
+со значительным уровнем интеграции логического слоя представляемой
+информации. Информация размечается семантически, а программные агенты,
+используя эту информацию, производят ее обработку с целью решения
+конкретных практических задач пользователя.
+
+Одной из основных проблем семантического веба является тот факт, что
+большинство пользователей решают свои практические задачи и не
+заинтересованы повышении своей квалификации до уровня позволяющего
+использовать эти технологии в полной мере. В такой ситуации
+технологические аспекты семантического веба должны быть полностью
+скрыты, а программное обеспечение должно "варить кашу из
+топора". Необходимо разрабатывать программное обеспечения управления
+содержимым сайтов и юридических документов как технологий приобретения
+знаний, где пользователю удостаивается роль источника дополнительной
+информации для интегрированного в систему механизма поддержки принятия
+решений.
+
 
 To be more comprehensible consider a content of a legal document, which in most cases contains meaningful information for human beings relationships that is usually passed to other documents in a derivative form. This suggests an idea to develop a form of the logical layer representation in a reasonably detailed form, which can be rendered as a regular text pages by means of context"=depended (in sense of a legal document) text templates. The SW approach could supplement the idea with data formats and technologies of their storage and processing. SW represents logical layer as a network graph of notions and relations between the notions. For example, individuals mentioned in a legal document relate to the document as “parts"=whole”, unless to speak even more explicitly in a context of the meaningful information.
 
@@ -487,7 +533,7 @@ As it was mentioned above any studied and modeled domain can be fibrated and rep
 
 Consider simple family relationships in fig.~\ref{OPSA}, where most of the obvious relations are hidden to make the figure more readable. There are four main layers in the figure, which model corresponding aspects of Bob's family: layer 1 represents the family itself, it is the only layer having a-box entities; layer 2 represent main roles of individuals in a family; layer 3 shows genders as two opposites; and later 4 corresponds to mereological metomodel ``whole--parts''.
 
-Let's construct a list of questions to determine a role of Jul in Bob's family. It is supposed we know only that Jul is a female. To put Jul in layer 1, we must ask a general question: ``Is Jul a part of Bob's family?'' The question is constructed according to a following intuitive inference. All relations between a family and its members are kinds of ``partOf:'' relation from layer 4. This fact is shown as an arrow from relation hasFather: of Layer 2 to ``partOf:'' of Layer 4, other four arrows are hidden. So, in order to determine the fact that Jul is a member of Bob's family, it is sufficient to ask ``Is Jul partOf: Bob's-family?''. The identifier of the example family is devised from the tradition to name families after their master of housekeeping (MOH) person, that is denoted by arrow from individual Bob (layer 1) to concept MOH (layer 2).
+Let's construct a list of questions to determine a role of Jul in Bob's family. It is supposed we know only that Jul is a female. To put Jul in layer 1, we must ask a general question: ``Is Jul a part of Bob's family?'' The question is constructed according to a following intuitive inference. All relations between a family and its members are kinds of ``partOf:'' relation from layer 4. This fact is shown as an arrow, which denote a contravariant functor from category of Layer 2 to category of Layer 4, from relation hasFather: of Layer 2 to ``partOf:'' of Layer 4, other four arrows are hidden. So, in order to determine the fact that Jul is a member of Bob's family, it is sufficient to ask ``Is Jul partOf: Bob's-family?''. The identifier of the example family is devised from the tradition to name families after their master of housekeeping (MOH) person, that is denoted by arrow from individual Bob (layer 1) to concept MOH (layer 2).
 
 If user answered positively (Jul is a part of the family), then we must refine her role, as partOf: is not a role allowed to be used in layer 1. Jul is a female (by definition), so she cannot be father and son. If she is, she must be male, but it is not as male and female are formally opposite concepts. If multiplicity of relations in the layer are defined, then we will also know, that the family already has mother. The only possible choice is Jul is daughter, resulting an another general question:''Is Jul daughter?'' If the answer to the second question is also positive, finally a new triple constructed <Bob's-family hasDaughter: Jul>.
 
@@ -500,6 +546,8 @@ If, e.g., gender of Jul is unknown, then the second question is constructed as a
 \caption{An  Usage Example of an Ontology Polysystem}
 \label{OPSA}
 \end{figure}
+
+
 
 (HERE: a generalizing resume paragraph needed.)
 
