@@ -69,8 +69,10 @@
 % \documentclass[conference]{../sty/IEEEtran}
 
 \usepackage{color}
+\usepackage[utf8]{inputenc}
 \usepackage[english,russian]{babel}
-
+\usepackage{todonotes}
+\usepackage{lmodern}
 
 % Some very useful LaTeX packages include:
 % (uncomment the ones you want to load)
@@ -125,12 +127,12 @@
 % *** GRAPHICS RELATED PACKAGES ***
 %
 \ifCLASSINFOpdf
-  \usepackage[pdftex]{graphicx}
+  %%% \usepackage[pdftex]{graphicx}
   % declare the path(s) where your graphic files are
   % \graphicspath{{../pdf/}{../jpeg/}}
   % and their extensions so you won't have to specify these with
   % every instance of \includegraphics
-  \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+  %%% \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
 \else
   % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
   % will default to the driver specified in the system graphics.cfg if no
@@ -343,14 +345,17 @@
 
 
 % correct bad hyphenation here
-\hyphenation{op-tical net-works semi-conduc-tor}
+%\hyphenation{op-tical net-works semi-conduc-tor}
 
 
 \begin{document}
 %
 % paper title
 % can use linebreaks \\ within to get better formatting as desired
-\title{Методика извлечения знаний из текстовых документов, основанная на анализе ответов пользователя и полисистемы онтологий}
+
+%\title{Методика извлечения знаний из текстовых документов, основанная на анализе ответов пользователя и полисистемы онтологий}
+
+\title{Интерактивная методика извлечения\todo[inline]{Первоначальный заголовок: Методика ПРИОБРЕТЕНИЯ знаний из текстовых документов, основанная на анализе ответов пользователя и полисистемы онтологий} знаний из текстовых документов, основанная на полисистеме онтологий}
 
 
 % author names and affiliations
@@ -375,8 +380,8 @@
 % of the page, use this alternative format:
 %
 \author{\IEEEauthorblockN{Е.А. Черкашин\IEEEauthorrefmark{1}\IEEEauthorrefmark{3},
-\IEEEauthorblockN{А.К. Черкашин\IEEEauthorrefmark{1},
-\IEEEauthorblockN{И.В. Бычков\IEEEauthorrefmark{1},
+\IEEEauthorblockN{А.К. Черкашин\IEEEauthorrefmark{1}}
+\IEEEauthorblockN{И.В. Бычков\IEEEauthorrefmark{1}}
 П.В. Белых\IEEEauthorrefmark{1} and
 К.К. Паскал\IEEEauthorrefmark{3}}
 \IEEEauthorblockA{\IEEEauthorrefmark{1}Институт динамики систем и теории управления СО РАН, Иркутск, ул. Лермонтова 134, 664033}
@@ -395,13 +400,12 @@
 
 \begin{abstract}
 %\boldmath
-An approach to an ontology based document logical content representation and induction is considered. The logical layer is induced during content editing by means of polysystem of ontologies of the domain, change structure analysis, data mining and user interview clarifying meaning of his/her actions. The polysystem of ontologies are used to drive the process of user interview. As a result new RDF triples representing a part of the domain are constructed. This results in the necessity to develop document and content management software as knowledge acquisition systems, where user plays basically the role of an information source. As a testing ground we have chosen document preparation automation of Russian notary office due to a balance of structured and unstructured data in legal documents. The workflow of documents between offices and individuals can be organized as distributed social network.
 
-В докладе представляется подход к представлению и индукции логического слоя представления контента, например, содержимого сайтов и юридических документов и т.п. Этот слой порождается на основе анализа результатов редактирования контента\,: как текстовой составляющей, так и данных в существующей логической структуре. Варианты интерпретации (исправление ошибки/значения или формирование нового высказывания) того или иного изменения уточняются в результате диалога с пользователем. Кроме того, исходными данными для принятия решения выступают результаты анализа поведения пользователя, например, выделяются повторяющиеся переходы между редактированием документов определенных классов.
+В докладе представляется идея подхода к представлению и индукции логического слоя представления контента, например, содержимого сайтов, юридических документов и т.п. Этот слой порождается на основе анализа результатов редактирования содержимого (контента) --- как текстовой составляющей, так и его существующей логической структуры. Варианты интерпретации того или иного изменения содержимого (исправление ошибки/значения или формирование нового высказывания) уточняются в результате диалога с пользователем. На принятие решения также влияют результаты анализа поведения пользователя, например, выделяются повторяющиеся переходы между редактируемыми документами определенных классов.
 
 Теоретической основой методики является представление предметной области в виде полисистемы онтологий, т.е. многослойной структуры понятий и отношений, которые отображаются между слоями через интерпретацию. Полисистема онтологий, представленных в виде семантических сетей, позволяет организовать диалог с пользователем, упорядочивать и классифицировать факты о предметной области, а также получать новые интерпретации формируемых концептов.
 
-В качестве тестовой среды для разрабатываемых технологий выбрана автоматизация деятельности нотариальной конторы и документооборот административных, хозяйственных и научных подразделений бюджетного учреждения. Документы, используемые в этих видах деятельности, обладают одним важным свойством - содержащаяся в них информация представляется как в неструктурируемом, так и в структурируемом виде.
+В качестве тестовой среды для разрабатываемых технологий выбрана автоматизация деятельности нотариальной конторы и документооборот административных, хозяйственных и научных подразделений бюджетного учреждения. Документы, используемые в этих видах деятельности, обладают одним важным свойством --- содержащаяся в них информация представляется как в неструктурируемом, так и в структурируемом виде.
 
 \end{abstract}
 % IEEEtran.cls defaults to using nonbold math in the Abstract.
@@ -685,24 +689,24 @@ H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
   0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
 
 \bibitem{TBL2001} T. Berners-Lee, J. Hendler and O. Lissila. \emph{The Semantic Web A new form of Web content that is meaningful to computers will unleash a revolution of new possibilities.}\hskip 1em plus 0.5em minus 0.4em\relax  Scientific American, May 17, 2001, pp.1-18. URL: http://sciam.com/article.cfm?articleID=00048144-10D2-1C70-84A9809EC588EF21. (access date: 05.09.2013).
-\bibitem{}
+\bibitem{q1}
 Social network - Wikipedia, the free encyclopedia. URL: \url{http://en.wikipedia.org/wiki/Social_network} (access date: 20.08.2013).
-\bibitem{}
+\bibitem{q2}
 Chameleon – Chameleon 2.10 documentation. \url{http://chameleon.readthedocs.org/en/latest/} (access date:  20.08.2013).
-\bibitem{}
+\bibitem{q3}
 Virtuoso Open-Source Edition URL: \url{http://virtuoso.openlinksw.com/dataspace/doc/dav/wiki/Main/} (access date: 30.05.2013).
-\bibitem{}
+\bibitem{q4}
 PIZZA Protege OWL tutorial at Manchester (School of Computer Science - The University of Manchester)  URL:\url{http://owl.cs.manchester.ac.uk/tutorials/protegeowltutorial/} (access date: 20.09.2013).
-\bibitem{}
+\bibitem{q5}
 SWI-Prolog's home. URL: \url{http://www.swi-prolog.org/} (access date: 20.08.2013).
-\bibitem{}
+\bibitem{q6}
 The Protégé Ontology Editor and Knowledge Acquisition System. URL: \url{http://protege.stanford.edu/} (access date: 20.08.2013).
 Semantic MediaWiki. URL: \url{http://semantic-mediawiki.org/} (access date: 20.08.2013).
-\bibitem{}
+\bibitem{q7}
 N.Heino, S.Tramp, N.Heino, S.Auer. Managing Web Content using Linked Data Principles – Combining semantic structure with dynamic content syndication. Computer Software and Applications Conference (COMPSAC), 2011 IEEE 35th Annual. pp. 245 - 250. URL:\url{http://svn.aksw.org/papers/2011/COMPSAC_lod2.eu/public.pdf} (access date: 30.05.2013).
-\bibitem{}
+\bibitem{q8}
 Cherkashin E.A., Paramonov V.V., et al, Model Driven Architecture is a Complex System, E-Society Journal Research and Applications. Volume 2, Number 2, 2011, pp. 15-23.
-\bibitem{}
+\bibitem{q9}
 Father
 
 
@@ -716,4 +720,5 @@ Father
 
 %% Local Variables:
 %% eval: (ispell-change-dictionary "ru-yeyo")
+%% latex-run-command: "pdflatex"
 %% End:
