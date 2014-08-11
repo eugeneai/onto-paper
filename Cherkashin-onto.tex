@@ -380,7 +380,7 @@
 % of the page, use this alternative format:
 %
 \author{\IEEEauthorblockN{Е.А. Черкашин\IEEEauthorrefmark{1}\IEEEauthorrefmark{3},
-\IEEEauthorblockN{А.К. Черкашин\IEEEauthorrefmark{1}}
+\IEEEauthorblockN{А.К. Черкашин\IEEEauthorrefmark{2}}
 \IEEEauthorblockN{И.В. Бычков\IEEEauthorrefmark{1}}
 П.В. Белых\IEEEauthorrefmark{1} and
 К.К. Паскал\IEEEauthorrefmark{3}}
@@ -432,16 +432,18 @@
 
 
 
-\section{Introduction}
+\section*{Введение}
 % no \IEEEPARstart
 
 В 2001 году Т.-Б.Ли предложил план развития интернет"=технологий (семантический веб), который направлен на реализацию сетевых сервисов со значительным уровнем интеграции логического слоя представляемой информации. Информация размечается семантически, а программные агенты, используя эту информацию, производят ее обработку с целью решения конкретных практических задач пользователя.
 
-Одной из основных проблем семантического веба является тот факт, что большинство пользователей решают свои практические задачи и не заинтересованы повышении своей квалификации до уровня позволяющего использовать эти технологии в полной мере. В такой ситуации технологические аспекты семантического веба должны быть полностью скрыты, а программное обеспечение должно "варить кашу из топора". Необходимо разрабатывать программное обеспечения управления содержимым сайтов и юридических документов как технологий приобретения знаний, где пользователю удостаивается роль источника дополнительной информации для интегрированного в систему механизма поддержки принятия решений.
+Одной из основных проблем семантического веба является тот факт, что большинство пользователей решают свои практические задачи и не заинтересованы повышении своей квалификации до уровня позволяющего использовать эти технологии в полной мере. В такой ситуации технологические аспекты семантического веба должны быть полностью скрыты, а программное обеспечение должно "варить кашу из топора". Необходимо разрабатывать программное обеспечения управления содержимым сайтов и юридических документов как технологий приобретения знаний, где пользователю предоставляется роль источника дополнительной информации для интегрированного в систему механизма поддержки принятия решений.
+
+Идею подхода удобно излагать на примере юридических документов, которые в большинстве случаев содержат сведения об отношениях между физическими и юридическими лицами, а также другими \todo[inline]{предметами}. Эти сведения в первоначальной или преобразованной форме используются в других документах. Поэтому имеет смысл для каждого документа извлекать и хранить достаточно детально представленное логическое описание таких сведений, которое преобразуется в текстовый документ при помощи шаблонов. Вариант преобразования определяется отображаемым документом.
+
+К настоящему времени технологии Семантического Веба (СВ) предоставляют формальные механизмы представления указанных отношений при помощи определенных форматов и структур данных, а также несколько механизмов их логической обработки. Логический слой представления информации в СВ представляет собой граф, состоящий из концептов (понятий) и отношений между ними. В частности в юридическом документе физические и юридические лица находятся в отношении с документом в отношении "часть--целое", если не обращать внимания на более содержательные виды отношений.
 
 
-
-To be more comprehensible consider a content of a legal document, which in most cases contains meaningful information for human beings relationships that is usually passed to other documents in a derivative form. This suggests an idea to develop a form of the logical layer representation in a reasonably detailed form, which can be rendered as a regular text pages by means of context"=depended (in sense of a legal document) text templates. The SW approach could supplement the idea with data formats and technologies of their storage and processing. SW represents logical layer as a network graph of notions and relations between the notions. For example, individuals mentioned in a legal document relate to the document as “parts"=whole”, unless to speak even more explicitly in a context of the meaningful information.
 
 At present most of the use cases of domain ontology models are refining search results. Automatic procedures of ontology extraction from the documents are based on crawling documents in a warehouse, data mining procedures on the text bodies and metadata attributes of the documents. Simple observation of the human behavior in the process of a document preparation will result in the confidence that meaningful parts of the document, which are usually expressed with the logical layer, are located at the points of document changes. Hence, a programming system automating a document preparation should track the changes and analyze them in the time space to extract ontology data, i.e., data (a"=box and corresp. relations) and knowledge (t"=box with corresp. relations).
 
