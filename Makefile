@@ -3,7 +3,7 @@
 all: Cherkashin-onto.pdf
 
 Cherkashin-onto.pdf: Cherkashin-onto.tex
-	pdflatex $< && pdflatex $<
+	pdflatex -synctex=1 $< && pdflatex $<
 
 view: Cherkashin-onto.pdf
 	evince $<
