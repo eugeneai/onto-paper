@@ -76,6 +76,8 @@
 \usepackage{todonotes}
 \usepackage{lmodern}
 
+
+
 % Some very useful LaTeX packages include:
 % (uncomment the ones you want to load)
 
@@ -353,11 +355,8 @@
 
 %\title{Методика извлечения знаний из текстовых документов, основанная на анализе ответов пользователя и полисистемы онтологий}
 
-\title{Интерактивная методика извлечения\todo[inline]{Первоначальный
-    заголовок: Методика ПРИОБРЕТЕНИЯ знаний из текстовых документов,
-    основанная на анализе ответов пользователя и полисистемы
-    онтологий} знаний из текстовых документов, основанная на
-  полисистеме онтологий}
+\title{Интерактивная методика извлечения\todo[inline]{Первоначальный заголовок: Методика ПРИОБРЕТЕНИЯ знаний из текстовых документов, основанная на анализе ответов пользователя и полисистемы онтологий} знаний из текстовых документов, основанная на полисистеме онтологий}
+
 
 % author names and affiliations
 % use a multiple column layout for up to three different
@@ -403,13 +402,33 @@
 %\boldmath
 
 
-В докладе представляется идея подхода к представлению и индукции логического слоя представления контента, например, содержимого сайтов, юридических документов и т.п. Этот слой порождается на основе анализа результатов редактирования содержимого (контента) --- как текстовой составляющей, так и его существующей логической структуры. Варианты интерпретации того или иного изменения содержимого (исправление ошибки/значения или формирование нового высказывания) уточняются в результате диалога с пользователем. На принятие решения также влияют результаты анализа поведения пользователя, например, выделяются повторяющиеся переходы между редактируемыми документами определенных классов.
+  В докладе представляется идея подхода к представлению и индукции
+  логического слоя представления контента, например, содержимого
+  сайтов, юридических документов и т.п. Этот слой порождается на
+  основе анализа результатов редактирования содержимого (контента) ---
+  как текстовой составляющей, так и его существующей логической
+  структуры. Варианты интерпретации того или иного изменения
+  содержимого (исправление ошибки/значения или формирование нового
+  высказывания) уточняются в результате диалога с пользователем. На
+  принятие решения также влияют результаты анализа поведения
+  пользователя, например, выделяются повторяющиеся переходы между
+  редактируемыми документами определенных классов.
 
+  Теоретической основой методики является представление предметной
+  области в виде полисистемы онтологий, т.е. многослойной структуры
+  понятий и отношений, которые отображаются между слоями через
+  интерпретацию. Полисистема онтологий, представленных в виде
+  семантических сетей, позволяет организовать диалог с пользователем,
+  упорядочивать и классифицировать факты о предметной области, а также
+  получать новые интерпретации формируемых концептов.
 
-
-Теоретической основой методики является представление предметной области в виде полисистемы онтологий, т.е. многослойной структуры понятий и отношений, которые отображаются между слоями через интерпретацию. Полисистема онтологий, представленных в виде семантических сетей, позволяет организовать диалог с пользователем, упорядочивать и классифицировать факты о предметной области, а также получать новые интерпретации формируемых концептов.
-
-В качестве тестовой среды для разрабатываемых технологий выбрана автоматизация деятельности нотариальной конторы и документооборот административных, хозяйственных и научных подразделений бюджетного учреждения. Документы, используемые в этих видах деятельности, обладают одним важным свойством --- содержащаяся в них информация представляется как в неструктурируемом, так и в структурируемом виде.
+  В качестве тестовой среды для разрабатываемых технологий выбрана
+  автоматизация деятельности нотариальной конторы и документооборот
+  административных, хозяйственных и научных подразделений бюджетного
+  учреждения. Документы, используемые в этих видах деятельности,
+  обладают одним важным свойством --- содержащаяся в них информация
+  представляется как в неструктурируемом, так и в структурируемом
+  виде.
 
 \end{abstract}
 % IEEEtran.cls defaults to using nonbold math in the Abstract.
@@ -439,27 +458,110 @@
 \section*{Введение}
 % no \IEEEPARstart
 
-В 2001 году Т.-Б.Ли предложил план развития интернет"=технологий (семантический веб), который направлен на реализацию сетевых сервисов со значительным уровнем интеграции логического слоя представляемой информации. Информация размечается семантически, а программные агенты, используя эту информацию, производят ее обработку с целью решения конкретных практических задач пользователя.
+В 2001 году Т.-Б.Ли предложил план развития интернет"=технологий
+(семантический веб), который направлен на реализацию сетевых сервисов
+со значительным уровнем интеграции логического слоя представляемой
+информации. Информация размечается семантически, а программные агенты,
+используя эту информацию, производят ее обработку с целью решения
+конкретных практических задач пользователя.
 
-Одной из основных проблем семантического веба является тот факт, что большинство пользователей решают свои практические задачи и не заинтересованы повышении своей квалификации до уровня позволяющего использовать эти технологии в полной мере. В такой ситуации технологические аспекты семантического веба должны быть полностью скрыты, а программное обеспечение должно "варить кашу из топора". Необходимо разрабатывать программное обеспечения управления содержимым сайтов и юридических документов как технологий приобретения знаний, где пользователю предоставляется роль источника дополнительной информации для интегрированного в систему механизма поддержки принятия решений.
+Одной из основных проблем семантического веба является тот факт, что
+большинство пользователей решают свои практические задачи и не
+заинтересованы повышении своей квалификации до уровня позволяющего
+использовать эти технологии в полной мере. В такой ситуации
+технологические аспекты семантического веба должны быть полностью
+скрыты, а программное обеспечение должно "варить кашу из
+топора". Необходимо разрабатывать программное обеспечения управления
+содержимым сайтов и юридических документов как технологий приобретения
+знаний, где пользователю предоставляется роль источника дополнительной
+информации для интегрированного в систему механизма поддержки принятия
+решений.
 
-Идею подхода удобно излагать на примере юридических документов, которые в большинстве случаев содержат сведения об отношениях между физическими и юридическими лицами, а также другими \todo[inline]{предметами}. Эти сведения в первоначальной или преобразованной форме используются в других документах. Поэтому имеет смысл для каждого документа извлекать и хранить достаточно детально представленное логическое описание таких сведений, которое преобразуется в текстовый документ при помощи шаблонов. Вариант преобразования определяется отображаемым документом.
+Идею подхода удобно излагать на примере юридических документов,
+которые в большинстве случаев содержат сведения об отношениях между
+физическими и юридическими лицами, а также другими элементами. Эти
+сведения в исходной или преобразованной форме используются в других
+документах. Поэтому имеет смысл для каждого документа извлекать и
+хранить достаточно детально представленное логическое описание таких
+сведений, которое преобразуется в текстовый документ при помощи
+шаблонов. Вариант преобразования определяется отображаемым документом,
+т.е. документ задает контекст представления логического слоя.
 
 К настоящему времени технологии Семантического Веба (СВ) предоставляют
 формальные механизмы представления указанных отношений при помощи
-определенных форматов и структур данных, а также несколько механизмов
+стандартных форматов и структур данных, а также несколько механизмов
 их логической обработки. Логический слой представления информации в СВ
 представляет собой граф, состоящий из концептов (понятий) и отношений
 между ними. В частности в юридическом документе физические и
-юридические лица находятся в отношении "часть--целое" с документом,
-если не обращать внимания на более содержательные виды отношений.
+юридические лица находятся с этим документом в отношении
+"часть--целое", а также в их более точных и содержательных вариантах.
 
+В настоящее время большинство вариантов использования онтологических
+моделей предметных областей сводятся к решению задачи уточнения
+диапазона релевантных документов в процессе поиска. Автоматизация
+извлечения онтологий из текстовых документов базируется на
+сканировании хранилищ документов: содержимого текста документов и их
+метаданных, анализ результатов сканирования. Наблюдение за поведением
+людей в процессе подготовки различных документов приводит к
+заключению, что содержательные части документов, которые и
+представляются в логическом слое, как правило, находятся в тех местах
+текста, где чаще всего пользователи производят изменения. Поэтому,
+информационная система, автоматизирующая процессы подготовки
+документов, должна отслеживать изменения, вводимые пользователем, во
+времени и в пространстве версий. Версии порождаются копированием
+документа или использование его в виде шаблона нового
+документа. Подвергаться анализу должна вся совокупность
+изменений. Предлагаемый подход позволяет сузить объем обрабатываемой
+информации за счет фокусировки алгоритмов анализа данных вблизи
+изменений. Границы изменений задаются, например, свойствами формата
+представления текста документа (гипертекстовой разметкой) или
+существующей логической структурой одной из его [документа] версий.
 
-At present most of the use cases of domain ontology models are refining search results. Automatic procedures of ontology extraction from the documents are based on crawling documents in a warehouse, data mining procedures on the text bodies and metadata attributes of the documents. Simple observation of the human behavior in the process of a document preparation will result in the confidence that meaningful parts of the document, which are usually expressed with the logical layer, are located at the points of document changes. Hence, a programming system automating a document preparation should track the changes and analyze them in the time space to extract ontology data, i.e., data (a"=box and corresp. relations) and knowledge (t"=box with corresp. relations).
+Элементы логического слоя (концепты, объекты и отношения между ними)
+формируются в результате применения алгоритмов анализа данных и
+интервьюирования пользователя. Среда, контекст, [приобретения знаний]
+включает в себя:
+\begin{itemize}
+\item полисистему онтологий, совокупно описывающую предметные области,
+  имеющие отношение к представлению документа как структуры данных,
+  так и его содержательного смысла;
+\item история изменения документа и его логического слоя;
+\item список последних изменений в текущей транзакции (новой версии);
+\item история действий пользователя в системе (пользователь, например,
+  выполняет типичный набор действий по подготовке стандартного пакета документов);
+\item ответы пользователя на утоняющие вопросы системы, цель которых
+  --- определить [истинные намерения пользователя] смысл сделанных исправлений.
+\end{itemize}
 
-The logical layer is induced during content edition by means of data mining and user interview. The context of the knowledge acquisition consists of a polysystem of ontologies describing the domain, the source document (its textual representation and the existing logical structure), its list of modifications in a transaction, user's action history and answers to the interview questions clarifying meaning of his/her actions and properties of the relations constructed. As a result new or modified triples <subject, relation, object> representing the domain are constructed. Collected triple data, metadata and knowledge of the logical layer can also be crawled on a regular basis to figure out patterns and functional relations between attributes (objects). In the last case a relational table could be induced to rise the efficiently of data storage and processing.
+В результате анализа этих данных формируются новый набор троек вида
+\texttt{<subject, relation, object>}, [представляющих новые данные
+нового документа/версии, представленные в логическом
+слое]. Накопленные логические слои документов необходимо периодически
+также сканировать на выявление стойких функциональных зависимостей
+между значениями объектов. В результате этого анализа, предлагается
+совершенствовать формат представления данных слоя, например применяя
+реляционные таблицы в качестве хранилищ. [Метод функциональных
+зависимостей применяется наоборот (т.е. данные - анализ - структура)].
 
-The present trends of internet information system development show that the systems become a web services and are oriented to support social networks \cite{b3}. The data flow processing here in most cases is input, storage, filtering and transmitting data, i.e., the social networks integrate rather than aggregate data, e.g., to produce reports. Hence, the usage of special design techniques for the middleware layer of the software, such as object-oriented design, is not a significant advantage. Social network are interconnected with common protocols and data structures, also in the social network environment
+Сеть взаимодействующих программных систем, в которых реализованы перечисленные функции,
+обладает многими свойствами социальной сети. Основными видами обработки
+информации в такой сети являются ввод, хранение, фильтрация и
+передача, т.е. интеграция данных, а не их агрегация с целью порождения
+комплексных отчетов. Поэтому применения специальных методологий
+проектирования программного обеспечения при разработке таких систем
+(или подсистем приобретения знаний описываемого вида), например,
+объектно-ориентированных технологий, не является значительным
+преимуществом. Горазда важнее обеспечить возможность функционирования
+программ на [дешевом хостинге] и создания каналов данных на основе
+современных стандартных форматах данных.
+
+Интересным свойством такой социальной сети, реализующей, фактически,
+распределенный документооборот, является требования к организации
+обмена данными между пользователями в процессе подготовки документов
+преимущественно в режиме off-line. Современные информационные
+технологии позволяют хранить данные логического слоя в разметке
+электронных документов \ref{microformats,RDFa} и в виде QR-кодов,
+сопровождающих печатные варианты документов.
 
 \begin{IEEEitemize}[\IEEEsetlabelwidth{Z}]
 \item there are no predominant common task to be solved with all the agents (computer and human);
@@ -503,9 +605,16 @@ According to PSAS \cite{father} each concept of an aspect should be presented (v
 
 In our case we defined the procedure of triples acquisition as an instance of the fibration procedure. The obtained classes of documents, people and other objects are the concept of a PSAS theory of an aspect. Having established new class or new relation between two classes, the concept or relation should be reflected as a substituted (interpreted with) one in other ontologies (e.g., mereological one). In a general case we must also produce the definitions for the notions in those ontologies.
 
-Each of new concept (a class) as we described in the previous section is to be inherited from a parent class, thus, it can be interpreted in other ontologies as either a concept that corresponds to the parent class or to a new inherited class. This case the user interview also organized to obtain a description of the class and the relation.
+Each of new concept (a class) as we described in the previous section
+is to be inherited from a parent class, thus, it can be interpreted in
+other ontologies as either a concept that corresponds to the parent
+class or to a new inherited class. This case the user interview also
+organized to obtain a description of the class and the relation.
 
-Thus, the usage of the PSAS allows us to partially deal with the completeness (As \ldots{} \cite{sergey}) and consistency (by testing an ontology and morphing the results to other ones) of the ontological theories under construction.
+Thus, the usage of the PSAS allows us to partially deal with the
+completeness (As \ldots{} \cite{sergey}) and consistency (by testing
+an ontology and morphing the results to other ones) of the ontological
+theories under construction.
 
 \subsection{Utilizing Polysystem of Ontologies in User Interview}
 As it was mentioned above any studied and modeled domain can be fibrated and represented as a polysystem of notions, objects and their relationships. The polysystem from a general point of view is a set of disjoint layers. Each layer contains a system of concepts, individual objects and corresponding relationships between them. In a fibrated polysystem, concepts belonging to a layer are morfed (mapped) into concepts in other layers via concept interpretation of one layer (projection, theory, science, domain) into concepts of other layer. All the concepts are interpreted by concepts of the abstract system layer. The interpretation feature of polysystem layers could be used to drive user interview dialog on the base of an inference by analogy represented as movement along relations and morphs in the polysystem of ontologies.
@@ -559,6 +668,8 @@ Kyoto Cabinet is a library of routines for managing a database. The database is 
 Availability of funds to work with triplets described in the standard RDF is an advantage database management system Kyoto Cabinet over other embedded systems is. In this case the developer does not need to spend time on design and implementation of the data model so that its performance on this task is increased.
 
 1.	Kyoto Cabinet. URL: http://fallabs.com/kyotocabinet/ (дата обращения: 20.02.2014).]
+
+
 
 %\subsubsection{Subsubsection Heading Here}
 %Subsubsection text here.
@@ -724,13 +835,13 @@ Father
 
 \end{thebibliography}
 
-проверкап  правописания матрас ыв math   asd
-
-
 % that's all folks
 \end{document}
 
 %% Local Variables:
-%% eval: (ispell-change-dictionary "russian")
+%% eval: (ispell-change-dictionary "ru_RU_hunspell")
 %% TeX-master: t
+%% TeX-PDF-mode: 1
+%% TeX-source-correlate-mode: 1
+%% TeX-source-correlate-start-server: nil
 %% End:
