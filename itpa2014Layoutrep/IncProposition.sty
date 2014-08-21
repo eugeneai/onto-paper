@@ -1,0 +1,318 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%********** Идентификация *******************************************%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{../IncProposition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Маслов С.Г. 19.07.2011 - каф. теоретических основ инф-ки УдГУ
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%********** Начальный код *******************************************%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\DeclareOption{Margin}{
+\def\Margin{True}
+}
+
+
+\DeclareOption{NoMargin}{
+\def\Margin{False}
+}
+\DeclareOption{Russian}
+  {
+  \def\definitionname{Определение} 
+  \def\theoremname{Теорема}
+  \def\propositionname{Предложение} 
+  \def\lemmaname{Лемма}
+  \def\assertionname{Утверждение}
+  \def\proofname{Доказательство} 
+  \def\corollaryname{Следствие} 
+  \def\stagename          {Этап}
+  \def\stepname           {Шаг}
+  \def\algorithmname      {Алгоритм}
+  \def\solutionname       {Решение}
+  \def\axiomname          {Аксиома}
+  \def\ruleofinferencename{Правило вывода}
+  \def\findingsname{Вывод}
+  \def\examplename{Пример}
+  \def\explanationname{Пояснение}
+  \def\notename{Примечание}
+  \def\problemname{Проблема}
+  \def\hypothesisname     {Гипотеза}
+  \def\heuristicsname     {Эвристика}
+  \def\thesisname         {Тезис}
+  \def\taskname           {Задача}
+  \def\rulename           {Правило}
+  \def\wherename{где}
+}
+
+\DeclareOption{English}{
+  \def\definitionname{Definition} 
+  \def\theoremname{Theorem}
+  \def\propositionname{Proposition} 
+  \def\lemmaname{Lemma}
+  \def\assertionname{Assertion}
+  \def\proofname{Proof} 
+  \def\corollaryname{Corollary} 
+  \def\stagename          {Stage}
+  \def\stepname           {Step}
+  \def\algorithmname      {Algorithm}
+  \def\solutionname       {Solution}
+  \def\axiomname          {Axiom}
+  \def\ruleofinferencename{Rule of inference}
+  \def\findingsname{Findings}
+  \def\examplename{Example}
+  \def\explanationname{Explanation}
+  \def\notename{Note}
+  \def\problemname{Problem}
+  \def\hypothesisname     {Heuristics}
+  \def\heuristicsname     {Heuristics}
+  \def\thesisname         {Thesis}
+  \def\taskname           {Task}
+  \def\rulename           {Rule}
+  \def\wherename{where}
+}
+
+\ExecuteOptions{Russian,Margin}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%********** Исполнение опций ****************************************%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ProcessOptions
+
+
+\RequirePackage{ifthen}    % язык
+\RequirePackage{pifont}    % язык
+\RequirePackage{amssymb}    % язык
+
+\reversemarginpar
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%---------- Определение вида теоремы, леммы, предложения, -----------%
+%---------- следствия, определения, примера -------------------------%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\theoremsymbol        {$\mathrm{T\mkern -4.5mu{\scriptstyle {h}}.}$} %Теорема
+\def\propositionsymbol    {\ding{252}} %Предложение
+\def\lemmasymbol          {\ding{248}} %Лемма
+\def\assertionsymbol      {} %Утверждение
+\def\proofsymbol          {\ding{111}} %Доказательство
+\def\corollarysymbol      {\ding{245}} %Следствие
+\def\examplesymbol        {$\diamond$}%{\textsl{\small e.g.}} %Пример
+\def\explanationsymbol    {\ding{49}} %Пояснение
+\def\notesymbol           {\ding{47}} %Примечание
+\def\stagesymbol          {$\overset{~s}{\urcorner}\mkern -4mu\overset{\textstyle\llcorner}{}\mkern -7mu\overset{\textstyle t}{\scriptscriptstyle\phantom{-}}$} %Этап
+\def\stepsymbol           {} %Шаг
+\def\algorithmsymbol      {} %Алгоритм
+\def\solutionsymbol       {} %Решение
+\def\axiomsymbol          {} %Аксиома
+\def\ruleofinferencesymbol{} %Правило вывода
+\def\findingssymbol       {} %Выводы - находки    
+\def\problemsymbol        {$\lefteqn{\bigcirc}\mkern 3.5mu\scriptstyle\mathrm{\overset{P}{}\mkern -0.5mu r}$} %
+\def\hypothesissymbol     {} %Гипотеза
+\def\heuristicssymbol     {} %Эвристика
+\def\thesissymbol         {$\overset{\textstyle\overset{\backsim\mkern -3.2mu\backsim}{\scriptstyle \smash{th}s}}{\scriptstyle\backsim\mkern -3.2mu\backsim}$} %Тезис
+\def\tasksymbol           {} %Задача
+\def\rulesymbol           {} %Правило
+
+%         \reversemarginpar
+%         \normalmarginpar
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Команда, определяющая создание нового нумерумого предложения в виде 
+%окружения.
+%Параметры: 1 - имя нового предложения (окружения),
+%           2 - текст, который выводится перед текстом, 
+%           3 - сивол, который выводится слева от текста на полях,  
+%           4 - команды, выполняемые до основного текста 
+%               (например, оформление основного текста),  
+%           5 - команды, выполняемые после основного текста.
+\def\newpropositionnum#1#2#3#4#5
+{
+% \@definecounter{#1}
+ \newcounter{#1}[section]
+ \expandafter\xdef\csname the#1\endcsname{\noexpand\arabic{#1}}
+ \newenvironment{#1}[1][]
+ {\refstepcounter{#1}
+  \textbf{#2\ \thesection.\csname the#1\endcsname.%
+  \ifthenelse{\equal{\Margin}{True}}
+     {
+%       \ifodd\c@page
+         \marginpar{#3}%
+%      \else
+%         \marginpar{\hspace*{-2mm}#3}%
+%      \fi
+      }{}%
+  \ifthenelse{\equal{##1}{}}{\index{#2!\csname the#1\endcsname.|}}
+                            {\ (##1).\index{#2!##1\ (\csname the#1\endcsname)|}}}
+  #4\par}
+ {#5\par}
+}
+%Команда, определяющая создание нового не нумерумого предложения в виде 
+%окружения (окружение со звездочкой (*)).
+\def\newpropositionnonum#1#2#3#4#5
+{
+ \newenvironment{#1*}[1][]
+ {\textbf{#2%
+  \ifthenelse{\equal{##1}{}}{}{(##1).\index{#2!##1|}}}
+  #4\par}
+ {#5\par}
+}
+%Команда, определяющая создание нового не нумерумого предложения в виде 
+%окружения без предваряющего слова(окружение с плюсом (+)).
+\def\newpropositionnoword#1#2#3#4#5
+{
+ \newenvironment{#1+}[1][]
+ {\hspace{-1.5ex}
+  \ifthenelse{\equal{##1}{}}{}{\index{#2!##1|}}
+  #4}
+ {#5}
+}
+%Команда, определяющая создание нового не нумерумого предложения в виде 
+%окружения без внесения в предметный указатель.
+\def\newproposition#1#2#3#4#5
+{
+ \newenvironment{#1}[1][]
+ {\textbf{#2.}%  
+ #4\par
+ } 
+ {#5\par}
+}
+                
+%%%%% Определение
+\def\definitionsymbol{$\stackrel{\text{\tiny\itshape def}}{=}$}
+\newpropositionnum   {definition}{\definitionname}{\definitionsymbol}{\slshape}{}
+\newpropositionnonum {definition}{\definitionname}{\definitionsymbol}{\slshape}{}
+\newpropositionnoword{definition}{\definitionname}{}{\slshape}{}
+
+%%%%% Теорема
+\newpropositionnum{theorem}{\theoremname}{\theoremsymbol}
+                  {\slshape}{}
+\newpropositionnonum{theorem}{\theoremname}{\theoremsymbol}
+                    {\slshape}{}
+
+%%%%% Предложение
+\newpropositionnum{proposition}{\propositionname}{\propositionsymbol}
+                  {\slshape}{}
+\newpropositionnonum{proposition}{\propositionname}{\propositionsymbol}
+                    {\slshape}{}
+
+%%%%% Лемма
+\newpropositionnum{lemma}{\lemmaname}{\lemmasymbol}
+                  {\slshape}{}
+\newpropositionnonum{lemma}{\lemmaname}{\lemmasymbol}
+                    {\slshape}{}
+
+%%%%% Утверждение
+\newpropositionnum{assertion}{\assertionname}{\assertionsymbol}
+                  {\slshape}{}
+\newpropositionnonum{assertion}{\assertionname}{\assertionsymbol}
+                    {\slshape}{}
+
+%%%%% Следствие
+\newpropositionnum{corollary}{\corollaryname}{\corollarysymbol}
+                  {\slshape}{}
+\newpropositionnonum{corollary}{\corollaryname}{\corollarysymbol}
+                    {\slshape}{}
+
+%%%%% Доказательство
+\newproposition{proof}{\proofname}{\proofsymbol}
+               {}{$_\blacksquare$}
+
+%%%%% Этап
+\newpropositionnum{stage}{\stagename}{\stagesymbol}
+                  {\slshape}{}
+
+%%%%% Шаг
+\newpropositionnum{step}{\stepname}{\stepsymbol}
+                  {\slshape}{}
+
+%%%%% Алгоритм
+\newpropositionnum{algorithm}{\algorithmname}{\algorithmsymbol}
+                  {\slshape}{}
+\newpropositionnonum{algorithm}{\algorithmname}{\algorithmsymbol}
+                    {\slshape}{}
+
+%%%%% Решение
+\newpropositionnum{solution}{\solutionname}{\solutionsymbol}
+                  {\slshape}{}
+\newpropositionnonum{solution}{\solutionname}{\solutionsymbol}
+                    {\slshape}{}
+
+%%%%% Аксиома
+\newpropositionnum{axiom}{\axiomname}{\axiomsymbol}
+                  {\slshape}{}
+\newpropositionnonum{axiom}{\axiomname}{\axiomsymbol}
+                    {\slshape}{}
+
+%%%%% Правило вывода
+\newpropositionnum{ruleofinference}{\ruleofinferencename}{\ruleofinferencesymbol}
+                  {\slshape}{}
+\newpropositionnonum{ruleofinference}{\ruleofinferencename}{\ruleofinferencesymbol}
+                    {\slshape}{}
+
+%%%%% Вывод
+\newpropositionnum{findings}{\findingsname}{\findingssymbol}
+                  {\slshape}{}
+\newpropositionnonum{findings}{\findingsname}{\findingssymbol}
+                    {\slshape}{}
+
+%%%%% Пример
+\newpropositionnum{example}{\examplename}{\examplesymbol}
+                  {}{}
+\newpropositionnonum{example}{\examplename}{}
+                    {\slshape}{}
+
+%%%%% Пояснение
+\newproposition{explanation}{\explanationname}{\explanationsymbol}
+               {\slshape}{}
+
+%%%%% Примечание
+\newproposition{note}{\notename}{\notesymbol}
+               {\slshape}{}
+%%%%% Проблема
+\newpropositionnum{problem}{\problemname}{\problemsymbol}
+                  {\slshape}{}
+\newpropositionnonum{problem}{\problemname}{\problemsymbol}
+                    {\slshape}{}
+
+%%%%% Гипотеза
+\newpropositionnum{hypothesis}{\hypothesisname}{\hypothesissymbol}
+                  {\slshape}{}
+\newpropositionnonum{hypothesis}{\hypothesisname}{\hypothesissymbol}
+                    {\slshape}{}
+
+%%%%% Эвристика
+\newpropositionnum{heuristics}{\heuristicsname}{\heuristicssymbol}
+                  {\slshape}{}
+\newpropositionnonum{heuristics}{\heuristicsname}{\heuristicssymbol}
+                    {\slshape}{}
+
+%%%%% Тезис
+\newpropositionnum{thesis}{\thesisname}{\thesissymbol}
+                  {\slshape}{}
+\newpropositionnonum{thesis}{\thesisname}{\thesissymbol}
+                    {\slshape}{}
+
+%%%%% Задача
+\newpropositionnum{task}{\taskname}{\tasksymbol}
+                  {\slshape}{}
+\newpropositionnonum{task}{\taskname}{\tasksymbol}
+                    {\slshape}{}
+
+%%%%% Правило
+\newpropositionnum{rules}{\rulename}{\rulesymbol}
+                  {\slshape}{}
+\newpropositionnonum{rules}{\rulename}{\rulesymbol}
+                    {\slshape}{}
+%%%%% Упражнение
+\def\exercisesymbol {$\triangleright$}
+\newpropositionnum  {exercise}{Упражнение}{\exercisesymbol}{\slshape}{}
+\newpropositionnonum{exercise}{Упражнение}{\exercisesymbol}{\slshape}{}

@@ -1,0 +1,123 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Управление информатизации ИжГТУ - Copyright 2004                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%********** Идентификация *******************************************%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{../IncLang}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Маслов С.Г. 13.08.2014 - каф. теоретических основ инф-ки УдГУ
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%********** Начальный код *******************************************%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\DeclareOption{Russian}{
+\PassOptionsToPackage{english,russian}{babel}
+}
+
+\DeclareOption{English}{
+\PassOptionsToPackage{english}{babel}
+}
+
+\ProcessOptions
+
+\RequirePackage{babel}    % язык
+
+\ifx\CurrentOptions\l@Russian
+\addto\captionsrussian{
+  \def\copyrightname{}
+  \def\copyrightstructurename{}
+  \def\copyrightclassname{}
+  \def\authorname{Автор}
+  \def\udkname{УДК}
+  \def\bbkname{ББК}
+  \def\datename{Дата}
+  \def\abstractname{Аннотация}
+  \def\introductionname{Введение}
+  \def\conclusionname{Заключение}
+  \def\contentsname{Оглавление}
+  \def\listfigurename{Список иллюстраций}
+  \def\listtablename{Список таблиц}
+  \def\bibname{Список литературы}
+  \def\definitionname{Определение} 
+  \def\theoremname{Теорема}
+  \def\propositionname{Предложение} 
+  \def\lemmaname{Лемма}
+  \def\assertionname{Утверждение}
+  \def\proofname{Доказательство} 
+  \def\corollaryname{Следствие} 
+  \def\stagename          {Этап}
+  \def\stepname           {Шаг}
+  \def\algorithmname      {Алгоритм}
+  \def\solutionname       {Решение}
+  \def\axiomname          {Аксиома}
+  \def\ruleofinferencename{Правило вывода}
+  \def\findingsname{Вывод}
+  \def\examplename{Пример}
+  \def\explanationname{Пояснение}
+  \def\notename{Примечание}
+  \def\problemname{Проблема}
+  \def\hypothesisname     {Гипотеза}
+  \def\heuristicsname     {Эвристика}
+  \def\thesisname         {Тезис}
+  \def\taskname           {Задача}
+  \def\rulename           {Правило}
+  \def\subjectindexname{Предметный указатель}
+  \def\alphabeticalindexname{Алфавитный указатель}
+  \def\glossaryname{Глоссарий}
+  \def\thanksname{Благодарности}
+}
+\fi
+
+\ifx\CurrentOptions\l@English
+\addto\captionsenglish{
+  \def\copyrightname{}
+  \def\copyrightstructurename{}
+  \def\copyrightclassname{}
+  \def\authorname{Author}
+  \def\udkname{UDK}
+  \def\bbkname{BBK}
+  \def\datename{Date}
+  \def\abstractname{Abstract}
+  \def\introductionname{Introduction}
+  \def\conclusionname{Conclusion}
+  \def\contentsname{Contents}
+  \def\listfigurename{List of figures}
+  \def\listtablename{List of tables}
+  \def\bibname{Bibliography}
+  \def\definitionname{Definition} 
+  \def\theoremname{Theorem}
+  \def\propositionname{Proposition} 
+  \def\lemmaname{Lemma}
+  \def\assertionname{Assertion}
+  \def\proofname{Proof} 
+  \def\corollaryname{Corollary} 
+  \def\stagename          {Stage}
+  \def\stepname           {Step}
+  \def\algorithmname      {Algorithm}
+  \def\solutionname       {Solution}
+  \def\axiomname          {Axiom}
+  \def\ruleofinferencename{Rule of inference}
+  \def\findingsname{Findings}
+  \def\examplename{Example}
+  \def\explanationname{Explanation}
+  \def\notename{Note}
+  \def\problemname{Problem}
+  \def\hypothesisname     {Heuristics}
+  \def\heuristicsname     {Heuristics}
+  \def\thesisname         {Thesis}
+  \def\taskname           {Task}
+  \def\rulename           {Rule}
+  \def\subjectindexname{Subject index}
+  \def\alphabeticalindexname{Name list}
+  \def\glossaryname{Glossary}
+  \def\thanksname{Thanks}
+}
+\fi
+
