@@ -237,27 +237,73 @@
 пользователем, влияет на содержательный смысл текста документа
 (изменяемой структуры), соответственно изменяя его логический слой.
 Т.е. мы далее не рассматриваем простое исправление ошибки, которое
-представляет собой изменение значения поля \texttt{object} в тройке,
-или исправление текста абзаца, в том числе в исходном шаблоне.
-Содержательное изменение в основном приводит к формированию новой тройки между
-каким-либо субъектом в контексте документа и изменяемым значением.
-Анализ изменений в тексте документа направлен на формирование таких
-новых данных и знаний, при этом система играет активную роль, а
-пользователь является источником дополнительной информации.
+представляет собой изменение значения поля \texttt{object} и только
+его в тройке, или исправление текста абзаца, в том числе в исходном
+шаблоне.  Содержательное изменение в основном приводит к формированию
+новой тройки между каким-либо субъектом в контексте документа и
+изменяемым значением.  Анализ изменений в тексте документа направлен
+на формирование таких новых данных и знаний, при этом система играет
+активную роль, а пользователь является источником дополнительной
+информации.
 
-The semantic layer enrichment is carried on in an environment containing logic information thanks to document is already supplied with a logical layer.  The source data for an acquisition step is as follows\,: a) the source version of the document, b) a text modification expressed in diff format \cite{b9}; c) user answers to the question asked by the system, which refine the semantics and structure of the modifications; d) user actions preceding the modification.  If the modification corresponds to a value of an object of a triple then the modification means either error correction (subject is not changed) or creation of a new subject if user copied the document previously.  Creation of a new document implies filling in a number of triples with new values representing a new subject (RDF resource) of the document.
+Обогащение семантической разметки в среде, содержащей логическую
+структуру исходного документа, которая уже храниться в базе данных.  И
+тогда перечень данных, используемых системой для принятия решения
+включает\,:
+\begin{enumerate}
+\item исходную версию документа;
+\item изменения текста документа, представленные в виде стандартного
+  diff-формата \cite{b9};
+\item ответы пользователя на вопросы, задаваемые системой; ответы
+  уточняют смысл изменений (\e{что имел ввиду пользователь});
+\item перечень действий пользователя, предшествовавших данному
+  исправлению документа. \label{em:behav}
+\end{enumerate}
+Суть п.~\ref{em:behav}, например, проявляется при создании нового
+документа из шаблона или его копии, что вообще говоря, приводит к
+необходимости заполнения определенного перечня полей \texttt{object}
+уже существующих троек.  Таким набором, например, выступает
+стандартный набор полей для идентификации физического лица (ф.и.о.,
+данные паспорта, адрес места жительства и т.п.) в нотариальной
+доверенности.
 
-If a field or a text is partially modified this can be interpreted as:
-\begin{itemize}
-\item again, an error correction without document meaning change;
-\item a refinement of the logical structure of subject, extraction of a relation and an object; this corresponds to a new triple connecting the subject to the new object (changed value); the user must choose the subject of the new triple.
-\end{itemize}
+Если же документ модифицирован частично, то данное изменение
+интерпретируется как (\e{если это не простое исправление ошибки}) \e{a refinement of the logical structure of subject, extraction of a relation and an object; this corresponds to a new triple connecting the subject to the new object (changed value); the user must choose the \e[blue]{subject} of the new triple.}
 
-The new subject is chosen from a tree of all the subjects of the edited document.  After the choice is made, a list of all available relation is constructed from all known relation of the subject, its class and parent classes.  User must choose one relation to form the triple.  In the case, when the list contains no desired relation, a new one must be defined.  New relation is always a subclass of one that already exists in the system, which is also chosen from the list.  New relations defined by inexperienced user must be periodically analyzed by knowledge engineers to get rid of semantic inaccuracy, contradictions, redundancy to the equivalents, and be, hence, refactored.
+Новый субъект должен быть выбран из списка (дерева) всех существующих
+в контексте документа субъектов.  Далее для этого субъекта формируется
+список всех возможных отношений, который формируется из всех возможных
+отношений для этого субъекта и его класса, включая классы-предки.
+Пользователю необходимо выбрать одно отношение для формируемой тройки.
+\e{Надо где-то сказать про то, как сужать данный список.}  Если в
+списке не содержится необходимого отношения, то его необходимо
+определить.  \e{Что-то про определение...}  Новое отношение является
+всегда \e{уточняющим} подклассом какого-либо существующего в списке
+отношения.  Чтобы не \e{загрязнять} систему новыми сущностями\e{,
+обозначающими отношения,} сформированными неопытными и невнимательными
+пользователями, необходимо периодически проводить анализ этих
+отношений инженерами знаний.  Их задача исключить дублирующие (эквивалентные),
+противоречивые и семантически неточные отношения, и производить
+реорганизацию (refactoring) онтологической модели.
 
-If a value of a triple is removed, then the triple is being removed too.  The situation is acceptable if the minimal structural and semantic completeness of all the subjects of the documents are hold, otherwise either the user delete action is prohibited or the chain recursive deletion of the subjects is initiated.  To control this behavior each subject class have to be accompanied with a list of minimal valuable triplets that define the basis of the subject meaning.  Partial text removal, if it is not an error correction, is processed analogously to modification, with removed part being the object value.  Addition of characters to text is an action similar to modification, i.e., in a general case a new triple is constructed.
+Если объект какой-либо тройки удален, то и вся тройка должна быть
+также удалена из логического представления документа.  Процесс
+удаления должен контролироваться анализом минимальной структурной и
+семантической непротиворечивости.  Например, при удалении из
+доверенности физического лица, должны быть удалены и его паспортные
+данные (\e{другое дело - имеет ли смысл удалять физ.лицо из
+  доверенности.}). В результате анализа либо удаление разрешается,
+либо запрещается, либо создает цепочку удалений троек, как в примере с
+физическим лицом.  Для реализации этой функции каждый класс субъектов
+необходимо сопроводить перечнем троек, которые необходимы для
+формирования его содержательного базиса.
 
-Addition of a triple might result in extending the document with new subjects and relations.  For example, let construct a new tripartite agreement from an existing bilateral one.  In new contract a third individual appeared, so the addition of a new family name of the individual results in construction of a subject for the individual, filling in the necessary triples, as well as definition of a new relation between document and the subject as a subclass of structuralElement relation.
+Добавление троек, в общем случае, приводит к добавлению новых
+субъектов и отношений.  Примером такой ситуации выступает создание
+трехстороннего договора из двустороннего добавлением нового физического
+лица.  При этом также необходимо, в общем случае, заполнить
+необходимые поля паспортных данных, а также установить отношения между
+контекстом, субъектами документа и новым физическим лицом.
 
 \section{Theoretical Generalization of the Acquisition Process}
 
