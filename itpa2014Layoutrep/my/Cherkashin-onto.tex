@@ -73,12 +73,11 @@
 \end{abstract}
 
 \begin{abstract}[english]
-  Here we have English abstract
+  \e[blue]{Here we have English abstract}
 \end{abstract}
 
 
 \introduction{}
-% no \IEEEPARstart
 
 В 2001 году Т.-Б.Ли предложил план развития интернет"=технологий
 (семантический веб), который направлен на реализацию сетевых сервисов
@@ -166,19 +165,20 @@
 зависимостей применяется наоборот (т.е. данные - анализ - структура)}.
 
 Сеть взаимодействующих программных систем, в которых реализованы
-перечисленные функции, обладает многими свойствами социальной
-сети.  Основными видами обработки информации в такой сети являются
-ввод, хранение, фильтрация и передача, т.е. интеграция данных, а не их
+перечисленные функции, обладает многими свойствами социальной сети.
+Основными видами обработки информации в такой сети являются ввод,
+хранение, фильтрация и передача, т.е. интеграция данных, а не их
 агрегация с целью порождения комплексных отчетов.  Поэтому применения
 специальных методологий проектирования программного обеспечения при
 разработке таких систем (или подсистем приобретения знаний
 описываемого вида), например, объектно"=ориентированных технологий, не
-является значительным преимуществом.  Горазда важнее обеспечить
-возможность функционирования программ на \e{дешевом хостинге} и
-создания каналов данных на основе современных стандартных форматах
-данных и сетевых интерфейсов прикладного программирования.  Обработку
-информации \e{аггрегированного типа} выполняют непосредственно
-пользователи, как правило, подсознательно.
+является значительным преимуществом.  Гораздо важнее обеспечить
+возможность функционирования программ в доступной недорогой серверной
+среде (хостинге) и создания каналов данных на основе современных
+стандартных форматах данных и сетевых интерфейсов прикладного
+программирования.  Обработку информации агрегированного типа в
+социальных сетях выполняют, преимущественно, пользователи и, как
+правило, подсознательно.
 
 Интересным свойством такой социальной сети, реализующей, фактически,
 распределенный документооборот, является требования к организации
@@ -196,11 +196,10 @@
 из одного документа в другой, смена ролей лиц в документа в процессе
 его подготовки, накапливание базы данных клиентов и другой справочной
 информации, \e{доступ к которой организуется при помощи быстрого
-контекстного поиска}.
+контекстного поиска}. \e[green]{Далее содержимое сайтов и документов будем
+просто называть просто ``документ''}.
 
-\section{Процедура логической разметки содержимого документа}
-\e{Заголовок не в тему.  Предложение: Представление
-  документов.... логический слой...}
+\section{Представление логического и презентационного слоя документа}
 
 Стандартный формат представления знаний RDF описывает информационные
 ресурсы при помощи троек вида \texttt{<subject, relation, object>} в
@@ -230,9 +229,21 @@
 корневые узлы связаны \e{другими} отношениями, например, организацией
 документов в тематические иерархии и кластеры.
 
+\e[cyan]{включить Chameleon надо не позже этого места ;-)}
 
-
-One of the key points of the research is semantic document markup techniques adaptation to the process of document editing.  We suppose that a document body change, in a regular case, affects the meaning of the document, hence, alters its logical layer.  Examples of the modifications are the elementary error correction, a field value change (an object of a triple), paragraph text editing that might imply its origin template correction.  Each change also might result in a new triple relation construction between context subjects and old/new object value.  The text change analysis is aimed at data and knowledge acquisition, where the content management system plays an active role, and user is a source of complementary information.
+Одним из основных моментов исследования --- это разработка методики
+адаптации процесса извлечения разметки к процессу редактирования
+документа.  Далее будем предполагать, что изменение, вносимое
+пользователем, влияет на содержательный смысл текста документа
+(изменяемой структуры), соответственно изменяя его логический слой.
+Т.е. мы далее не рассматриваем простое исправление ошибки, которое
+представляет собой изменение значения поля \texttt{object} в тройке,
+или исправление текста абзаца, в том числе в исходном шаблоне.
+Содержательное изменение в основном приводит к формированию новой тройки между
+каким-либо субъектом в контексте документа и изменяемым значением.
+Анализ изменений в тексте документа направлен на формирование таких
+новых данных и знаний, при этом система играет активную роль, а
+пользователь является источником дополнительной информации.
 
 The semantic layer enrichment is carried on in an environment containing logic information thanks to document is already supplied with a logical layer.  The source data for an acquisition step is as follows\,: a) the source version of the document, b) a text modification expressed in diff format \cite{b9}; c) user answers to the question asked by the system, which refine the semantics and structure of the modifications; d) user actions preceding the modification.  If the modification corresponds to a value of an object of a triple then the modification means either error correction (subject is not changed) or creation of a new subject if user copied the document previously.  Creation of a new document implies filling in a number of triples with new values representing a new subject (RDF resource) of the document.
 
