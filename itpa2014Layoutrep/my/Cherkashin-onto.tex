@@ -457,9 +457,28 @@ organized to obtain a description of the class and the relation.
 
 \section{Применение методики в нотариальном офисе}
 
-One of the applications of the technology under development is document preparation automation of a notary office.  Notary office in Russia generate vast amount of printed documents.  The documents contain both formalized and unformalized data in a balance reasonable for our study.  For example, formalized data are the passport data of individuals, registration data of vehicles.  Data of this kind are passed from one document to other documents mostly sturcturized and unchanged, raising a bindles of related documents.  The document content structure significantly depends on entry fields’ data filled in: form of notary signature field depends on legal capacities of the individuals mentioned in the main document body.  At present templates of the documents are prepared by a programming engineer collaborating with a professional secretary and verified by supervising notary.  Unformalized data are various enumerations of legal empowerments of the individuals, article codes, and explanatory text.
+Приложением методики и разрабатываемых технологий является
+автоматизация процесса подготовки нотариальных документов.
+\e{Нотариальная контора порождает большой объем печатных документов.}
+Текст документов включает как формализованную, так и неформализованную
+информацию в соотношении, удобном для наших исследований.  К
+формализованной информации, например, относятся паспортные данные
+физического лица, данные регистрации транспортных средств и т.п.
+Формализованные части документов активно передаются из документа в
+документ, хранятся в базах данных реляционного типа, при этом эта
+информация формирует цепочки нотариальных действий \e{в один шаблонный
+процесс}.  Структура нотариального документа, в общем случае,
+определяется данными, хранимыми в формализованной части текста.
+Например, формат нотариальной подписи зависит от дееспособности
+упомянутых в документе физических лиц.  \e[blue]{В настоящее время шаблоны
+документов в экспериментальном офисе подготавливаются инженером
+совместно с секретарями\,--\,заместителями нотариуса, имеющими
+достаточный опыт работы с имеющейся системой.} Неформализованная
+информация в нотариальных документах представляется в виде абзаца
+текстов, ссылки на статьи кодексов, разъясняющий текст и т.п.
 
-Application of the semantic approach to the logical layer representation of the notary document content is aimed at involvement of the secretaries (people with low engineering skills) into the processes of the document instances preparation from the existing templates and into the development of the templates and constructing their hierarchical arrangement.
+Применения разрабатываемого подхода призвано повысить уровень
+автоматизации сотрудников нотариальной конторы ...\e[cyan]{ Application of the semantic approach to the logical layer representation of the notary document content is aimed at involvement of the secretaries (people with low engineering skills) into the processes of the document instances preparation from the existing templates and into the development of the templates and constructing their hierarchical arrangement.}
 
 Logical layer of a notary document consists of hierarchy of subjects.  The subjects relate to each other on various abstraction levels, e.g., in a letter of attorney there are at least two individuals, the first one is principal, and the second one is trusted (proxy).  For each individual passport, data and place of residence are defined.  The letter can contain other person data, e.g., for partially capable children.  All the individuals are in explicit relation to the document.  The triples <letatt998 containsPrincipal indiv\_78> and <letatt998 containsProxy indiv\_79> could define a principal and proxy to the document.  The mentioned relations are specifications of abstract hasIndividual and structuralElement relations.  This multilevel approach allows us visually represent hierarchical structures of the document, having interpreted the relations as structural elements, and in the same time to associate individuals with other roles in new documents, swap roles during editing.  The swap function is implemented as user interface widget, which recognizes certain subject-to-subject relation patterns in the document body and interprets semantics of the relations as possible action.  A general graph structure of the abstract level of a notary office automation ontology is drawn in fig.~\ref{notaryontology}.
 
