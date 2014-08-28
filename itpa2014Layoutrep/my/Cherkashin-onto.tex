@@ -374,21 +374,68 @@ organized to obtain a description of the class and the relation.
   быть} декомпозирована в полисистему понятий, объектов и отношений. С
 общей точки зрения полисистема --- иерархическая структура,
 составленная из непересекающихся слоев.  Каждый уровень включает
-систему концептов, объектов и отношений между ними.  In a fibrated polysystem, concepts belonging to a layer are morfed (mapped) into concepts in other layers via concept interpretation of one layer (projection, theory, science, domain) into concepts of other layer.  All the concepts are interpreted by concepts of the abstract system layer.  The interpretation feature of polysystem layers could be used to drive user interview dialog on the base of an inference by analogy represented as movement along relations and morphs in the polysystem of ontologies.
+систему концептов, объектов и отношений между ними.  В уже
+расслоенной полисистеме концепты одного уровня через
+морфизм-интерпретацию отображены в концепты других уровней.  Все
+концепты также через интерпретацию отображаются на концепты
+абстрактного системного слоя.  Свойство отображения концептов между
+слоями через интерпретацию \e{должно быть использовано} в качестве
+основы реализации диалоговой подсистемы взаимодействия с
+пользователем.  При этом при помощи рассуждения по аналогии,
+представляемое в полисистеме онтологий как анализ структуры отношений
+в слое и движение вдоль отношений и интерпретационных отображений
+(между слоями).  \e[cyan]{Похоже на повторение при прямом прочтении
+  текста статьи.}
 
-Consider simple family relationships in fig.~\ref{OPSA}, where most of the obvious relations are hidden to make the figure more readable.  There are four main layers in the figure, which model corresponding aspects of Bob's family: layer 1 represents the family itself, it is the only layer having a-box entities; layer 2 represent main roles of individuals in a family; layer 3 shows genders as two opposites; and later 4 corresponds to mereological metomodel ``whole--parts''.
+Рассмотрим простой пример модели семейных отношений, изображенный на
+рис.~\ref{OPSA} (на рисунке большинство очевидных отображений
+интерпретации не отображены).  Полисистема, изображенная на рисунке,
+включает четыре слоя, которые представляют собой различные модели
+семьи Боба.  Слой 1 представляет семью как конкретный объект, в этом
+слое содержатся только a-box-элементы \cite{abox}.  Слой 2 задает
+основные роли (отношения) членов семьи. Слой 3 представляет \e{genders
+  as two opposites}. Слой 4 отображает мереологическую концепцию,
+т.е. суть отношения ``часть--целое''.
 
-Let's construct a list of questions to determine a role of Jul in Bob's family.  It is supposed we know only that Jul is a female.  To put Jul in layer 1, we must ask a general question: ``Is Jul a part of Bob's family?'' The question is constructed according to a following intuitive inference.  All relations between a family and its members are kinds of ``partOf:'' relation from layer 4.  This fact is shown as an arrow, which denote a contravariant functor from category of Layer 2 to category of Layer 4, from relation hasFather: of Layer 2 to ``partOf:'' of Layer 4, other four arrows are hidden.  So, in order to determine the fact that Jul is a member of Bob's family, it is sufficient to ask ``Is Jul partOf: Bob's-family?''.  The identifier of the example family is devised from the tradition to name families after their master of housekeeping (MOH) person, that is denoted by arrow from individual Bob (layer 1) to concept MOH (layer 2).
+Попробуем построить на основе этой полисистемы онтологий список
+вопросов, при помощи которых определяется, какую роль в семье Боба
+играет Джул \e{(Юля)}.  Предположим, что уже известно, что Джул ---
+женщина.  Чтобы поместить Джул в слой 1 необходимо задать вопрос
+пользователю\,: ``Является ли Джул частью семьи Боба?''.  Вопрос
+порождается в результате индуктивного вывода о том, что все отношения
+в семье через интерпретацию отображаются на отношение ``являться
+частью:'' слоя 4.  Это \e{наблюдение} моделируется контравариантным
+функтором из слоя (категории) 2 в слой 4 (показано на рисунке
+стрелкой от отношения ``бытьОтцом:'' к ``partOf:'', другие аналогичные
+стрелки не изображены).  Теперь для того, чтобы подтвердить факт, что
+Джул --- член семью Боба достаточно спросить\,: ``Правда ли, что Джул
+являетьсяЧастью: Семьи Боба?''.  Обозначение экземпляра ``Семья''
+можно сформировать по традиционному принципу обозначения семьи именем
+отца семейства (ОС), т.е. именем ``Боб''.  Данный факт обозначен на
+рисунке стрелкой от Боба в слое 1 к концепту ``ОС'' слоя 2.
 
-If user answered positively (Jul is a part of the family), then we must refine her role, as partOf: is not a role allowed to be used in layer 1.  Jul is a female (by definition), so she cannot be father and son.  If she is, she must be male, but it is not as male and female are formally opposite concepts.  If multiplicity of relations in the layer are defined, then we will also know, that the family already has mother.  The only possible choice is Jul is daughter, resulting an another general question:''Is Jul daughter?'' If the answer to the second question is also positive, finally a new triple constructed <Bob's-family hasDaughter: Jul>.
+Если пользователь ответил на данный вопрос утвердительно, т.е. Джул
+является частью семьи Боба, то нам нужно далее уточнять роль Джул, так
+как отношение ``partOf:'' не используется (\e{запрещено к
+  использованию}) в слое 1.  Джул --- женщина, поэтому не может быть
+ни отцом не сыном. Если бы это было так, то она должна быть мужчиной,
+но мужчина и женщина --- формально противоположные концепты.  Если для
+отношения ``бытьМатерью:'' в слое 1 задана кратность, то уже будет
+известно, что в семье уже есть мать Алиса.  Поэтому остается один
+вариант задать вопрос:''Джул [играет роль] дочери в семье Боба?''.  И
+теперь, если ответ будет утвердительный, то создается новая тройка: \texttt{<Bob's-family hasDaughter: Jul>}.
 
-If, e.g., gender of Jul is unknown, then the second question is constructed as a special question ``What role has Jul in Bob's family?'' and a list of two possible answers is shown: ``hasDaughter:'' and ``hasSon:''.  Or it can be constructed as an alternative question ``Is Jul plays hasDaughter: or hasSon: role in the family?'', but in this case the sentence is more weird with respect to English.
+Если, например, пол Джул неизвестен, то второй вопрос синтезируется
+следующим образом: ``Какую роль играет Джул в семье Боба?''.  В
+качестве вариантов ответа выдается список из двух отношений:
+``hasDaughter:'' and ``hasSon:''.  \e[cyan]{Или же этот вопрос можно оформить в
+виде \e{альтернативного вопроса}: `` hasDaughter: or hasSon: role in the family?'', but in this case the sentence is more weird with respect to English.}
 
 \begin{figure}
-\centering\sf
-\def\svgwidth{0.9\linewidth}
-\input{layer.pdf_tex}
-\caption{An  Usage Example of an Ontology Polysystem}
+{\centering\sf
+\def\svgwidth{0.7\linewidth}
+\input{layer.pdf_tex}}
+\caption{Пример использования полисистемы онтологий}
 \label{OPSA}
 \end{figure}
 
@@ -408,7 +455,7 @@ If, e.g., gender of Jul is unknown, then the second question is constructed as a
 
 (!! Systems of complexes. !!)
 
-\section{An Office Usage of the Technique}
+\section{Применение методики в нотариальном офисе}
 
 One of the applications of the technology under development is document preparation automation of a notary office.  Notary office in Russia generate vast amount of printed documents.  The documents contain both formalized and unformalized data in a balance reasonable for our study.  For example, formalized data are the passport data of individuals, registration data of vehicles.  Data of this kind are passed from one document to other documents mostly sturcturized and unchanged, raising a bindles of related documents.  The document content structure significantly depends on entry fields’ data filled in: form of notary signature field depends on legal capacities of the individuals mentioned in the main document body.  At present templates of the documents are prepared by a programming engineer collaborating with a professional secretary and verified by supervising notary.  Unformalized data are various enumerations of legal empowerments of the individuals, article codes, and explanatory text.
 
