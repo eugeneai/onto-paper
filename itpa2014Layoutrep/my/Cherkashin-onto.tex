@@ -478,9 +478,49 @@ organized to obtain a description of the class and the relation.
 текстов, ссылки на статьи кодексов, разъясняющий текст и т.п.
 
 Применения разрабатываемого подхода призвано повысить уровень
-автоматизации сотрудников нотариальной конторы ...\e[cyan]{ Application of the semantic approach to the logical layer representation of the notary document content is aimed at involvement of the secretaries (people with low engineering skills) into the processes of the document instances preparation from the existing templates and into the development of the templates and constructing their hierarchical arrangement.}
+автоматизации сотрудников нотариальной конторы, \e[blue]{примеры
+  задач попроще перечислить сначала.} вовлечь секретарей
+невысокой инженерной квалификации в процессы формирования базы шаблонов
+документов и их классификаций.
 
-Logical layer of a notary document consists of hierarchy of subjects.  The subjects relate to each other on various abstraction levels, e.g., in a letter of attorney there are at least two individuals, the first one is principal, and the second one is trusted (proxy).  For each individual passport, data and place of residence are defined.  The letter can contain other person data, e.g., for partially capable children.  All the individuals are in explicit relation to the document.  The triples <letatt998 containsPrincipal indiv\_78> and <letatt998 containsProxy indiv\_79> could define a principal and proxy to the document.  The mentioned relations are specifications of abstract hasIndividual and structuralElement relations.  This multilevel approach allows us visually represent hierarchical structures of the document, having interpreted the relations as structural elements, and in the same time to associate individuals with other roles in new documents, swap roles during editing.  The swap function is implemented as user interface widget, which recognizes certain subject-to-subject relation patterns in the document body and interprets semantics of the relations as possible action.  A general graph structure of the abstract level of a notary office automation ontology is drawn in fig.~\ref{notaryontology}.
+Логический слой нотариальных документов состоит из иерархии субъектов
+\e{как это уже неоднократно было сказано выше}.  Все эти субъекты
+находятся друг с другом в различных отношениях в различных слоях
+\e{и об этом также мы уже неоднократно говорили выше}.  Например, в
+доверенность включает по крайней мере два физических лица\,: одного
+\e{доверенного} и одного \e{доверяющего}.  Для каждого физического
+лица в документе представлены паспортные данные и место проживания.
+Доверенность может содержать также другую личную информацию, например,
+о частично дееспособных детях.
+
+Стороны в доверенности формализуются тройками \texttt{<letatt998
+  containsPrincipal: indiv78>} и \texttt{<letatt998 containsProxy:
+  indiv79>}, где \texttt{letatt998}, \texttt{indiv78} и \texttt{indiv79} --- идентификаторы
+конкретного документа и конкретных физических лиц.  Оба отношения
+\texttt{containsPrincipal:} и  \texttt{containsProxy:} являются
+специализациями абстрактных отношений \texttt{hasIndividual:} и
+\texttt{partOf:}, предназначенных для определения объектов
+некоторого класса и структурных элементов документа.  Такой
+многоуровневый и многослойный подход позволяет обрабатывать документ в
+различных аспектах его представления, в частности, визуально
+представлять документ в виде иерархии его структурных элементов.  Для
+этого достаточно абстрактно проинтерпретировать отношения.  Роли
+физических лиц в документе можно менять при помощи замены
+отношения \texttt{containsPrincipal:} на \texttt{containsProxy:} (и
+наоборот) в тройке.  Функция замены отношений реализуется в интерфейсе
+пользователя при помощи специального элемента управления: механизм
+распознавания находит определенные комбинации отношений в древовидном
+представлении документа и ассоциирует с ними допустимые операции.  В
+общем виде верхний уровень представления нотариальных документов
+представлен на рис.~\ref{notaryontology}.
+
+\section{Архитектура программной системы и средства реализации}
+
+\e[cyan]{вставить из прошлых статей}
+
+Программная система разрабатывается как интернет-приложение с
+возможностью установки локальной версии на персональный компьютер
+пользователя.
 
 [The flexibility and minimum resources and administration requirements criteria are of very importance to choosing database providing information resources storage as triples.  The database management systems as DB2, Oracle and SQL Server cannot fulfill requirements because after running the operation is performed as a separate process.  Also application and DBMS interaction should be implemented through interprocess communication form.
 
@@ -498,7 +538,8 @@ Availability of funds to work with triplets described in the standard RDF is an 
 % where an .eps filename suffix will be assumed under latex,
 % and a .pdf suffix will be assumed for pdflatex; or what has been declared
 % via \DeclareGraphicsExtensions.
-\caption{An upper layer of notary office ontology}
+\caption{Верхний уровень онтологии предметной области представления
+  нотариального документа}
 \label{notaryontology}
 \end{figure}
 
