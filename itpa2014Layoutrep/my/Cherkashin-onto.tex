@@ -235,8 +235,100 @@
 пользователя.  \e{Ну и что за странный пример??}
 
 В предлагаемом подходе [-2-] шаблоны для отображения логического слоя
-документа также хранятся в графе.
+документа также хранятся в графе.  При помощи троек задаются
+представления (views) и алгоритмы функциональных отображений,
+например, контроллеров (controllers) в рамках шаблона проектирования
+MVC (Model View Controller) \cite{b2:5}.  \e{На рис.~\ref{listex}}
+представлен пример представления разметки текста (личная информация о
+человеке) в формате FOAF (Friend of a Friend), а также часть его
+шаблонов представления.
 
+\begingroup%
+\tt%
+\begin{verbatim}
+<rdf:RDF
+ xmlns=”http://www.w3.org/1999/xhtml”
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:foaf="http://xmlns.com/foaf/0.1/"
+ xmlns:s="http://www.w3.org/2000/01/rdf-schema#"
+ xmlns:view=”http://purl.org/aquarium/engine/MVC”
+ xmlns:tal="http://xml.zope.org/namespaces/tal">
+  <rdf:Description rdf:about=
+  "http://www.example.com/People/II/contact#me">
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+    <s:seeAlso rdf:resource="http://www.exam..../People/II/contact"/>
+    <foaf:homepage rdf:resource="http://www.example.com/People/II"/>
+    <foaf:img rdf:resource="http://www.example.com/people/II.png"/>
+    <foaf:mbox rdf:resource="mailto:ii@www.example.com"/>
+    <foaf:name lang=”en”>Ivan Ivanov</foaf:name>
+    <foaf:name lang=”ru”>Иван Иванов</foaf:name>
+  </rdf:Description>
+  <!— Представление данных физического лица в  HTML+RDFa. -->
+  <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Person">
+    <view:pt xml:lang=”ru”>
+      <--! Тег view:pt задает формат представления -
+           pt (Zope Page Template). -->
+      <--! Значение переменной “subj” - это субъект тройки. -->
+ <a href=”.” tal:attributes=”href rdf: subj s:seeAlso”
+  tal:omit-tag=”not: rdf: subj s:seeAlso”>
+       <span tal:replace=”rdf: subj foaf:name”/>
+      </a><br/>
+ Home page: <a href=”” tal:attributes=”href rdf: subj foaf:homepage”>
+  <span tal:replace=”rdf: subj foaf:homepage”/>
+      </a><br/>
+ E-mail: <a href=”mailto:me@example.com”
+           tal:attributes=”href string:mailto:${rdf: subj foaf:mbox}”>
+ <span tal:replace=”rdf: subj foaf:mbox”/></a>
+    </view:pt>
+  </rdf:Description>
+</rdf:RDF>
+\end{verbatim}
+\endgroup
+
+В первой части приведенного примера задан экземпляр класса
+\texttt{Person} (контактные данные конкретного человека --- Ивана
+Иванова) как элемент графа онтологии.  Вторая часть примера ---
+описание представления ресурсов класса \texttt{Person}.  В качестве
+механизма \e{заполнения шаблонов} использована усовершенствованная
+версия механизма Cameleon.  Механизм интерпретирует ... transparently interprets object
+values and triples as replacement of the source HTML tree branches and
+leaves. The set of global variables passed to a template contains
+variable subj, which defines subject to be rendered, container, which
+refers to context graph, and template, which refers to the view
+itself. In the example subj contains an instance of Person class,
+context contains document, where the instance is mentioned. The
+template reference is used to store, constant auxiliary data that
+helps rendering.
+
+In order to support rendering triples Chameleon engine was improved also with new syntactic rules corresponding to description logic expressions influenced by RDF standard (standard identifiers, XML namespaces, etc.). The renewed engine marks up resulting HTML with the logical layer data by means of RDFa-structures. The improvement allows us to transfer the document and its logical layer in the single data stream, as well as supply the browser-side routines with necessary logical data. The transferred logical layer, then, is interpreted by context-dependent editing widgets. User points mouse to a subject of a triple in the displayed document and a corresponding widget appears. For example, pointing to family name of a person a string field appears to change the value. The result of a modification is immediately sent to the server.
+In a general case, it is necessary to implement functional relations algorithmically for view. This is realized with programming language inclusions in the RDF definition of the view resource. In the following example, a function implementation for class Person is presented.
+<rdf:RDF xmlns:html=
+ ”http://www.w3.org/1999/xhtml”
+  xmlns:rdf=http://www.w3.../22-rdf-syntax-ns#
+  xmlns:foaf="http://xmlns.com/foaf/0.1/"
+  xmlns:s=http://www.w3..../rdf-schema#
+  xmlns:view=
+   ”http://purl.org/aquarium/engine/MVC”
+  xmlns:tal=
+   "http://xml.zope.org/namespaces/tal">
+  <rdf:Description rdf:about=
+   "http://xmlns.com/foaf/0.1/Person">
+    <view:method html:id=”nameUpcased”>
+       <html:script
+        type="text/python" xml:lang=”ru”>
+  <--! The instance defined as “self” -->
+   return self[“foaf:name”][0].upper()
+ <html:script>
+ <html:script
+   type="text/javascript" xml:lang=”ru”>
+  <--! The instance defined as “this” -->
+   return this.query(“foaf:name”)[0] \
+      .toUpperCase()
+ <html:script>
+    </view:method>
+  </rdf:Description>
+</rdf:RDF>
+Using these two definitions, template engines are able to take advantage of the method “nameUpcased” (implemented in various programming languages) to make a string argument as upper case. Role based access control can be implemented the similar way [6, 7] using RDF triples.
 
 Содержимое документа в общем случае представляется в виде дерева, где
 большинство узлов являются и субъектами и объектами
@@ -244,8 +336,6 @@
 субъектом) и листовые узлы (только объекты).  В иерархии документов
 корневые узлы связаны \e{другими} отношениями, например, организацией
 документов в тематические иерархии и кластеры.
-
-\e[cyan]{включить Chameleon надо не позже этого места ;-)}
 
 Одним из основных моментов исследования --- это разработка методики
 адаптации процесса извлечения разметки к процессу редактирования
@@ -635,6 +725,7 @@ Father
 \bibitem{m2} Автор И.О. Статья // В книге --- Ижевск: Издательство, 2011. --- С.~71-90.
 \bibitem{m3} Сайт ТИПД-2014 // \url{http://itpa2014.conf.udsu.ru/}
 \bibitem{b2:2} Microformats. URL:http://microformats.org/ (дата обращения\,: 30.05.2013).
+\bibitem{b2:5} Model–view–controller --- Wikipedia, the free encyclopedia. URL: http://en.wikipedia.org/wiki/Model-view-controller (дата обращения\,:20.09.2013).
 \end{thebibliography}
 
 % that's all folks
