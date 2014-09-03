@@ -98,14 +98,35 @@
 информации для интегрированного в систему механизма поддержки принятия
 решений.
 
-Идею подхода удобно излагать на примере юридических документов,
-которые в большинстве случаев содержат сведения об отношениях между
-физическими и юридическими лицами, а также другими элементами.  Эти
-сведения в исходной или преобразованной форме используются в других
-документах.  Поэтому имеет смысл для каждого документа извлекать и
-хранить достаточно детально представленное логическое описание таких
-сведений, которое преобразуется в текстовый документ при помощи
-шаблонов.  Вариант преобразования определяется отображаемым документом,
+В настоящее время распространены два подхода к разметке текста
+документа: а) совместное использование формата HTML и RDFa; б)
+\e{специальное} распознавание интерпретация комбинаций атрибутов HTML
+без использования каких-либо расширений HTML.  Первый подход является
+результатом планомерного развития технологий СВ.  Сформирован ряд
+классов языков представления семантической
+разметки, различающихся по выразительности, сложности синтаксиса,
+сложности алгоритмов обработки, разрешимости соответствующих
+\e{логических формализмов} логик описаний (description logics).
+Второй подход направлен на создание программной среды обработки
+семантических данных, обеспеченных вычислительно несложными
+алгоритмами и гарантированной разрешимостью соответствующих логических
+\e{задач}.  Технология микроформатов \cite{b2:2} --- наиболее
+известный представитель данного направления.  Микроформатные данные
+обрабатываются на стороне клиента (в веб-браузере) при помощи
+встроенных (plug-in) модулей.  Общим элементом обоих подходов ---
+использование HTML в качестве формата представления текстовой
+информации, а также сетевого формализма представления данных знаний
+\e[cyan]{развивать мысль дальше? тройки, графы ...}.
+
+Идею предлагаемого подхода к автоматизации извлечения семантической
+разметки удобно излагать на примере юридических документов, которые в
+большинстве случаев содержат сведения об отношениях между физическими
+и юридическими лицами, а также другими элементами.  Эти сведения в
+исходной или преобразованной форме используются в других документах.
+Поэтому имеет смысл для каждого документа извлекать и хранить
+достаточно детально представленное логическое описание таких сведений,
+которое преобразуется в текстовый документ при помощи шаблонов.
+Вариант преобразования определяется отображаемым документом,
 т.е. документ задает контекст представления логического слоя.
 
 К настоящему времени технологии Семантического Веба (СВ) предоставляют
@@ -213,13 +234,8 @@
 частях текста, однако относятся к одному контексту --- личным данным
 пользователя.  \e{Ну и что за странный пример??}
 
-Механизм порождения текстов документов на основе данных логического
-слоя и шаблонам представления рассмотрен нами в [-2-].  В предлагаемом
-подходе шаблоны для отображения логического слоя документа также
-хранятся в графе.  \e[green]{Включить все оттуда, т.к. в русскоязычной
-  литературе не печатано.  }\e{We also represent the views and
-  algorithms implementing controllers in the sense of MVC (Model View
-  Controller) technique with triples \cite{b5}}.
+В предлагаемом подходе [-2-] шаблоны для отображения логического слоя
+документа также хранятся в графе.
 
 
 Содержимое документа в общем случае представляется в виде дерева, где
@@ -518,6 +534,8 @@ organized to obtain a description of the class and the relation.
 
 \e[cyan]{вставить из прошлых статей}
 
+
+
 Программная система разрабатывается как интернет-приложение с
 возможностью установки локальной версии на персональный компьютер
 пользователя.
@@ -545,13 +563,42 @@ Availability of funds to work with triplets described in the standard RDF is an 
 
 
 \conclusion
-An approach to representation of logical layer of a document based on RDF (Resource Description Framework) is proposed.  The approach allows us to formalize the structure and semantic relation of the document, and also store data to render the document as HTML-page in the same data format - RDF.  XML and RDF allow us to join logical and presentation aspects of the document within the same storage engine.  The engine stores data as an onology, i.  e., set of triples <subject, relation, object>.  A technique for HTML-rendering from the logical layer is described.  The resulting document will contain the logical layer as a RDFa markup.  The generated RDFa-markup is used at client side by web-browser for control of WYSIWYG-editing of the document.  Text elements are modified with special widgets appearing in the user interface on an mouse event.  A technique for organization of an interactive process of logical layer forming of the document content on the base of modifications analysis of the document content introduced by user.  An example of application of the technologies under development in a notary office is presented.  Thus, we shown that RDF format mixed with XML allows us to represent logical layer of meaningful information of a document, as well as sharing common data between documents.
 
-On the base of the technology a network of document data exchange can be devised.  The security of the document transmission can be provided as off-line data streams: each physical document is accompanied with its bar- or QR-code encoding the corresponding RDF-data of the transferred document.  This can result in a semantic network analogous to nowadays social networks.
+\e{Общие слова о разрабатываемой технологии и задачи, решаемой ...}
 
-A part of the paper devoted to consideration of organizational problems, such as involving knowledge engineers in a refinement process of generated parts of the ontologies; partial automatic ontology verification; implementing secure ways of personal data transfer and processing.  The properties of the document exchange network will be similar to social networks, and, probably, can be further developed and investigated the same way.
+Рассмотрен подход к представлению логического слоя тестового
+содержимого документа (или электронного ресурса), базирующийся
+использовании полисистемы онтологий \e[cyan]{что это дает?}, представленных в формате RDF
+(Resource Description Framework).  Формат позволяет как хранить
+отношения между сущностями, описывающими семантику содержимого
+документа, так и шаблоны для преобразования логических структур в
+текстовые фрагменты документа.  Изложена программная методика этого преобразования
+(\e{отрисовки, rendering}).  В результате преобразования
+сгенерированный текст также содержит данные семантической разметки в
+формате RDFa.  Эти данные предполагается использовать на стороне
+клиента (веб-браузера) для организации интерфейса пользователя, в
+частности для редактирования данных логического слоя.
 
+В основной части работы рассмотрена методика организации интерактивного
+процесса формирования логического слоя содержимого на основе
+интеллектуального анализа изменений различных версий документа,
+порожденных пользователем.  Рассмотрена задача ведения диалога с
+пользователем, целью которого является дополнение существующей
+семантической модели (логического слоя представления содержимого)
+новыми объектами и отношениями.  Диалог с пользователем ведется при
+помощи логического вывода на сетевом представлении полисистемы онтологий.
 
+\e[cyan]{Представление программной части: архитектура и требования,
+  которым хочется соответствовать.}
+
+В качестве практического тестового приложения предложена реализация
+автоматизации деятельности секретарей нотариальной конторы.
+Представление документов, подготавливаемых в конторе, отличается
+сбалансированностью формализуемой и неформализуемой частями текста.
+Кроме того, на базе разрабатываемой технологии возможно построение
+социальной сети обмена текстами документов.
+
+\e{Чего, собственно, хочется добиться?}
 
 % use section* for acknowledgement
 \thanks Результаты исследований получены при поддержке Интеграционного
@@ -581,11 +628,13 @@ N.Heino, S.Tramp, N.Heino, S.Auer. Managing Web Content using Linked Data Princi
 Cherkashin E.A., Paramonov V.V., et al, Model Driven Architecture is a Complex System, E-Society Journal Research and Applications. Volume 2, Number 2, 2011, pp. 15-23.
 \bibitem{q9}
 Father
+\bibitem{granin} Гранин с его представлением иконок.
 
 % Format examples.
 \bibitem{m1} Автор И.О. Название книги --- М.: Издательство, 2002. --- 700~с.
 \bibitem{m2} Автор И.О. Статья // В книге --- Ижевск: Издательство, 2011. --- С.~71-90.
 \bibitem{m3} Сайт ТИПД-2014 // \url{http://itpa2014.conf.udsu.ru/}
+\bibitem{b2:2} Microformats. URL:http://microformats.org/ (дата обращения\,: 30.05.2013).
 \end{thebibliography}
 
 % that's all folks
