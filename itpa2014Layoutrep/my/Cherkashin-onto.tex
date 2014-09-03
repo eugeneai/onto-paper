@@ -253,8 +253,7 @@ MVC (Model View Controller) \cite{b2:5}.  \e{На рис.~\ref{listex}}
  xmlns:s="http://www.w3.org/2000/01/rdf-schema#"
  xmlns:view=”http://purl.org/aquarium/engine/MVC”
  xmlns:tal="http://xml.zope.org/namespaces/tal">
-  <rdf:Description rdf:about=
-  "http://www.example.com/People/II/contact#me">
+  <rdf:Description rdf:about="http://www.example.com/People/II/contact#me">
     <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
     <s:seeAlso rdf:resource="http://www.exam..../People/II/contact"/>
     <foaf:homepage rdf:resource="http://www.example.com/People/II"/>
@@ -301,33 +300,37 @@ template reference is used to store, constant auxiliary data that
 helps rendering.
 
 In order to support rendering triples Chameleon engine was improved also with new syntactic rules corresponding to description logic expressions influenced by RDF standard (standard identifiers, XML namespaces, etc.). The renewed engine marks up resulting HTML with the logical layer data by means of RDFa-structures. The improvement allows us to transfer the document and its logical layer in the single data stream, as well as supply the browser-side routines with necessary logical data. The transferred logical layer, then, is interpreted by context-dependent editing widgets. User points mouse to a subject of a triple in the displayed document and a corresponding widget appears. For example, pointing to family name of a person a string field appears to change the value. The result of a modification is immediately sent to the server.
-In a general case, it is necessary to implement functional relations algorithmically for view. This is realized with programming language inclusions in the RDF definition of the view resource. In the following example, a function implementation for class Person is presented.
-<rdf:RDF xmlns:html=
- ”http://www.w3.org/1999/xhtml”
+In a general case, it is necessary to implement functional relations
+algorithmically for view. This is realized with programming language
+inclusions in the RDF definition of the view resource. In the
+following example, a function implementation for class Person is
+presented.
+
+\begingroup
+\tt
+\begin{verbatim}
+<rdf:RDF xmlns:html=”http://www.w3.org/1999/xhtml”
   xmlns:rdf=http://www.w3.../22-rdf-syntax-ns#
   xmlns:foaf="http://xmlns.com/foaf/0.1/"
   xmlns:s=http://www.w3..../rdf-schema#
-  xmlns:view=
-   ”http://purl.org/aquarium/engine/MVC”
-  xmlns:tal=
-   "http://xml.zope.org/namespaces/tal">
-  <rdf:Description rdf:about=
-   "http://xmlns.com/foaf/0.1/Person">
+  xmlns:view=”http://purl.org/aquarium/engine/MVC”
+  xmlns:tal="http://xml.zope.org/namespaces/tal">
+  <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Person">
     <view:method html:id=”nameUpcased”>
-       <html:script
-        type="text/python" xml:lang=”ru”>
-  <--! The instance defined as “self” -->
+       <html:script type="text/python" xml:lang=”ru”>
+  <--! Экземпляр передается в параметр “self” -->
    return self[“foaf:name”][0].upper()
- <html:script>
- <html:script
-   type="text/javascript" xml:lang=”ru”>
-  <--! The instance defined as “this” -->
-   return this.query(“foaf:name”)[0] \
-      .toUpperCase()
- <html:script>
+       <html:script>
+       <html:script type="text/javascript" xml:lang=”ru”>
+  <--! Экземпляр задается переменной “this” -->
+   return this.query(“foaf:name”)[0].toUpperCase()
+       <html:script>
     </view:method>
   </rdf:Description>
 </rdf:RDF>
+\end{verbatim}
+\endgroup
+
 Using these two definitions, template engines are able to take advantage of the method “nameUpcased” (implemented in various programming languages) to make a string argument as upper case. Role based access control can be implemented the similar way [6, 7] using RDF triples.
 
 Содержимое документа в общем случае представляется в виде дерева, где
