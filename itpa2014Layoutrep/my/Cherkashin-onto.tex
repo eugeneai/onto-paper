@@ -558,9 +558,11 @@ organized to obtain a description of the class and the relation.
 виде \e{альтернативного вопроса}: `` hasDaughter: or hasSon: role in the family?'', but in this case the sentence is more weird with respect to English.}
 
 \begin{figure}
-{\centering\sf
+\begin{center}
+\sf
 \def\svgwidth{0.7\linewidth}
-\input{layer.pdf_tex}}
+\input{layer.pdf_tex}
+\end{center}
 \caption{Пример использования полисистемы онтологий}
 \label{OPSA}
 \end{figure}
@@ -666,8 +668,19 @@ Renderer”).  Для этого необходимо загрузить это�
 данных, выступает  OpenLink Virtuoso Universal Server \cite{b2:8} и
 его свободная версия.
 
-\e{Рисунок архитектуры}
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.8\linewidth]{peixe-architecture-ru-1.pdf}
+% where an .eps filename suffix will be assumed under latex,
+% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+% via \DeclareGraphicsExtensions.
+\caption{Архитектура ядра программной системы}
+\label{architecture}
+\end{figure}
 
+
+\e[cyan]{Здесь продолжаем писать то, на чем будем писать и как что
+  будем делать. Т.е. некоторые технические детали.}
 
 
 [The flexibility and minimum resources and administration requirements criteria are of very importance to choosing database providing information resources storage as triples.  The database management systems as DB2, Oracle and SQL Server cannot fulfill requirements because after running the operation is performed as a separate process.  Also application and DBMS interaction should be implemented through interprocess communication form.
@@ -682,7 +695,7 @@ Availability of funds to work with triplets described in the standard RDF is an 
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=\linewidth]{DocumentOntology-en.pdf}
+\includegraphics[width=0.8\linewidth]{DocumentOntology-ru.pdf}
 % where an .eps filename suffix will be assumed under latex,
 % and a .pdf suffix will be assumed for pdflatex; or what has been declared
 % via \DeclareGraphicsExtensions.
