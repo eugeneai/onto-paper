@@ -79,7 +79,7 @@
 
 \introduction{}
 
-В 2001 году Т.-Б.Ли предложил план развития интернет"=технологий
+В 2001 году Т.~Бернерс-Ли предложил план развития интернет"=технологий
 (семантический веб), который направлен на реализацию сетевых сервисов
 со значительным уровнем интеграции логического слоя представляемой
 информации.  Информация размечается семантически, а программные агенты,
@@ -346,7 +346,9 @@ Chameleon также коснулись механизма порождения 
 \end{verbatim}
 \endgroup
 
-Using these two definitions, template engines are able to take advantage of the method “nameUpcased” (implemented in various programming languages) to make a string argument as upper case. Role based access control can be implemented the similar way [6, 7] using RDF triples.
+Ограничение прав доступа также реализуются по аналогии с
+представленным в \cite{b2:6,b2:7}, используя данные, представленные
+также в виде троек RDF.
 
 Содержимое документа в общем случае представляется в виде дерева, где
 большинство узлов являются и субъектами и объектами
@@ -640,13 +642,33 @@ organized to obtain a description of the class and the relation.
 
 \section{Архитектура программной системы и средства реализации}
 
-\e[cyan]{вставить из прошлых статей}
-
-
-
 Программная система разрабатывается как интернет-приложение с
 возможностью установки локальной версии на персональный компьютер
-пользователя.
+пользователя.  На рис.~\ref{architecture} представлена общая
+архитектура ядра программной системы.  Ядро построено на популярной
+клиент-серверной \e{архитектуре}.  Клиент с сервера получает результат
+применения шаблона Chameleon к некоторому объекту (модуль “Document
+Renderer”).  Для этого необходимо загрузить этот объект, что
+обеспечивается модулем “Loader of Triples”.  Объект представляется
+набором его троек; порождаемый текст включает только те данные,
+которые разрешены для просмотра данному пользователю.  Доступ к данным
+контролируется в модуле “Data Security”.  Отфильтрованные тройки не
+отображаются, при этом пользователю выдается соответствующее
+информационное сообщение.  Задача модуля “Data Representation Broker”
+предоставлять система сервис хранения троек в различных форматах
+представления данных, преобразовывать тройки в эти форматы и обратно.
+Использование нескольких форматов позволяет поддерживать
+алгоритмически различные агрегатированные операции над данными.
+Например, регистрационные данные транспортных средств удобно хранить в
+реляционной базе данных и использовать соответствующие средства для
+осуществления быстрого поиска.  Поддерживать \e{необходимо} также и
+формат XML.  Примером хранилища, поддерживающим различные форматы
+данных, выступает  OpenLink Virtuoso Universal Server \cite{b2:8} и
+его свободная версия.
+
+\e{Рисунок архитектуры}
+
+
 
 [The flexibility and minimum resources and administration requirements criteria are of very importance to choosing database providing information resources storage as triples.  The database management systems as DB2, Oracle and SQL Server cannot fulfill requirements because after running the operation is performed as a separate process.  Also application and DBMS interaction should be implemented through interprocess communication form.
 
@@ -744,6 +766,10 @@ Father
 \bibitem{m3} Сайт ТИПД-2014 // \url{http://itpa2014.conf.udsu.ru/}
 \bibitem{b2:2} Microformats. URL:http://microformats.org/ (дата обращения\,: 30.05.2013).
 \bibitem{b2:5} Model–view–controller --- Wikipedia, the free encyclopedia. URL: http://en.wikipedia.org/wiki/Model-view-controller (дата обращения\,:20.09.2013).
+\bibitem{b2:6} Sandhu "Role-based access control." Advances in computers. 46 (1998): 237-286.
+
+\bibitem{b2:7} T.Berners-Lee, R. Cyganiak, et.al. On Integration Issues of Site-Specific APIs into the Web of Data. DERI Technical Report 2009-08-14. URL: http://linkeddata.deri.ie/sites/linkeddata.deri.ie/files/rw-wod-tr.pdf (access date: 20.09.2013).
+\bibitem{b2:8} Virtuoso Open-Source Edition URL: http://virtuoso.openlinksw.com/dataspace/doc/dav/wiki/Main/ (access date: 30.05.2013).
 \end{thebibliography}
 
 % that's all folks
