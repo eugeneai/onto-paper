@@ -281,7 +281,7 @@ MVC (Model View Controller) \cite{b2:5}.  \e{На рис.~\ref{listex}}
     </view:pt>
   </rdf:Description>
 </rdf:RDF>
-\end{verbatim}
+\end{verbatim}%$
 \endgroup
 
 В первой части приведенного примера задан экземпляр класса
@@ -289,22 +289,37 @@ MVC (Model View Controller) \cite{b2:5}.  \e{На рис.~\ref{listex}}
 Иванова) как элемент графа онтологии.  Вторая часть примера ---
 описание представления ресурсов класса \texttt{Person}.  В качестве
 механизма \e{заполнения шаблонов} использована усовершенствованная
-версия механизма Cameleon.  Механизм интерпретирует ... transparently interprets object
-values and triples as replacement of the source HTML tree branches and
-leaves. The set of global variables passed to a template contains
-variable subj, which defines subject to be rendered, container, which
-refers to context graph, and template, which refers to the view
-itself. In the example subj contains an instance of Person class,
-context contains document, where the instance is mentioned. The
-template reference is used to store, constant auxiliary data that
-helps rendering.
+версия механизма Chameleon.  Механизм интерпретирует запросы
+\texttt{rdf:} к графу семантики как строковые выражения, подставляемые
+в шаблон HTML, или заменяемые его некоторые конструкции.  Шаблону
+передается набор глобальных переменных, обозначающих субъект
+(\texttt{subj}), который отображается, его контекст/контейнер
+(\texttt{container}), собственно сам шаблон (\texttt{template}).  В
+представленном примере \texttt{subj} указывает на экземпляр класса
+\texttt{Person}, а \texttt{context} казывает на документ, в котором
+упомянут данный экземпляр.  При помощи переменной \texttt{template} в
+шаблоне доступны различные константы и дополнительные данные, которые
+\e{помогают} процессу отрисовки текста.
 
-In order to support rendering triples Chameleon engine was improved also with new syntactic rules corresponding to description logic expressions influenced by RDF standard (standard identifiers, XML namespaces, etc.). The renewed engine marks up resulting HTML with the logical layer data by means of RDFa-structures. The improvement allows us to transfer the document and its logical layer in the single data stream, as well as supply the browser-side routines with necessary logical data. The transferred logical layer, then, is interpreted by context-dependent editing widgets. User points mouse to a subject of a triple in the displayed document and a corresponding widget appears. For example, pointing to family name of a person a string field appears to change the value. The result of a modification is immediately sent to the server.
-In a general case, it is necessary to implement functional relations
-algorithmically for view. This is realized with programming language
-inclusions in the RDF definition of the view resource. In the
-following example, a function implementation for class Person is
-presented.
+Поддержка структур данных троек реализована как расширения синтаксиса
+механизма TALES (Template Attribute Language Expression
+Syntax). Определен новый вид выражений \texttt{rdf:}, вид которых
+определен исходя из традиций стандарта RDF (стандартные
+идентификаторы, пространства имен и т.п.) и синтаксиса логических
+языков логик описания (логические связки, вид выражений).  Дополнение
+Chameleon также коснулись механизма порождения результирующего
+текста. Результаты выполнения выражений обрамляются разметкой
+логического слоя при помощи структур RDFa, что позволяет, например,
+передать на сторону клиента информацию о разметке и использовать при
+формировании пользовательского интерфейса для редактирования элементов
+логической разметки.
+
+При реализации интерфейса пользователя необходим механизма определения
+функциональных отношений алгоритмически.  Для этого в граф вводятся
+методы, а также их реализации на разных языках.  В следуем примере при
+помощи метода \texttt{nameUpcased} определяется функция представления
+имени человека большими буквами.  Для метода заданы две реализации в
+языках Python и JavaScript.
 
 \begingroup
 \tt
