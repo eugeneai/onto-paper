@@ -704,11 +704,11 @@ Availability of funds to work with triplets described in the standard RDF is an 
 \label{notaryontology}
 \end{figure}
 
-\section{Related projects and further development}
+\section{Схожие проекты и дальнейшее развитие результатов}
 
 Среди известных проектов в той или иной степени использующей средства
-интерактивного построени семантической разметки текстовых документов
-выделяется “Semantic MediaWiki”.  Здесь редактор текстовго
+интерактивного построении семантической разметки текстовых документов
+выделяется “Semantic MediaWiki”.  Здесь редактор текстового
 представления страниц вики расширен возможностью задания частям текста
 семантических аннотаций.  Для этого разработан специальный формат
 разметки.  Аннотации используются механизмом поиска информации по
@@ -743,20 +743,20 @@ OntoWiki хранятся в специальных структурах дан�
 interrelations between text content and its logical structure are
 expressed in RDFa}.
 
-A further development direction of the project is aimed at
-implementation of cognitive data mining (data analysis) in similar
-documents to reveal patterns between attributes that appear in the
-documents. The results of the analysis may be a basis of automation of
-document data storage technique decision. For example, if a set of
-attributes shows a strong correlation to an attribute than it can be
-interpreted as a relation of a relational database. The set forms a
-determinant (the key set of a table) and the set of strongly
-correlated attributes forms rest of the table as described in the
-Method of Functional Dependency. The method used by database engineers
-in the process of a database design, the dependencies revealed from
-the analysis of the attributes’ semantics. That is, the method could
-be used conversely, the dependencies can be revealed on the base of
-data mining.
+
+Дальнейшее развитие проекта направлено на реализацию функций
+интеллектуального анализа данных схожих документов для выявления
+зависимостей между значениями атрибутов (объектов), встречающихся в
+тексте.  Результаты этого анализа можно использовать для принятия
+решения о варианте формата представления троек.  Если в некотором
+множестве атрибутов замечены зависимости, то этот набор атрибутов
+вероятно возможно хранить в виде таблицы реляционной базы данных.  Для
+этого необходимо выделить детерминант согласно методу функциональных
+зависимостей.  В отличие от \e{обычного использования} этого метода,
+когда функциональные зависимости выявляются на основе \e{[?как она
+  называется?]} интерпретации свойств атрибутов, в данном случае эти
+зависимости выявляться при помощи методов многомерного статистического
+анализа данных в виде корреляций.
 
 The abstract layer of information modeling of the knowledge acquisition is a category of system complexes (configurations) [15], which is perfectly embody common metamodel of the ontologies as well as supply additional structural and functional properties. Developing the theory further one can connect the ontology devised during the document preparation process to the stage of UML-modelling of information system, which automates the processes of the domain.
 Another directions of the system development is a reduction of HTML-rendering engines of the logical layer, so it could be completely realized on client side, as well as implementation for other programming languages and software platforms. Also we plan to develop a plug-in module for OntoWiki allowing editing Wiki interactively.
