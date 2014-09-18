@@ -753,13 +753,13 @@ MySQL, функционирующих под управлением операц
 
 \e{Кристина - переведи на русский свой текст.}
 
-[The flexibility and minimum resources and administration requirements criteria are of very importance to choosing database providing information resources storage as triples.  The database management systems as DB2, Oracle and SQL Server cannot fulfill requirements because after running the operation is performed as a separate process.  Also application and DBMS interaction should be implemented through interprocess communication form.
+[При выборе базы данных, обеспечивающей хранение информационных ресурсов в виде триплетов, важными критериями являются гибкость и минимальные требования к ресурсам и администрированию. Стандартные системы управления базами данных, такие как DB2, Oracle или SQL Server, не могут удовлетворять данным требованиям, т.к. после запуска их функционирование производится в качестве отдельного процесса, а взаимодействие приложения и СУБД должно осуществляться посредством одной из форм межпроцессного взаимодействия.
 
-Solution to these problems is achieved by using the built-in database management systems that provide communication with the application at the same level of address space.  This allows the application based on the built-in database to be efficient and autonomous.
+Более удачным вариантом для решения данных проблем являются встроенные системы управления базами данных, которые обеспечивают связь с приложением на уровне одного адресного пространства. Таким образом, обеспечивается эффективность и автономность приложения, в основе которого лежит встроенная база данных.
 
-Kyoto Cabinet is a library of routines for managing a database.  The database is a simple data file containing records, each is a pair of a key and a value.  Every key and value is serial bytes with variable length.  Both binary data and character string can be used as a key and a value.  Each key must be unique within a database.  There is neither concept of data tables nor data types.  Records are organized in hash table or B+ tree.  \cite{b1}
+Kyoto Cabinet представляет собой библиотеку процедур для управления базой данных, которая является простым файлом данных, содержащим записи в виде пар из ключей и значений. Каждый ключ и значение являются последовательными байтами с переменной длиной. Символьная строка, как и двоичные данные, может быть использована как в качестве ключа, так и в качестве значения. При этом должна соблюдаться уникальность ключей внутри базы данных, где не существует понятий таблиц и типов данных. Записи организованы в хэш-таблице или B+ дереве.  \cite{b1}
 
-Availability of funds to work with triplets described in the standard RDF is an advantage database management system Kyoto Cabinet over other embedded systems is.  In this case the developer does not need to spend time on design and implementation of the data model so that its performance on this task is increased.
+Преимущество системы управления базой данных Kioto Cabinet перед другими встраиваемыми системами заключается в наличии средств для работы с триплетами, описанными в стандарте RDF. При этом разработчику не требуется тратить время на проектирование и реализацию модели данных, что увеличивает эффективность его работы над поставленной задачей.
 
 1.	Kyoto Cabinet. URL: http://fallabs.com/kyotocabinet/ (дата обращения: 20.02.2014).]
 
@@ -767,6 +767,21 @@ Availability of funds to work with triplets described in the standard RDF is an 
   реализации проекта на PHP + (MySQL | PostgreSQL | KyotoCabinet) +
   ZPT (PHP, \url{http://phptal.org/manual/ru/}) и найти для PHP библиотеку как rdflib. Еще надо описать
   библиотеки rdf и т.п. на клиентской (JavaScript) части (\url{http://en.wikipedia.org/wiki/Template_Attribute_Language}). }
+
+Для организации хранения RDF-триплетов в реляционной базе данных MySQL существует библиотека ARC, которая поддерживает язык запросов к RDF-графу SPARQL. 
+ARC имеет расширенную документацию с большим количеством примеров ее использования. При  этом данная библиотека распространяется под бесплатной лицензией W3C® Software. 
+
+
+Zope Page Template (ZPT) – это система шаблонов, которая позволяет программистам и дизайнерам создавать динамические WEB-страницы. Для языка программирования PHP существует реализация данной системы – PHPTAL, поддерживающая пространства имен TAL, METAL и I18N. 
+Для определения способов обработки значений атрибутов XML для Python существует синтаксис атрибутивного языка шаблонов TALES (Template Attribute Language Expression Syntax), который имеет аналог в PHP – PHPTALES. Данные синтаксисы эквивалентны друг другу и могут транспортироваться из одного языка в другой. 
+
+Для JavaScript автоматическое заполнение содержимого Web-страницы может осуществлять инструмент Distal, который позволяет работать с данными динамически. Тем самым разработчику предоставляется возможность сделать акцент на логике данных и внешнем виде Web-страницы. 
+Distal применяет концепцию, созданную Zope и используемую в проектах Python – Template Attribute Language (TAL), которая определяет следующие цели:
+1.	Обеспечение разделения пользовательского интерфейса и логики приложения;
+2.	Создание пользовательского интерфейса при помощи обычных файлов HTML, что позволяет разработчикам использовать специальные программные пакеты для редактирования и разработки Web-сайтов (например, Dreamweaver);
+3.	Избавление пользователя от реализации циклов для заполнения таблиц и элементов списка;
+4.	Управление отображением элементов Web-страницы в зависимости от свойств данных.
+
 
 \begin{figure}[!t]
 \centering
