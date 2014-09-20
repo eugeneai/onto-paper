@@ -92,7 +92,7 @@
 
 \introduction{}
 
-В 2001 году Т.~Бернерс-Ли предложил план развития интернет"=технологий
+В 2001 году Т.~Бернерс-Ли предложил план \cite{TBL2001} развития интернет"=технологий
 (семантический веб), который направлен на реализацию сетевых сервисов
 со значительным уровнем интеграции логического слоя представляемой
 информации.  Информация размечается семантически, а программные
@@ -163,7 +163,7 @@
 документов.   Для этого производится предварительное сканирование
 хранилищ документов и распознавание в тексте метаданных, последовательностей
 ключевых слов, построение из этих последовательностей тезаурусов и
-т.п., пример --- \cite{irina}.
+т.п.
 
 Наблюдение за поведением пользователей в процессе подготовки различных
 документов приводит к заключению, что содержательные части документов,
@@ -894,124 +894,133 @@ Kyoto Cabinet реализует различные методы защиты и
 полностью обеспечивает технологический базис для предлагаемой
 разработки.
 
-\section{Аналогичные проекты и дальнейшее развитие исследований}
+\section{Аналогичные проекты}
 
-Среди известных проектов в той или иной степени использующей средства
-интерактивного построении семантической разметки текстовых документов
-выделяется “Semantic MediaWiki”.  Здесь редактор текстового
-представления страниц вики расширен возможностью задания частям текста
-семантических аннотаций.  Для этого разработан специальный формат
-разметки.  Аннотации используются механизмом поиска информации по
-страницам вики на сайте \cite{b1:13}.
+Среди известных проектов, в той или иной степени использующей средства
+интерактивного построении семантической разметки текстовых документов,
+выделяется ``Semantic MediaWiki''.  Здесь визуальный редактор
+текстового представления страниц вики расширен возможностью задания
+частям текста семантических аннотаций.  Для этого разработан
+специальный формат разметки.  Аннотации используются механизмом поиска
+информации по страницам вики \cite{semwiki}.
 
-В сравнении с предыдущей разработкой в проекте OntoWiki \cite{b:2:14}
-получены аналогичные результаты, но с другой \e{отправной точки}.
-OntoWiki основывается на идее использования логического слоя
-(семантической сети) для представления всей информации на сайте
-\e{(как у нас)}.  Логический слой редактируется при помощи форм ввода,
+В сравнении с предыдущей разработкой в проекте OntoWiki \cite{b2:14}
+получены аналогичные результаты, но с другой отправной точки.
+OntoWiki основывается на идее использования логического слоя для
+представления всей информации на сайте, аналогично рассмотренному в
+данной работе.  Логический слой редактируется при помощи форм ввода,
 порождаемых автоматически на основе существующих в системе словарей
-(term sets).  Пользователю разрешено редактирование только один
-текстовый атрибут \texttt{lod:content}, где разрешено использование
-формата HTML.  Такой HTML-текст не имеет никакого отношения к
-существующей логической структуре текста, представляемого, в конечном
-счете, в виде документа web.   Текст редактируется при помощи
-визуального (WYSIWYG) редактора, встроенного в OntoWiki.  Проект
-осуществляет технологическую поддержку развития социальной сети,
-\e{базирующейся на формате Linked Data}.
+(term sets).  Пользователю разрешено редактирование только одного
+текстового атрибута \texttt{lod\,:content}, при этом разрешено
+использование формата HTML. Такой HTML"=текст не имеет никакого
+отношения к существующей логической структуре текста, представляемого,
+в конечном счете, в виде документа WEB.  Текст редактируется при
+помощи визуального (WYSIWYG) редактора, встроенного в OntoWiki.
+Проект осуществляет технологическую поддержку развития социальной
+сети, базирующейся на обменном формате \texttt{Linked Data}.
 
-Представленный в данной статье материал представляет собой развитие
-идей OntoWiki в направлении \e{
-engine to support a natural representation of the document content,
-visual editing of the content, conserving the logical layer;
-implementation of the data and knowledge acquisition on the base of
-modification analysis.}  Шаблоны представления чайте документов в
-OntoWiki хранятся в специальных структурах данных вне онтологии и не
-зависят от контекста документа.  Преимущество нашего подхода состоит в
-том, что представление, будучи полноценным элементом онтологии, могут
-быть логически выведены из иерархии наследования.  Кроме того,
-использование \e{Most of the
-interrelations between text content and its logical structure are
-expressed in RDFa}.
+Представленный в данной статье материал развивает идеи OntoWiki в
+направлении разработки механизма WYSIWYG-представления и
+редактирования документов, а также автоматизации извлечения разметки
+на основе анализа изменений документа.  Шаблоны представления
+документов на сайтах в OntoWiki хранятся в специальных структурах
+данных вне онтологии и не зависят от контекста отображения документа.
+Отличие нашего подхода состоит в том, что представление, будучи
+полноценным элементом онтологии, могут быть логически выведены из
+иерархии наследования.
 
-\e{Ведение диалога}
-\url{http://www.sri.com/sites/default/files/uploads/publications/pdf/687.pdf}
-\url{http://www.jfsowa.com/pubs/semnet.htm}
-\url{http://pi7.fernuni-hagen.de/forschung/multinet/multinet_en.html}
-- многоуровневый подход.
+% Представление предметной области в виде полисистемы онтологий, по
+% нашему мнению, обобщает результаты исследований, полученных в проекте MultiNet
+
+% \e{Ведение диалога}
+% \url{http://www.sri.com/sites/default/files/uploads/publications/pdf/687.pdf}
+% \url{http://www.jfsowa.com/pubs/semnet.htm}
+% \url{http://pi7.fernuni-hagen.de/forschung/multinet/multinet_en.html}
+% - многоуровневый подход.
 
 
-Дальнейшее развитие проекта направлено на реализацию функций
-интеллектуального анализа данных схожих документов для выявления
-зависимостей между значениями атрибутов (объектов), встречающихся в
-тексте.  Результаты этого анализа можно использовать для принятия
-решения о варианте формата представления троек.  Если в некотором
-множестве атрибутов замечены зависимости, то этот набор атрибутов
-вероятно возможно хранить в виде таблицы реляционной базы данных.  Для
-этого необходимо выделить детерминант согласно методу функциональных
-зависимостей.  В отличие от \e{обычного использования} этого метода,
-когда функциональные зависимости выявляются на основе \e{[?как она
-  называется?]} интерпретации свойств атрибутов, в данном случае эти
-зависимости выявляться при помощи методов многомерного статистического
-анализа данных в виде корреляций.
 
-\e{Надо где-то сказать про то, как сужать списки субъектов, отношений.}
+% Дальнейшее развитие проекта направлено на реализацию функций
+% интеллектуального анализа данных схожих документов для выявления
+% зависимостей между значениями атрибутов (объектов), встречающихся в
+% тексте.  Результаты этого анализа можно использовать для принятия
+% решения о варианте формата представления троек.  Если в некотором
+% множестве атрибутов замечены зависимости, то этот набор атрибутов
+% вероятно возможно хранить в виде таблицы реляционной базы данных.  Для
+% этого необходимо выделить детерминант согласно методу функциональных
+% зависимостей.  В отличие от \e{обычного использования} этого метода,
+% когда функциональные зависимости выявляются на основе \e{[?как она
+%   называется?]} интерпретации свойств атрибутов, в данном случае эти
+% зависимости выявляться при помощи методов многомерного статистического
+% анализа данных в виде корреляций.
 
-The abstract layer of information modeling of the knowledge
-acquisition is a category of system complexes (configurations) [15],
-which is perfectly embody common metamodel of the ontologies as well
-as supply additional structural and functional properties. Developing
-the theory further one can connect the ontology devised during the
-document preparation process to the stage of UML-modelling of
-information system, which automates the processes of the domain.
+% \e{Надо где-то сказать про то, как сужать списки субъектов, отношений.}
 
-\e{Представление результатов разметки в виде UML-диаграмм и переход к
-  CASE- и MDE-средствам. }
+% The abstract layer of information modeling of the knowledge
+% acquisition is a category of system complexes (configurations) [15],
+% which is perfectly embody common metamodel of the ontologies as well
+% as supply additional structural and functional properties. Developing
+% the theory further one can connect the ontology devised during the
+% document preparation process to the stage of UML-modelling of
+% information system, which automates the processes of the domain.
+
+% \e{Представление результатов разметки в виде UML-диаграмм и переход к
+%   CASE- и MDE-средствам. }
 
 \conclusion
 
-\e{Общие слова о разрабатываемой технологии и задачи, решаемой ...}
+% \e{Общие слова о разрабатываемой технологии и задачи, решаемой ...}
 
-Рассмотрен подход к представлению логического слоя тестового
-содержимого документа (или электронного ресурса), базирующийся
-использовании полисистемы онтологий \e[cyan]{что это дает?}, представленных в формате RDF
-(Resource Description Framework).  Формат позволяет как хранить
-отношения между сущностями, описывающими семантику содержимого
+Исследование направлено на поддержку развития технологий
+Семантического Веба в части автоматизации процесса семантической
+разметки документа.  В работе рассмотрен подход к представлению
+логического слоя текстового содержимого документа (или электронного
+ресурса), базирующийся на использовании полисистемы онтологий.
+Использование полисистемы онтологий и процедуры полисистемного
+расслоения \cite{father} позволяет продвинутся в решения задачи
+приобретения знаний о предметной области.  Новые знания строятся в
+виде слоев объектов, концептов и отношений (морфизмов) между ними,
+отображаемых через интерпретацию в другие в т.ч. существующие слои.
+При этом, в перспективе, появляется возможность автоматизации
+построения алгоритмов, реализующих свойства составных единиц слоя, по
+образу и подобию теорий в существующих слоях.  На данном этапе
+исследований полисистема онтологий позволяет упорядочивать и
+классифицировать факты о предметной области по аналогии с имеющимися
+структурами, а также получать новые интерпретации формируемых
+концептов.
+
+В основной части работы рассмотрена методика организации
+интерактивного процесса построения логического слоя представления
+содержимого на основе интеллектуального анализа изменений различных
+версий документа, порожденных пользователем.  Рассмотрена задача
+ведения диалога с пользователем, целью которого является
+дополнение/формирование существующей семантической модели (логического
+слоя) новыми объектами и отношениями.  Диалог с пользователем ведется
+при помощи логического вывода на сетевом представлении полисистемы
+онтологий.
+
+Рассмотрены архитектура программной системы, реализующей описанные
+функции, а также проведен обзор используемых программных технологий,
+оценены их рабочие параметры и возможности.  Отдельно рассмотрен
+вопрос применения технологий ZOPE Page Template, а именно ее
+реализации в виде библиотеки Chameleon, для описания презентационного
+аспекта данных СВ.  Исследованы возможности встраивания шаблонов в
+формат RDF (Resource Description Framework).  Формат позволяет как
+хранить отношения между сущностями, описывающими семантику содержимого
 документа, так и шаблоны для преобразования логических структур в
-текстовые фрагменты документа.  Изложена программная методика этого преобразования
-(\e{отрисовки, rendering}).  В результате преобразования
-сгенерированный текст также содержит данные семантической разметки в
-формате RDFa.  Эти данные предполагается использовать на стороне
-клиента (веб-браузера) для организации интерфейса пользователя, в
-частности для редактирования данных логического слоя.
-
-В основной части работы рассмотрена методика организации интерактивного
-процесса формирования логического слоя содержимого на основе
-интеллектуального анализа изменений различных версий документа,
-порожденных пользователем.  Рассмотрена задача ведения диалога с
-пользователем, целью которого является дополнение существующей
-семантической модели (логического слоя представления содержимого)
-новыми объектами и отношениями.  Диалог с пользователем ведется при
-помощи логического вывода на сетевом представлении полисистемы онтологий.
-
-\e[cyan]{Представление программной части: архитектура и требования,
-  которым хочется соответствовать.}
+текстовые фрагменты документа.  Изложена схема реализации этого
+преобразования.  В результате преобразования сгенерированный текст
+также содержит данные семантической разметки в формате RDFa.  Эти
+данные предполагается использовать на стороне клиента (веб-браузера)
+для организации интерфейса пользователя, в частности для
+редактирования данных логического слоя.
 
 В качестве практического тестового приложения предложена реализация
 автоматизации деятельности секретарей нотариальной конторы.
 Представление документов, подготавливаемых в конторе, отличается
 сбалансированностью формализуемой и неформализуемой частями текста.
 Кроме того, на базе разрабатываемой технологии возможно построение
-социальной сети обмена текстами документов.
-
-\e{Чего, собственно, хочется добиться?} Разработка методики извлечения
-знаний из документов.
-
-Полисистема онтологий, представленных в виде
-  семантических сетей, позволяет организовать диалог с пользователем,
-  упорядочивать и классифицировать факты о предметной области по
-  аналогии с имеющейся , а также
-  получать новые интерпретации формируемых концептов.
-
+социальной сети обмена логическим слоем документов.
 
 % use section* for acknowledgement
 \thanks Результаты исследований получены при поддержке Интеграционного
@@ -1021,53 +1030,73 @@ information system, which automates the processes of the domain.
 природной территории».
 
 \begin{thebibliography}{11}
-\bibitem{TBL2001} T. Berners-Lee, J. Hendler and O. Lissila. \emph{The Semantic Web A new form of Web content that is meaningful to computers will unleash a revolution of new possibilities.}\hskip 1em plus 0.5em minus 0.4em\relax  Scientific American, May 17, 2001, pp.1-18. URL: \url{http://sciam.com/article.cfm?articleID=00048144-10D2-1C70-84A9809EC588EF21}. (access date: 05.09.2013).
-\bibitem{q1}
-Social network - Wikipedia, the free encyclopedia. URL: \url{http://en.wikipedia.org/wiki/Social_network} (access date: 20.08.2013).
-\bibitem{q2}
-Chameleon – Chameleon 2.10 documentation. \url{http://chameleon.readthedocs.org/en/latest/} (access date:  20.08.2013).
-\bibitem{q3}
-Virtuoso Open-Source Edition URL: \url{http://virtuoso.openlinksw.com/dataspace/doc/dav/wiki/Main/} (access date: 30.05.2013).
-\bibitem{q4}
-PIZZA Protege OWL tutorial at Manchester (School of Computer Science - The University of Manchester)  URL:\url{http://owl.cs.manchester.ac.uk/tutorials/protegeowltutorial/} (access date: 20.09.2013).
-\bibitem{q5}
-SWI-Prolog's home. URL: \url{http://www.swi-prolog.org/} (access date: 20.08.2013).
-\bibitem{q6}
-The Protégé Ontology Editor and Knowledge Acquisition System. URL: \url{http://protege.stanford.edu/} (access date: 20.08.2013).
-Semantic MediaWiki. URL: \url{http://semantic-mediawiki.org/} (access date: 20.08.2013).
-\bibitem{q7}
-N.Heino, S.Tramp, N.Heino, S.Auer. Managing Web Content using Linked Data Principles – Combining semantic structure with dynamic content syndication. Computer Software and Applications Conference (COMPSAC), 2011 IEEE 35th Annual. pp. 245 - 250. URL:\url{http://svn.aksw.org/papers/2011/COMPSAC_lod2.eu/public.pdf} (access date: 30.05.2013).
-\bibitem{q8}
-Cherkashin E.A., Paramonov V.V., et al, Model Driven Architecture is a Complex System, E-Society Journal Research and Applications. Volume 2, Number 2, 2011, pp. 15-23.
-\bibitem{father}
-Father
-\bibitem{granin} Гранин с его представлением иконок.
-
+%\bibitem{m1} Автор И.О. Название книги --- М.: Издательство, 2002. --- 700~с.
+%\bibitem{m2} Автор И.О. Статья // В книге --- Ижевск: Издательство, 2011. --- С.~71-90.
+%\bibitem{m3} Сайт ТИПД-2014 // \url{http://itpa2014.conf.udsu.ru/}
+\bibitem{TBL2001} T. Berners-Lee, J. Hendler and O. Lissila. The
+  Semantic Web A new form of Web content that is meaningful to
+  computers will unleash a revolution of new possibilities. //
+  Scientific American, May 17, 2001,
+  pp.~1-18. \url{http://sciam.com/article.cfm?articleID=00048144-10D2-1C70-84A9809EC588EF21}
+\bibitem{b2:2} Microformats. // \url{http://microformats.org/}
+\bibitem{q1} Social network -- Wikipedia, the free encyclopedia. //
+  \url{http://en.wikipedia.org/wiki/Social_network}
+\bibitem{q2} Chameleon -- Chameleon 2.10 documentation. //
+  \url{http://chameleon.readthedocs.org/en/latest/}
+\bibitem{q3} Virtuoso Open-Source Edition //
+  \url{http://virtuoso.openlinksw.com/dataspace/doc/dav/wiki/Main/}
+% \bibitem{q4} PIZZA Protege OWL tutorial at Manchester (School of
+%   Computer Science -- The University of Manchester) //
+%   \url{http://owl.cs.manchester.ac.uk/tutorials/protegeowltutorial/}
+%   (access date: 20.09.2013).
+\bibitem{q5} SWI--Prolog's home. // \url{http://www.swi-prolog.org/}
+\bibitem{q6} The Protégé Ontology Editor and Knowledge Acquisition
+  System. // \url{http://protege.stanford.edu/}
+\bibitem{q7} N.Heino, S.Tramp, N.Heino, S.Auer. Managing Web Content
+  using Linked Data Principles -- Combining semantic structure with
+  dynamic content syndication. Computer Software and Applications
+  Conference (COMPSAC), 2011 IEEE 35th Annual. pp.~245 -
+  250. \url{http://svn.aksw.org/papers/2011/COMPSAC_lod2.eu/public.pdf}
+\bibitem{q8} Cherkashin E.A., Paramonov V.V., et al, Model Driven
+  Architecture is a Complex System. // E-Society Journal Research and
+  Applications. Volume 2, Number 2, 2011, pp.~15--23.
+\bibitem{b2:15}
+\url{http://www.tfzr.uns.ac.rs/esociety/issues/eSocietyVol2No2.pdf}
+\bibitem{father} Черкашин А.К. Полисистемный анализ и
+  синтез. Приложение в географии. -- Новосибирск: Изд-во <<Наука>>,
+  1997. -- 502~с., ISBN 5-02-030607-X
 % Format examples.
-\bibitem{m1} Автор И.О. Название книги --- М.: Издательство, 2002. --- 700~с.
-\bibitem{m2} Автор И.О. Статья // В книге --- Ижевск: Издательство, 2011. --- С.~71-90.
-\bibitem{m3} Сайт ТИПД-2014 // \url{http://itpa2014.conf.udsu.ru/}
-\bibitem{b2:2} Microformats. URL:http://microformats.org/ (дата обращения\,: 30.05.2013).
-\bibitem{b2:5} Model–view–controller --- Wikipedia, the free encyclopedia. URL: http://en.wikipedia.org/wiki/Model-view-controller (дата обращения\,:20.09.2013).
-\bibitem{b2:6} Sandhu "Role-based access control." Advances in computers. 46 (1998): 237-286.
-
-\bibitem{b2:7} T.Berners-Lee, R. Cyganiak, et.al. On Integration Issues of Site-Specific APIs into the Web of Data. DERI Technical Report 2009-08-14. URL: http://linkeddata.deri.ie/sites/linkeddata.deri.ie/files/rw-wod-tr.pdf (access date: 20.09.2013).
-\bibitem{b2:8} Virtuoso Open-Source Edition URL: http://virtuoso.openlinksw.com/dataspace/doc/dav/wiki/Main/ (access date: 30.05.2013).
-\bibitem{b2:13} Semantic MediaWiki. URL: http://semantic-mediawiki.org/ (access date: 20.08.2013).
+\bibitem{b2:5} Model–view–controller --- Wikipedia, the free
+  encyclopedia. //
+  \url{http://en.wikipedia.org/wiki/Model-view-controller}
+\bibitem{b2:6} Sandhu ``Role-based access control.'' Advances in
+  computers. 46 (1998): pp.~237-286.
+\bibitem{b2:7} T.Berners-Lee, R. Cyganiak, et.al. On Integration
+  Issues of Site-Specific APIs into the Web of Data. // DERI Technical
+  Report
+  2009-08-14. \url{http://linkeddata.deri.ie/sites/linkeddata.deri.ie/files/rw-wod-tr.pdf}
+\bibitem{b2:8} Virtuoso Open-Source Edition //
+  \url{http://virtuoso.openlinksw.com/dataspace/doc/dav/wiki/Main/}
+\bibitem{semwiki} Semantic MediaWiki. // \url{http://semantic-mediawiki.org/}
 \bibitem{b2:14} N.Heino, S.Tramp, N.Heino, S.Auer. Managing Web
   Content using Linked Data Principles – Combining semantic structure
-  with dynamic content syndication. Computer Software and Applications
-  Conference (COMPSAC), 2011 IEEE 35th Annual. pp. 245 -
-  250. URL:http://svn.aksw.org/papers/2011/COMPSAC\_lod2.eu/public.pdf
-  (access date: 30.05.2013).
-\bibitem{b2:15} Cherkashin E.A., Paramonov V.V., et al, Model Driven Architecture is a Complex System, E-Society Journal Research and Applications. Volume 2, Number 2, 2011, pp. 15-23.
-\bibitem{irina}
-\bibitem{kazakovdiss}
-\bibitem{zont2013}
-\bibitem{zopetal}
-\bibitem{diff}
-\bibitem{kyoto} Kyoto Cabinet. URL: http://fallabs.com/kyotocabinet/ (дата обращения: 20.02.2014).]
-
+  with dynamic content syndication. // Computer Software and Applications
+  Conference (COMPSAC), 2011 IEEE 35th Annual. pp.~245 -
+  250. \url{http://svn.aksw.org/papers/2011/COMPSAC_lod2.eu/public.pdf}
+% \bibitem{irina}
+\bibitem{kazakovdiss} Казаков И.А., Манцивода А.В. Базы данных как
+  онтологии // Изв. Иркут. гос. ун-та. Сер.: Математика. --- 2011,
+  Т. 4, № 1. --- С.~20--30. \url{http://www.mathnet.ru/links/b4e57ca3fd3e06db1f735dd8c75a1d6a/iigum91.pdf}
+\bibitem{zont2013} Черкашин Е.А., Белых П.В. и др. Подход к управлению
+  содержанием сайта на основе технологии RDF // Тр. конф. с
+  межд. участием «Знания – Онтологии – Теории» (ЗОНТ-2013), 8--10
+  октября 2013 г. --- Новосибирск. Издательство «РИЦ Прайс-курьер»,
+  2013. 2 т. --- 500~с., ISSN 0568-661X
+\bibitem{zopetal} Zope Page Templates Reference. // The Zope2 Book. \url{http://docs.zope.org/zope2/zope2book/index.html}
+\bibitem{diff} D.~MacKenzie, P.~Eggert, R.~Stallman. Comparing and
+  Merging Files. //
+  \url{http://www.gnu.org/software/diffutils/manual/diffutils.pdf}
+\bibitem{kyoto} Kyoto Cabinet. // \url{http://fallabs.com/kyotocabinet/}
 \end{thebibliography}
 
 % that's all folks
