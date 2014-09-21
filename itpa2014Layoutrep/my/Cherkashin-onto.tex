@@ -1,4 +1,13 @@
 \documentclass[utf8]{../IncArticle}
+
+% % This is for citation debugging, it writes cite as it is in the
+% % sources, i.e., its name.
+% \makeatletter
+% \def\@citex[#1]#2{\leavevmode
+%   \if@filesw\immediate\write\@auxout{\string\citation{#2}}\fi
+%   \@cite{#2}{#1}}
+% \makeatother
+
 \graphicspath{{../}}
 %\usepackage{color}
 %\usepackage{todonotes}
@@ -9,11 +18,6 @@
 \colorlet{fcolor}{red}
 \newcommand{\e}[2][fcolor]{\textcolor{pcolor}{[}\textcolor{#1}{#2}\textcolor{pcolor}{]}}
 %\def\baselinestretch{2.0}
-
-
-
-
-% *** PDF, URL AND HYPERLINK PACKAGES ***
 %
 \usepackage{url}
 
@@ -68,9 +72,9 @@
   A general idea of an approach to representation and induction of a
   semantic markup (logical layer) for description of the text content
   (internet sites, legal documents, and so on) is being described.
-  The logical layer is generated on the base of analysis of the
-  changes introduced by user.  The changes of the text and the logical
-  layer are analyzed.  The variant of the interpretation (e.g., error
+  The logical layer is generated on the base of analysis of changes
+  introduced by user.  The changes of the text and the logical layer
+  are analyzed.  The variant of the interpretation (e.g., error
   correction of a value or a new statement definition) of the changes
   is determined by means of user interview.  The interpretation also
   depends on the results of analysis of user behavior, e.g., patterns
@@ -81,38 +85,39 @@
   between fibers by means of interpretation relations.
 
   An automation of document preparation activities in a notary office
-  and a budgetary institution has been chosen as a testing ground for
-  the technologies under development.  The documents that are
-  originated and used there have an important common property.  The
-  documents contain information which is represented as structural and
-  nonstructural data equally likely.
+  has been chosen as a testing ground for the technologies under
+  development.  The documents that are originated and used there have
+  an important common property.  The documents contain information
+  which is represented as structural and nonstructural data equally
+  likely.
 
 \end{abstract}
 
 
 \introduction{}
 
-В 2001 году Т.~Бернерс-Ли предложил план \cite{TBL2001} развития интернет"=технологий
-(семантический веб), который направлен на реализацию сетевых сервисов
-со значительным уровнем интеграции логического слоя представляемой
-информации.  Информация размечается семантически, а программные
-агенты, используя эту информацию, производят ее обработку с целью
-решения конкретных практических задач пользователя. Одной из основных
-проблем в разработке технологий Семантического Веба (СВ) является тот факт,
-что большинство разработчиков интернет-сайтов заинтересованы в решении
-своих практических задач, в основном, связанных с представлением
-текстовой информации обычному пользователю или другим
-интернет-приложениям через подсистемы интеграции данных.
-Семантическая интеграция сайтов требует от разработчиков повышения
-своей квалификации до уровня, позволяющего использовать эти технологии
-в полной мере.  Для того, чтобы ослабить данный фактор необходимо
-разрабатывать программные методики семантической разметки содержимого
-документов, где сложные технологические аспекты СВ
-скрываются от инженера.  Программное обеспечение управления содержимым
-сайтов и документооборота должно самостоятельно изымать необходимую
-семантическую информацию у пользователя в режиме ``каши из топора''.
-Для этого необходимо разработать подсистемы приобретения знаний на
-основе диалога с пользователем.
+В 2001 году Т.~Бернерс-Ли предложил план \cite{TBL2001} развития
+интернет"=технологий (семантический веб), который направлен на
+реализацию сетевых сервисов со значительным уровнем интеграции
+логического слоя представляемой информации.  Информация размечается
+семантически, а программные агенты, используя эту информацию,
+производят ее обработку с целью решения конкретных практических задач
+пользователя. Одной из основных проблем в разработке технологий
+Семантического Веба (СВ) является тот факт, что большинство
+разработчиков интернет-сайтов заинтересованы в решении своих
+практических задач, в основном, связанных с представлением текстовой
+информации обычному пользователю или другим интернет-приложениям через
+подсистемы интеграции данных.  Семантическая интеграция сайтов требует
+от разработчиков повышения своей квалификации до уровня, позволяющего
+использовать эти технологии в полной мере.  Для того, чтобы ослабить
+данный фактор необходимо разрабатывать программные методики
+семантической разметки содержимого документов, где сложные
+технологические аспекты СВ скрываются от инженера.  Программное
+обеспечение управления содержимым сайтов и документооборота должно
+самостоятельно изымать необходимую семантическую информацию у
+пользователя в режиме ``каши из топора''.  Для этого необходимо
+разработать подсистемы приобретения знаний на основе диалога с
+пользователем.
 
 В настоящее время распространены два подхода к семантической разметке
 содержимого документа: а) совместное использование формата HTML и RDFa
@@ -217,7 +222,7 @@
 зависимостей на основе результатов анализа.
 
 Сеть взаимодействующих программных систем, в которых реализованы
-перечисленные функции, обладает многими свойствами социальной сети.
+перечисленные функции, обладает многими свойствами социальной сети \cite{SN}.
 Основными видами обработки информации в таких сетях являются ввод,
 хранение, фильтрация и передача, т.~е. интеграция данных, а не их
 агрегация с целью порождения каких"=либо комплексных отчетов.  Поэтому
@@ -901,7 +906,7 @@ Kyoto Cabinet реализует различные методы защиты и
 специальный формат разметки.  Аннотации используются механизмом поиска
 информации по страницам вики \cite{semwiki}.
 
-В сравнении с предыдущей разработкой в проекте OntoWiki \cite{b2:14}
+В сравнении с предыдущей разработкой в проекте OntoWiki \cite{ontowiki}
 получены аналогичные результаты, но с другой отправной точки.
 OntoWiki основывается на идее использования логического слоя для
 представления всей информации на сайте, аналогично рассмотренному в
@@ -1036,64 +1041,57 @@ OntoWiki основывается на идее использования ло�
   Scientific American, May 17, 2001,
   pp.~1-18. \url{http://sciam.com/article.cfm?articleID=00048144-10D2-1C70-84A9809EC588EF21}
 \bibitem{b2:2} Microformats. // \url{http://microformats.org/}
-\bibitem{q1} Social network -- Wikipedia, the free encyclopedia. //
+\bibitem{kazakovdiss} Казаков И.А., Манцивода А.В. Базы данных как
+  онтологии // Изв. Иркут. гос. ун-та. Сер.: Математика. --- 2011,
+  Т. 4, № 1. --- С.~20--30. \url{http://www.mathnet.ru/links/b4e57ca3fd3e06db1f735dd8c75a1d6a/iigum91.pdf}
+\bibitem{SN} Social network -- Wikipedia, the free encyclopedia. //
   \url{http://en.wikipedia.org/wiki/Social_network}
-\bibitem{q2} Chameleon -- Chameleon 2.10 documentation. //
-  \url{http://chameleon.readthedocs.org/en/latest/}
-\bibitem{q3} Virtuoso Open-Source Edition //
-  \url{http://virtuoso.openlinksw.com/dataspace/doc/dav/wiki/Main/}
-% \bibitem{q4} PIZZA Protege OWL tutorial at Manchester (School of
-%   Computer Science -- The University of Manchester) //
-%   \url{http://owl.cs.manchester.ac.uk/tutorials/protegeowltutorial/}
-%   (access date: 20.09.2013).
-\bibitem{q5} SWI--Prolog's home. // \url{http://www.swi-prolog.org/}
-\bibitem{q6} The Protégé Ontology Editor and Knowledge Acquisition
-  System. // \url{http://protege.stanford.edu/}
-\bibitem{q7} N.Heino, S.Tramp, N.Heino, S.Auer. Managing Web Content
-  using Linked Data Principles -- Combining semantic structure with
-  dynamic content syndication. Computer Software and Applications
-  Conference (COMPSAC), 2011 IEEE 35th Annual. pp.~245 -
-  250. \url{http://svn.aksw.org/papers/2011/COMPSAC_lod2.eu/public.pdf}
-\bibitem{q8} Cherkashin E.A., Paramonov V.V., et al, Model Driven
+\bibitem{b2:15} Cherkashin E.A., Paramonov V.V., et al, Model Driven
   Architecture is a Complex System. // E-Society Journal Research and
   Applications. Volume 2, Number 2, 2011, pp.~15--23.
-\bibitem{b2:15}
-\url{http://www.tfzr.uns.ac.rs/esociety/issues/eSocietyVol2No2.pdf}
-\bibitem{father} Черкашин А.К. Полисистемный анализ и
-  синтез. Приложение в географии. -- Новосибирск: Изд-во <<Наука>>,
-  1997. -- 502~с., ISBN 5-02-030607-X
-% Format examples.
+  \url{http://www.tfzr.uns.ac.rs/esociety/issues/eSocietyVol2No2.pdf}
+\bibitem{zont2013} Черкашин Е.А., Белых П.В. и др. Подход к управлению
+  содержанием сайта на основе технологии RDF // Тр. конф. с
+  межд. участием «Знания – Онтологии – Теории» (ЗОНТ-2013), 8--10
+  октября 2013 г. --- Новосибирск. Издательство «РИЦ Прайс-курьер»,
+  2013. 2 т. --- 500~с., ISSN 0568-661X
 \bibitem{b2:5} Model–view–controller --- Wikipedia, the free
   encyclopedia. //
   \url{http://en.wikipedia.org/wiki/Model-view-controller}
+\bibitem{q2} Chameleon -- Chameleon 2.10 documentation. //
+  \url{http://chameleon.readthedocs.org/en/latest/}
+\bibitem{zopetal} Zope Page Templates Reference. // The Zope2 Book. \url{http://docs.zope.org/zope2/zope2book/index.html}
 \bibitem{b2:6} Sandhu ``Role-based access control.'' Advances in
   computers. 46 (1998): pp.~237-286.
 \bibitem{b2:7} T.Berners-Lee, R. Cyganiak, et.al. On Integration
   Issues of Site-Specific APIs into the Web of Data. // DERI Technical
   Report
   2009-08-14. \url{http://linkeddata.deri.ie/sites/linkeddata.deri.ie/files/rw-wod-tr.pdf}
+\bibitem{diff} D.~MacKenzie, P.~Eggert, R.~Stallman. Comparing and
+  Merging Files. //
+  \url{http://www.gnu.org/software/diffutils/manual/diffutils.pdf}
+\bibitem{father} Черкашин А.К. Полисистемный анализ и
+  синтез. Приложение в географии. -- Новосибирск: Изд-во <<Наука>>,
+  1997. -- 502~с., ISBN 5-02-030607-X
+% Format examples.
 \bibitem{b2:8} Virtuoso Open-Source Edition //
   \url{http://virtuoso.openlinksw.com/dataspace/doc/dav/wiki/Main/}
+\bibitem{kyoto} Kyoto Cabinet. // \url{http://fallabs.com/kyotocabinet/}
 \bibitem{semwiki} Semantic MediaWiki. // \url{http://semantic-mediawiki.org/}
-\bibitem{b2:14} N.Heino, S.Tramp, N.Heino, S.Auer. Managing Web
+\bibitem{ontowiki} N.Heino, S.Tramp, N.Heino, S.Auer. Managing Web
   Content using Linked Data Principles – Combining semantic structure
   with dynamic content syndication. // Computer Software and Applications
   Conference (COMPSAC), 2011 IEEE 35th Annual. pp.~245 -
   250. \url{http://svn.aksw.org/papers/2011/COMPSAC_lod2.eu/public.pdf}
+
+% \bibitem{q4} PIZZA Protege OWL tutorial at Manchester (School of
+%   Computer Science -- The University of Manchester) //
+%   \url{http://owl.cs.manchester.ac.uk/tutorials/protegeowltutorial/}
+%   (access date: 20.09.2013).
+%\bibitem{q5} SWI--Prolog's home. // \url{http://www.swi-prolog.org/}
+%\bibitem{q6} The Protégé Ontology Editor and Knowledge Acquisition
+%  System. // \url{http://protege.stanford.edu/}
 % \bibitem{irina}
-\bibitem{kazakovdiss} Казаков И.А., Манцивода А.В. Базы данных как
-  онтологии // Изв. Иркут. гос. ун-та. Сер.: Математика. --- 2011,
-  Т. 4, № 1. --- С.~20--30. \url{http://www.mathnet.ru/links/b4e57ca3fd3e06db1f735dd8c75a1d6a/iigum91.pdf}
-\bibitem{zont2013} Черкашин Е.А., Белых П.В. и др. Подход к управлению
-  содержанием сайта на основе технологии RDF // Тр. конф. с
-  межд. участием «Знания – Онтологии – Теории» (ЗОНТ-2013), 8--10
-  октября 2013 г. --- Новосибирск. Издательство «РИЦ Прайс-курьер»,
-  2013. 2 т. --- 500~с., ISSN 0568-661X
-\bibitem{zopetal} Zope Page Templates Reference. // The Zope2 Book. \url{http://docs.zope.org/zope2/zope2book/index.html}
-\bibitem{diff} D.~MacKenzie, P.~Eggert, R.~Stallman. Comparing and
-  Merging Files. //
-  \url{http://www.gnu.org/software/diffutils/manual/diffutils.pdf}
-\bibitem{kyoto} Kyoto Cabinet. // \url{http://fallabs.com/kyotocabinet/}
 \end{thebibliography}
 
 % that's all folks
