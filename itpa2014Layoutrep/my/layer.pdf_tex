@@ -63,10 +63,10 @@
     \put(0.78144409,0.38052427){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{отец}}}%
     \put(0.79228553,0.28733536){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{мать}}}%
     \put(0.70209962,0.24592131){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{ОС}}}%
-    \put(0.23648853,0.40763908){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{дочь}}}%
+    \put(0.44648853,0.40763908){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{дочь}}}%
     \put(0.19492168,0.3108503){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{сын}}}%
     \put(0.30563405,0.53322629){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{мужчина}}}%
-    \put(0.15971946,0.53320552){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{женщина}}}%
+    \put(0.15971946,0.53320552){\color[rgb]{0,0,0}\makebox(0,0)[cb]{\smash{женщина}}}%
     \put(0.54074447,0.51551602){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{целое}}}%
     \put(0.75340787,0.5259669){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{часть}}}%
   \end{picture}%
