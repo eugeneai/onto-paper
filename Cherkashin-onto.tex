@@ -354,7 +354,7 @@
 %
 % paper title
 % can use linebreaks \\ within to get better formatting as desired
-\title{An Ontology Polysystem Driven Technique of Knowledge Acquisition from Edited Documents}
+\title{An Ontology Polysystem Driven Technique for Semantic Markup from Edited Documents}
 
 
 % author names and affiliations
@@ -379,10 +379,14 @@
 % of the page, use this alternative format:
 %
 \author{\IEEEauthorblockN{Evgeny Cherkashin\IEEEauthorrefmark{1}\IEEEauthorrefmark{2},
-Polina Belykh\IEEEauthorrefmark{1} and
-Kristina Paskal\IEEEauthorrefmark{2}}
-\IEEEauthorblockA{\IEEEauthorrefmark{1}Institute of System Dynamics and Control Theory at SB RAS, Irkutsk, Lermontov str., 134, 664033, Russia}
-\IEEEauthorblockA{\IEEEauthorrefmark{2}National Research Irkutsk State Technical University, Irkutsk, Lermontov str.,  83, 664074, Russia}}
+Kristina Paskal\IEEEauthorrefmark{2}\IEEEauthorrefmark{3}} and
+Polina Belykh\IEEEauthorrefmark{1}%
+\IEEEauthorblockA{\IEEEauthorrefmark{1}Institute of System Dynamics and Control Theory at SB RAS, Irkutsk, Lermontov str., 134, 664033, Russia}%
+\IEEEauthorblockA{\IEEEauthorrefmark{2}National Research Irkutsk State
+  Technical University, Irkutsk, Lermontov str.,  83, 664074, Russia}%
+\IEEEauthorblockA{\IEEEauthorrefmark{3}Irkutsk State University,
+  Irkutsk, Gagarina blvd., 664003, Russia}%
+}
 
 % use for special paper notices
 %\IEEEspecialpapernotice{(Invited Paper)}
@@ -397,6 +401,30 @@ Kristina Paskal\IEEEauthorrefmark{2}}
 \begin{abstract}
 %\boldmath
 An approach to an ontology based document logical content representation and induction is considered. The logical layer is induced during content editing by means of polysystem of ontologies of the domain, change structure analysis, data mining and user interview clarifying meaning of his/her actions. The polysystem of ontologies are used to drive the process of user interview. As a result new RDF triples representing a part of the domain are constructed. This results in the necessity to develop document and content management software as knowledge acquisition systems, where user plays basically the role of an information source. As a testing ground we have chosen document preparation automation of Russian notary office due to a balance of structured and unstructured data in legal documents. The workflow of documents between offices and individuals can be organized as distributed social network.
+
+\e{  A general idea of an approach to representation and induction of a
+  semantic markup (logical layer) for description of the text content
+  (internet sites, legal documents, and so on) is being described.
+  The logical layer is generated on the base of analysis of changes
+  introduced by user.  The changes of the text and the logical layer
+  are analyzed.  The variant of the interpretation (e.g., error
+  correction of a value or a new statement definition) of the changes
+  is determined by means of user interview.  The interpretation also
+  depends on the results of analysis of user behavior, e.g., patterns
+  of transitions between various kinds of documents.  The theoretical
+  basis of the technique is to use of a polysystem representation of
+  ontologies for the domain.  The presentation is a hierarchically
+  fibered structure of concepts and relations, which are mapped
+  between fibers by means of interpretation relations.
+
+  An automation of document preparation activities in a notary office
+  has been chosen as a testing ground for the technologies under
+  development.  The documents that are originated and used there have
+  an important common property.  The documents contain information
+  which is represented as structural and nonstructural data equally
+  likely.
+}
+
 \end{abstract}
 % IEEEtran.cls defaults to using nonbold math in the Abstract.
 % This preserves the distinction between vectors and scalars. However,
