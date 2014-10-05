@@ -418,12 +418,12 @@ between them.  This approach is used in decomposition, analysis and
 synthesis of complex systems.  For each concepts of a fiber there
 exists another concept in different fiber, which is identical to the
 former concept via an interpretation.  All the concepts are
-interpreted by concepts of the abstract system layer.  The same is
+interpreted by concepts of the abstract system fiber.  The same is
 true for the morphisms.  In comparison to system approach, where the
 principle of interconnection of the elements is fundamental,
 polysystem analysis assumes the hypothesis of fibration, i.e., it
 supposes a possibility of representation of the object under
-investigation as disjoint layers, thus, mutually unbound fibers
+investigation as disjoint fibers, thus, mutually unbound fibers
 (subdomains).  So, in a generalized insight a polysystem is a system
 itself, and polysystem analysis is a new form of system analysis.
 
@@ -459,57 +459,189 @@ the fibers.
 
 Thus, the usage of the PPAS allows us to a) control the completeness
 of the system of objects in a document with respect to their
-interpretation to a predefined abstract system layer; b) verify the
-soundness with respect to the semantics of the relation defined again
-via interpretations; and in a distant future c) automatically produce
-program implementing the fiber theories via interpretation of the
-existing algorithms on other layers.
+interpretation to a predefined abstract system fiber, which we roughly
+call ``template fiber''; b) verify the soundness with respect to the
+semantics of the relation defined again via interpretations; and in a
+distant future c) automatically produce program implementing the fiber
+theories via interpretation of the existing algorithms on other
+fibers.  In Russian literature the notion ``fiber'' usually referred
+to as ``layer''.  In the rest of the paper we will sometimes use word
+layer as synonym to fiber.
 
 \section{Maintaining a Dialogue With User}
 
 The through interpretation feature of polysystem layers could be used
-to drive user interview dialog on the base of an inference by analogy
-represented as movement along relations and morphs in the polysystem
-of ontologies.
+to maintain user interview dialog on the base of an inference by
+analogy represented as movement along relations, morphisms and
+interpretation in the polysystem of ontologies.
 
+In order to realize the dialog procedure, there should already exist
+fibers representing ``part-whole'' relations, class hierarchies of the
+abstract concepts, correspondence of objects to classes, set theories
+and necessary domain layers, e.g., the fiber defining that men and
+women are disjoint concepts.  The aim of the user dialog is to define
+that the object belongs to a context (fiber), determine its
+interpretations into concepts of other fibers, and to provide all the
+context to be complete with respect to their template fibers.  The
+dialog is maintained on the base of analysis of known properties and
+restrictions (relations) of the subject\,: type of data representing
+the subject, its location in the context hierarchy, existing relations
+with other subjects and objects, etc.
 
-Consider simple family relationships in fig.~\ref{OPSA}, where most of the obvious relations are hidden to make the figure more readable. There are four main layers in the figure, which model corresponding aspects of Bob's family: layer 1 represents the family itself, it is the only layer having a-box entities; layer 2 represent main roles of individuals in a family; layer 3 shows genders as two opposites; and later 4 corresponds to mereological metomodel ``whole--parts''.
+Let's consider simple family relationships in fig.~\ref{OPSA}, where
+most of the obvious relations are hidden to make the figure more
+readable.  There are a part o the domain polysystem including four
+main layers, which model various aspects of Bob's family: layer 1
+represents the family itself, it is the only layer having objects as
+concepts; layer 2 represent main roles of individuals in a family;
+layer 3 shows genders as two opposites; and later 4 corresponds to
+mereological metamodel ``part-whole''.
 
-Let's construct a list of questions to determine a role of Jul in Bob's family. It is supposed we know only that Jul is a female. To put Jul in layer 1, we must ask a general question: ``Is Jul a part of Bob's family?'' The question is constructed according to a following intuitive inference. All relations between a family and its members are kinds of ``partOf:'' relation from layer 4. This fact is shown as an arrow from relation hasFather: of Layer 2 to ``partOf:'' of Layer 4, other four arrows are hidden. So, in order to determine the fact that Jul is a member of Bob's family, it is sufficient to ask ``Is Jul partOf: Bob's-family?''. The identifier of the example family is devised from the tradition to name families after their master of housekeeping (MOH) person, that is denoted by arrow from individual Bob (layer 1) to concept MOH (layer 2).
+Let's construct a list of questions to determine a role of Jul in
+Bob's family.  It is supposed that we know only that Jul is a female.
+To put Jul in layer 1, in a edited context of a document, we must ask a
+general question: ``Is Jul a part of Bob's family?''  The question is
+constructed according to a following intuitive inference.  All
+members of a family are ``partOf:'' the family, the relation is
+defined in layer 4.  This fact is shown as an arrow from relation
+hasFather: of Layer 2 to ``partOf:'' of Layer 4, other four arrows are
+hidden.  So, in order to determine the fact that Jul is a member of
+Bob's family, it is sufficient to ask ``Is Jul partOf:
+Bob's-family?''.  The identifier of the example family is devised from
+the tradition to name families after their master of housekeeping
+(MOH) person, that is denoted by arrow from individual Bob (layer 1)
+to concept MOH (layer 2).  Note, that layer 1 interpreted to layer 2
+by means of a functor of theory of categories.
 
-If user answered positively (Jul is a part of the family), then we must refine her role, as partOf: is not a role allowed to be used in layer 1. Jul is a female (by definition), so she cannot be father and son. If she is, she must be male, but it is not as male and female are formally opposite concepts. If multiplicity of relations in the layer are defined, then we will also know, that the family already has mother. The only possible choice is Jul is daughter, resulting an another general question:''Is Jul daughter?'' If the answer to the second question is also positive, finally a new triple constructed <Bob's-family hasDaughter: Jul>.
+If user answered positively, i.e., Jul is a part of the family, then
+we must refine her role further, as ``partOf:'' is not a role allowed
+to be used in layer 1, that is layer 1 is not complete yet with
+respect to template layer 2.  Jul is a female by definition, so she
+cannot be father and son.  If she is, she must be male, but it is
+impossible as male and female are formally opposite concepts.  If
+multiplicity of relations in the layer are defined as one, then we
+will also know, that the family already has mother.  The only possible
+choice is Jul is daughter, resulting an another general question:''Is
+Jul a daughter?''  If the answer to the question is also positive,
+finally a new triple constructed \texttt{<Bob's-family, hasDaughter:,
+  Jul>}.  Now the layer of Bob's family is complete with respect to
+the template layer 2.
 
-If, e.g., gender of Jul is unknown, then the second question is constructed as a special question ``What role has Jul in Bob's family?'' and a list of two possible answers is shown: ``hasDaughter:'' and ``hasSon:''. Or it can be constructed as an alternative question ``Is Jul plays hasDaughter: or hasSon: role in the family?'', but in this case the sentence is more weird with respect to English.
+If, e.g., gender of Jul is unknown, then the second question is
+constructed as a special question ``What role does Jul have in Bob's
+family?'' and a list of two possible answers is shown:
+``hasDaughter:'' and ``hasSon:''.  Other variant of a question can be
+synthesized if only two alternatives exist: ``Does Jul play
+hasDaughter: or hasSon: role in Bob's-family?''.  In this case the
+sentence is more weird with respect to norm of natural language.
+
+To tell the truth in the original example the question about a role of
+Jul as there exist only one role for a woman being a part of the
+family.  If we remove mother Alice from the family then the question
+have to be asked, even for incomplete families.  The general questions
+are asked when we could narrow a list of alternatives in further
+questions.  The queue of the questions being asked could be defined at
+run-time by analogy to decision tree construction procedure, e.g., by
+analyzing entropy gain \cite{dectrees}.
 
 \begin{figure}
-\centering\sf
+\centering\footnotesize\sf
 \def\svgwidth{0.9\linewidth}
-\input{layer.pdf_tex}
-\caption{An  Usage Example of an Ontology Polysystem}
+\input{layer_en.pdf_tex}
+\caption{A Usage Example of an Ontology Polysystem}
 \label{OPSA}
 \end{figure}
 
-(HERE: a generalizing resume paragraph needed.)
+% (HERE: a generalizing resume paragraph needed.)
 
-(About polysystem of ontologies).
+% (About polysystem of ontologies).
 
-(procedure of fibration)
+% (procedure of fibration)
 
-(procedure of completeness reconstruction): (About mapping via functors).
+% (procedure of completeness reconstruction): (About mapping via functors).
 
-(Induction of notions, suppositions of fibrations).
+% (Induction of notions, suppositions of fibrations).
 
-(wikipedia and Google search systems).
+% (wikipedia and Google search systems).
 
-(!! Systems of complexes. !!)
+% (!! Systems of complexes. !!)
 
-\section{An Office Usage of the Technique}
 
-One of the applications of the technology under development is document preparation automation of a notary office. Notary office in Russia generate vast amount of printed documents. The documents contain both formalized and unformalized data in a balance reasonable for our study. For example, formalized data are the passport data of individuals, registration data of vehicles. Data of this kind are passed from one document to other documents mostly sturcturized and unchanged, raising a bindles of related documents. The document content structure significantly depends on entry fields’ data filled in: form of notary signature field depends on legal capacities of the individuals mentioned in the main document body. At present templates of the documents are prepared by a programming engineer collaborating with a professional secretary and verified by supervising notary. Unformalized data are various enumerations of legal empowerments of the individuals, article codes, and explanatory text.
+\section{An Notary Office Usage of the Technique}
 
-Application of the semantic approach to the logical layer representation of the notary document content is aimed at involvement of the secretaries (people with low engineering skills) into the processes of the document instances preparation from the existing templates and into the development of the templates and constructing their hierarchical arrangement.
+One of the applications of the technology under development is
+document preparation automation of a notary office.  Notary office in
+Russia generate vast amount of printed documents.  The documents
+contain both formalized and unformalized data in a balance reasonable
+for our study.  For example, formalized data are the passport data of
+individuals, registration data of vehicles.  This kind of data are
+normally stored in rational databases, passed from one document to
+other documents mostly structured and unchanged, raising a bundles of
+related documents and patterns of document flows.  The final document
+content structure significantly depends on entry fields’ data filled
+in: form of notary signature field depends on legal capacities of the
+individuals mentioned in the main document body.
+% At present templates of the documents are prepared by a programming
+% engineer collaborating with a experienced secretary and verified by
+% supervising notary.
+Unformalized data are various enumerations of legal empowerments of
+the individuals, article codes, and explanatory text.
 
-Logical layer of a notary document consists of hierarchy of subjects. The subjects relate to each other on various abstraction levels, e.g., in a letter of attorney there are at least two individuals, the first one is principal, and the second one is trusted (proxy). For each individual passport, data and place of residence are defined. The letter can contain other person data, e.g., for partially capable children. All the individuals are in explicit relation to the document. The triples <letatt998 containsPrincipal indiv\_78> and <letatt998 containsProxy indiv\_79> could define a principal and proxy to the document. The mentioned relations are specifications of abstract hasIndividual and structuralElement relations. This multilevel approach allows us visually represent hierarchical structures of the document, having interpreted the relations as structural elements, and in the same time to associate individuals with other roles in new documents, swap roles during editing. The swap function is implemented as user interface widget, which recognizes certain subject-to-subject relation patterns in the document body and interprets semantics of the relations as possible action. A general graph structure of the abstract level of a notary office automation ontology is drawn in fig.~\ref{notaryontology}.
+At present most of notary legal documents are generated from
+templates.  In the experimental office, the document templates are
+prepared by engineer with collaboration to a secretary having
+necessary experience of use of the existing software.  Templates are
+HTML forms dispersed in the text of document.  Logical structure of a
+document is defined by field names, and the procedures of information
+processing are implemented as simple form processing routines.  The
+output document is rendered by means of value substitution instead of
+the fields.  Unformalized data are text paragraphs, codex references,
+clarifying remarks, etc.  The field names are defined by identifiers
+of a special structure allowing the set of the fields to combine into
+a subject they describe.  This simple formalization allows one to
+carry on basic transformation operations on roles of the individuals
+by means of renaming or exchanging values of the field sets, e.g., to
+implement copying the data from one document top another.  Application
+of the semantic approach to the logical layer representation of the
+notary document content is aimed at involvement of the secretaries
+(office stuff with low engineering skills) into development of the
+templates and constructing their hierarchical arrangement.
+
+In new approach, logical layer of a notary document consists of
+hierarchy of subjects.  The subjects relate to each other on various
+abstraction levels, e.g., in a letter of attorney there are at least
+two individuals, the first one is principal, and the second one is
+trusted (proxy).  For each individual passport, data and place of
+residence are defined.  The letter can contain other person data,
+e.g., for partially capable children.  As we just noted, all the
+individuals are in explicit relation to the document.  The triples
+\texttt{<letatt998 containsPrincipal: indiv\_78>} (commas are omitted)
+and \texttt{<letatt998 containsProxy: indiv\_79>} could define a
+principal and proxy to the document.  The mentioned relations are
+specifications of abstract \texttt{hasIndividual:} and
+\texttt{structuralElement:} relations.  This polysystem approach
+allows us visually represent hierarchical structures of the document,
+having interpreted the relations as structural elements, and in the
+same time to associate individuals with other roles in new documents,
+swap roles during editing.  The role swap function is implemented as
+user interface widget generated as a result of recognition of certain
+subject-to-subject relations indistinguishable in a fiber, or specific
+patterns of relations in the document body.  A general graph structure
+of the abstract level of a notary office automation ontology is drawn
+in fig.~\ref{notaryontology}.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\linewidth]{DocumentOntology-en.pdf}
+% where an .eps filename suffix will be assumed under latex,
+% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+% via \DeclareGraphicsExtensions.
+\caption{Upper Layer of Notary Office Ontology}
+\label{notaryontology}
+\end{figure}
+
+\section{Software Architecture and Implementation}
+\label{sec:arch}
 
 [The flexibility and minimum resources and administration requirements criteria are of very importance to choosing database providing information resources storage as triples. The database management systems as DB2, Oracle and SQL Server cannot fulfill requirements because after running the operation is performed as a separate process. Also application and DBMS interaction should be implemented through interprocess communication form.
 
@@ -540,15 +672,6 @@ Availability of funds to work with triplets described in the standard RDF is an 
 % option should be used if it is desired that the figures are to be
 % displayed while in draft mode.
 %
-\begin{figure}[!t]
-\centering
-\includegraphics[width=\linewidth]{DocumentOntology-en.pdf}
-% where an .eps filename suffix will be assumed under latex,
-% and a .pdf suffix will be assumed for pdflatex; or what has been declared
-% via \DeclareGraphicsExtensions.
-\caption{An upper layer of notary office ontology}
-\label{notaryontology}
-\end{figure}
 
 % Note that IEEE typically puts floats only at the top, even when this
 % results in a large percentage of a column being occupied by floats.
