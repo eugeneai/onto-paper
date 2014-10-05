@@ -349,6 +349,11 @@
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
 
+\usepackage{xcolor}
+
+\colorlet{pcolor}{blue}
+\colorlet{fcolor}{red}
+\newcommand{\e}[2][fcolor]{\textcolor{pcolor}{[}\textcolor{#1}{#2}\textcolor{pcolor}{]}}
 
 \begin{document}
 %
@@ -402,45 +407,26 @@ Polina Belykh\IEEEauthorrefmark{1}%
 
 \begin{abstract}
 %\boldmath
-  An approach to an ontology based document logical content
-  representation and induction is considered. The logical layer is
-  induced during content editing by means of polysystem of ontologies
-  of the domain, change structure analysis, data mining and user
-  interview clarifying meaning of his/her actions. The polysystem of
-  ontologies are used to drive the process of user interview. As a
-  result new RDF triples representing a part of the domain are
-  constructed. This results in the necessity to develop document and
-  content management software as knowledge acquisition systems, where
-  user plays basically the role of an information source. As a testing
-  ground we have chosen document preparation automation of Russian
-  notary office due to a balance of structured and unstructured data
-  in legal documents. The workflow of documents between offices and
-  individuals can be organized as distributed social network.
-
-\e{  A general idea of an approach to representation and induction of a
+  A general idea of an approach to representation and induction of a
   semantic markup (logical layer) for description of the text content
-  (internet sites, legal documents, and so on) is being described.
-  The logical layer is generated on the base of analysis of changes
+  (e.g., internet sites and legal documents) is being described.  The
+  logical layer is being generated on the base of analysis of changes
   introduced by user.  The changes of the text and the logical layer
-  are analyzed.  The variant of the interpretation (e.g., error
-  correction of a value or a new statement definition) of the changes
-  is determined by means of user interview.  The interpretation also
-  depends on the results of analysis of user behavior, e.g., patterns
-  of transitions between various kinds of documents.  The theoretical
-  basis of the technique is to use of a polysystem representation of
-  ontologies for the domain.  The presentation is a hierarchically
-  fibered structure of concepts and relations, which are mapped
-  between fibers by means of interpretation relations.
+  are analyzed.  The variant of the interpretation of the changes,
+  e.g., error correction of a value or a new statement definition, is
+  determined by means of user interview.  The theoretical basis of the
+  technique is the usage of a polysystem representation of ontologies
+  for the domain.  The presentation is a hierarchically fibered
+  structure of concepts and relations, which are mapped between fibers
+  by means of interpretation relations.
 
   An automation of document preparation activities in a notary office
-  has been chosen as a testing ground for the technologies under
-  development.  The documents that are originated and used there have
-  an important common property.  The documents contain information
-  which is represented as structural and nonstructural data equally
-  likely.
-}
-
+  has been chosen as a testing ground for approbation of the
+  technologies under development.  The documents that are originated
+  and used there contain information represented as structural and
+  nonstructural data equally likely.
 \end{abstract}
+
 % IEEEtran.cls defaults to using nonbold math in the Abstract.
 % This preserves the distinction between vectors and scalars. However,
 % if the conference you are submitting to favors bold math in the abstract,
