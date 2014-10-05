@@ -1,84 +1,6 @@
 
-%% bare_conf.tex
-%% V1.3
-%% 2007/01/11
-%% by Michael Shell
-%% See:
-%% http://www.michaelshell.org/
-%% for current contact information.
-%%
-%% This is a skeleton file demonstrating the use of IEEEtran.cls
-%% (requires IEEEtran.cls version 1.7 or later) with an IEEE conference paper.
-%%
-%% Support sites:
-%% http://www.michaelshell.org/tex/ieeetran/
-%% http://www.ctan.org/tex-archive/macros/latex/contrib/IEEEtran/
-%% and
-%% http://www.ieee.org/
-
-%%*************************************************************************
-%% Legal Notice:
-%% This code is offered as-is without any warranty either expressed or
-%% implied; without even the implied warranty of MERCHANTABILITY or
-%% FITNESS FOR A PARTICULAR PURPOSE!
-%% User assumes all risk.
-%% In no event shall IEEE or any contributor to this code be liable for
-%% any damages or losses, including, but not limited to, incidental,
-%% consequential, or any other damages, resulting from the use or misuse
-%% of any information contained here.
-%%
-%% All comments are the opinions of their respective authors and are not
-%% necessarily endorsed by the IEEE.
-%%
-%% This work is distributed under the LaTeX Project Public License (LPPL)
-%% ( http://www.latex-project.org/ ) version 1.3, and may be freely used,
-%% distributed and modified. A copy of the LPPL, version 1.3, is included
-%% in the base LaTeX documentation of all distributions of LaTeX released
-%% 2003/12/01 or later.
-%% Retain all contribution notices and credits.
-%% ** Modified files should be clearly indicated as such, including  **
-%% ** renaming them and changing author support contact information. **
-%%
-%% File list of work: IEEEtran.cls, IEEEtran_HOWTO.pdf, bare_adv.tex,
-%%                    bare_conf.tex, bare_jrnl.tex, bare_jrnl_compsoc.tex
-%%*************************************************************************
-
-% *** Authors should verify (and, if needed, correct) their LaTeX system  ***
-% *** with the testflow diagnostic prior to trusting their LaTeX platform ***
-% *** with production work. IEEE's font choices can trigger bugs that do  ***
-% *** not appear when using other class files.                            ***
-% The testflow support page is at:
-% http://www.michaelshell.org/tex/testflow/
-
-
-
-% Note that the a4paper option is mainly intended so that authors in
-% countries using A4 can easily print to A4 and see how their papers will
-% look in print - the typesetting of the document will not typically be
-% affected with changes in paper size (but the bottom and side margins will).
-% Use the testflow package mentioned above to verify correct handling of
-% both paper sizes by the user's LaTeX system.
-%
-% Also note that the "draftcls" or "draftclsnofoot", not "draft", option
-% should be used if it is desired that the figures are to be displayed in
-% draft mode.
-%
-
 \documentclass[conference]{IEEEtran}
-% Add the compsoc option for Computer Society conferences.
-%
-% If IEEEtran.cls has not been installed into the LaTeX system files,
-% manually specify the path to it like:
-% \documentclass[conference]{../sty/IEEEtran}
-
 \usepackage{color}
-
-
-
-
-% Some very useful LaTeX packages include:
-% (uncomment the ones you want to load)
-
 
 % *** MISC UTILITY PACKAGES ***
 %
@@ -98,13 +20,6 @@
 % When switching from latex to pdflatex and vice-versa, the compiler may
 % have to be run twice to clear warning/error messages.
 
-
-
-
-
-
-% *** CITATION PACKAGES ***
-%
 \usepackage{cite}
 % cite.sty was written by Donald Arseneau
 % V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
@@ -193,76 +108,8 @@
 
 
 
-% *** SPECIALIZED LIST PACKAGES ***
-%
-%\usepackage{algorithmic}
-% algorithmic.sty was written by Peter Williams and Rogerio Brito.
-% This package provides an algorithmic environment fo describing algorithms.
-% You can use the algorithmic environment in-text or within a figure
-% environment to provide for a floating algorithm. Do NOT use the algorithm
-% floating environment provided by algorithm.sty (by the same authors) or
-% algorithm2e.sty (by Christophe Fiorio) as IEEE does not use dedicated
-% algorithm float types and packages that provide these will not provide
-% correct IEEE style captions. The latest version and documentation of
-% algorithmic.sty can be obtained at:
-% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithms/
-% There is also a support site at:
-% http://algorithms.berlios.de/index.html
-% Also of interest may be the (relatively newer and more customizable)
-% algorithmicx.sty package by Szasz Janos:
-% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithmicx/
 
 
-
-
-% *** ALIGNMENT PACKAGES ***
-%
-%\usepackage{array}
-% Frank Mittelbach's and David Carlisle's array.sty patches and improves
-% the standard LaTeX2e array and tabular environments to provide better
-% appearance and additional user controls. As the default LaTeX2e table
-% generation code is lacking to the point of almost being broken with
-% respect to the quality of the end results, all users are strongly
-% advised to use an enhanced (at the very least that provided by array.sty)
-% set of table tools. array.sty is already installed on most systems. The
-% latest version and documentation can be obtained at:
-% http://www.ctan.org/tex-archive/macros/latex/required/tools/
-
-
-%\usepackage{mdwmath}
-%\usepackage{mdwtab}
-% Also highly recommended is Mark Wooding's extremely powerful MDW tools,
-% especially mdwmath.sty and mdwtab.sty which are used to format equations
-% and tables, respectively. The MDWtools set is already installed on most
-% LaTeX systems. The lastest version and documentation is available at:
-% http://www.ctan.org/tex-archive/macros/latex/contrib/mdwtools/
-
-
-% IEEEtran contains the IEEEeqnarray family of commands that can be used to
-% generate multiline equations as well as matrices, tables, etc., of high
-% quality.
-
-
-%\usepackage{eqparbox}
-% Also of notable interest is Scott Pakin's eqparbox package for creating
-% (automatically sized) equal width boxes - aka "natural width parboxes".
-% Available at:
-% http://www.ctan.org/tex-archive/macros/latex/contrib/eqparbox/
-
-
-
-
-
-% *** SUBFIGURE PACKAGES ***
-%\usepackage[tight,footnotesize]{subfigure}
-% subfigure.sty was written by Steven Douglas Cochran. This package makes it
-% easy to put subfigures in your figures. e.g., "Figure 1a and 1b". For IEEE
-% work, it is a good idea to load it with the tight package option to reduce
-% the amount of white space around the subfigures. subfigure.sty is already
-% installed on most LaTeX systems. The latest version and documentation can
-% be obtained at:
-% http://www.ctan.org/tex-archive/obsolete/macros/latex/contrib/subfigure/
-% subfigure.sty has been superceeded by subfig.sty.
 
 
 
@@ -284,66 +131,10 @@
 % The latest version and documentation of caption.sty can be obtained at:
 % http://www.ctan.org/tex-archive/macros/latex/contrib/caption/
 
-
-
-
-% *** FLOAT PACKAGES ***
-%
 \usepackage{fixltx2e}
-% fixltx2e, the successor to the earlier fix2col.sty, was written by
-% Frank Mittelbach and David Carlisle. This package corrects a few problems
-% in the LaTeX2e kernel, the most notable of which is that in current
-% LaTeX2e releases, the ordering of single and double column floats is not
-% guaranteed to be preserved. Thus, an unpatched LaTeX2e can allow a
-% single column figure to be placed prior to an earlier double column
-% figure. The latest version and documentation can be found at:
-% http://www.ctan.org/tex-archive/macros/latex/base/
-
-
-
 \usepackage{stfloats}
-% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
-% the ability to do double column floats at the bottom of the page as well
-% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
-% LaTeX2e). It also provides a command:
-%\fnbelowfloat
-% to enable the placement of footnotes below bottom floats (the standard
-% LaTeX2e kernel puts them above bottom floats). This is an invasive package
-% which rewrites many portions of the LaTeX2e float routines. It may not work
-% with other packages that modify the LaTeX2e float routines. The latest
-% version and documentation can be obtained at:
-% http://www.ctan.org/tex-archive/macros/latex/contrib/sttools/
-% Documentation is contained in the stfloats.sty comments as well as in the
-% presfull.pdf file. Do not use the stfloats baselinefloat ability as IEEE
-% does not allow \baselineskip to stretch. Authors submitting work to the
-% IEEE should note that IEEE rarely uses double column equations and
-% that authors should try to avoid such use. Do not be tempted to use the
-% cuted.sty or midfloat.sty packages (also by Sigitas Tolusis) as IEEE does
-% not format its papers in such ways.
 
-
-
-
-
-% *** PDF, URL AND HYPERLINK PACKAGES ***
-%
 \usepackage{url}
-% url.sty was written by Donald Arseneau. It provides better support for
-% handling and breaking URLs. url.sty is already installed on most LaTeX
-% systems. The latest version can be obtained at:
-% http://www.ctan.org/tex-archive/macros/latex/contrib/misc/
-% Read the url.sty source comments for usage information. Basically,
-% \url{my_url_here}.
-
-
-
-
-
-% *** Do not adjust lengths that control margins, column widths, etc. ***
-% *** Do not use packages that alter fonts (such as pslatex).         ***
-% There should be no need to do such things with IEEEtran.cls V1.6 and later.
-% (Unless specifically asked to do so by the journal or conference you plan
-% to submit to, of course. )
 
 
 % correct bad hyphenation here
@@ -356,57 +147,29 @@
 \newcommand{\e}[2][fcolor]{\textcolor{pcolor}{[}\textcolor{#1}{#2}\textcolor{pcolor}{]}}
 
 \begin{document}
-%
-% paper title
-% can use linebreaks \\ within to get better formatting as desired
-\title{An Ontology Polysystem Driven Technique for Semantic Markup from Edited Documents}
-
-
-% author names and affiliations
-% use a multiple column layout for up to three different
-% affiliations
-%% \author{\IEEEauthorblockN{Evgeny Cherkashin, Polina Belykh}
-%% \IEEEauthorblockA{Institute of System Dynamics\\ and Control Theory at SB RAS,\\ Irkutsk, Lermontov str., 134, 664033, Russia\\
-%% Email:eugeneai\@icc.ru}
-%% %\and
-%% %\IEEEauthorblockN{Polina Belykh}
-%% %\IEEEauthorblockA{Institute of System Dynamics\\ and Control Theory at SB RAS,\\ Irkutsk, %Lermontov str., 134, 664033, Russia}
-%% \and
-%% \IEEEauthorblockN{Kristina Paskal}
-%% \IEEEauthorblockA{National Research\\ Irkutsk State Technical University,\\ Irkutsk, Lermontov str.,  83, 664074, Russia}}
-
-% conference papers do not typically use \thanks and this command
-% is locked out in conference mode. If really needed, such as for
-% the acknowledgment of grants, issue a \IEEEoverridecommandlockouts
-% after \documentclass
-
-% for over three affiliations, or if they all won't fit within the width
-% of the page, use this alternative format:
-%
-\author{\IEEEauthorblockN{Evgeny Cherkashin\IEEEauthorrefmark{1}\IEEEauthorrefmark{2},
-Kristina Paskal\IEEEauthorrefmark{2}\IEEEauthorrefmark{3}},
-\IEEEauthorblockN{Igor Bychkov\IEEEauthorrefmark{1}},
-Kristina Paskal\IEEEauthorrefmark{2}  and
-Polina Belykh\IEEEauthorrefmark{1}%
-\IEEEauthorblockA{\IEEEauthorrefmark{1}Institute of System Dynamics and Control Theory at SB RAS, Irkutsk, Lermontov str., 134, 664033, Russia}%
-\IEEEauthorblockA{\IEEEauthorrefmark{2}National Research Irkutsk State
-  Technical University, Irkutsk, Lermontov str.,  83, 664074, Russia}%
-\IEEEauthorblockA{\IEEEauthorrefmark{3}Irkutsk State University,
-  Irkutsk, Gagarina blvd., 664003, Russia}%
+\title{An Ontology Polysystem Driven Technique for Semantic Markup
+  for Edited Documents} \author{\IEEEauthorblockN{Evgeny
+    Cherkashin\IEEEauthorrefmark{1}\IEEEauthorrefmark{2}\IEEEauthorrefmark{3},
+    Kristina Paskal\IEEEauthorrefmark{2}\IEEEauthorrefmark{3}, Igor
+    Bychkov\IEEEauthorrefmark{1}, Polina Belykh\IEEEauthorrefmark{1}}%
+  \IEEEauthorblockA{\IEEEauthorrefmark{1}Institute of System Dynamics
+    and Control Theory at SB RAS, Irkutsk, Lermontov str., 134,
+    664033, Russia}%
+  \IEEEauthorblockA{\IEEEauthorrefmark{2}National Research Irkutsk
+    State Technical University, Irkutsk, Lermontov str., 83, 664074,
+    Russia}%
+  \IEEEauthorblockA{\IEEEauthorrefmark{3}Irkutsk State University,
+    Irkutsk, Gagarina blvd., 664003, Russia}%
 }
 
 % use for special paper notices
 %\IEEEspecialpapernotice{(Invited Paper)}
-
-
-
 
 % make the title area
 \maketitle
 
 
 \begin{abstract}
-%\boldmath
   A general idea of an approach to representation and induction of a
   semantic markup (logical layer) for description of the text content
   (e.g., internet sites and legal documents) is being described.  The
@@ -427,17 +190,6 @@ Polina Belykh\IEEEauthorrefmark{1}%
   nonstructural data equally likely.
 \end{abstract}
 
-% IEEEtran.cls defaults to using nonbold math in the Abstract.
-% This preserves the distinction between vectors and scalars. However,
-% if the conference you are submitting to favors bold math in the abstract,
-% then you can use LaTeX's standard command \boldmath at the very start
-% of the abstract to achieve this. Many IEEE journals/conferences frown on
-% math in the abstract anyway.
-
-% no keywords
-
-
-
 
 % For peer review papers, you can put extra information on the cover
 % page as needed:
@@ -453,49 +205,204 @@ Polina Belykh\IEEEauthorrefmark{1}%
 
 \section{Introduction}
 % no \IEEEPARstart
-In 2001 Tim Berners-Lee proposed a blueprint \cite{b1} of the web development that is aimed at the implementation of network services with reasonable integration of logical layer of the information presented. The information should be marked up semantically and the program agents should take advantage of the markup as the logical layer for the information consumption and processing. The blueprint is referred to as Semantic Web (SW) \cite{b1}.
+In 2001 Tim Berners-Lee proposed a blueprint \cite{TBL2001} of web
+development that is aimed at the implementation of network services
+with reasonable integration of logical layer of the information
+presented.  The information was to be marked up semantically and the
+program agents where to take advantage of the markup as the logical
+layer for the information consumption and processing.  The blueprint
+is referred to as Semantic Web (SW) \cite{b1}.
 
-One of the main problems of SW is the fact, that the regular users of the web resources are not fond of the technological aspects of SW. They are interested in their practical problems solutions. In order to involve users in SW content development, the technological aspects must be completely hidden from them. This results in the necessity to develop document and site content management software exploited within SW as knowledge acquisition systems, where user will play role of information source for a system-integrated decision-making engine.
+One of the main problems of SW is the fact, that the regular users of
+web resources are not fond of the technological aspects of SW.  They
+are interested in their practical problems solutions.  In order to
+involve users in SW content development, that aspects must be
+completely hidden.  This results in the necessity of development of
+document and site content management software exploited within SW as
+knowledge acquisition systems, where user have to play role of
+information source for a system-integrated decision-making engine.
 
-To be more comprehensible consider a content of a legal document, which in most cases contains meaningful information for human beings relationships that is usually passed to other documents in a derivative form. This suggests an idea to develop a form of the logical layer representation in a reasonably detailed form, which can be rendered as a regular text pages by means of context"=depended (in sense of a legal document) text templates. The SW approach could supplement the idea with data formats and technologies of their storage and processing. SW represents logical layer as a network graph of notions and relations between the notions. For example, individuals mentioned in a legal document relate to the document as “parts"=whole”, unless to speak even more explicitly in a context of the meaningful information.
+To be more comprehensible consider a content of a legal document,
+which in most cases contains meaningful information on human beings
+relationships that is usually passed to other documents in a
+derivative form.  This suggests an idea to develop a form of the
+logical layer representation in a reasonably detailed form, which can
+be rendered as a regular text pages by means of context-depended (in
+sense of a legal document) text templates.  The SW approach could
+supplement the idea with data formats and technologies of their
+storage and processing.  SW represents logical layer as a network graph
+of notions and relations between the notions.  For example, individuals
+mentioned in a legal document relate to the document as
+“part-whole”, unless to speak even more explicitly in a context of
+the meaningful information.
 
-At present most of the use cases of domain ontology models are refining search results. Automatic procedures of ontology extraction from the documents are based on crawling documents in a warehouse, data mining procedures on the text bodies and metadata attributes of the documents. Simple observation of the human behavior in the process of a document preparation will result in the confidence that meaningful parts of the document, which are usually expressed with the logical layer, are located at the points of document changes. Hence, a programming system automating a document preparation should track the changes and analyze them in the time space to extract ontology data, i.e., data (a"=box and corresp. relations) and knowledge (t"=box with corresp. relations).
+At present most of the use cases of domain ontology models are
+refining search results.  Automatic procedures of ontology extraction
+from the documents are based on crawling documents in a warehouse,
+running data mining procedures on the text bodies and metadata
+attributes of the documents.  Simple observation of the human behavior
+in the process of a document preparation will result in the confidence
+that meaningful parts of the document, which are usually expressed
+with the logical layer, are located at the points of document changes.
+Hence, a programming system automating a document preparation should
+track the changes and analyze them in time to extract ontology data,
+i.e., data and knowledge.
 
-The logical layer is induced during content edition by means of data mining and user interview. The context of the knowledge acquisition consists of a polysystem of ontologies describing the domain, the source document (its textual representation and the existing logical structure), its list of modifications in a transaction, user's action history and answers to the interview questions clarifying meaning of his/her actions and properties of the relations constructed. As a result new or modified triples <subject, relation, object> representing the domain are constructed. Collected triple data, metadata and knowledge of the logical layer can also be crawled on a regular basis to figure out patterns and functional relations between attributes (objects). In the last case a relational table could be induced to rise the efficiently of data storage and processing.
+\e[cyan]{About RDF amd Microformat, 2 paragraphs}
 
-The present trends of internet information system development show that the systems become a web services and are oriented to support social networks \cite{b3}. The data flow processing here in most cases is input, storage, filtering and transmitting data, i.e., the social networks integrate rather than aggregate data, e.g., to produce reports. Hence, the usage of special design techniques for the middleware layer of the software, such as object-oriented design, is not a significant advantage. Social network are interconnected with common protocols and data structures, also in the social network environment
+The logical layer is induced during content edition by means of data
+mining and user interview.  The context of the knowledge acquisition
+consists of a polysystem \ref{father} of ontologies describing the
+domain, the source document (its text representation and the existing
+logical structure), its list of modifications in a transaction, user's
+action history and answers to the interview questions clarifying
+meaning of text content changes and properties of the relations
+constructed.  As a result new or modified triples \texttt{<subject,
+  relation, object>} representing the domain are constructed.
+Collected triple data, metadata and knowledge of the logical layer can
+also be crawled on a regular basis to figure out patterns and
+functional relations between attributes (triple's objects).  In the
+last case a relational table could be induced to rise the efficiency
+of data storage and processing.
 
+The present trends of internet information system development show
+that the systems become a web services and are oriented to support
+social networks \cite{SN}.  The data flow processing there in most
+cases is input, storage, filtering and transmitting data, i.e., the
+social networks integrate rather than aggregate data, e.g., to produce
+reports.  Hence, the usage of special design techniques for the
+middleware layer of the software, such as object-oriented design, is
+not a significant technological advantage.  A social network are
+interconnected with standardized protocols and data structures, and
+has the same way of integration to other ones.
+
+Let us emphasize the properties of social network software:
 \begin{IEEEitemize}[\IEEEsetlabelwidth{Z}]
-\item there are no predominant common task to be solved with all the agents (computer and human);
-\item each agent solves its special task, so the agent API’s and supported data format must be strongly standardized;
-\item human users of the social network do most of the aggregation tasks personally including subconscious joint processing of unstructured and semantic information.
+\item there are no predominant common global task to be solved with
+  all the agents (computer and human);
+\item each agent solves its special task acquiring data from other
+  data sources and agents of the same kind, hence, the agent's APIs’ and
+  supported data format must be standardized;
+\item human users of the social network do most of the aggregation
+  tasks personally including subconscious joint processing of
+  unstructured and semantic information;
+\item a good practice is to use cheap virtual hosting to run the
+  software, therefore, the information system itself must be written
+  according to the restrictions of a server-side programming language,
+  like PHP, and utilize the computational and data storage resources
+  of client workstation and its browser environment.
 \end{IEEEitemize}
 
-In this paper, we continue the development of the approach to document and site content management and integration [-2-], where human users play a role of data sources in the process of semantic data markup formation of the document content.
+In this paper, we continue the development of the approach to document
+and site content management and integration \cite{prevwork} and
+briefly consider the procedure of polysystem ontology usage in the
+process of dialog construction with user.
 
-As a testing ground, we have chosen document preparation automation of a Russian notary office. Most of all operations over documents can be expressed as textual and logical layer changes, for example, data of the logical layer are copied from one document to another; sometimes roles of individuals mentioned in the documents are alternated; database collects client data for further reuse (lookup), \emph{etc}.
+\e{As a testing ground, we have chosen document preparation automation of
+a Russian notary office. Most of all operations over documents can be
+expressed as textual and logical layer changes, for example, data of
+the logical layer are copied from one document to another; sometimes
+roles of individuals mentioned in the documents are alternated;
+database collects client data for further reuse (lookup), \emph{etc}.}
 
-\section{Logical Markup Procedure of the Document Content}
+\section{Markup Representation}
 
-The RDF standard describes informational resources as triples <subject, relation, object> in a context. The set of triples forms a graph (network) of data and relations reflecting knowledge. It is convenient to divide graphs to subgraphs and construct their hierarchic complexes \cite{b4}, resulting a hierarchy of contexts. In a general case, a context affects the interpretation of its set of triples. For example, family name and passport data are presented as texts in different parts of the document, but related to the single person in the context defined by the document.
+Resource description framework (RDF) standard describes informational
+resources as triples \texttt{<subject, relation, object>} in a
+context.  The set of triples forms a graph (network) of data and
+relations reflecting knowledge.  It is convenient to divide graphs to
+subgraphs and construct hierarchic complexes \cite{b4}, resulting a
+hierarchy of contexts.  In a general case, a context affects the
+interpretation of its set of triples.  For example, in a legal notary
+document family name and passport data are presented as texts in
+different parts of the document, but related to the single person in
+the context defined by the document.  So the parts of the document
+form the contexts of text rendering for the passport data.
 
-The rendering engine we considered in [-2-]. In this approach, all the template data for document rendering is also stored in the ontology graph. We also represent the views and algorithms implementing controllers in the sense of MVC (Model View Controller) technique with triples \cite{b5}. The content of the document from a general view is a tree, where almost each node is both a subject and an object of their corresponding relations (fig.1). The exceptions are the root node\,: it plays only the role of subject, and the leaf nodes that are objects only. In the higher level hierarchies, e.g. in a tree of the documents in a warehouse, the root node is an object node as well (it is referred from a record of the warehouse).
+The rendering engine we considered in \cite{prevwork}.  According to
+this approach, all the template data for document rendering is also
+stored in the ontology graph.  We also represent the views and
+algorithms implementing controllers in the sense of MVC (Model View
+Controller) \cite{b2:5} technique with triples \cite{b5}.  The content
+of the document from a general view is a tree, where almost each node
+is both a subject and an object of their corresponding relations.  The
+exceptions are the root node\,: it is only the root subject.  The leaf
+nodes are objects only.  In the higher level hierarchies, e.g. in a
+tree of the documents in a warehouse, the root node is an object node
+as well\,: it is referred from a record of the warehouse.
 
-One of the key points of the research is semantic document markup techniques adaptation to the process of document editing. We suppose that a document body change, in a regular case, affects the meaning of the document, hence, alters its logical layer. Examples of the modifications are the elementary error correction, a field value change (an object of a triple), paragraph text editing that might imply its origin template correction. Each change also might result in a new triple relation construction between context subjects and old/new object value. The text change analysis is aimed at data and knowledge acquisition, where the content management system plays an active role, and user is a source of complementary information.
+\section{Document Markup Scheme}
+\label{sec:scheme}
 
-The semantic layer enrichment is carried on in an environment containing logic information thanks to document is already supplied with a logical layer. The source data for an acquisition step is as follows\,: a) the source version of the document, b) a text modification expressed in diff format \cite{b9}; c) user answers to the question asked by the system, which refine the semantics and structure of the modifications; d) user actions preceding the modification. If the modification corresponds to a value of an object of a triple then the modification means either error correction (subject is not changed) or creation of a new subject if user copied the document previously. Creation of a new document implies filling in a number of triples with new values representing a new subject (RDF resource) of the document.
+The proposed way of semantic document markup is to track and interpret
+the results of document editing.  Let's suppose that a document body
+change affects the meaning of the document, hence, alters its logical
+layer.  The following trivial modifications that are the elementary
+error correction are not considered to be a valuable information for
+the markup: a field value change (an object of a triple), paragraph
+text editing that might imply its origin template correction.  The
+changes of our interest result in a new triple relation construction
+between context subjects and old/new object value.  The text change
+analysis is aimed at data and knowledge acquisition, where the content
+management system plays an active role, and user is a source of
+complementary information.
 
-If a field or a text is partially modified this can be interpreted as:
-\begin{itemize}
-\item again, an error correction without document meaning change;
-\item a refinement of the logical structure of subject, extraction of a relation and an object; this corresponds to a new triple connecting the subject to the new object (changed value); the user must choose the subject of the new triple.
-\end{itemize}
+The first question that user have to be asked is to determine weather
+a change is an above mentioned trivial one.  If it is not, then the
+semantic layer enrichment procedure is carried on.  The source of data
+to decision-making procedure of a triple formation/modification is an
+environment containing a) logic information (thanks to the previous
+version of document is already supplied with a logical layer); b) the
+source version of the document, c) a text modification expressed in
+diff format \cite{b9}; d) user answers to the question asked by the
+system, refining the semantics and structure of the modifications; e)
+user actions preceding the modification.  The list of the previous
+user's actions can reveal a general intention, e.g., if user made a
+copy of document and changed an individual name, this would imply the
+necessity to fill in the passport data, which, in turn, implies
+filling in a number of triples with new values representing the new
+individual (subject) of the document.
 
-The new subject is chosen from a tree of all the subjects of the edited document. After the choice is made, a list of all available relation is constructed from all known relation of the subject, its class and parent classes. User must choose one relation to form the triple. In the case, when the list contains no desired relation, a new one must be defined. New relation is always a subclass of one that already exists in the system, which is also chosen from the list. New relations defined by inexperienced user must be periodically analyzed by knowledge engineers to get rid of semantic inaccuracy, contradictions, redundancy to the equivalents, and be, hence, refactored.
+At the firs step the extent of the modified value is determined.
+There are two main possibilities\,:
 
-If a value of a triple is removed, then the triple is being removed too. The situation is acceptable if the minimal structural and semantic completeness of all the subjects of the documents are hold, otherwise either the user delete action is prohibited or the chain recursive deletion of the subjects is initiated. To control this behavior each subject class have to be accompanied with a list of minimal valuable triplets that define the basis of the subject meaning. Partial text removal, if it is not an error correction, is processed analogously to modification, with removed part being the object value. Addition of characters to text is an action similar to modification, i.e., in a general case a new triple is constructed.
+The simplest way of the triple formation procedure is to allow the
+user to choose subject and relation from list of all relevant subjects
+mentioned in the document and their relations and construct a new
+triple \texttt{<subject,relation,old object>}.  The list of subjects
+is constructed from a tree of all the subjects of the edited document
+and the edited object itself.  After the first choice is made, a list
+of all available relation is constructed from all known relation of
+the chosen subject, its class and parent classes.  User must choose
+one relation to form the triple.  In the case, when the list contains
+no adequate relation, a new one must be defined.  New relation is
+always a subclass of one that already exists in the system, which is
+also chosen from the list.  New relations defined by inexperienced user
+must be periodically analyzed by knowledge engineers to get rid of
+semantic inaccuracy, contradictions, redundancy to the equivalents,
+and be, hence, refactored.
 
-Addition of a triple might result in extending the document with new subjects and relations. For example, let construct a new tripartite agreement from an existing bilateral one. In new contract a third individual appeared, so the addition of a new family name of the individual results in construction of a subject for the individual, filling in the necessary triples, as well as definition of a new relation between document and the subject as a subclass of structuralElement relation.
+If a value of a triple is removed, then the triple is to be removed
+too.  The situation is acceptable if the minimal structural and
+semantic completeness of all the subjects of the documents holds,
+otherwise either the user delete action is prohibited or the chain
+recursive deletion of the subjects is initiated.  To control this
+behavior each subject class have to be accompanied with a list of
+minimal valuable triplets that define the basis of the subject
+meaning.  Partial text removal, if it is not an error correction, is
+processed analogously to modification, with removed part being the
+object value.  Addition of characters to text is an action similar to
+modification, i.e., in a general case a new triple is constructed.
+
+Addition of a triple might result in extending the document with new
+subjects and relations.  For example, let construct a new tripartite
+agreement from an existing bilateral one.  In the new agreement the
+third individual appears, so the addition of a new family name of the
+individual results in construction of a subject for the individual,
+filling in the necessary triples, as well as definition of a new
+relation between document and the third individual as a subclass of
+\texttt{structuralElement:} relation.  This stage is necessary as all
+new subjects must be in a relation with other ones.
 
 \section{Theoretical Generalization of the Acquisition Process}
 
