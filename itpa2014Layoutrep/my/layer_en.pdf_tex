@@ -1,0 +1,73 @@
+%% Creator: Inkscape inkscape 0.48.4, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'layer.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%%
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{517.23050337bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.56518932)%
+    \put(0,0){\includegraphics[width=\unitlength]{layer.pdf}}%
+    \put(0.47318641,0.06475588){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Bo's family}}}%
+    \put(0.60897771,0.17461523){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Bo}}}%
+    \put(0.82920605,0.12751643){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Alice}}}%
+    \put(0.1815547,0.11135558){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Jack}}}%
+    \put(0.46305442,0.17442067){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Jul}}}%
+    \put(-0.00308127,0.08784063){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{1}}}%
+    \put(-0.00308127,0.30557177){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{2}}}%
+    \put(-0.00308127,0.4893368){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{3}}}%
+    \put(0.93751709,0.47975659){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{4}}}%
+    \put(0.47216213,0.29482237){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{family}}}%
+    \put(0.78144409,0.38052427){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{father}}}%
+    \put(0.79228553,0.28733536){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{mother}}}%
+    \put(0.70209962,0.24592131){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{MOH}}}%
+    \put(0.44648853,0.40763908){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{daughter}}}%
+    \put(0.19492168,0.3108503){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{sun}}}%
+    \put(0.30563405,0.53322629){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{man}}}%
+    \put(0.15971946,0.53320552){\color[rgb]{0,0,0}\makebox(0,0)[cb]{\smash{womn}}}%
+    \put(0.54074447,0.51551602){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{whole}}}%
+    \put(0.75340787,0.5259669){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{part}}}%
+  \end{picture}%
+\endgroup%
