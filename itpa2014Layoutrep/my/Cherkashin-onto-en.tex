@@ -643,15 +643,11 @@ in fig.~\ref{notaryontology}.
 \section{Software Architecture and Implementation}
 \label{sec:arch}
 
-[The flexibility and minimum resources and administration requirements criteria are of very importance to choosing database providing information resources storage as triples. The database management systems as DB2, Oracle and SQL Server cannot fulfill requirements because after running the operation is performed as a separate process. Also application and DBMS interaction should be implemented through interprocess communication form.
+Project is an application
 
-Solution to these problems is achieved by using the built-in database management systems that provide communication with the application at the same level of address space. This allows the application based on the built-in database to be efficient and autonomous.
 
-Kyoto Cabinet is a library of routines for managing a database. The database is a simple data file containing records, each is a pair of a key and a value. Every key and value is serial bytes with variable length. Both binary data and character string can be used as a key and a value. Each key must be unique within a database. There is neither concept of data tables nor data types. Records are organized in hash table or B+ tree. \cite{b1}
 
-Availability of funds to work with triplets described in the standard RDF is an advantage database management system Kyoto Cabinet over other embedded systems is. In this case the developer does not need to spend time on design and implementation of the data model so that its performance on this task is increased.
 
-1.	Kyoto Cabinet. URL: http://fallabs.com/kyotocabinet/ (дата обращения: 20.02.2014).]
 
 %\subsubsection{Subsubsection Heading Here}
 %Subsubsection text here.
@@ -736,31 +732,43 @@ Availability of funds to work with triplets described in the standard RDF is an 
 
 \section{Conclusion}
 
-An approach to representation of logical layer of a document based on
-RDF (Resource Description Framework) is proposed. The approach allows
-us to formalize the structure and semantic relation of the document,
-and also store data to render the document as HTML-page in the same
-data format - RDF. XML and RDF allow us to join logical and
-presentation aspects of the document within the same storage
-engine. The engine stores data as an onology, i.e., set of triples
-<subject, relation, object>. A technique for HTML-rendering from the
-logical layer is described. The resulting document will contain the
-logical layer as a RDFa markup. The generated RDFa-markup is used at
-client side by web-browser for control of WYSIWYG-editing of the
-document. Text elements are modified with special widgets appearing in
-the user interface on an mouse event. A technique for organization of
-an interactive process of logical layer forming of the document
-content on the base of modifications analysis of the document content
-introduced by user. An example of application of the technologies
-under development in a notary office is presented. Thus, we shown that
-RDF format mixed with XML allows us to represent logical layer of
-meaningful information of a document, as well as sharing common data
-between documents.
+The research is aimed at support of Semantic Web with algorithms and
+software automating text document markup and its logical model
+induction.  The approach is based on polysystem representation of the
+domain and document content (e.g., web site) as an evolving ontology.
+The usage of polysystem of ontologies and the procedure of polysystem
+decomposition \cite{father} allows us to solve a number problems in
+the activity related to knowledge acquisition in the domain.  New
+knowledge are represented as fibers of categories with property of
+through cross-fiber interpretation.  In the future, the possibility
+will arise for automatic construction of algorithms and programs
+implementing a fiber theory in the image and likeness of the known
+ones.  At present the polysystem of ontologies allows us to rate and
+categorize facts on the domain by analogy with the already known
+structures, as well as obtain new interpretations of new concepts
+under recognition.
 
-On the base of the technology a network of document data exchange can be devised. The security of the document transmission can be provided as off-line data streams: each physical document is accompanied with its bar- or QR-code encoding the corresponding RDF-data of the transferred document. This can result in a semantic network analogous to nowadays social networks.
+Main part of the paper is devoted to brief description of a technique
+of maintenance of an interactive process of the logic model induction
+of the document content on the base of data mining of changes of
+various versions of the document produced by user.  A problem solution
+outline for user dialog conduction aimed at modification and extension
+of the logical model with new objects and relations has been
+considered.  The dialog is maintained by analyzing and logical
+inference in the polysystem representation of the domain ontology.  A
+pilot software architecture has been presented as well as brief
+overview of used modules and libraries, their properties and feature
+has been assessed.
 
-A part of the paper devoted to consideration of organizational problems, such as involving knowledge engineers in a refinement process of generated parts of the ontologies; partial automatic ontology verification; implementing secure ways of personal data transfer and processing. The properties of the document exchange network will be similar to social networks, and, probably, can be further developed and investigated the same way.
-
+As a testing ground for the technologies under development we decided
+to automate a notarial office, where the legal document
+representations has both well formalized and unformalized text
+fragments.  On the base of the technology a network of document data
+exchange can be devised. The security of the document transmission can
+be provided as off-line data streams: each physical document is
+accompanied with its bar- or QR-code encoding the corresponding
+RDF-data of the transferred document. This can result in a semantic
+network analogous to nowadays social networks.
 
 
 % conference papers do not normally have an appendix
