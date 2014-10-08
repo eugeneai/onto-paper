@@ -643,10 +643,139 @@ in fig.~\ref{notaryontology}.
 \section{Software Architecture and Implementation}
 \label{sec:arch}
 
-Project is an application
+The software developed within the project will include two major
+versions.  The first one will be a client and server combination,
+where client will drive the data mining and visualization procedures,
+and server will control storage and access to the graph.  The second
+version of the software is a desktop application that is fusion of the
+client and server functionality.  The application is intended for
+support corporate and personal off-line usage.  The following are the
+requirements stated to the software:
+\begin{itemize}
+\item the software should be developed as an open-source project,
+  this results in possible addition support with a community of
+  engineers and users;
+\item server software must be not too consumptive to computational and
+  memory resources of a shared hosting service; \label{e12:p2}
+\item in accordance to \ref{e12:p2}, a support of various database
+  back-ends are to be implemented to store triple data.
+\end{itemize}
 
+We orient our efforts in the implementation to a popular hosting
+environments that include PHP as programming language and operational
+environment, MySQL- and PostgreSQL- servers as a storage, functioning
+under Linux operation system.  As a primary client, Firefox web browser
+has been chosen and its JavaScript implementation as a client
+programming language.
 
+Architecture of the first variant of the software is presented in
+fig.~\ref{fig:progsys}.  Server side deal with data storage and
+security.  ``Multiformat Storage'' module supports various techniques
+of data representation, it could be a SQL-server.  The purpose of
+``Data Representation Broker'' module is to convert triples in a
+format that is better support special tasks, such as aggregations, and
+pass the conversion result to the storage.  In the backward direction,
+the broker restores triples from the storage as RDF entities.  In
+order to render a template the data model instance should be loaded
+through module ``Loader of Triples''.  The instance is represented as
+a set of triples.  The security is supplied by “Data Security” module.
 
+At the client side the triples are rendered as HTML tests and combined
+into a document by ``Document Renderer'' module.  The result is either
+interpreted further by ``RDFa interpreter'' or processed in ``Data
+Processing Unit''.  New concepts and relations are sent back to server
+as RDF- and RDFa-content.
+
+\noindent\begin{figure}[!t]
+\centering
+\includegraphics[width=\linewidth]{peixe-architecture-en-2.pdf}
+\caption{Program System Architecture}
+\label{fig:progsys}
+\end{figure}
+
+\subsection{Implementation Software}
+\label{sec:implsoft}
+
+Representation of the graph and PHP's access to graph component is
+implemented on the base of EasyRdf library.  The library supports
+loading RDF-files and represent them as PHP's objects.  The objects
+can be accessed in a usual object-oriented way and by means of the
+special standard query language SPARQL.
+
+Storing RDF-triples in MySQL is to be implemented with ARC2 library,
+which also supports SPARQL-queries.  ARC2 is a development platform
+with SW functionality, allowing one to extend the standard set of
+routines by means of plug-in modules as well as to create trigger
+functions fired upon SAPRQL query finished.
+
+Использование технологий ZOPE Page Template (ZPT) в качестве основного
+механизма порождения текста из логического слоя позволяет независимо
+от платформы реализации системы представлять форму отображения троек,
+при этом хранить ее в самом графе.  ZPT --- это система шаблонов,
+которая позволяет программистам и дизайнерам создавать динамические
+WEB-страницы.  Первоначально ZPT являлся частью системы ZOPE и получил
+достаточную популярность вследствие своего декларативного подхода к
+описанию трансформации HTML- и XML-документов.  В состав технологии
+входят интерпретаторы языков запросов к логическим структурам языка
+программирования TALES (Template Attribute Language Expression
+Syntax), методы обработки древовидного представления гипертекстовых
+документов METAL (Meta TAL), а также средства интернационализации
+(I18N).  Разработчики ZPT преследовали целью решить следующие
+стандартные для WEB задачи:
+\begin{enumerate}
+\item Обеспечение разделения пользовательского интерфейса и логики
+  приложения;
+\item Создание интерфейса пользователя при помощи обычных файлов
+  HTML, что позволяет разработчикам использовать специальные
+  программные пакеты для редактирования и разработки Web"=сайтов
+  (например, Dreamweaver);
+\item Избавление пользователя от реализации циклов для заполнения
+  таблиц и элементов списка;
+\item Управление отображением элементов Web"=страницы в зависимости от
+  данных отображаемой модели.
+\end{enumerate}
+
+В настоящее время существует множество реализаций интерпретаторов
+TALES и METAL для различных систем программирования, в том числе, для
+языка программирования PHP существует реализация данной системы –
+PHPTAL, поддерживающая пространства имен TALES, METAL и I18N.  Базовый
+синтаксис и семантика языка TALES не зависят от языка
+реализации библиотеки, что является одним из факторов переносимости
+всей технологии.
+
+Для подпрограмм JavaScript, выполняющихся на стороне веб"=браузера,
+функции ZPT реализуются при помощи библиотеки Distal, которая
+позволяет динамически подгружать данные в шаблон.  Это позволяет
+разработчику интернет"=приложения переносить часть функций отображения
+документа на сторону клиента, т.~е. задействовать вычислительные
+ресурсы рабочей станции и разгрузить сервер.
+
+Локальные пользовательские версии приложения должны быть просты в
+установке, настройке и сопровождении, поэтому хранение логических
+слоев в СУБД коммерческого ровня, таких как DB2, Oracle или Microsoft
+SQL Server, не является целесообразным, т.к. требует к себе
+профессиональное внимание на этапах установки и сопровождения.  Более
+удачным вариантом для хранения данных являются системы управления
+базами данных, встроенные в основной процесс, не требующие обеспечения
+специальных форм межпроцессного взаимодействия.  Как правило, такие
+системы также предельно просты на этапе установки и конфигурирования.
+
+Одним из интересных примеров такой СУБД является система Kyoto Cabinet
+\cite{kyoto}, представляющая собой библиотеку процедур для управления
+базой данных в стандарте BerkeleyDB. Библиотека хранит данные в одном
+или нескольких файлах в файловой системе, обеспечивает эффективное
+отображение уникальных ключей на значения.  Ключ и значение являются
+нефиксированными последовательностями байтов.  Отображения
+организованы при помощи хэш"=таблиц или B+-деревьев.  Кроме этого,
+Kyoto Cabinet реализует различные методы защиты информации от утери
+вследствие физических нарушений носителя\,: разреженный формат данных
+с дублированием информации, реплицирование данных между подчиненными
+серверами и т.д.  К этой библиотеке существуют надстройки, позволяющие
+организовать хранение троек.
+
+Таким образом, современные серверные вычислительные ресурсы и открытые
+программные технологии создания интернет"=сайтов практически полностью
+обеспечивают технологический базис для предлагаемой разработки.
 
 
 %\subsubsection{Subsubsection Heading Here}
