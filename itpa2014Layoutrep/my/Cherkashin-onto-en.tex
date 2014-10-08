@@ -36,8 +36,7 @@
 % http://www.ctan.org/tex-archive/macros/latex/contrib/cite/
 % The documentation is contained in the cite.sty file itself.
 
-
-
+\usepackage{hyperref}
 
 
 
@@ -113,7 +112,8 @@
 
 
 
-%\usepackage[caption=false]{caption}
+\usepackage[font=footnotesize,labelsep=period]{caption}
+\renewcommand{\figurename}{Figure}
 %\usepackage[font=footnotesize]{subfig}
 % subfig.sty, also written by Steven Douglas Cochran, is the modern
 % replacement for subfigure.sty. However, subfig.sty requires and
@@ -134,7 +134,7 @@
 \usepackage{fixltx2e}
 \usepackage{stfloats}
 
-\usepackage{url}
+%\usepackage{url}
 
 
 % correct bad hyphenation here
@@ -146,9 +146,36 @@
 \colorlet{fcolor}{red}
 \newcommand{\e}[2][fcolor]{\textcolor{pcolor}{[}\textcolor{#1}{#2}\textcolor{pcolor}{]}}
 
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    unicode=true,           % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={An Ontology Polysystem Driven Technique for Semantic Markup
+  for Edited Documents},    % title
+    pdfauthor={Evgeny Cherkashin, Kristina Paskal, Igor Bychkov,
+      Polina Belykh},     % author
+    pdfsubject={Scientific paper},   % subject of the document
+    pdfcreator={LaTeX},   % creator of the document
+    pdfproducer={LaTeX}, % producer of the document
+    pdfkeywords={polysystem} {ontology} {semantic web} {knowledge
+      acquisition} {data mining} {natural language processing}, % list of keywords
+    pdfnewwindow=true,      % links in new window
+    colorlinks=true,       % false: boxed links; true: colored links
+    %linkcolor=[rgb]{0 0.4 0.1},          % color of internal links (black)
+    linkcolor=black,          % color of internal links (black)
+    citecolor=blue,        % color of links to bibliography
+    filecolor=black,      % color of file links
+    %urlcolor=[rgb]{0.3 0.0 0.3}           % color of external links
+    urlcolor=black           % color of external links
+}
+
+
 \begin{document}
-\title{An Ontology Polysystem Driven Technique for Semantic Markup
-  for Edited Documents} \author{\IEEEauthorblockN{Evgeny
+\title{An Ontology Polysystem Driven Technique for Semantic Markup for
+  Edited Documents} \author{\IEEEauthorblockN{Evgeny
     Cherkashin\IEEEauthorrefmark{1}\IEEEauthorrefmark{2}\IEEEauthorrefmark{3},
     Kristina Paskal\IEEEauthorrefmark{2}\IEEEauthorrefmark{3}, Igor
     Bychkov\IEEEauthorrefmark{1}, Polina Belykh\IEEEauthorrefmark{1}}%
@@ -160,6 +187,7 @@
     Russia}%
   \IEEEauthorblockA{\IEEEauthorrefmark{3}Irkutsk State University,
     Irkutsk, Gagarina blvd., 664003, Russia}%
+\texttt{\small eugeneai@icc.ru}
 }
 
 % use for special paper notices
@@ -280,22 +308,23 @@ Let us emphasize the properties of social network software:
 \item there are no predominant common global task to be solved by
   agents (computer and human) of the SN;
 \item each agent solves its special task acquiring data from other
-  data sources and agents of the same kind, hence, the agent's APIs’ and
+  data sources and agents, hence, the agent's APIs’ and
   supported data format must be standardized;
 \item human users of the social network do most of the aggregation
   tasks personally including subconscious joint processing of
   unstructured and semantic information;
 \item a good practice is to use cheap virtual hosting to run the
-  software, therefore, the information system itself must be written
+  a SW node, therefore, the information system itself must be written
   according to the restrictions of a server-side programming language,
   like PHP, and utilize the computational and data storage resources
   of client workstation and its browser environment.
 \end{IEEEitemize}
 
-In this paper, we continue the development of the approach to document
-and site content management and integration \cite{prevwork} and
-briefly consider the procedure of polysystem ontology usage in the
-process of dialog construction with user.
+In this paper, we continue the development of the approach
+\cite{prevwork} to document and site content management and
+integration within a general study \cite{b2:15}, and briefly consider
+the procedure of polysystem ontology usage in the process of user
+dialog maintenance.
 
 \section{Markup Representation}
 
@@ -303,7 +332,7 @@ Resource description framework (RDF) standard describes informational
 resources as triples \texttt{<subject, relation, object>} in a
 context.  The set of triples forms a graph (network) of data and
 relations reflecting knowledge.  It is convenient to divide graphs to
-subgraphs and construct hierarchic complexes \cite{b4}, resulting a
+subgraphs and construct hierarchic complexes \cite{b2:15}, resulting a
 hierarchy of contexts.  In a general case, a context affects the
 interpretation of its set of triples.  For example, in a legal notary
 document family name and passport data are presented as texts in
@@ -907,31 +936,39 @@ The research is carried on under support of Integration multidisciplinary projec
 % <OR> manually copy in the resultant .bbl file
 % set second argument of \begin to the number of references
 % (used to reserve space for the reference number labels box)
+\urlstyle{tt}
 \begin{thebibliography}{11}
-\bibitem{TBL2001} Berners-Lee T., Hendler J., Lissila O. The
+\bibitem{TBL2001} T.~Berners-Lee, J.~Hendler, O.~Lissila. ``The
   Semantic Web A new form of Web content that is meaningful to
-  computers will unleash a revolution of new possibilities. //
+  computers will unleash a revolution of new possibilities,''
   Scientific American, May 17, 2001,
-  pp.~1-18. \url{http://sciam.com/article.cfm?articleID=00048144-10D2-1C70-84A9809EC588EF21}
-\bibitem{father} Cherkashin A.K. Polysystem Analysis and
-  Synthesis. Application in Geography. Novosibirsk, <<Nauka>> Publ. co.
+  pp.~1-18. URL:~\url{http://sciam.com/article.cfm?articleID=00048144-10D2-1C70-84A9809EC588EF21}
+\bibitem{father} A.~K.~Cherkashin. ``Polysystem Analysis and
+  Synthesis. Application in Geography,'' Novosibirsk, Russia ``Nauka'' Publ. co.
   1997. -- 502~p. (In Russian)
-\bibitem{SN} Social network -- Wikipedia, the free encyclopedia. //
-  \url{http://en.wikipedia.org/wiki/Social_network}
-\bibitem{b2:15} Cherkashin E.A., Paramonov V.V., et al, Model Driven
-  Architecture is a Complex System. // E-Society Journal Research and
+\bibitem{SN} Social network -- Wikipedia, the free encyclopedia.
+  URL:~\url{http://en.wikipedia.org/wiki/Social_network}
+\bibitem{prevwork} E.~Cherkashin, P.~Belykh, D.~Annenkov, K.~Paskal, ``A
+  Document Content Logical Layer Induction on the Base of Ontologies
+  and Processing Changes,'' Procs. of International Conference on
+  Applied Internet and Information Technologies, October 25, 2013,
+  University of Novi Sad, Technical Faculty ``Mihajlo Pupin'',
+  Zrenjanin, Republic of Serbia,
+  pp.~252--257. URL:~\url{http://www.tfzr.uns.ac.rs/aiit/archives/AIIT2013/Proceedings.pdf}
+\bibitem{b2:15} E.~Cherkashin, V.~Paramonov, et al, ``Model Driven
+  Architecture is a Complex System,'' E-Society Journal Research and
   Applications. Volume 2, Number 2, 2011, pp.~15--23.
-  \url{http://www.tfzr.uns.ac.rs/esociety/issues/eSocietyVol2No2.pdf}
-\bibitem{b2:5} Model–view–controller --- Wikipedia, the free
-  encyclopedia. //
-  \url{http://en.wikipedia.org/wiki/Model-view-controller}
-\bibitem{zopetal} Zope Page Templates Reference. // The Zope2 Book. \url{http://docs.zope.org/zope2/zope2book/index.html}
-\bibitem{q2} Chameleon -- Chameleon 2.10 documentation. //
-  \url{http://chameleon.readthedocs.org/en/latest/}
-\bibitem{diff} MacKenzie D., Eggert P., Stallman R. Comparing and
-  Merging Files. //
-  \url{http://www.gnu.org/software/diffutils/manual/diffutils.pdf}
-\bibitem{kyoto} Kyoto Cabinet. // \url{http://fallabs.com/kyotocabinet/}
+  URL:~\url{http://www.tfzr.uns.ac.rs/esociety/issues/eSocietyVol2No2.pdf}
+\bibitem{b2:5} Model--view--controller --- Wikipedia, the free
+  encyclopedia.
+  URL:~\url{http://en.wikipedia.org/wiki/Model-view-controller}
+\bibitem{zopetal} ``Zope Page Templates Reference,'' The Zope2 Book. URL:~\url{http://docs.zope.org/zope2/zope2book/index.html}
+\bibitem{q2} Chameleon -- Chameleon 2.10 documentation.
+  URL:~\url{http://chameleon.readthedocs.org/en/latest/}
+\bibitem{diff} D.~MacKenzie, P.~Eggert, R.~Stallman. ``Comparing and
+  Merging Files,''
+  URL:~\url{http://www.gnu.org/software/diffutils/manual/diffutils.pdf}
+\bibitem{kyoto} Kyoto Cabinet. URL:~\url{http://fallabs.com/kyotocabinet/}
 \end{thebibliography}
 % that's all folks
 \end{document}
