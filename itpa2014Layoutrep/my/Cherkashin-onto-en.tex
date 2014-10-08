@@ -211,16 +211,17 @@ with reasonable integration of logical layer of the information
 presented.  The information was to be marked up semantically and the
 program agents where to take advantage of the markup as the logical
 layer for the information consumption and processing.  The blueprint
-is referred to as Semantic Web (SW) \cite{b1}.
+is referred to as Semantic Web (SW).
 
 One of the main problems of SW is the fact, that the regular users of
-web resources are not fond of the technological aspects of SW.  They
-are interested in their practical problems solutions.  In order to
-involve users in SW content development, that aspects must be
+web resources are not fond of the complex technological aspects of SW.
+They are interested in their practical problems solutions.  In order
+to involve users in SW content development, that aspects must be
 completely hidden.  This results in the necessity of development of
 document and site content management software exploited within SW as
-knowledge acquisition systems, where user have to play role of
-information source for a system-integrated decision-making engine.
+knowledge acquisition systems, where user has to play role of
+information source for a system-integrated decision-making engine
+inducing formal knowledge on the base of data analysis.
 
 To be more comprehensible consider a content of a legal document,
 which in most cases contains meaningful information on human beings
@@ -239,25 +240,23 @@ the meaningful information.
 At present most of the use cases of domain ontology models are
 refining search results.  Automatic procedures of ontology extraction
 from the documents are based on crawling documents in a warehouse,
-running data mining procedures on the text bodies and metadata
+running data mining procedures on the text content and metadata
 attributes of the documents.  Simple observation of the human behavior
 in the process of a document preparation will result in the confidence
 that meaningful parts of the document, which are usually expressed
 with the logical layer, are located at the points of document changes.
 Hence, a programming system automating a document preparation should
-track the changes and analyze them in time to extract ontology data,
-i.e., data and knowledge.
-
-\e[cyan]{About RDF amd Microformat, 2 paragraphs}
+track the changes and analyze them in time to extract ontology structure,
+i.e., objects, concepts and relation between them.
 
 The logical layer is induced during content edition by means of data
 mining and user interview.  The context of the knowledge acquisition
-consists of a polysystem \ref{father} of ontologies describing the
+consists of a polysystem \cite{father} of ontologies describing the
 domain, the source document (its text representation and the existing
 logical structure), its list of modifications in a transaction, user's
-action history and answers to the interview questions clarifying
+action history, and answers to the interview questions clarifying
 meaning of text content changes and properties of the relations
-constructed.  As a result new or modified triples \texttt{<subject,
+constructed.  As a result, new or modified triples \texttt{<subject,
   relation, object>} representing the domain are constructed.
 Collected triple data, metadata and knowledge of the logical layer can
 also be crawled on a regular basis to figure out patterns and
@@ -297,13 +296,6 @@ In this paper, we continue the development of the approach to document
 and site content management and integration \cite{prevwork} and
 briefly consider the procedure of polysystem ontology usage in the
 process of dialog construction with user.
-
-\e{As a testing ground, we have chosen document preparation automation of
-a Russian notary office. Most of all operations over documents can be
-expressed as textual and logical layer changes, for example, data of
-the logical layer are copied from one document to another; sometimes
-roles of individuals mentioned in the documents are alternated;
-database collects client data for further reuse (lookup), \emph{etc}.}
 
 \section{Markup Representation}
 
@@ -706,76 +698,56 @@ Storing RDF-triples in MySQL is to be implemented with ARC2 library,
 which also supports SPARQL-queries.  ARC2 is a development platform
 with SW functionality, allowing one to extend the standard set of
 routines by means of plug-in modules as well as to create trigger
-functions fired upon SAPRQL query finished.
+functions fired as soon as SAPRQL query finished.
 
-Использование технологий ZOPE Page Template (ZPT) в качестве основного
-механизма порождения текста из логического слоя позволяет независимо
-от платформы реализации системы представлять форму отображения троек,
-при этом хранить ее в самом графе.  ZPT --- это система шаблонов,
-которая позволяет программистам и дизайнерам создавать динамические
-WEB-страницы.  Первоначально ZPT являлся частью системы ZOPE и получил
-достаточную популярность вследствие своего декларативного подхода к
-описанию трансформации HTML- и XML-документов.  В состав технологии
-входят интерпретаторы языков запросов к логическим структурам языка
-программирования TALES (Template Attribute Language Expression
-Syntax), методы обработки древовидного представления гипертекстовых
-документов METAL (Meta TAL), а также средства интернационализации
-(I18N).  Разработчики ZPT преследовали целью решить следующие
-стандартные для WEB задачи:
+Text composition library Zope Page Template (ZPT) is used as a generic
+text rendering engine from the logical layer.  ZPT is cross-platform
+and allows representing templates and rendering the triples inside.
+The templates also stored in RDF.  ZPT technology and its descendants,
+like Chameleon, allows programmers and designers to share their common
+work on a dynamic HTML page because of ZPT is based on a declarative
+approach to template definition.
+
+The engine includes interpreters of several query expression languages
+to a logical structures of model and template --- interpreters TAL
+(Template Attribute Language) and METAL (Meta TAL).  There are also
+tools for internationalization (I18N) support.  Developers of ZPT
+successfully solved the following standard web problems:
 \begin{enumerate}
-\item Обеспечение разделения пользовательского интерфейса и логики
-  приложения;
-\item Создание интерфейса пользователя при помощи обычных файлов
-  HTML, что позволяет разработчикам использовать специальные
-  программные пакеты для редактирования и разработки Web"=сайтов
-  (например, Dreamweaver);
-\item Избавление пользователя от реализации циклов для заполнения
-  таблиц и элементов списка;
-\item Управление отображением элементов Web"=страницы в зависимости от
-  данных отображаемой модели.
+\item separation application logic and user interface;
+\item utilization of existing HTML-page design software and editors
+  (e.g., Dreanweaer) for manipulation of template content with
+  conserving TAL and METAL expression;
+\item trivial cycle programming structures are replaced with a
+  declarative constructions;
+\item thanks to METAL templates are manipulated in a powerful manner
+  --- cutting and pasting subtrees of a HTML page --- using model data.
 \end{enumerate}
 
-В настоящее время существует множество реализаций интерпретаторов
-TALES и METAL для различных систем программирования, в том числе, для
-языка программирования PHP существует реализация данной системы –
-PHPTAL, поддерживающая пространства имен TALES, METAL и I18N.  Базовый
-синтаксис и семантика языка TALES не зависят от языка
-реализации библиотеки, что является одним из факторов переносимости
-всей технологии.
+To date there are many implementations of TAL and METAL for various
+programming systems, including PHP (PHPTAL): the basis syntax and
+semantics of TAL does not depend on the implementation language.  For
+client-side language JavaScript, ZPT has been implemented by Distal
+library, which can also dynamically load model data into rendered
+template, resulting consumption more CPU resources of client
+workstation and less of server.
 
-Для подпрограмм JavaScript, выполняющихся на стороне веб"=браузера,
-функции ZPT реализуются при помощи библиотеки Distal, которая
-позволяет динамически подгружать данные в шаблон.  Это позволяет
-разработчику интернет"=приложения переносить часть функций отображения
-документа на сторону клиента, т.~е. задействовать вычислительные
-ресурсы рабочей станции и разгрузить сервер.
+The storage module in the desktop application must not be too
+consuming the resources of the client workstation, that's why usage of
+server software is not particularly expedient, better use in-process
+database libraries which are also do not require special configuration
+and engineer's attention.  One of the outstanding in-process database
+engine is Kyoto Cabinet library \cite{kyoto}, which higher performance
+implementation of BerkeleyDB standard.  The library maps blocks of
+bytes, i.e. a key to a value, and the mapping is realized by means of
+B+-trees and hash tables.  Kyoto Cabinet supports protection against
+data loss even due to partial physical damage of hard disks.  The
+protection is achieved by special file format and data replication
+among a cluster of workstations.
 
-Локальные пользовательские версии приложения должны быть просты в
-установке, настройке и сопровождении, поэтому хранение логических
-слоев в СУБД коммерческого ровня, таких как DB2, Oracle или Microsoft
-SQL Server, не является целесообразным, т.к. требует к себе
-профессиональное внимание на этапах установки и сопровождения.  Более
-удачным вариантом для хранения данных являются системы управления
-базами данных, встроенные в основной процесс, не требующие обеспечения
-специальных форм межпроцессного взаимодействия.  Как правило, такие
-системы также предельно просты на этапе установки и конфигурирования.
-
-Одним из интересных примеров такой СУБД является система Kyoto Cabinet
-\cite{kyoto}, представляющая собой библиотеку процедур для управления
-базой данных в стандарте BerkeleyDB. Библиотека хранит данные в одном
-или нескольких файлах в файловой системе, обеспечивает эффективное
-отображение уникальных ключей на значения.  Ключ и значение являются
-нефиксированными последовательностями байтов.  Отображения
-организованы при помощи хэш"=таблиц или B+-деревьев.  Кроме этого,
-Kyoto Cabinet реализует различные методы защиты информации от утери
-вследствие физических нарушений носителя\,: разреженный формат данных
-с дублированием информации, реплицирование данных между подчиненными
-серверами и т.д.  К этой библиотеке существуют надстройки, позволяющие
-организовать хранение троек.
-
-Таким образом, современные серверные вычислительные ресурсы и открытые
-программные технологии создания интернет"=сайтов практически полностью
-обеспечивают технологический базис для предлагаемой разработки.
+Thus, the nowadays open-source software of internet application
+development and relatively cheap server computational resources
+completely cover all the requirements of the developing software.
 
 
 %\subsubsection{Subsubsection Heading Here}
@@ -936,37 +908,30 @@ The research is carried on under support of Integration multidisciplinary projec
 % set second argument of \begin to the number of references
 % (used to reserve space for the reference number labels box)
 \begin{thebibliography}{11}
-
-\bibitem{IEEEhowto:kopka}
-H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
-  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
-
-\bibitem{TBL2001} T. Berners-Lee, J. Hendler and O. Lissila. \emph{The Semantic Web A new form of Web content that is meaningful to computers will unleash a revolution of new possibilities.}\hskip 1em plus 0.5em minus 0.4em\relax  Scientific American, May 17, 2001, pp.1-18. URL: http://sciam.com/article.cfm?articleID=00048144-10D2-1C70-84A9809EC588EF21. (access date: 05.09.2013).
-\bibitem{}
-Social network - Wikipedia, the free encyclopedia. URL: \url{http://en.wikipedia.org/wiki/Social_network} (access date: 20.08.2013).
-\bibitem{}
-Chameleon – Chameleon 2.10 documentation. \url{http://chameleon.readthedocs.org/en/latest/} (access date:  20.08.2013).
-\bibitem{}
-Virtuoso Open-Source Edition URL: \url{http://virtuoso.openlinksw.com/dataspace/doc/dav/wiki/Main/} (access date: 30.05.2013).
-\bibitem{}
-PIZZA Protege OWL tutorial at Manchester (School of Computer Science - The University of Manchester)  URL:\url{http://owl.cs.manchester.ac.uk/tutorials/protegeowltutorial/} (access date: 20.09.2013).
-\bibitem{}
-SWI-Prolog's home. URL: \url{http://www.swi-prolog.org/} (access date: 20.08.2013).
-\bibitem{}
-The Protégé Ontology Editor and Knowledge Acquisition System. URL: \url{http://protege.stanford.edu/} (access date: 20.08.2013).
-Semantic MediaWiki. URL: \url{http://semantic-mediawiki.org/} (access date: 20.08.2013).
-\bibitem{}
-N.Heino, S.Tramp, N.Heino, S.Auer. Managing Web Content using Linked Data Principles – Combining semantic structure with dynamic content syndication. Computer Software and Applications Conference (COMPSAC), 2011 IEEE 35th Annual. pp. 245 - 250. URL:\url{http://svn.aksw.org/papers/2011/COMPSAC_lod2.eu/public.pdf} (access date: 30.05.2013).
-\bibitem{}
-Cherkashin E.A., Paramonov V.V., et al, Model Driven Architecture is a Complex System, E-Society Journal Research and Applications. Volume 2, Number 2, 2011, pp. 15-23.
-\bibitem{}
-Father
-
-
+\bibitem{TBL2001} Berners-Lee T., Hendler J., Lissila O. The
+  Semantic Web A new form of Web content that is meaningful to
+  computers will unleash a revolution of new possibilities. //
+  Scientific American, May 17, 2001,
+  pp.~1-18. \url{http://sciam.com/article.cfm?articleID=00048144-10D2-1C70-84A9809EC588EF21}
+\bibitem{father} Cherkashin A.K. Polysystem Analysis and
+  Synthesis. Application in Geography. Novosibirsk, <<Nauka>> Publ. co.
+  1997. -- 502~p. (In Russian)
+\bibitem{SN} Social network -- Wikipedia, the free encyclopedia. //
+  \url{http://en.wikipedia.org/wiki/Social_network}
+\bibitem{b2:15} Cherkashin E.A., Paramonov V.V., et al, Model Driven
+  Architecture is a Complex System. // E-Society Journal Research and
+  Applications. Volume 2, Number 2, 2011, pp.~15--23.
+  \url{http://www.tfzr.uns.ac.rs/esociety/issues/eSocietyVol2No2.pdf}
+\bibitem{b2:5} Model–view–controller --- Wikipedia, the free
+  encyclopedia. //
+  \url{http://en.wikipedia.org/wiki/Model-view-controller}
+\bibitem{zopetal} Zope Page Templates Reference. // The Zope2 Book. \url{http://docs.zope.org/zope2/zope2book/index.html}
+\bibitem{q2} Chameleon -- Chameleon 2.10 documentation. //
+  \url{http://chameleon.readthedocs.org/en/latest/}
+\bibitem{diff} MacKenzie D., Eggert P., Stallman R. Comparing and
+  Merging Files. //
+  \url{http://www.gnu.org/software/diffutils/manual/diffutils.pdf}
+\bibitem{kyoto} Kyoto Cabinet. // \url{http://fallabs.com/kyotocabinet/}
 \end{thebibliography}
-
-
-
-
 % that's all folks
 \end{document}
