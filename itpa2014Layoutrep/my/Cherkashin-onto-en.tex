@@ -326,19 +326,20 @@ integration within a general study \cite{b2:15}, and briefly consider
 the procedure of polysystem ontology usage in the process of user
 dialog maintenance.
 
-\section{Markup Representation}
+\section{Document Markup}
 
 Resource description framework (RDF) standard describes informational
-resources as triples \texttt{<subject, relation, object>} in a
-context.  The set of triples forms a graph (network) of data and
+resources with triples \texttt{<subject, relation, object>} in a
+context.  A set of triples forms a graph (network) of data and
 relations reflecting knowledge.  It is convenient to divide graphs to
 subgraphs and construct hierarchic complexes \cite{b2:15}, resulting a
 hierarchy of contexts.  In a general case, a context affects the
-interpretation of its set of triples.  For example, in a legal notary
-document family name and passport data are presented as texts in
-different parts of the document, but related to the single person in
-the context defined by the document.  So the parts of the document
-form the contexts of text rendering for the passport data.
+interpretation of the set of triples coupled with it.  For example, in
+a legal notary document family name and passport data are presented as
+texts in different parts of the document, but they related to the
+single person in the context defined by the document.  So the parts of
+the document form the contexts of text rendering for the passport
+data.
 
 The rendering engine we considered in \cite{prevwork}.  According to
 this approach, all the template data for document rendering is also
@@ -347,10 +348,10 @@ algorithms implementing controllers in the sense of MVC (Model View
 Controller) \cite{b2:5} technique with triples \cite{b5}.  The content
 of the document from a general view is a tree, where almost each node
 is both a subject and an object of their corresponding relations.  The
-exceptions are the root node\,: it is only the root subject.  The leaf
-nodes are objects only.  In the higher level hierarchies, e.g. in a
-tree of the documents in a warehouse, the root node is an object node
-as well\,: it is referred from a record of the warehouse.
+root node can be only a subject, and the leaf nodes are objects only.
+In the higher level hierarchies, e.g. in a tree of the documents in a
+warehouse, the root node is an object node as well\,: it is referred
+from a record of the warehouse.
 
 \section{Document Markup Scheme}
 \label{sec:scheme}
