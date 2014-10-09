@@ -115,4 +115,5 @@ sympy-plots-for-*.tex/
 
 # xindy
 *.xdy
-/itpa2014Layoutrep/my/Cherkashin-onto.pdf
+Cherkashin-onto.pdf
+~*
