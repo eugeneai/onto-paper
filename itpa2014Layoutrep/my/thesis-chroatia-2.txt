@@ -1,0 +1,13 @@
+Information System Models for Support of Natural Language Question-Answering Subsystems Construction
+
+Alexey Hmelnov, Evgeny Fereferov, Roman Fedorov, Evgeny Cherkashin, Polina Belykh,
+Alexander Zamashikov
+
+
+Software development technologies evolved from concrete algorithm design and their programmatic implementation to modeling the whole information systems (IS).  The modeling approaches allows developers to describe the system in terms of domain, design and features of implementation platforms, and standard ways of the IS development like programming traditions in a concrete firm.  The theoretical basis of the development process is model transformation theories and their software implementations, which are developed in the field of Model Driven Engineering (MDE).  The transformations construct ultimately either source code modules realizing modeled structures or an operator interpretation of models of an intermediate level like virtual machine byte code, SQL queries realization, and executable UML.
+
+In the case if a new IS is being constructed, having an already designed and realized database, Data Driven Engineering (DDE, a kind of MDE) is widely used.  The model of new IS is constructed by importing database structure (DDL) and adding a semantic layer description reflecting the database structure to the domain terms.  In laboratory of Complex Information Systems of Institute of System Dynamics and Control Theory at Siberian Branch of Russian Academy of Sciences, a number of DDE approaches has been developed based on declarative specifications and their interpretations as well as techniques automating the description process.  The interpretation in various aspects allows developer to construct user interface of database modification, subsystem of SQL query construction in terms of domain, etc.
+
+The obtained description could be used to extend the capabilities of SQL query constructor to allow user formulating the query in a natural language, e.g. in Russian.  In order to do so a new layer of the domain and IS properties description should be devised.  The layer is based on an ontological description of the domain referencing the terms of the database description.  The layer also is to be reflected to morphological structures of the natural language used to formulate the queries.
+
+The report describes an approach of such kind of natural question-answering subsystem implementation for IS.  Examples of domain description has been presented for practical problems of municipal management.
