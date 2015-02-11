@@ -490,6 +490,7 @@ Thus, multisystem is a system in itself from a more general point of view and PP
 	Thus the use of PPAS will allow to solve the problems of completeness object systems, concepts and relations in the document, the verification of consistency and in the long run automate the generation of programs implementing the theory of layers through the interpretation of existing algorithms, as well as many other service procedures.
 
 \section{Maintaining a Dialog With User}
+\label{sec:maint-dial}
 
 The through interpretation feature of the polysystem layers could be
 used to maintain user interview dialog on the base of an inference by
@@ -688,6 +689,7 @@ our investigation:
 \item the software should be developed as an open-source project, and
   we hope to involve in our project a free community of engineers and
   users;
+\item the software [[should have two implementations: a local and a web form. This will provide the maximum coverage of users of the network as an open or closed.]]
 \item server software must be not too consumptive of computational and
   memory resources of a shared hosting service; \label{e12:p2}
 \item in accordance to \ref{e12:p2}, a support of various database
@@ -778,7 +780,7 @@ consuming the resources of the client workstation, that's why usage of
 server software is not particularly expedient, better use in-process
 database libraries which are also do not require special configuration
 and engineer's periodical maintenance.  One of the outstanding
-in-process database engine is Kyoto Cabinet library \cite{kyoto},
+in-process database engine is Kyoto Cabinet library \cite{kiyoto},
 which is a higher performance implementation of BerkeleyDB standard.
 The library maps blocks of bytes, i.e., a key to a value, and the
 mapping is realized by means of B+-trees and hash tables.  Kyoto
@@ -786,45 +788,9 @@ Cabinet supports protection against data loss even due to partial
 physical damage of hard disks.  The protection is achieved by special
 file format and data replication among a cluster of workstations.
 
-Thus, the nowadays open-source software of internet application
-development and relatively cheap server computational resources
-completely cover all the requirements of the software under
-development.
+Thus, the nowadays open-source software of internet application development and relatively cheap server computational resources completely cover all the requirements of the software under development.
 
-% ---------------------------
-
-\subsection{Useful tools}
-\label{sec:useful-tools}
-
-	??? Exposure draft decision applications leads to the following set of requirements for the target properties of the software product.
-1) The software system must refer to the class of free (open-source) software. The goal is to attract the public to development problem and (re)engineering of workflow as multisystem ontologies.
-2) The program should have two implementations: a local and a web form. This will provide the maximum coverage of users of the network as an open or closed.
-3) The server part of the web-application must be undemanding to computing resources and to operate in an environment of low-cost shared hosting.
-4) As a consequence of par. 3 it is necessary to provide support various data storage systems for storing triples.
-As a popular platform in the divided hosting supports a combination of the programming language PHP and database server MySQL operating under the operating system Linux. In addition, modern web-applications on the side of the web browser actively use programming environment JavaScript.
-
-	Graph representation of semantics in PHP, as well as access to its components, provides the libraries EasyRdf. Library allows to load graphs in RDF format and present them in the form of objects PHP, which provides access to the object-oriented style, or by using a standard query language SPARQL.
-
-	Storing RDF-triples in a relational database MySQL is supported library ARC2, which also implements a query language for RDF-Graph SPARQL. ARC2 is a platform application developer with the functions of SW, which supports the expansion of the basic functions of plug-in modules, the creation of trigger functions for processing query results SPARQL.
-
-	Using technology ZOPE Page Template (ZPT) as the main mechanism causing the text from from the logical layer allows platform independent implementation of the system represent a form display triples, while storing it in the graph. ZPT is a template system that allows programmers and designers to create dynamic WEB-pages. Originally ZPT is part of ZOPE and gain enough popularity due to its declarative approach to the description of the transformation of HTML and XML-documents. The structure of the technology include language interpreters requests to the logical structure of the programming language TALES (Template Attribute Language Expression Syntax), methods of processing the tree view hypertext documents METAL (Meta TAL), and internationalization (I18N). Developers ZPT pursued the aim to solve the following standard tasks for WEB:
-
-1) Ensure separation of the user interface and application logic;
-2) Creating a user interface using the normal file HTML, which allows developers to use special software packages for editing and development of Web-sites (eg, Dreamweaver);
-3) Getting the user from the sale of cycles to fill the tables and list items;
-4) Control the display of Web-page elements depending on the data displayed model.
-
-	Currently, there are many implementations of interpreters TALES and METAL for different programming systems, including for the PHP programming language. PHPTAL is the implementation of this system supports namespaces TALES, METAL and I18N. The basic syntax and semantics of the language TALES not depend on the implementation language of the library, which is one of the factors portability across technologies.
-
-	For subprogram of JavaScript, running on the side of the web browser, the functions of ZPT are implemented using library Distal which allows to load data dynamically into the template. This allows the web-developer to transfer some display functions on the client side and to use computing resources workstation and server load.
-
-	Local custom version of the application should be easy to install, configure and maintain, so the logical storage layers in commercial database management system (DBMS), such as DB2, Oracle or Microsoft SQL Server is not appropriate, because demands the professional attention during installation and maintenance. A better option for storage is a database management system built into the main process is not required to be special forms of interprocess communication. Typically, such systems are also extremely simple to install and configure step.
-
-	One interesting example of such DBMS is Kyoto Cabinet system[15], which is a library of procedures for managing a database in the standard BerkeleyDB. The library stores the data in one or more files in the file system and provides an effective display of unique keys to values. The key and value are not fixed sequence of bytes. Display organized using a hash table or B + -tree. In addition, Kyoto Cabinet implements various methods to protect information from loss due to physical damage of storage: sparse data format with duplication of information and data replication between slave servers, etc. This add-in library exist, allowing to organize storage triples.
-
-	Thus, modern server computing resources and open source software technology of Web-sites almost completely provide the technological basis for the proposed development.
-
-\section{Similar projects}
+\section{Similar Projects and Further Development}
 \label{sec:similar-projects}
 
 Among existing projects of ontology based document management the project “Semantic MediaWiki” can be emphasized. A basic Wiki text editing is extended with semantic annotations represented in a special markup format. The annotations are used by search engine of the Wiki pages \cite{mediawiki}.
@@ -919,55 +885,13 @@ Another directions of the system development is a reduction of HTML-rendering en
 % command of the stfloats package.
 
 
-
 \section{Conclusion}
 
-The research is aimed at support of Semantic Web with algorithms and
-software automating text document markup and its logical model
-induction.  The approach is based on polysystem representation of the
-domain and document content (e.g., web site) as an evolving ontology.
-The usage of polysystem of ontologies and the procedure of polysystem
-decomposition \cite{father} allows us to solve a number problems in
-the activity related to knowledge acquisition in the domain.  New
-knowledge are represented as fibers of categories with property of
-through cross-fiber interpretation.  In the future, the possibility
-will arise for automatic construction of algorithms and programs
-implementing a fiber theory in the image and likeness of the known
-ones.  At present the polysystem of ontologies allows us to rate and
-categorize facts on the domain by analogy with the already known
-structures, as well as obtain new interpretations of new recognized
-concepts.
+The research is aimed at support of Semantic Web with algorithms and software automating text document markup and its logical model induction.  The approach is based on polysystem representation of the domain and document content (e.g., web site) as an evolving ontology.  The usage of polysystem of ontologies and the procedure of polysystem decomposition \cite{father} allows us to solve a number problems in the activity related to knowledge acquisition in the domain.  New knowledge are represented as fibers of categories with property of through cross-fiber interpretation.  In the future, the possibility will arise for automatic construction of algorithms and programs implementing a fiber theory in the image and likeness of an already constructed ones.  At present the polysystem of ontologies allows us to rate and categorize facts on the domain by analogy with the already known structures, as well as obtain new interpretations of new recognized concepts.
 
-The main part of the paper is devoted to general description of a
-technique of maintenance of an interactive process of the logic model
-induction of the document content on the base of data mining of
-changes of various versions of the document produced by user.  A
-problem solution outline for user dialog conduction aimed at
-modification and extension of the logical model with new objects and
-relations has been considered.  The dialog is maintained by analyzing
-the completeness of the constructed model and and logical inference in
-the polysystem representation of the domain ontology.  A pilot
-software architecture has been presented as well as brief overview of
-used modules and libraries, their properties and feature has been
-assessed.
+The main part of the paper is devoted to a general description of a technique of maintenance of an interactive process of the logic model induction of the document content on the base of data mining of changes of various versions of the document created and edited by user.  A problem solution outline for user dialog conduction aimed at modification and extension of the logical model with new objects and relations has been considered.  The dialog is maintained by analyzing the completeness of the constructed model and logical inference in the polysystem representation of the domain ontology. A pilot software architecture has been presented as well as brief overview of used modules and libraries, their properties and feature has been assessed.
 
-As a testing ground for the technologies under development we decided
-to automate a notarial office, where the legal document
-representations has both well formalized and unformalized text
-fragments.  On the base of the technology a network of document data
-exchange can be devised. The security of the document transfer can
-be provided as off-line data streams: each physical document is
-accompanied with its bar- or QR-code encoding the corresponding
-RDF-data of the document.
-
-
-????? The study is aimed at supporting the development of semantic web technologies in terms of automating the process of semantic markup document. In this paper we consider the approach to the representation of the logical layer of the document content (or electronic resource), based on the use of ontologies multisystems. The use of ontology multisystems and multiistemic bundle procedures [13] allows to progress in solving the problem of acquiring knowledge about the domain. New knowledge is constructed in the form of object layers, concepts and relationships (morphisms) between them displayed through the interpretation of other including existing layers. At the same time, in the future, it is possible to automate the construction of algorithms that implement properties of the constituent units of the layer in the image and likeness theories the existing in layers. At this stage of research multisystem ontologies allows  to organize and classify the facts about the domain by analogy with the existing structures, as well as to obtain new interpretations of formed concepts.
-
-	In the main part of the paper discusses the methodology of organizing the interactive process of constructing a logical presentation layer based on content mining changes in different versions of a document generated by the user. We was considered the problem of dialogue with the user which purpose is to supplement/formation of existing semantic models (logical layer) with new objects and relationships. The dialogue with the user is conducted by means of inference network view multisystems ontologies.
-
-	The architecture of the pilot software system discusses that implements the functions described herein, as well as a review of software technologies used to evaluate their performance parameters and opportunities. We consider separately the question of using technology ZOPE Page Template, namely its implementation as a library Chameleon to describe aspects of data presentation SW. The possibilities of integration patterns in the format RDF (Resource Description Framework) was researched. The format allows to store the relationship between entities that describe the semantics of the document content and templates to convert the logical structures in the document text fragments. We present the realization of this transformation. As a result of the transformation generated text also contains data semantic markup format RDFa. These data will be used on the client (web-browser) to provide a user interface, in particular, to modify the data of the logical layer.
-
-	As a practical test application proposed the implementation of the automation activities Secretaries notary office.  Submission of documents in the office different balance formalizable and non-formalizable parts of the text. In addition, based on the technology being developed is possible to build a social network for the exchange of logical layer documents.
+As a testing ground for the technologies under development we decided to automate a notarial office, where the legal document representations has both well formalized and unformalized text fragments.  On the base of the technology a social network of document data exchange can be devised. The security of the document transfer can be provided as off-line data streams: each physical document is accompanied with its bar or QR-code encoding the corresponding RDF-data of the document.
 
 % conference papers do not normally have an appendix
 
@@ -1039,7 +963,7 @@ The research is carried on under support of Integration multidisciplinary projec
 \bibitem{zopetal} ``Zope Page Templates Reference,'' The Zope2 Book. URL:~\url{http://docs.zope.org/zope2/zope2book/index.html}
 \bibitem{cham} Chameleon -- Chameleon 2.10 documentation.
   URL:~\url{http://chameleon.readthedocs.org/en/latest/}
-\bibitem{kyoto} Kyoto Cabinet. URL:~\url{http://fallabs.com/kyotocabinet/}
+\bibitem{kiyoto} Kyoto Cabinet. URL:~\url{http://fallabs.com/kyotocabinet/}
 \bibitem{mediawiki}
  Semantic MediaWiki. URL: \url{http://semantic-mediawiki.org/} (access date: 20.08.2013).
 \bibitem{heino}
