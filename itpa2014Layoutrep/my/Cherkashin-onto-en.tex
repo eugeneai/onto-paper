@@ -389,24 +389,33 @@ relation between document and the third individual as a subclass of
 \texttt{structuralElement:} relation.  This stage is necessary as all
 new subjects must be in a relation.
 
-%----------------------
- 2
-\section{Removing a document markup}
+\section{Removing a document markup ????}
 
 ??? In general, contents of the document is represented as a tree where most nodes are subjects and objects simultaneously. Exceptions are the root node (it is the only entity) and leaf nodes (only objects). In the document hierarchy root nodes of documents related to other relations, such as the organization of documents into thematic clusters and hierarchies.
 
 
 	Document changes are two versions of interpretation: the change of the field object, which corresponds to a trivial error correction or corrected text template; meaningful change, leading to the formation of a new relationship between any subject in the context of the document and change the value (object). We shall consider only the changes that affect by substantive meaning of the document, respectively, by changing the logical layer.
+
 	Enrichment semantic markup performed in a medium containing the logical structure of the source document that has already been stored in the database. And then the list of data used by the system to decide what kind will have a new triple includes the following sources of information:
+
 1) ontological domain model;
+
 2) original version of the document;
+
 3) document text changes presented in a standard diff-format [12]
+
 4)  user's answers to questions asked by the system; answers clarify the intentions of the user;
+
 5) a list of user actions that preceded this revised document.
+
 	For example, the essence 5 appears when creating a new document from a template or a copy that makes it necessary to fill in certain fields object of existing triples. For example, this set is a standard set of fields to identify the individual (name, passport details, place of residence, etc.) in the notarized power of attorney. Another example is preparing a package of documents that use the same physical and legal persons.
+
 	If the document is partly modified, then the change is interpreted as a refinement of the logical structure of a document or other entity that creates a new relationship with some object. These changes lead to the creation of a new triple which join an existing entity with a new value object, in this case the user needs to select subject for this new triple.
+
 	The new entity should be selected from the list (tree) of all existing subjects in the context of the document. Next to relationship selection list formed for this entity, which is formed from all possible relationships for this subject and its class, including an ancestor class. The user must choose one relationship for formed triple . If the list does not contain the appropriate relationship, then it must be determined. A new relationship always specify any existing relationship in the list. To control the multiplication of entities without having to knowledge engineering need to periodically review the existing hierarchy of relations. Their mission is eliminate duplicates (equivalent), contradictory and inaccurate semantic relations and produce (refactoring) ontological model reorganization.
+
 	When you delete an object of any triples, all triples should also be removed from the document's logical representation. Removal process must be controlled minimal structural analysis of the semantic completeness and consistency of the subject (the hierarchy of subjects). For example, when you remove an individual contract must be removed his passport data. As a result the removal of any permitted or prohibited, or creates a triple chain deletions, as in the example of an individual. For this function each class of subjects must be accompanied by a list of triples, which are necessary for the formation of its substantive basis.
+
 	Adding a whole set of triples (subgraph), such as copying of the markup document generally results in adding new entities and relationships in the context. An example of such a situation is to establish a tripartite agreement of bilateral by adding a new individual. In general,t his requires to field passport data, as well as to establish a relationship between the context, the subjects of the document and a new individual.
 
 
@@ -481,12 +490,18 @@ representation as a fiber.
 % --------------------------------
 
 The above process is a trivial one for incremental implementation procedures of polysistemic analysis and synthesis [13] (PPAS) in the annex to the document domain decomposition. PPAS is a generalization of the procedure of the system analysis domains. The essence of the procedure is that the subject area and all of its objects and processes are split into layers and presented concepts and relationships (morphisms) in a multidimensional space. In contrast to the classical systematic approach, where the principle is a fundamental element of interaction, multysistem analysis suggests the hypothesis by the bundle where:
+
 1) the object of study can be represented as mutually nonintersecting layers (in the special case of subsets), subdomains.
+
 2) concepts and morphisms of one layer should be identified with the concepts and morphisms in all other layers through explicit or implicit attitude interpretation (substitution).
 Thus, multisystem is a system in itself from a more general point of view and PPAS is a new kind of system analysis.
+
 	In general, the application PPAS to the problem of building automation document marking is to construct a multilayer decomposition of the domain and the document data. As layers are various aspects of presentation of the document such as structural (mereological) organization of the document, conceptual modeling domain document, property inheritance documents, modeling the relationship between individuals and legal entities, model documents in deontic logic, etc. Ideally, each layer as a result of PPAS procedure should be constructed a complete theory presented in the form of a complete set of concepts and morphisms. In the above list requirement (2) allows  to organize a procedure to ensure completeness of the synthesized layer in the process of decomposition, checking his identity existing full layers.
+
 	Thanks (2) of each layer theory through interpretation are similar, despite the fact that differ from each other in their fundamental bases. This allows to induce (generate) new axiomatic theory of the subject areas in the image and likeness of the existing ones. Each system level (layer) of knowledge also repeatedly and consistently stratified, creating multisystem representation of the object. Thus, all system theories are combined into a unified model that describes how the subject area as well as an object of study. Interpretation of this property PPAS in this problem appears to us as a generalization of the decomposition process domain document and design an information system through a bundle of concepts and interpretation of existing algorithms that implement a certain layer theory to algorithms in the other layers.
+
 	In our case PPAS aimed at creating triples and contexts (layers). The resulting document classes, individuals and legal entities as well as other objects, forming a plurality of concepts of the theory of the corresponding layer. Highlight the new class or the relationship between classes, it is nessesary to install (algorithmically, inference, conclusion by analogy or by analysis of the responses) connection with the concepts and relationships in other layers (interpretation). For convenience the resulting logical structure must be set to determine the derived corresponding layer concepts in natural language. The requirement for property inheritance relationships in the process of extracting the markup (see. Section 2), subject to the assignment of a class, the construction of different class hierarchies are examples of the implementation of the interpretations concepts between the layers.
+
 	Thus the use of PPAS will allow to solve the problems of completeness object systems, concepts and relations in the document, the verification of consistency and in the long run automate the generation of programs implementing the theory of layers through the interpretation of existing algorithms, as well as many other service procedures.
 
 \section{Maintaining a Dialog With User}
@@ -571,7 +586,7 @@ procedure, e.g., by analyzing entropy gain \cite{dectrees}.
 \centering\footnotesize\sf
 \def\svgwidth{0.9\linewidth}
 \input{layer_en.pdf_tex}
-\caption{A Usage Example of an Ontology Polysystem}
+\caption{A Usage Example of an Ontology Polysystem [[CHECK THE PICTURE]]}
 \label{OPSA}
 \end{figure}
 
@@ -591,12 +606,14 @@ procedure, e.g., by analyzing entropy gain \cite{dectrees}.
 
 %----------------------
 Consider the example of the use ontologies multisystems in implementing interactive subsystem interviewing user (ISIU).
-	To implement the ISIU is necessary that the system has been implemented presentation layers relations "part-whole" hierarchy of entity classes, inheritance relationships between classes and objects, set theory and some of the layers of the subject, for example, a layer that defines that men and women is disjoint sets of people. The purpose of the dialogue with the user is select and install a new object belongs to a certain context (layer), install it in the interpretation of the other layer concepts  and establish a complete set of consistent relations with the context object. Dialogue with the user based on the analysis of the known properties and limitations of the object such as type, location of the original subject to hierarchies contexts, existing relationships with other objects and others.
-	Consider a simple example of a model of family relations shown in Fig. 1 (in the figure the most obvious interpretation of the maps are not displayed). Multisystems shown in the figure  includes four layers which are different models of the Bob family. Layer 1 is the family as a concrete object. In this layer contains only specific objects. Layer 2 defines the main role (relationship) family members. Layer 3 is the concept of "gender" as two mutually exclusive opposites. Layer 4 displays mereological concept which reveals the meaning of relation "part-whole".
-	Let's try to build on the basis of this multisystems ontologies chain issues with which defines the role of Jul to the Bob's family. Suppose we know that Julia is woman. To put Jul in layer 1 is to ask the user "Is Jul part of the Bob's family?". The question is generated as a result of inductive inference that all family relationships through the interpretation of the attitude displayed “partOf :” layer 4. This conclusion is modeled by a contravariant functor from the layer (category) 2 in layer 4 (shown in Figure arrow on the ratio of "hasFather" to partOf :, other similar arrows are not shown). Now, in order to confirm the fact that Jul is member of Bob's family enough to ask:"Is it true that Jul partOf: Bob's family?". Designation of an instance of "Family" can be formed according to the traditional principle of designations family name of the father's family (FF), that is named "Bob". This fact is indicated by the arrow from Bob in the layer 1 to the concept "FF" in the layer 2.
-	If the user has answered this question in the affirmative  that is Jul is part of the Bob's family and then we need to further clarify the role of Jul since the ratio partOf: not used explicitly in layer 1. Jul is woman so there she can be neither father nor son. If this were the case then she must be a man, but a man and a woman are formally opposing concepts. If the relationship “hasMother :” in layer 1 is given multiplicity it will already be aware that the mother of th family is Alice. Therefore, it remains one option to ask "Jul is daughter in a Bob family?". And now if the answer is yes then create a new triple: <Bob's family hasDaughter: Jul>. For example, if Jul's sex is unknown then the second question is synthesized as follows: "What is the role of Jul in the Bob's family?". As the answers are given a list of two relations: “hasDaughter:” and “hasSon :”.
 
-Fig. 1. The example of a multisystem ontology
+	To implement the ISIU is necessary that the system has been implemented presentation layers relations "part-whole" hierarchy of entity classes, inheritance relationships between classes and objects, set theory and some of the layers of the subject, for example, a layer that defines that men and women is disjoint sets of people. The purpose of the dialogue with the user is select and install a new object belongs to a certain context (layer), install it in the interpretation of the other layer concepts  and establish a complete set of consistent relations with the context object. Dialogue with the user based on the analysis of the known properties and limitations of the object such as type, location of the original subject to hierarchies contexts, existing relationships with other objects and others.
+
+	Consider a simple example of a model of family relations shown in Fig. 1 (in the figure the most obvious interpretation of the maps are not displayed). Multisystems shown in the figure  includes four layers which are different models of the Bob family. Layer 1 is the family as a concrete object. In this layer contains only specific objects. Layer 2 defines the main role (relationship) family members. Layer 3 is the concept of "gender" as two mutually exclusive opposites. Layer 4 displays mereological concept which reveals the meaning of relation "part-whole".
+
+	Let's try to build on the basis of this multisystems ontologies chain issues with which defines the role of Jul to the Bob's family. Suppose we know that Julia is woman. To put Jul in layer 1 is to ask the user "Is Jul part of the Bob's family?". The question is generated as a result of inductive inference that all family relationships through the interpretation of the attitude displayed “partOf :” layer 4. This conclusion is modeled by a contravariant functor from the layer (category) 2 in layer 4 (shown in Figure arrow on the ratio of "hasFather" to partOf :, other similar arrows are not shown). Now, in order to confirm the fact that Jul is member of Bob's family enough to ask:"Is it true that Jul partOf: Bob's family?". Designation of an instance of "Family" can be formed according to the traditional principle of designations family name of the father's family (FF), that is named "Bob". This fact is indicated by the arrow from Bob in the layer 1 to the concept "FF" in the layer 2.
+
+	If the user has answered this question in the affirmative  that is Jul is part of the Bob's family and then we need to further clarify the role of Jul since the ratio partOf: not used explicitly in layer 1. Jul is woman so there she can be neither father nor son. If this were the case then she must be a man, but a man and a woman are formally opposing concepts. If the relationship “hasMother :” in layer 1 is given multiplicity it will already be aware that the mother of th family is Alice. Therefore, it remains one option to ask "Jul is daughter in a Bob family?". And now if the answer is yes then create a new triple: <Bob's family hasDaughter: Jul>. For example, if Jul's sex is unknown then the second question is synthesized as follows: "What is the role of Jul in the Bob's family?". As the answers are given a list of two relations: “hasDaughter:” and “hasSon :”.
 
 	In fact, in the initial example the first question to ask is not necessary since the family was only one role for a woman. For example, if to remove the layer of Alice (mother) then in the first issue appears a significance. Questions of a general nature are given where necessary to reduce the number of alternatives in the responses in the future. In addition, the sequence of questions can be defined similarly to the decision tree.
 
@@ -673,7 +690,7 @@ in fig.~\ref{notaryontology}.
 \label{notaryontology}
 \end{figure}
 
-\section{Software Architecture and Implementation}
+\section{The Software}
 \label{sec:arch}
 
 The software developed within the project will include two major
@@ -689,7 +706,6 @@ our investigation:
 \item the software should be developed as an open-source project, and
   we hope to involve in our project a free community of engineers and
   users;
-\item the software [[should have two implementations: a local and a web form. This will provide the maximum coverage of users of the network as an open or closed.]]
 \item server software must be not too consumptive of computational and
   memory resources of a shared hosting service; \label{e12:p2}
 \item in accordance to \ref{e12:p2}, a support of various database
@@ -752,7 +768,7 @@ work on a dynamic HTML page because of ZPT is based on a declarative
 approach to template definition.
 
 The engine includes interpreters of several query expression languages
-to a logical structures of model and template\,: TAL (Template Attribute
+to a logical structures of model and template: TAL (Template Attribute
 Language) and METAL (Meta TAL).  There are also tools for
 internationalization (I18N) support.  Developers of ZPT successfully
 solved the following standard web problems:
