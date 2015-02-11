@@ -390,6 +390,28 @@ relation between document and the third individual as a subclass of
 \texttt{structuralElement:} relation.  This stage is necessary as all
 new subjects must be in a relation.
 
+%----------------------
+ 2
+\section{Removing a document markup}
+
+??? In general, contents of the document is represented as a tree where most nodes are subjects and objects simultaneously. Exceptions are the root node (it is the only entity) and leaf nodes (only objects). In the document hierarchy root nodes of documents related to other relations, such as the organization of documents into thematic clusters and hierarchies.
+
+
+	Document changes are two versions of interpretation: the change of the field object, which corresponds to a trivial error correction or corrected text template; meaningful change, leading to the formation of a new relationship between any subject in the context of the document and change the value (object). We shall consider only the changes that affect by substantive meaning of the document, respectively, by changing the logical layer.
+	Enrichment semantic markup performed in a medium containing the logical structure of the source document that has already been stored in the database. And then the list of data used by the system to decide what kind will have a new triple includes the following sources of information:
+1) ontological domain model;
+2) original version of the document;
+3) document text changes presented in a standard diff-format [12]
+4)  user's answers to questions asked by the system; answers clarify the intentions of the user;
+5) a list of user actions that preceded this revised document.
+	For example, the essence 5 appears when creating a new document from a template or a copy that makes it necessary to fill in certain fields object of existing triples. For example, this set is a standard set of fields to identify the individual (name, passport details, place of residence, etc.) in the notarized power of attorney. Another example is preparing a package of documents that use the same physical and legal persons.
+	If the document is partly modified, then the change is interpreted as a refinement of the logical structure of a document or other entity that creates a new relationship with some object. These changes lead to the creation of a new triple which join an existing entity with a new value object, in this case the user needs to select subject for this new triple.
+	The new entity should be selected from the list (tree) of all existing subjects in the context of the document. Next to relationship selection list formed for this entity, which is formed from all possible relationships for this subject and its class, including an ancestor class. The user must choose one relationship for formed triple . If the list does not contain the appropriate relationship, then it must be determined. A new relationship always specify any existing relationship in the list. To control the multiplication of entities without having to knowledge engineering need to periodically review the existing hierarchy of relations. Their mission is eliminate duplicates (equivalent), contradictory and inaccurate semantic relations and produce (refactoring) ontological model reorganization.
+	When you delete an object of any triples, all triples should also be removed from the document's logical representation. Removal process must be controlled minimal structural analysis of the semantic completeness and consistency of the subject (the hierarchy of subjects). For example, when you remove an individual contract must be removed his passport data. As a result the removal of any permitted or prohibited, or creates a triple chain deletions, as in the example of an individual. For this function each class of subjects must be accompanied by a list of triples, which are necessary for the formation of its substantive basis.
+	Adding a whole set of triples (subgraph), such as copying of the markup document generally results in adding new entities and relationships in the context. An example of such a situation is to establish a tripartite agreement of bilateral by adding a new individual. In general,t his requires to field passport data, as well as to establish a relationship between the context, the subjects of the document and a new individual.
+
+
+
 \section{Theoretical Generalization of the Acquisition Process}
 
 The above described approach is a simplified step-wise implementation
@@ -456,6 +478,17 @@ literature the notion ``fiber'' usually referred to as ``layer''.  In
 the rest of the paper we will sometimes use word ``layer'' as synonym
 to ``fiber'', and the notion ``logical layer'' will mean also its
 representation as a fiber.
+
+% --------------------------------
+
+The above process is a trivial one for incremental implementation procedures of polysistemic analysis and synthesis [13] (PPAS) in the annex to the document domain decomposition. PPAS is a generalization of the procedure of the system analysis domains. The essence of the procedure is that the subject area and all of its objects and processes are split into layers and presented concepts and relationships (morphisms) in a multidimensional space. In contrast to the classical systematic approach, where the principle is a fundamental element of interaction, multysistem analysis suggests the hypothesis by the bundle where:
+1) the object of study can be represented as mutually nonintersecting layers (in the special case of subsets), subdomains.
+2) concepts and morphisms of one layer should be identified with the concepts and morphisms in all other layers through explicit or implicit attitude interpretation (substitution).
+Thus, multisystem is a system in itself from a more general point of view and PPAS is a new kind of system analysis.
+	In general, the application PPAS to the problem of building automation document marking is to construct a multilayer decomposition of the domain and the document data. As layers are various aspects of presentation of the document such as structural (mereological) organization of the document, conceptual modeling domain document, property inheritance documents, modeling the relationship between individuals and legal entities, model documents in deontic logic, etc. Ideally, each layer as a result of PPAS procedure should be constructed a complete theory presented in the form of a complete set of concepts and morphisms. In the above list requirement (2) allows  to organize a procedure to ensure completeness of the synthesized layer in the process of decomposition, checking his identity existing full layers.
+	Thanks (2) of each layer theory through interpretation are similar, despite the fact that differ from each other in their fundamental bases. This allows to induce (generate) new axiomatic theory of the subject areas in the image and likeness of the existing ones. Each system level (layer) of knowledge also repeatedly and consistently stratified, creating multisystem representation of the object. Thus, all system theories are combined into a unified model that describes how the subject area as well as an object of study. Interpretation of this property PPAS in this problem appears to us as a generalization of the decomposition process domain document and design an information system through a bundle of concepts and interpretation of existing algorithms that implement a certain layer theory to algorithms in the other layers.
+	In our case PPAS aimed at creating triples and contexts (layers). The resulting document classes, individuals and legal entities as well as other objects, forming a plurality of concepts of the theory of the corresponding layer. Highlight the new class or the relationship between classes, it is nessesary to install (algorithmically, inference, conclusion by analogy or by analysis of the responses) connection with the concepts and relationships in other layers (interpretation). For convenience the resulting logical structure must be set to determine the derived corresponding layer concepts in natural language. The requirement for property inheritance relationships in the process of extracting the markup (see. Section 2), subject to the assignment of a class, the construction of different class hierarchies are examples of the implementation of the interpretations concepts between the layers.
+	Thus the use of PPAS will allow to solve the problems of completeness object systems, concepts and relations in the document, the verification of consistency and in the long run automate the generation of programs implementing the theory of layers through the interpretation of existing algorithms, as well as many other service procedures.
 
 \section{Maintaining a Dialog With User}
 
@@ -555,6 +588,17 @@ procedure, e.g., by analyzing entropy gain \cite{dectrees}.
 % (wikipedia and Google search systems).
 
 % (!! Systems of complexes. !!)
+
+%----------------------
+Consider the example of the use ontologies multisystems in implementing interactive subsystem interviewing user (ISIU).
+	To implement the ISIU is necessary that the system has been implemented presentation layers relations "part-whole" hierarchy of entity classes, inheritance relationships between classes and objects, set theory and some of the layers of the subject, for example, a layer that defines that men and women is disjoint sets of people. The purpose of the dialogue with the user is select and install a new object belongs to a certain context (layer), install it in the interpretation of the other layer concepts  and establish a complete set of consistent relations with the context object. Dialogue with the user based on the analysis of the known properties and limitations of the object such as type, location of the original subject to hierarchies contexts, existing relationships with other objects and others.
+	Consider a simple example of a model of family relations shown in Fig. 1 (in the figure the most obvious interpretation of the maps are not displayed). Multisystems shown in the figure  includes four layers which are different models of the Bob family. Layer 1 is the family as a concrete object. In this layer contains only specific objects. Layer 2 defines the main role (relationship) family members. Layer 3 is the concept of "gender" as two mutually exclusive opposites. Layer 4 displays mereological concept which reveals the meaning of relation "part-whole".
+	Let's try to build on the basis of this multisystems ontologies chain issues with which defines the role of Jul to the Bob's family. Suppose we know that Julia is woman. To put Jul in layer 1 is to ask the user "Is Jul part of the Bob's family?". The question is generated as a result of inductive inference that all family relationships through the interpretation of the attitude displayed “partOf :” layer 4. This conclusion is modeled by a contravariant functor from the layer (category) 2 in layer 4 (shown in Figure arrow on the ratio of "hasFather" to partOf :, other similar arrows are not shown). Now, in order to confirm the fact that Jul is member of Bob's family enough to ask:"Is it true that Jul partOf: Bob's family?". Designation of an instance of "Family" can be formed according to the traditional principle of designations family name of the father's family (FF), that is named "Bob". This fact is indicated by the arrow from Bob in the layer 1 to the concept "FF" in the layer 2.
+	If the user has answered this question in the affirmative  that is Jul is part of the Bob's family and then we need to further clarify the role of Jul since the ratio partOf: not used explicitly in layer 1. Jul is woman so there she can be neither father nor son. If this were the case then she must be a man, but a man and a woman are formally opposing concepts. If the relationship “hasMother :” in layer 1 is given multiplicity it will already be aware that the mother of th family is Alice. Therefore, it remains one option to ask "Jul is daughter in a Bob family?". And now if the answer is yes then create a new triple: <Bob's family hasDaughter: Jul>. For example, if Jul's sex is unknown then the second question is synthesized as follows: "What is the role of Jul in the Bob's family?". As the answers are given a list of two relations: “hasDaughter:” and “hasSon :”.
+
+Fig. 1. The example of a multisystem ontology
+
+	In fact, in the initial example the first question to ask is not necessary since the family was only one role for a woman. For example, if to remove the layer of Alice (mother) then in the first issue appears a significance. Questions of a general nature are given where necessary to reduce the number of alternatives in the responses in the future. In addition, the sequence of questions can be defined similarly to the decision tree.
 
 
 \section{A Notary Office Usage of the Technique}
@@ -748,6 +792,52 @@ development and relatively cheap server computational resources
 completely cover all the requirements of the software under
 development.
 
+% ---------------------------
+
+\subsection{Useful tools}
+\label{sec:useful-tools}
+
+	??? Exposure draft decision applications leads to the following set of requirements for the target properties of the software product.
+1) The software system must refer to the class of free (open-source) software. The goal is to attract the public to development problem and (re)engineering of workflow as multisystem ontologies.
+2) The program should have two implementations: a local and a web form. This will provide the maximum coverage of users of the network as an open or closed.
+3) The server part of the web-application must be undemanding to computing resources and to operate in an environment of low-cost shared hosting.
+4) As a consequence of par. 3 it is necessary to provide support various data storage systems for storing triples.
+As a popular platform in the divided hosting supports a combination of the programming language PHP and database server MySQL operating under the operating system Linux. In addition, modern web-applications on the side of the web browser actively use programming environment JavaScript.
+
+	Graph representation of semantics in PHP, as well as access to its components, provides the libraries EasyRdf. Library allows to load graphs in RDF format and present them in the form of objects PHP, which provides access to the object-oriented style, or by using a standard query language SPARQL.
+
+	Storing RDF-triples in a relational database MySQL is supported library ARC2, which also implements a query language for RDF-Graph SPARQL. ARC2 is a platform application developer with the functions of SW, which supports the expansion of the basic functions of plug-in modules, the creation of trigger functions for processing query results SPARQL.
+
+	Using technology ZOPE Page Template (ZPT) as the main mechanism causing the text from from the logical layer allows platform independent implementation of the system represent a form display triples, while storing it in the graph. ZPT is a template system that allows programmers and designers to create dynamic WEB-pages. Originally ZPT is part of ZOPE and gain enough popularity due to its declarative approach to the description of the transformation of HTML and XML-documents. The structure of the technology include language interpreters requests to the logical structure of the programming language TALES (Template Attribute Language Expression Syntax), methods of processing the tree view hypertext documents METAL (Meta TAL), and internationalization (I18N). Developers ZPT pursued the aim to solve the following standard tasks for WEB:
+
+1) Ensure separation of the user interface and application logic;
+2) Creating a user interface using the normal file HTML, which allows developers to use special software packages for editing and development of Web-sites (eg, Dreamweaver);
+3) Getting the user from the sale of cycles to fill the tables and list items;
+4) Control the display of Web-page elements depending on the data displayed model.
+
+	Currently, there are many implementations of interpreters TALES and METAL for different programming systems, including for the PHP programming language. PHPTAL is the implementation of this system supports namespaces TALES, METAL and I18N. The basic syntax and semantics of the language TALES not depend on the implementation language of the library, which is one of the factors portability across technologies.
+
+	For subprogram of JavaScript, running on the side of the web browser, the functions of ZPT are implemented using library Distal which allows to load data dynamically into the template. This allows the web-developer to transfer some display functions on the client side and to use computing resources workstation and server load.
+
+	Local custom version of the application should be easy to install, configure and maintain, so the logical storage layers in commercial database management system (DBMS), such as DB2, Oracle or Microsoft SQL Server is not appropriate, because demands the professional attention during installation and maintenance. A better option for storage is a database management system built into the main process is not required to be special forms of interprocess communication. Typically, such systems are also extremely simple to install and configure step.
+
+	One interesting example of such DBMS is Kyoto Cabinet system[15], which is a library of procedures for managing a database in the standard BerkeleyDB. The library stores the data in one or more files in the file system and provides an effective display of unique keys to values. The key and value are not fixed sequence of bytes. Display organized using a hash table or B + -tree. In addition, Kyoto Cabinet implements various methods to protect information from loss due to physical damage of storage: sparse data format with duplication of information and data replication between slave servers, etc. This add-in library exist, allowing to organize storage triples.
+
+	Thus, modern server computing resources and open source software technology of Web-sites almost completely provide the technological basis for the proposed development.
+
+ 6  Similar projects
+
+Among existing projects of ontology based document management the project “Semantic MediaWiki” can be emphasized. A basic Wiki text editing is extended with semantic annotations represented in a special markup format. The annotations are used by search engine of the Wiki pages [13].
+
+In comparison to Semantic MediaWiki the project OntoWiki [14] obtained the similar results from an opposite starting point. OntoWiki is based on the predominantly usage of logical representation of the information as semantic network. The logical structure is edited with entry forms generated on the base of predefined vocabularies (term sets). User is allowed to change just one text property lod:content, which can contain HTML markup. The HTML markup does not relate to the logical structure of the subject to be visualized as web-document. The text is modified with WYSIWYG editor integrated into OntoWiki. The project is aimed at social networks developed under control of Linked Data technology.
+
+Our project can be positioned as a further development if the OntoWiki engine to support a natural representation of the document content, visual editing of the content, conserving the logical layer; implementation of the data and knowledge acquisition on the base of modification analysis. The templates for OntoWiki subjects rendering are stored beyond the ontology and separately from the main content of the document. In our case the templates are auxiliary elements of ontology, it can be logically inferred from inheritance. Most of the interrelations between text content and its logical structure are expressed in RDFa.
+
+A further development direction of the project is aimed at implementation of cognitive data mining (data analysis) in similar documents to reveal patterns between attributes that appear in the documents. The results of the analysis may be a basis of automation of document data storage technique decision. For example, if a set of attributes shows a strong correlation to an attribute than it can be interpreted as a relation of a relational database. The set forms a determinant (the key set of a table) and the set of strongly correlated attributes forms rest of the table as described in the Method of Functional Dependency. The method used by database engineers in the process of a database design, the dependencies revealed from the analysis of the attributes’ semantics. That is, the method could be used conversely, the dependencies can be revealed on the base of data mining.
+The abstract layer of information modeling of the knowledge acquisition is a category of system complexes (configurations) [15], which is perfectly embody common metamodel of the ontologies as well as supply additional structural and functional properties. Developing the theory further one can connect the ontology devised during the document preparation process to the stage of UML-modelling of information system, which automates the processes of the domain.
+
+Another directions of the system development is a reduction of HTML-rendering engines of the logical layer, so it could be completely realized on client side, as well as implementation for other programming languages and software platforms. Also we plan to develop a plug-in module for OntoWiki allowing editing Wiki interactively.
+
 
 %\subsubsection{Subsubsection Heading Here}
 %Subsubsection text here.
@@ -871,6 +961,14 @@ accompanied with its bar- or QR-code encoding the corresponding
 RDF-data of the document.
 
 
+????? The study is aimed at supporting the development of semantic web technologies in terms of automating the process of semantic markup document. In this paper we consider the approach to the representation of the logical layer of the document content (or electronic resource), based on the use of ontologies multisystems. The use of ontology multisystems and multiistemic bundle procedures [13] allows to progress in solving the problem of acquiring knowledge about the domain. New knowledge is constructed in the form of object layers, concepts and relationships (morphisms) between them displayed through the interpretation of other including existing layers. At the same time, in the future, it is possible to automate the construction of algorithms that implement properties of the constituent units of the layer in the image and likeness theories the existing in layers. At this stage of research multisystem ontologies allows  to organize and classify the facts about the domain by analogy with the existing structures, as well as to obtain new interpretations of formed concepts.
+
+	In the main part of the paper discusses the methodology of organizing the interactive process of constructing a logical presentation layer based on content mining changes in different versions of a document generated by the user. We was considered the problem of dialogue with the user which purpose is to supplement/formation of existing semantic models (logical layer) with new objects and relationships. The dialogue with the user is conducted by means of inference network view multisystems ontologies.
+
+	The architecture of the pilot software system discusses that implements the functions described herein, as well as a review of software technologies used to evaluate their performance parameters and opportunities. We consider separately the question of using technology ZOPE Page Template, namely its implementation as a library Chameleon to describe aspects of data presentation SW. The possibilities of integration patterns in the format RDF (Resource Description Framework) was researched. The format allows to store the relationship between entities that describe the semantics of the document content and templates to convert the logical structures in the document text fragments. We present the realization of this transformation. As a result of the transformation generated text also contains data semantic markup format RDFa. These data will be used on the client (web-browser) to provide a user interface, in particular, to modify the data of the logical layer.
+
+	As a practical test application proposed the implementation of the automation activities Secretaries notary office.  Submission of documents in the office different balance formalizable and non-formalizable parts of the text. In addition, based on the technology being developed is possible to build a social network for the exchange of logical layer documents.
+
 % conference papers do not normally have an appendix
 
 % use section* for acknowledgement
@@ -942,6 +1040,16 @@ The research is carried on under support of Integration multidisciplinary projec
 \bibitem{cham} Chameleon -- Chameleon 2.10 documentation.
   URL:~\url{http://chameleon.readthedocs.org/en/latest/}
 \bibitem{kyoto} Kyoto Cabinet. URL:~\url{http://fallabs.com/kyotocabinet/}
+\bibitem{}
+ Semantic MediaWiki. URL: http://semantic-mediawiki.org/ (access date: 20.08.2013).
+
+\bibitem{}
+ N.Heino, S.Tramp, N.Heino, S.Auer. Managing Web Content using Linked Data Principles – Combining semantic structure with dynamic content syndication. Computer Software and Applications Conference (COMPSAC), 2011 IEEE 35th Annual. pp. 245 - 250. URL:http://svn.aksw.org/papers/2011/COMPSAC_lod2.eu/public.pdf (access date: 30.05.2013).
+
+\bibitem{}
+ Cherkashin E.A., Paramonov V.V., et al, Model Driven Architecture is a Complex System, E-Society Journal Research and Applications. Volume 2, Number 2, 2011, pp. 15-23.
+
+
 \end{thebibliography}
 \vspace{-2em}\mbox{} %Make the flushend work correctly with the last \bibitem
 % that's all folks
