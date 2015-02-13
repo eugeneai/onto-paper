@@ -219,35 +219,35 @@ The logical layer is generated on the base of analysis of changes introduced by 
 
 \section{Introduction}
 % no \IEEEPARstart
-In 2001 Tim Berners-Lee proposed a blueprint \cite{TBL2001} of web development that is aimed at the implementation of network services with reasonable integration of logical layer of the information presented.  The information was to be marked up semantically and the program agents where to take advantage of the markup as the logical layer for the information consumption and processing.  The blueprint is called Semantic Web.
+In 2001 Tim Berners-Lee proposed a blueprint \cite{TBL2001} of web development that is aimed at the implementation of network services with reasonable integration of logical layer of the information presented.  The information is to be marked up semantically and the program agents are to take advantage of the markup as the logical layer for the information consumption and processing.  The blueprint is called Semantic Web (SW).
 
-One of the main problems of SW is the fact, that the regular users of web resources are not fond of the complex technological aspects of SW. They are interested in their practical problems solutions.  In order to involve users in SW content development, that aspects must be completely hidden.  This results in the necessity of development of document and site content management software exploited within SW as knowledge acquisition systems, where user has to play role of information source for a system-integrated decision-making engine inducing formal knowledge on the base of data analysis.
+One of the main problems of SW is the fact, that the regular users of web resources are not fond of the complex technological aspects of SW. They are interested in their practical problems solutions.  In order to involve users in SW content development these aspects must be completely hidden.  This results in the necessity of development of document and site content management software exploited within SW as knowledge acquisition systems, where user is to play a role of an information source for a system-integrated decision-making engine inducing formal knowledge on the base of data analysis.
 
-To be more comprehensible consider a content of a legal document, which in most cases contains meaningful information on human beings relationships that is usually passed to other documents in a derivative form.  This suggests an idea to develop a form of the logical layer representation in a reasonably detailed form, which can be rendered as a regular text pages by means of context-depended (in sense of a legal document) text templates.  The SW approach could supplement the idea with data formats and technologies of their storage and processing.  SW represents logical layer as a network graph of notions and relations between the notions.  For example, individuals mentioned in a legal document relate to the document as “part-whole”, unless to speak even more explicitly in a context of the meaningful information.
+To be more comprehensible consider a content of a legal document, which in most cases contains meaningful information on legal entities relationships that is usually passed to other documents in a derivative forms.  This suggests an idea to develop a form of the logical layer representation in a reasonably detailed form, which can be rendered as a regular text pages by means of context-depended (in sense of a legal document) text templates.  The SW approach could supplement the idea with data formats and technologies of their storage and processing.  SW represents logical layer as a network graph of notions and relations between the notions.  For example, individuals mentioned in a legal document relate to the document as ``part-whole'', unless to speak even more explicitly in a meaningful context.
 
 At present most of the use cases of domain ontology models are
 refining search results.  Automatic procedures of ontology extraction
 from the documents are based on crawling documents in a warehouse,
-running data mining procedures on the text content and metadata
-attributes of the documents.  Simple observation of the human behavior
+running data mining procedures on text content and metadata
+attributes of the documents.  Simple observation of human behavior
 in the process of a document preparation will result in the confidence
 that meaningful parts of the document, which are usually expressed
 with the logical layer, are located at the points of document changes.
-Hence, a programming system automating a document preparation should
+Hence, a programming system automating the document preparation should
 track the changes and analyze them in time to extract ontology structure,
 i.e., objects, concepts and relation between them.
 
 The logical layer is induced during content edition by means of data
 mining and user interview.  The context of the knowledge acquisition
 consists of a polysystem \cite{father} of ontologies describing the
-domain, the source document (its text representation and the existing
-logical structure), its list of modifications in a transaction, user's
+domain, the source document (its text representation and current
+logical structure), its list of modifications in transaction, user's
 action history, and answers to the interview questions clarifying
 meaning of text content changes and properties of the relations
 constructed.  As a result, new or modified triples \texttt{<subject,
-  relation, object>} representing the domain are constructed.
+  relation, object>} are constructed.
 Collected triple data, metadata and knowledge of the logical layer can
-also be crawled on a regular basis to figure out patterns and
+also be crawled on a regular basis to grasp patterns and
 functional relations between attributes (triple's objects).  In the
 last case a relational table could be induced to rise the efficiency
 of data storage and processing.
@@ -259,9 +259,9 @@ cases is input, storage, filtering and transmitting data, i.e., the
 social networks integrate rather than aggregate data, e.g., to produce
 reports.  Hence, the usage of special design techniques for the
 middle-ware layer of the software, such as object-oriented design, is
-not a significant technological advantage.  Social network nodes are
+not a significant technological advantage.  Social network (SN) agent software are
 interconnected with standardized protocols and data structures, and
-has the same way of integration with other social networks.
+have the same way of integration with other social networks.
 
 Let us emphasize the properties of social network software:
 \begin{IEEEitemize}[\IEEEsetlabelwidth{Z}]
@@ -274,14 +274,14 @@ Let us emphasize the properties of social network software:
   tasks personally including subconscious joint processing of
   unstructured and semantic information;
 \item a good practice is to use cheap virtual hosting to run the
-  a SW node, therefore, the information system itself must be written
+  a SN node, therefore, the information system itself must be written
   according to the restrictions of a server-side programming language,
   like PHP, and utilize the computational and data storage resources
   of client workstation and its browser environment.
 \end{IEEEitemize}
 
 In this paper, we continue the development of the approach
-\cite{prevwork} to document and site content management and
+\cite{prevwork} of document and site content management and
 integration within a general study \cite{b2:15}, and briefly consider
 the procedure of polysystem ontology usage in the process of user
 dialog maintenance.
