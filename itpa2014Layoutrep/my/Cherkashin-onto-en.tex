@@ -186,7 +186,7 @@
     Russia}%
   \IEEEauthorblockA{\IEEEauthorrefmark{3}Irkutsk State University,
     Irkutsk, Gagarina blvd., 664003, Russia}%
-\texttt{\small eugeneai@icc.ru}
+\texttt{\small eugeneai@icc.ru, bychkov@icc.ru}
 }
 
 % use for special paper notices
@@ -466,7 +466,7 @@ procedure, e.g., by analyzing entropy gain \cite{dectrees}.
 \centering\footnotesize\sf
 \def\svgwidth{0.9\linewidth}
 \input{layer_en.pdf_tex}
-\caption{A Usage Example of an Ontology Polysystem [[CHECK THE PICTURE]]}
+\caption{A Usage Example of an Ontology Polysystem}
 \label{OPSA}
 \end{figure}
 
@@ -505,23 +505,22 @@ Unformalized data are various enumerations of legal empowerments of
 the individuals, article codes, and explanatory text.
 
 At present most of notary legal documents are generated from
-templates.  In an experimental office, the document templates are
-prepared by engineer with collaboration to a secretary having
+templates.  In experimental office, the document templates are
+prepared by engineer in collaboration with a secretary having
 necessary experience of use of the existing software.  Templates are
 HTML forms dispersed in the text of document.  Logical structure of a
 document is defined by field names, and the procedures of information
 processing are implemented as simple form processing routines.  The
 output document is rendered by means of value substitution instead of
 fields.  The field names are defined by identifiers according to a
-special rules, then the fields implicitly combine into a subject.
+special rules so that fields implicitly combine into a subject.
 This simple formalization allows one to carry on basic transformation
 operations on roles of the individuals by means of renaming or
-exchanging values of the field sets, e.g., to implement copying the
-data from one document to another.  Application of the semantic
+exchanging values of the field sets.  Application of semantic
 approach to the logical layer representation of the notary document
 content is aimed at involvement of the secretaries (office stuff with
 low engineering skills) into development of the templates and
-constructing hierarchical arrangements.
+constructing hierarchical arrangements of documents.
 
 In new approach, logical layer of a notary document consists of
 hierarchy of subjects.  The subjects relate to each other on various
@@ -586,7 +585,7 @@ browser has been chosen, and its JavaScript implementation is being
 considered as a client programming language.
 
 Architecture of the first variant of the software is presented in
-fig.~\ref{fig:progsys}.  Server side deal with data storage and
+fig.~\ref{fig:progsys}.  Server side deals with data storage and
 security.  ``Multiformat Storage'' module supports various techniques
 of data representation, it could be a SQL-server.  The purpose of
 ``Data Representation Broker'' module is to convert triples in a
@@ -597,7 +596,7 @@ order to render a template the data model instance should be loaded
 through module ``Loader of Triples''.  The instance is represented as
 a set of triples.  The security is supplied by “Data Security” module.
 
-At the client side the triples are rendered as HTML tests and combined
+At client side the triples are rendered as HTML texts and combined
 into a document by ``Document Renderer'' module.  The result is either
 interpreted further by ``RDFa interpreter'' or processed in ``Data
 Processing Unit''.  New concepts and relations are sent back to server
@@ -610,7 +609,7 @@ as RDF- and RDFa-content.
 \label{fig:progsys}
 \end{figure}
 
-\subsection{Implementation Software}
+\subsection{Implementation details}
 \label{sec:implsoft}
 
 Representation of domain graph and PHP's access to graph components is
@@ -625,7 +624,7 @@ with SW functionality, allowing one to extend the standard set of
 routines by means of plug-in modules as well as to create trigger
 functions fired as soon as SAPRQL query finished.
 
-Text composition library Zope Page Template (ZPT) is used as a generic
+Text composition library Zope Page Template (ZPT) \cite{zopetal} is used as a generic
 text rendering engine out of the logical layer.  ZPT is cross-platform
 and allows representing templates and rendering the triples inside.
 The templates also stored in RDF.  ZPT technology and its descendants,
@@ -633,7 +632,7 @@ like Chameleon \cite{cham}, allow programmers and designers to share their commo
 work on a dynamic HTML page because of ZPT is based on a declarative
 approach to template definition.
 
-The engine includes interpreters of several query expression languages
+ZPT engine includes interpreters of several query expression languages
 to a logical structures of model and template: TAL (Template Attribute
 Language) and METAL (Meta TAL).  There are also tools for
 internationalization (I18N) support.  Developers of ZPT successfully
@@ -657,13 +656,12 @@ implemented by Distal library, which can also dynamically load model
 data into rendered template, resulting consumption more CPU resources
 of client workstation and less of server.
 
-The storage module in the desktop application must not be too
-consuming the resources of the client workstation, that's why usage of
-server software is not particularly expedient, better use in-process
+The storage module of desktop application should not be too
+resources consuming, that's why we propose usage of in-process
 database libraries which are also do not require special configuration
 and engineer's periodical maintenance.  One of the outstanding
 in-process database engine is Kyoto Cabinet library \cite{kiyoto},
-which is a higher performance implementation of BerkeleyDB standard.
+which is high-performance implementation of BerkeleyDB standard.
 The library maps blocks of bytes, i.e., a key to a value, and the
 mapping is realized by means of B+-trees and hash tables.  Kyoto
 Cabinet supports protection against data loss even due to partial
@@ -672,7 +670,7 @@ file format and data replication among a cluster of workstations.
 
 Thus, the nowadays open-source software of internet application development and relatively cheap server computational resources completely cover all the requirements of the software under development.
 
-\section{Similar Projects and Further Development}
+\section{Similar Projects}
 \label{sec:similar-projects}
 
 Among existing projects of ontology based document management the project “Semantic MediaWiki” can be emphasized. A basic Wiki text editing is extended with semantic annotations represented in a special markup format. The annotations are used by search engine of the Wiki pages \cite{mediawiki}.
@@ -681,11 +679,8 @@ In comparison to Semantic MediaWiki the project OntoWiki \cite{heino} obtained t
 
 Our project can be positioned as a further development if the OntoWiki engine to support a natural representation of the document content, visual editing of the content, conserving the logical layer; implementation of the data and knowledge acquisition on the base of modification analysis. The templates for OntoWiki subjects rendering are stored beyond the ontology and separately from the main content of the document. In our case the templates are auxiliary elements of ontology, it can be logically inferred from inheritance. Most of the interrelations between text content and its logical structure are expressed in RDFa.
 
-A further development direction of the project is aimed at implementation of cognitive data mining (data analysis) in similar documents to reveal patterns between attributes that appear in the documents. The results of the analysis may be a basis of automation of document data storage technique decision. For example, if a set of attributes shows a strong correlation to an attribute than it can be interpreted as a relation of a relational database. The set forms a determinant (the key set of a table) and the set of strongly correlated attributes forms rest of the table as described in the Method of Functional Dependency. The method used by database engineers in the process of a database design, the dependencies revealed from the analysis of the attributes’ semantics. That is, the method could be used conversely, the dependencies can be revealed on the base of data mining.
-The abstract layer of information modeling of the knowledge acquisition is a category of system complexes (configurations) \cite{cherk11}, which is perfectly embody common metamodel of the ontologies as well as supply additional structural and functional properties. Developing the theory further one can connect the ontology devised during the document preparation process to the stage of UML-modelling of information system, which automates the processes of the domain.
-
-Another directions of the system development is a reduction of HTML-rendering engines of the logical layer, so it could be completely realized on client side, as well as implementation for other programming languages and software platforms. Also we plan to develop a plug-in module for OntoWiki allowing editing Wiki interactively.
-
+% A further development of the project is aimed at implementation of cognitive data mining (data analysis) in similar documents to reveal patterns between attributes that appear in the documents. The results of the analysis may be a basis of automation of document data storage technique decision. For example, if a set of attributes shows a strong correlation to an attribute than it can be interpreted as a relation of a relational database. The set forms a determinant (the key set of a table) and the set of strongly correlated attributes forms rest of the table as described in the Method of Functional Dependency. The method used by database engineers in the process of a database design, the dependencies revealed from the analysis of the attributes’ semantics. That is, the method could be used conversely, the dependencies can be revealed on the base of data mining.
+% The abstract layer of information modeling of the knowledge acquisition is a category of system complexes (configurations) \cite{b2:15}, which is perfectly embody common metamodel of the ontologies as well as supply additional structural and functional properties. Developing the theory further one can connect the ontology devised during the document preparation process to the stage of UML-modelling of information system, which automates the processes of the domain.
 
 %\subsubsection{Subsubsection Heading Here}
 %Subsubsection text here.
@@ -771,7 +766,7 @@ Another directions of the system development is a reduction of HTML-rendering en
 
 The research is aimed at support of Semantic Web with algorithms and software automating text document markup and its logical model induction.  The approach is based on polysystem representation of the domain and document content (e.g., web site) as an evolving ontology.  The usage of polysystem of ontologies and the procedure of polysystem decomposition \cite{father} allows us to solve a number problems in the activity related to knowledge acquisition in the domain.  New knowledge are represented as fibers of categories with property of through cross-fiber interpretation.  In the future, the possibility will arise for automatic construction of algorithms and programs implementing a fiber theory in the image and likeness of an already constructed ones.  At present the polysystem of ontologies allows us to rate and categorize facts on the domain by analogy with the already known structures, as well as obtain new interpretations of new recognized concepts.
 
-The main part of the paper is devoted to a general description of a technique of maintenance of an interactive process of the logic model induction of the document content on the base of data mining of changes of various versions of the document created and edited by user.  A problem solution outline for user dialog conduction aimed at modification and extension of the logical model with new objects and relations has been considered.  The dialog is maintained by analyzing the completeness of the constructed model and logical inference in the polysystem representation of the domain ontology. A pilot software architecture has been presented as well as brief overview of used modules and libraries, their properties and feature has been assessed.
+The main part of the paper is devoted to a general description of a technique of maintenance of an interactive process of logic model induction of document content on the base of data mining of changes of various versions of the document.  A problem solution outline for user dialog conduction aimed at modification and extension of the logical model with new objects and relations has been considered.  The dialog is maintained by analyzing the completeness of the constructed model and logical inference in the polysystem representation of the domain ontology. A pilot software architecture has been presented as well as brief overview of used modules and libraries, their properties and features have been assessed.
 
 As a testing ground for the technologies under development we decided to automate a notarial office, where the legal document representations has both well formalized and unformalized text fragments.  On the base of the technology a social network of document data exchange can be devised. The security of the document transfer can be provided as off-line data streams: each physical document is accompanied with its bar or QR-code encoding the corresponding RDF-data of the document.
 
@@ -782,10 +777,6 @@ As a testing ground for the technologies under development we decided to automat
 The research is carried on under support of Integration multidisciplinary project of Siberian Branch of Russian Academy of Sciences N 17 “Development of services and infrastructure of scientific spatial data for supporting complex multidisciplinary scientific research of Baikal nature territory”.
 
 %The authors would like to thank...
-
-
-
-
 
 % trigger a \newpage just before the given reference
 % number - used to balance the columns on the last page
@@ -822,36 +813,34 @@ The research is carried on under support of Integration multidisciplinary projec
   Synthesis. Application in Geography,'' Novosibirsk, Russia ``Nauka'' Publ. co.
   1997. -- 502~p. (In Russian)
 \bibitem{SN} Social network -- Wikipedia, the free encyclopedia.
-  URL:~\url{http://en.wikipedia.org/wiki/Social_network}
+  URL:~\url{http://en.wikipedia.org/wiki/Social_network} (access date: 09.01.2015).
 \bibitem{prevwork} E.~Cherkashin, P.~Belykh, D.~Annenkov, K.~Paskal, ``A
   Document Content Logical Layer Induction on the Base of Ontologies
   and Processing Changes,'' Procs. of International Conference on
   Applied Internet and Information Technologies, October 25, 2013,
   University of Novi Sad, Technical Faculty ``Mihajlo Pupin'',
   Zrenjanin, Republic of Serbia,
-  pp.~252--257. URL:~\url{http://www.tfzr.uns.ac.rs/aiit/archives/AIIT2013/Proceedings.pdf}
+  pp.~252--257. URL:~\url{http://www.tfzr.uns.ac.rs/aiit/archives/AIIT2013/Proceedings.pdf}.
 \bibitem{b2:15} E.~Cherkashin, V.~Paramonov, et al, ``Model Driven
   Architecture is a Complex System,'' E-Society Journal Research and
   Applications. Volume 2, Number 2, 2011, pp.~15--23.
-  URL:~\url{http://www.tfzr.uns.ac.rs/esociety/issues/eSocietyVol2No2.pdf}
+  URL:~\url{http://www.tfzr.uns.ac.rs/esociety/issues/eSocietyVol2No2.pdf} (access date: 09.01.2015).
 \bibitem{b2:5} Model--view--controller --- Wikipedia, the free
   encyclopedia.
-  URL:~\url{http://en.wikipedia.org/wiki/Model-view-controller}
+  URL:~\url{http://en.wikipedia.org/wiki/Model-view-controller} (access date: 09.01.2015).
 \bibitem{diff} D.~MacKenzie, P.~Eggert, R.~Stallman. ``Comparing and
   Merging Files,''
-  URL:~\url{http://www.gnu.org/software/diffutils/manual/diffutils.pdf}
+  URL:~\url{http://www.gnu.org/software/diffutils/manual/diffutils.pdf} (access date: 09.01.2015).
 \bibitem{dectrees} Information gain in decision trees ---  Wikipedia, the free
   encyclopedia. URL:~\url{http://en.wikipedia.org/wiki/Information_gain_in_decision_trees}
-\bibitem{zopetal} ``Zope Page Templates Reference,'' The Zope2 Book. URL:~\url{http://docs.zope.org/zope2/zope2book/index.html}
+\bibitem{zopetal} ``Zope Page Templates Reference,'' The Zope2 Book. URL:~\url{http://docs.zope.org/zope2/zope2book/index.html} (access date: 09.01.2015).
 \bibitem{cham} Chameleon -- Chameleon 2.10 documentation.
-  URL:~\url{http://chameleon.readthedocs.org/en/latest/}
-\bibitem{kiyoto} Kyoto Cabinet. URL:~\url{http://fallabs.com/kyotocabinet/}
+  URL:~\url{http://chameleon.readthedocs.org/en/latest/}  (access date: 09.01.2015).
+\bibitem{kiyoto} Kyoto Cabinet. URL:~\url{http://fallabs.com/kyotocabinet/} (access date: 09.01.2015).
 \bibitem{mediawiki}
  Semantic MediaWiki. URL: \url{http://semantic-mediawiki.org/} (access date: 20.08.2013).
 \bibitem{heino}
  N.Heino, S.Tramp, N.Heino, S.Auer. Managing Web Content using Linked Data Principles – Combining semantic structure with dynamic content syndication. Computer Software and Applications Conference (COMPSAC), 2011 IEEE 35th Annual. pp. 245 - 250. URL:\url{http://svn.aksw.org/papers/2011/COMPSAC_lod2.eu/public.pdf} (access date: 30.05.2013).
-\bibitem{cherk11}
- Cherkashin E.A., Paramonov V.V., et al, Model Driven Architecture is a Complex System, E-Society Journal Research and Applications. Volume 2, Number 2, 2011, pp. 15-23.
 
 \end{thebibliography}
 \vspace{-2em}\mbox{} %Make the flushend work correctly with the last \bibitem
