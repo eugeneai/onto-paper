@@ -173,20 +173,25 @@
 
 
 \begin{document}
-\title{A Semantic Markup Technique Based on Ontology Polysystem}
-  \author{\IEEEauthorblockN{Evgeny
-    Cherkashin\IEEEauthorrefmark{1}\IEEEauthorrefmark{2}\IEEEauthorrefmark{3},
-    Kristina Paskal\IEEEauthorrefmark{2}\IEEEauthorrefmark{3}, Igor
-    Bychkov\IEEEauthorrefmark{1}}%
+\title{Information System Models for Support of Natural Language Question-Answering Subsystems Construction}
+  \author{%
+   \IEEEauthorblockN{%
+    Alexey Hmelnov\IEEEauthorrefmark{1}\IEEEauthorrefmark{2},
+    Evgeny Fereferov\IEEEauthorrefmark{1},
+    Roman Fedorov\IEEEauthorrefmark{1}\IEEEauthorrefmark{2},
+    Evgeny Cherkashin\IEEEauthorrefmark{1}\IEEEauthorrefmark{2}\IEEEauthorrefmark{3}, \\
+    Polina Belykh\IEEEauthorrefmark{1},
+    Alexander Zamashikov\IEEEauthorrefmark{3}
+   }%
   \IEEEauthorblockA{\IEEEauthorrefmark{1}Institute of System Dynamics
     and Control Theory at SB RAS, Irkutsk, Lermontov str., 134,
     664033, Russia}%
-  \IEEEauthorblockA{\IEEEauthorrefmark{2}National Research Irkutsk
+  \IEEEauthorblockA{\IEEEauthorrefmark{2}Irkutsk State University,
+    Irkutsk, Gagarina blvd., 664003, Russia}%
+  \IEEEauthorblockA{\IEEEauthorrefmark{3}National Research Irkutsk
     State Technical University, Irkutsk, Lermontov str., 83, 664074,
     Russia}%
-  \IEEEauthorblockA{\IEEEauthorrefmark{3}Irkutsk State University,
-    Irkutsk, Gagarina blvd., 664003, Russia}%
-\texttt{\small eugeneai@icc.ru, bychkov@icc.ru}
+\texttt{\small alex@icc.ru, fereferov@icc.ru, fedorov@icc.ru, eugeneai@icc.ru}
 }
 
 % use for special paper notices
@@ -199,9 +204,13 @@
 %\setcounter{page}{252}
 
 \begin{abstract}
-The described investigation proposes an approach to overcome known problem of site developers' participation in the real development of Semantic Web content.  The site integration in a way of the Semantic Web is too hard to be used in a regular site maintenance.  This results in the necessity of development of site content management software integrated by means of semantic web as knowledge acquisition systems, where developers and users have to play a role of an information source for a system-integrated decision-making engine inducing formal knowledge on the base of data analysis.
+!!! Software development technologies evolved from concrete algorithm design and their programmatic implementation to modeling the whole information systems (IS).  The modeling approaches allows developers to describe the system in terms of domain, design and features of implementation platforms, and standard ways of the IS development like programming traditions in a concrete firm.  The theoretical basis of the development process is model transformation theories and their software implementations, which are developed in the field of Model Driven Engineering (MDE).  The transformations construct ultimately either source code modules realizing modeled structures or an operator interpretation of models of an intermediate level like virtual machine byte code, SQL queries realization, and executable UML.
 
-The logical layer is generated on the base of analysis of changes introduced by user, which are analyzed and interpreted.  The variant of the interpretation (e.g., error correction of a value or a new statement definition) is determined by means of user interview and other factors.  The theoretical basis of the technique is based on a polysystem representation of ontologies describing the domain.  The presentation is a hierarchically fibered structure of concepts and relations, which are mapped between fibers by means of interpretation relations.
+In the case if a new IS is being constructed, having an already designed and realized database, Data Driven Engineering (DDE, a kind of MDE) is widely used.  The model of new IS is constructed by importing database structure (DDL) and adding a semantic layer description reflecting the database structure to the domain terms.  In laboratory of Complex Information Systems of Institute of System Dynamics and Control Theory at Siberian Branch of Russian Academy of Sciences, a number of DDE approaches has been developed based on declarative specifications and their interpretations as well as techniques automating the description process.  The interpretation in various aspects allows developer to construct user interface of database modification, subsystem of SQL query construction in terms of domain, etc.
+
+The obtained description could be used to extend the capabilities of SQL query constructor to allow user formulating the query in a natural language, e.g. in Russian.  In order to do so a new layer of the domain and IS properties description should be devised.  The layer is based on an ontological description of the domain referencing the terms of the database description.  The layer also is to be reflected to morphological structures of the natural language used to formulate the queries.
+
+The report describes an approach of such kind of natural question-answering subsystem implementation for IS.  Examples of domain description has been presented for practical problems of municipal management.
 \end{abstract}
 
 
@@ -219,72 +228,19 @@ The logical layer is generated on the base of analysis of changes introduced by 
 
 \section{Introduction}
 % no \IEEEPARstart
-In 2001 Tim Berners-Lee proposed a blueprint \cite{TBL2001} of web development that is aimed at the implementation of network services with reasonable integration of logical layer of the information presented.  The information is to be marked up semantically and the program agents are to take advantage of the markup as the logical layer for the information consumption and processing.  The blueprint is called Semantic Web (SW).
+Software development technologies evolved from concrete algorithm design and their programmatic implementation to modeling the whole information systems (IS).  The modeling approaches allows developers to describe the system in terms of domain, design and features of implementation platforms, and standard ways of the IS development like programming traditions in a concrete firm.  The theoretical basis of the development process is model transformation theories and their software implementations, which are developed in the field of Model Driven Engineering (MDE).  The transformations construct ultimately either source code modules realizing modeled structures or an operator interpretation of models of an intermediate level like virtual machine byte code, SQL queries realization, and executable UML.
 
-One of the main problems of SW is the fact, that the regular users of web resources are not fond of the complex technological aspects of SW. They are interested in their practical problems solutions.  In order to involve users in SW content development these aspects must be completely hidden.  This results in the necessity of development of document and site content management software exploited within SW as knowledge acquisition systems, where user is to play a role of an information source for a system-integrated decision-making engine inducing formal knowledge on the base of data analysis.
+In the case if a new IS is being constructed, having an already designed and realized database, Data Driven Engineering (DDE, a kind of MDE) is widely used.  The model of new IS is constructed by importing database structure (DDL) and adding a semantic layer description reflecting the database structure to the domain terms.  In laboratory of Complex Information Systems of Institute of System Dynamics and Control Theory at Siberian Branch of Russian Academy of Sciences, a number of DDE approaches has been developed based on declarative specifications and their interpretations as well as techniques automating the description process.  The interpretation in various aspects allows developer to construct user interface of database modification, subsystem of SQL query construction in terms of domain, etc.
 
-To be more comprehensible consider a content of a legal document, which in most cases contains meaningful information on legal entities relationships that is usually passed to other documents in a derivative forms.  This suggests an idea to develop a form of the logical layer representation in a reasonably detailed form, which can be rendered as a regular text pages by means of context-depended (in sense of a legal document) text templates.  The SW approach could supplement the idea with data formats and technologies of their storage and processing.  SW represents logical layer as a network graph of notions and relations between the notions.  For example, individuals mentioned in a legal document relate to the document as ``part-whole'', unless to speak even more explicitly in a meaningful context.
+The obtained description could be used to extend the capabilities of SQL query constructor to allow user formulating the query in a natural language, e.g. in Russian.  In order to do so a new layer of the domain and IS properties description should be devised.  The layer is based on an ontological description of the domain referencing the terms of the database description.  The layer also is to be reflected to morphological structures of the natural language used to formulate the queries.
 
-At present most of the use cases of domain ontology models are
-refining search results.  Automatic procedures of ontology extraction
-from the documents are based on crawling documents in a warehouse,
-running data mining procedures on text content and metadata
-attributes of the documents.  Simple observation of human behavior
-in the process of a document preparation will result in the confidence
-that meaningful parts of the document, which are usually expressed
-with the logical layer, are located at the points of document changes.
-Hence, a programming system automating the document preparation should
-track the changes and analyze them in time to extract ontology structure,
-i.e., objects, concepts and relation between them.
+The report describes an approach of such kind of natural question-answering subsystem implementation for IS.  Examples of domain description has been presented for practical problems of municipal management.
 
-The logical layer is induced during content edition by means of data
-mining and user interview.  The context of the knowledge acquisition
-consists of a polysystem \cite{father} of ontologies describing the
-domain, the source document (its text representation and current
-logical structure), its list of modifications in transaction, user's
-action history, and answers to the interview questions clarifying
-meaning of text content changes and properties of the relations
-constructed.  As a result, new or modified triples \texttt{<subject,
-  relation, object>} are constructed.
-Collected triple data, metadata and knowledge of the logical layer can
-also be crawled on a regular basis to grasp patterns and
-functional relations between attributes (triple's objects).  In the
-last case a relational table could be induced to rise the efficiency
-of data storage and processing.
-
-The present trends of internet information system development show
-that the systems become a web-services and are oriented to support
-social networks \cite{SN}.  The data flow processing there in most
-cases is input, storage, filtering and transmitting data, i.e., the
-social networks integrate rather than aggregate data, e.g., to produce
-reports.  Hence, the usage of special design techniques for the
-middle-ware layer of the software, such as object-oriented design, is
-not a significant technological advantage.  Social network (SN) agent software are
-interconnected with standardized protocols and data structures, and
-have the same way of integration with other social networks.
-
-Let us emphasize the properties of social network software:
-\begin{IEEEitemize}[\IEEEsetlabelwidth{Z}]
-\item there are no predominant common global task to be solved by
-  agents (computer and human) of the SN;
-\item each agent solves its special task acquiring data from other
-  data sources and agents, hence, the agent's APIs’ and
-  supported data format must be standardized;
-\item human users of the social network do most of the aggregation
-  tasks personally including subconscious joint processing of
-  unstructured and semantic information;
-\item a good practice is to use cheap virtual hosting to run the
-  a SN node, therefore, the information system itself must be written
-  according to the restrictions of a server-side programming language,
-  like PHP, and utilize the computational and data storage resources
-  of client workstation and its browser environment.
-\end{IEEEitemize}
-
-In this paper, we continue the development of the approach
+\e{In this paper, we continue the development of the approach
 \cite{prevwork} of document and site content management and
 integration within a general study \cite{b2:15}, and briefly consider
 the procedure of polysystem ontology usage in the process of user
-dialog maintenance.
+dialog maintenance.}
 
 \section{Document Markup}
 
