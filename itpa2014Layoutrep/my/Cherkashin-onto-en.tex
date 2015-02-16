@@ -236,189 +236,36 @@ In the case if a new IS is being constructed, having already designed and deploy
 
 The obtained description could be used to extend the capabilities of SQL-query constructor to allow user formulating the query in a natural language, e.g. in Russian, in terms of modeled domain.  In order to do so a new layer of the domain and IS properties description should be devised.  The layer expands the description of the database entities and their relationships with abstract notions of domain and relations, resulting in fibered representation of the domain of two fibers: abstract domain and database structure.  The notions and relations are mapped through the fibers via interpretation.  \e{The layer is based on an ontological description of the domain referencing the terms of the database description.  The layer also is to be reflected to morphological structures of the natural language used to formulate the queries.}
 
-The report describes an approach of such kind of natural question-answering subsystem implementation for IS.  Examples of domain description has been presented for practical problems of municipal management.
+The report describes an approach of such kind of natural question-answering subsystem implementation for IS.  Examples of domain description has been presented for practical problems of municipal management. \e{Some word about the problem...}
 
 \e{In this paper, we continue the development of the approach
-\cite{prevwork} of document and site content management and
-integration within a general study \cite{b2:15}, and briefly consider
-the procedure of polysystem ontology usage in the process of user
-dialog maintenance.}
+\cite{fereferovDiss} within the theoretical aspect \cite{b2:15} of software unified model development, and briefly consider the approach of unification of software modeling and natural language processing.}
 
-\section{Document Markup}
+\section{A Description of a Database}
+\label{sec:description-database}
 
-Resource description framework (RDF) standard describes informational
-resources with triples \texttt{<subject, relation, object>} in a
-context.  A set of triples forms a graph (network) of data and
-relations reflecting knowledge.  It is convenient to divide graphs to
-subgraphs and construct hierarchic complexes \cite{b2:15}, resulting a
-hierarchy of contexts.  In a general case, a context affects the
-interpretation of the set of triples coupled with it.  For example, in
-a legal notary document family name and passport data are presented as
-texts in different parts of the document, but they related to the
-single person in the context defined by the document.  So the parts of
-the document form the contexts of text rendering for the passport
-data.
+Data Driven Engineering (DDE) \cite{DDE} one of the powerful direction of Computer science allowing to construct software on the base of data models (data structure description).  Being a part of Model Driven Engineering, DDE inherits its main thesis that software development is a sequence of model transformations starting from abstract models describing information system (IS) in terms of domain \e{and software development process}.
 
-The rendering engine we considered in \cite{prevwork}.  According to this approach, all the template data for document rendering is also stored in the ontology graph.  We also represent the views and algorithms implementing controllers in the sense of MVC (Model View Controller) \cite{b2:5} pattern with triples.  The content of the document from a general point of view is based on a tree graph, where almost each node is both subject and object of their corresponding relations.  The root node in a document can be only a subject, and the leaf nodes are objects only.  The document root node becomes object node as being referred from document sets and hierarchies organized in a warehouse.
+DDE starts either from description of a general view of data structures used by business-logic or from already existing database.  The second case has important value in practice, when customer requires a new implementation of an exiting IS with new features and with conserving exiting data in its warehouse.
 
-\section{The Outline of Markup Scheme}
-\label{sec:scheme}
 
-The proposed way of semantic document markup is to track and interpret the results of document editing.  Let's suppose that a document body change affects the meaning of the document, hence, alters its logical layer.  The following trivial modifications that are the elementary error correction are not considered to be a valuable information for the markup: a field value change (object of a triple), paragraph text editing that might imply its original template correction.  The changes of our interest result in a new triple relation construction between context subjects and old/new object value.  The content management system and a built-in editor play an active role in the markup process, and user is a source of supplementary information.
+\section{Interpretations of the Description}
+\label{sec:interpr-descr}
 
-The first question that user have to be asked is to determine weather
-a change is an above mentioned trivial one.  If it is not, then the
-semantic layer enrichment procedure is carried on.  The source of data
-to decision-making procedure of a triple formation/modification is an
-environment containing a) logic structure of the previous version of
-the document; b) the source version of the document content as text,
-c) a text modification expressed in diff format \cite{diff}; d) user
-answers to the question stated by the system, refining the semantics
-and structure of the modifications; e) user actions prior the
-modification done.  The list of the previous user's actions can reveal
-a general intention, e.g., if user made a copy of document and changed
-an individual name, this would imply the necessity to fill in the
-passport data, which, in turn, implies filling in a number of triples
-with new values representing the new individual (subject) of the
-document.
+Interface generation.
 
-At the next step of markup the extent of the modified value is
-determined.  It could be a word, a phrase, a sentence, the whole
-object value, or an extent of a text markup (e.g. HTML tag value).
-A resulting variant is specified by user.
+OLAP.
 
-The simplest way of the triple formation procedure is to allow the user to choose subject and relation from list of all relevant subjects mentioned in the document and their relations and construct a new triple \texttt{<subject,relation,old object>}.  The list of subjects is constructed from a tree of all the subjects of the edited document and the edited object itself.  After the first choice is made, a list of all available relation is constructed from all known relation of the chosen subject, its class and parent classes.  User must choose one relation to form the triple.  In the case, when the list contains no adequate relation, a new one could be defined.  New relation is always a subclass of an already existing on, which is also chosen from the list.  New relations defined by inexperienced users must be periodically analyzed by knowledge engineers to get rid of semantic inaccuracy, contradictions, redundancy to the equivalents, and, hence, be refactored.
+\section{Query Builder}
+\label{sec:query-builder}
 
-If a value of a triple is removed, then the triple must be removed
-too.  The situation is acceptable if the minimal structural and
-semantic completeness of all the subjects of the documents holds,
-otherwise either the user delete action is prohibited or the chain
-recursive deletion of the subjects is initiated.  To control this
-behavior each subject class have to be accompanied with a list of
-minimal valuable triples that define the basis of the subject meaning.
-Partial text removal, if it is not an error correction, is processed
-analogously to modification, with removed part being the object value.
-Addition of characters to text is an action similar to modification.
 
-Addition of a triple might result in extending the document with new
-subjects and relations.  For example, let one construct a new tripartite
-agreement from an existing bilateral one.  In the new agreement the
-third individual appears, so the addition of a new family name of the
-individual results in construction of a) subject for the individual,
-b) filling in the necessary triples, as well as c) definition of a new
-relation between document and the third individual as a subclass of
-\texttt{structuralElement:} relation.  This stage is necessary as all
-new subjects must be in a relation.
+\section{Natural Language Processing [within the problem]}
+\label{sec:natur-lang-proc}
 
-\section{Theoretical Generalization of the Acquisition Process}
+\section{Query Synthesis [NG]}
+\label{sec:query-synthesis-ng}
 
-The above described approach is a simplified step-wise implementation
-of the procedure of polysystem analysis and synthesis \cite{father}
-(PPAS).  This is a general procedure for system analysis of domains.
-The essence of the approach is that domain and any its object or
-process can be fibrated and represented in multidimensional space of
-fiber-coordinates.  The fiber consists of concepts and morphisms
-between them.  This approach is used in decomposition, analysis and
-synthesis of complex systems.  For each concepts of a fiber there
-exists another concept in all the fibers, which is identical to the
-former concept via an interpretation (e.g., substitution mapping).
-All the fibers are element-wise mapped to the abstract system fibers.
-The same is true for the morphisms.  In comparison to the widely known
-system approach, where the principle of interconnection of the
-elements is fundamental, polysystem analysis assumes the hypothesis of
-fibration, i.e., it supposes a possibility of representation of the
-object under investigation as disjoint fibers, thus, mutually unbound
-fibers (subdomains).  So, in a generalized insight a polysystem is a
-system itself, and polysystem analysis is a new form of system
-analysis.
-
-Now then, according to PPAS \cite{father} each concept of an aspect
-should be presented via interpretation morphisms in all other fibers
-as well as its relationships with adjacent concepts.  For each of the
-fibers, a complete theory of the domain can be constructed.  Each
-theory differ by their fundamental concept, but they are similar to
-all other via concept substitution via interpretation.  This allows us
-to induce new axiomatic theories of domains in the image and likeness
-of the known ones.  Each system domain (fiber) of knowledge fibrates
-multiply and sequentially, giving raise of the polysystem of
-representation of an object under investigation.  All the system
-theories are combined in the unified model describing the domain and
-the object under investigation.
-
-The application of the PPAS to the process of data and knowledge acquisition in the documents expressed as simultaneus polysystem fibering the domain in various coordinate systems (aspects) such as follows: structural organization of a document (mereological aspect), expressing domain of activity area, hierarchical inheritance of various kind of documents (domain system concept inheritance), people and organization relationship, deontic logic representation of the document meaning, etc.  Having established new class or new relation between two classes, the concept or relation should be reflected as a substituted (interpreted with) one in other ontologies (e.g., mereological).  To make the polysystem to be easily understandable to users, definitions for the concepts and relations in a natural language must be supplemented in terms of those ontologies.  The traditional requirement of affiliation of an object to a class, and inheritance between classes and relations reflects the idea of hierarchical polysystem fibering.  The relations of inheritance and affiliation are the examples of concept interpretation between the fibers.
-
-The conceptual methodological basis of PPAS allows us to a) control
-the completeness of the system of objects in a document with respect
-to their interpretation to a predefined abstract system fiber, which
-we roughly call ``template fiber''; b) verify the soundness with
-respect to the semantics of the relation defined again via
-interpretations; and in a distant future c) automatically produce
-program implementing the fiber theories via interpretation and
-combination of the existing algorithms of other fibers.
-
-\section{Maintaining a Dialog With User}
-\label{sec:maint-dial}
-
-The through interpretation feature of the polysystem layers could be
-used to maintain user interview dialog on the base of an inference by
-analogy represented as movement along relations, morphisms and
-interpretation in a polysystem of ontologies.
-
-In order to realize the dialog procedure, there should already exist
-system fibers representing ``part-whole'' relations, class hierarchies
-of the abstract concepts, correspondence of objects to classes.  The
-aspects of the domain is represented by set theories and necessary
-domain layers, e.g., the fiber defining that ``man'' and ``woman'' are
-disjoint concepts.  The user dialog is used to determine that the
-object belongs to a context (fiber), recognize its interpretations
-into concepts of other fibers, and to provide all the context to be
-complete and sound with respect to their template fibers.  The dialog
-is maintained on the base of analysis of known properties and
-restrictions (relations) of the subject: type of data representing
-the subject, its location in the context hierarchy, existing relations
-with subjects and objects, etc.
-
-Let's consider simple family relationships in fig.~\ref{OPSA}, where
-most of the obvious relations are hidden to make the figure more
-readable.  There showed a part of the domain polysystem consisting of four
-main layers, which model various aspects of Bob's family.  Layer 1
-represents the family itself, it is the only layer having objects as
-concepts; layer 2 represent main roles of individuals in a family;
-layer 3 shows genders as two opposites; and later 4 corresponds to
-a rough mereological model ``part-whole''.
-
-Let's construct a sequence of questions to determine a role of Jul in Bob's family.  It is supposed that we know only that Jul is a woman, and she has been mentioned in a document related to Bob's family.  To put Jul in layer 1, in a edited context of a document, we must ask a general question: ``Is Jul a part of Bob's family?''  The question is constructed according to a following intuitive inference.  All members of a family are ``partOf:'' the family.  This fact is shown as an arrow from relation ``hasFather:'' of Layer 2 to ``partOf:'' of Layer 4, other four arrows are hidden.  So, in order to determine the fact that Jul is a member of Bob's family, it is sufficient to ask ``Is Jul partOf: Bob's-family?''.  The identifier of the example family is devised from the tradition to name families after their master of housekeeping (MOH) person, that is denoted by arrow from individual Bob (layer 1) to concept MOH (layer 2).  Note, that layer 1 interpreted by layer 2 by means of a functor of theory of categories.
-
-If user answered positively, i.e., Jul is a part of the family, then
-we must refine her role further, as role ``partOf:'' is not allowed in
-layer 1, and, hence, layer 1 is not complete yet with respect to
-template layer 2.  Jul is a female by definition, so she cannot be
-father and son.  If she is, she must be male, but it is impossible as
-male and female are formally opposite concepts.  If multiplicity of
-relation ``hasMother:'' in the layer are defined as one, then we will
-also know, that the family already has mother.  The only possible
-choice is Jul is daughter, resulting in another general question:''Is
-Jul a daughter?''  If the answer to the question is also positive,
-finally a new triple constructed \texttt{<Bob's-family, hasDaughter:,
-  Jul>}.  Now the layer of Bob's family is complete with respect to
-the template layer 2.
-
-If, e.g., Jul's gender is unknown, then the second question is
-constructed as a special question ``What role does Jul have in Bob's
-family?'' and a list of two possible answers is shown:
-``hasDaughter:'' and ``hasSon:''.  Another variant of the question can
-be synthesized if only two alternatives exist: ``Which of the
-following two roles does Jul play in Bob's-family: hasDaughter: or
-hasSon: ?''.
-
-In fact in the original example the question about a role of
-Jul is redundant as there exist only one role for a woman being a part
-of Bob's family.  If we remove mother Alice from the family then the
-question have to be asked, even for incomplete families.  The general
-questions are asked when we could narrow a list of alternatives in
-further questions.  The queue of the questions being asked could be
-defined at run-time by analogy to decision tree construction
-procedure, e.g., by analyzing entropy gain \cite{dectrees}.
 
 \begin{figure}
 \centering\footnotesize\sf
@@ -427,81 +274,6 @@ procedure, e.g., by analyzing entropy gain \cite{dectrees}.
 \caption{A Usage Example of an Ontology Polysystem}
 \label{OPSA}
 \end{figure}
-
-% (HERE: a generalizing resume paragraph needed.)
-
-% (About polysystem of ontologies).
-
-% (procedure of fibration)
-
-% (procedure of completeness reconstruction): (About mapping via functors).
-
-% (Induction of notions, suppositions of fibrations).
-
-% (wikipedia and Google search systems).
-
-% (!! Systems of complexes. !!)
-
-\section{A Notary Office Usage of the Technique}
-
-One of the applications of the technology under development is
-document preparation automation of a notary office.  Notary office in
-Russia generate vast amount of printed documents.  The documents
-contain both formalized and unformalized data in a balance reasonable
-for our study.  For example, formalized data are the passport data of
-individuals, registration data of vehicles.  This kind of data are
-normally stored in rational databases, passed from one document to
-other documents mostly structured and unchanged, raising a bundles of
-related documents and patterns of document flows.  The final document
-content structure significantly depends on entry fields’ data filled
-in, e.g., form of notary signature field depends on legal capacities of the
-individuals mentioned in the main document body.
-% At present templates of the documents are prepared by a programming
-% engineer collaborating with a experienced secretary and verified by
-% supervising notary.
-Unformalized data are various enumerations of legal empowerments of
-the individuals, article codes, and explanatory text.
-
-At present most of notary legal documents are generated from
-templates.  In experimental office, the document templates are
-prepared by engineer in collaboration with a secretary having
-necessary experience of use of the existing software.  Templates are
-HTML forms dispersed in the text of document.  Logical structure of a
-document is defined by field names, and the procedures of information
-processing are implemented as simple form processing routines.  The
-output document is rendered by means of value substitution instead of
-fields.  The field names are defined by identifiers according to a
-special rules so that fields implicitly combine into a subject.
-This simple formalization allows one to carry on basic transformation
-operations on roles of the individuals by means of renaming or
-exchanging values of the field sets.  Application of semantic
-approach to the logical layer representation of the notary document
-content is aimed at involvement of the secretaries (office stuff with
-low engineering skills) into development of the templates and
-constructing hierarchical arrangements of documents.
-
-In new approach, logical layer of a notary document consists of
-hierarchy of subjects.  The subjects relate to each other on various
-abstraction levels, e.g., in a letter of attorney there are at least
-two individuals, the first one is principal, and the second one is
-trusted (proxy).  For each individual passport, data and place of
-residence are defined.  The letter can contain other person data,
-e.g., for partially capable children.  As we just noted, all the
-individuals are in explicit relation to the document.  The triples
-\texttt{<letatt998 containsPrincipal: indiv\_78>} (commas are omitted)
-and \texttt{<letatt998 containsProxy: indiv\_79>} could define a
-principal and proxy of the document.  The mentioned relations are
-specifications of abstract \texttt{hasIndividual:} and
-\texttt{structuralElement:} relations.  This polysystem approach
-allows us visually represent hierarchical structures of the document,
-having interpreted the relations as structural elements, and in the
-same time to associate individuals with other roles in new documents,
-swap roles during editing.  The role swap function is implemented as
-user interface widget generated as a result of recognition of certain
-subject-to-subject relations indistinguishable in a fiber, or specific
-patterns of relations in the document body.  A general graph structure
-of the abstract level of a notary office automation ontology is drawn
-in fig.~\ref{notaryontology}.
 
 \begin{figure}[!t]
 \centering
@@ -513,129 +285,6 @@ in fig.~\ref{notaryontology}.
 \label{notaryontology}
 \end{figure}
 
-\section{The Software}
-\label{sec:arch}
-
-The software developed within the project will include two major
-versions.  The first one will be a client and server combination,
-where client will drive the data mining and visualization procedures,
-and server will control storage and access rights to a graph of the
-domain.  The second version of the software is a desktop application
-that is a fusion of the client and server functionality.  The
-application is intended for corporate and personal off-line usage.
-The following are the requirements of the software to be fulfilled in
-our investigation:
-\begin{enumerate}
-\item the software should be developed as an open-source project, and
-  we hope to involve in our project a free community of engineers and
-  users;
-\item server software must be not too consumptive of computational and
-  memory resources of a shared hosting service; \label{e12:p2}
-\item in accordance to \ref{e12:p2}, a support of various database
-  back-ends are to be implemented to store triple data.
-\end{enumerate}
-
-We orient our efforts of implementation to a popular hosting
-environments that include PHP as programming language and operational
-environment, MySQL- and PostgreSQL- servers as a storage, functioning
-under Linux operation system.  As a primary client, Firefox web
-browser has been chosen, and its JavaScript implementation is being
-considered as a client programming language.
-
-Architecture of the first variant of the software is presented in
-fig.~\ref{fig:progsys}.  Server side deals with data storage and
-security.  ``Multiformat Storage'' module supports various techniques
-of data representation, it could be a SQL-server.  The purpose of
-``Data Representation Broker'' module is to convert triples in a
-format that is better support special tasks, such as aggregations, and
-pass the conversion result to the storage.  In the backward direction,
-the broker restores triples from the storage as RDF entities.  In
-order to render a template the data model instance should be loaded
-through module ``Loader of Triples''.  The instance is represented as
-a set of triples.  The security is supplied by “Data Security” module.
-
-At client side the triples are rendered as HTML texts and combined
-into a document by ``Document Renderer'' module.  The result is either
-interpreted further by ``RDFa interpreter'' or processed in ``Data
-Processing Unit''.  New concepts and relations are sent back to server
-as RDF- and RDFa-content.
-
-\noindent\begin{figure}[!t]
-\centering
-\includegraphics[width=\linewidth]{peixe-architecture-en-2.pdf}
-\caption{Program System Architecture}
-\label{fig:progsys}
-\end{figure}
-
-\subsection{Implementation details}
-\label{sec:implsoft}
-
-Representation of domain graph and PHP's access to graph components is
-implemented on the base of EasyRdf library.  The library supports
-loading RDF-files and represent them as PHP's objects.  The objects
-can be accessed in a usual object-oriented way and by means of the
-special standard query language SPARQL.
-
-Storing RDF-triples in MySQL is to be implemented with ARC2 library,
-which also supports SPARQL-queries.  ARC2 is a development platform
-with SW functionality, allowing one to extend the standard set of
-routines by means of plug-in modules as well as to create trigger
-functions fired as soon as SAPRQL query finished.
-
-Text composition library Zope Page Template (ZPT) \cite{zopetal} is used as a generic
-text rendering engine out of the logical layer.  ZPT is cross-platform
-and allows representing templates and rendering the triples inside.
-The templates also stored in RDF.  ZPT technology and its descendants,
-like Chameleon \cite{cham}, allow programmers and designers to share their common
-work on a dynamic HTML page because of ZPT is based on a declarative
-approach to template definition.
-
-ZPT engine includes interpreters of several query expression languages
-to a logical structures of model and template: TAL (Template Attribute
-Language) and METAL (Meta TAL).  There are also tools for
-internationalization (I18N) support.  Developers of ZPT successfully
-solved the following standard web problems:
-\begin{IEEEitemize}
-\item separation application logic and user interface;
-\item utilization of existing HTML-page design software and editors
-  (e.g., Dreanweaer) for manipulation of template content with
-  conserving TAL and METAL expression;
-\item trivial cycle programming structures are replaced with a
-  declarative constructions;
-\item thanks to METAL templates are manipulated in a powerful manner
-  --- cutting and pasting subtrees of a HTML page --- using model data.
-\end{IEEEitemize}
-
-To date there are many implementations of TAL and METAL for various
-programming systems, including PHP (PHPTAL).  The same templates can
-be used in all of them if programmer uses only the basis syntax and
-semantics of TAL.  For client-side language JavaScript, ZPT has been
-implemented by Distal library, which can also dynamically load model
-data into rendered template, resulting consumption more CPU resources
-of client workstation and less of server.
-
-The storage module of desktop application should not be too
-resources consuming, that's why we propose usage of in-process
-database libraries which are also do not require special configuration
-and engineer's periodical maintenance.  One of the outstanding
-in-process database engine is Kyoto Cabinet library \cite{kiyoto},
-which is high-performance implementation of BerkeleyDB standard.
-The library maps blocks of bytes, i.e., a key to a value, and the
-mapping is realized by means of B+-trees and hash tables.  Kyoto
-Cabinet supports protection against data loss even due to partial
-physical damage of hard disks.  The protection is achieved by special
-file format and data replication among a cluster of workstations.
-
-Thus, the nowadays open-source software of internet application development and relatively cheap server computational resources completely cover all the requirements of the software under development.
-
-\section{Similar Projects}
-\label{sec:similar-projects}
-
-Among existing projects of ontology based document management the project “Semantic MediaWiki” can be emphasized. A basic Wiki text editing is extended with semantic annotations represented in a special markup format. The annotations are used by search engine of the Wiki pages \cite{mediawiki}.
-
-In comparison to Semantic MediaWiki the project OntoWiki \cite{heino} obtained the similar results from an opposite starting point. OntoWiki is based on the predominantly usage of logical representation of the information as semantic network. The logical structure is edited with entry forms generated on the base of predefined vocabularies (term sets). User is allowed to change just one text property lod:content, which can contain HTML markup. The HTML markup does not relate to the logical structure of the subject to be visualized as web-document. The text is modified with WYSIWYG editor integrated into OntoWiki. The project is aimed at social networks developed under control of Linked Data technology.
-
-Our project can be positioned as a further development if the OntoWiki engine to support a natural representation of the document content, visual editing of the content, conserving the logical layer; implementation of the data and knowledge acquisition on the base of modification analysis. The templates for OntoWiki subjects rendering are stored beyond the ontology and separately from the main content of the document. In our case the templates are auxiliary elements of ontology, it can be logically inferred from inheritance. Most of the interrelations between text content and its logical structure are expressed in RDFa.
 
 % A further development of the project is aimed at implementation of cognitive data mining (data analysis) in similar documents to reveal patterns between attributes that appear in the documents. The results of the analysis may be a basis of automation of document data storage technique decision. For example, if a set of attributes shows a strong correlation to an attribute than it can be interpreted as a relation of a relational database. The set forms a determinant (the key set of a table) and the set of strongly correlated attributes forms rest of the table as described in the Method of Functional Dependency. The method used by database engineers in the process of a database design, the dependencies revealed from the analysis of the attributes’ semantics. That is, the method could be used conversely, the dependencies can be revealed on the base of data mining.
 % The abstract layer of information modeling of the knowledge acquisition is a category of system complexes (configurations) \cite{b2:15}, which is perfectly embody common metamodel of the ontologies as well as supply additional structural and functional properties. Developing the theory further one can connect the ontology devised during the document preparation process to the stage of UML-modelling of information system, which automates the processes of the domain.
@@ -722,11 +371,6 @@ Our project can be positioned as a further development if the OntoWiki engine to
 
 \section{Conclusion}
 
-The research is aimed at support of Semantic Web with algorithms and software automating text document markup and its logical model induction.  The approach is based on polysystem representation of the domain and document content (e.g., web site) as an evolving ontology.  The usage of polysystem of ontologies and the procedure of polysystem decomposition \cite{father} allows us to solve a number problems in the activity related to knowledge acquisition in the domain.  New knowledge are represented as fibers of categories with property of through cross-fiber interpretation.  In the future, the possibility will arise for automatic construction of algorithms and programs implementing a fiber theory in the image and likeness of an already constructed ones.  At present the polysystem of ontologies allows us to rate and categorize facts on the domain by analogy with the already known structures, as well as obtain new interpretations of new recognized concepts.
-
-The main part of the paper is devoted to a general description of a technique of maintenance of an interactive process of logic model induction of document content on the base of data mining of changes of various versions of the document.  A problem solution outline for user dialog conduction aimed at modification and extension of the logical model with new objects and relations has been considered.  The dialog is maintained by analyzing the completeness of the constructed model and logical inference in the polysystem representation of the domain ontology. A pilot software architecture has been presented as well as brief overview of used modules and libraries, their properties and features have been assessed.
-
-As a testing ground for the technologies under development we decided to automate a notarial office, where the legal document representations has both well formalized and unformalized text fragments.  On the base of the technology a social network of document data exchange can be devised. The security of the document transfer can be provided as off-line data streams: each physical document is accompanied with its bar or QR-code encoding the corresponding RDF-data of the document.
 
 % conference papers do not normally have an appendix
 
