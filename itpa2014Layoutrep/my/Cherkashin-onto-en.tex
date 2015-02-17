@@ -171,7 +171,7 @@
     urlcolor=black           % color of external links
 }
 
-\newenvironment{asdcode}{\hangindent=\parindent\hangafter=1\par\noindent\tt}{}
+\newenvironment{asdcode}{\hangindent=\parindent\hangafter=1\par\noindent\small\tt}{}
 
 
 \begin{document}
@@ -279,7 +279,17 @@ On the forth stage the IS is generated as a result of the description interpreta
 <Start keyword> <List of mandatory statements> [~list of optional statements~]
 \end{asdcode}
 
-The \texttt{start keyword} can be one of the following: \texttt{ADO}, \texttt{BDE}, \texttt{CFG}, \texttt{Table}, \texttt{View}, \texttt{Plugins}, \texttt{Uses}, \texttt{Include}, \texttt{Menu}.  First two are used to describe properties of database connection.  Keyword \texttt{CFG} used to describe general application settings of IS.
+The \texttt{start keyword} can be one of the following: \texttt{ADO}, \texttt{BDE}, \texttt{CFG}, \texttt{Table}, \texttt{View}, \texttt{Plugins}, \texttt{Uses}, \texttt{Include}, \texttt{Menu}.  First two are used to describe properties of database connection.  Keyword \texttt{CFG} used to describe general application settings of IS.  Keywords \texttt{Table}, \texttt{View} describe the database schema and view widgets.  Keyword \texttt{Plugins} describes interaction with outer systems, \texttt{Uses} and \texttt{Include} allow developer to break an IS description into source modules.  Keyword \texttt{Menu} controls the main menu of IS application.
+
+Let's consider a part of an example description.
+
+\begin{asdcode}%
+\textbf{TABLE} ADR \textbf{FOR} SP\_ADDR \textbf{AS} 'Address' \textbf{READONLY}
+\end{asdcode}
+
+
+
+
 
 
 
