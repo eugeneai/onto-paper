@@ -171,6 +171,8 @@
     urlcolor=black           % color of external links
 }
 
+\newenvironment{asdcode}{\hangindent=\parindent\hangafter=1\par\noindent\tt}{}
+
 
 \begin{document}
 \title{Information System Models for Support of Natural Language Question-Answering Subsystems Construction}
@@ -249,31 +251,42 @@ DDE starts either from description of a general view of data structures used by 
 
 The structural description allows developers via transformation to implement routine functionality of IS such as data input forms; user interface and business-logic interaction; import, export and integration operations; etc.  Adding a domain description allows ones to refine user interface with notions familiar to user, as well as construct various query-answering subsystems like SQL-query builders and OLAP operating in terms of domain.
 
-In Institute of System Dynamics and Control Theory at SB RAS a number of DDE technologies has been developed within economic contracts activities supported by some theoretical investigations.  One of the last description format is based on mix of the \texttt{.ini}-file and SQL-query languages.  The first format is used to describe database structure and semantic of attributes and their relations, the second part is used to describe the rules of user interface generation, and interaction with geographical information systems and other applications.
+In Institute of System Dynamics and Control Theory at SB RAS a number of DDE technologies has been developed within economic contracts activities supported by necessary theoretical investigations.  One of the last description format is based on mix of the \texttt{.ini}-file and SQL-query languages.  The first format is used to describe database structure and semantic of attributes and their relations, the second part is used to describe the rules of user interface generation, and interaction with geographical information systems and other applications.
 
 \subsection{Developing IS with Specifications}
 \label{sec:descr-synth-stag}
 
 In a general case on the first stage of IS development, system engineer carries on structural analysts of the domain, resulting in description of concepts and their basic relations, business-processes and software requirements.  After that, the database design follows, which produces database schema ad its implementation as database server.  Common design tools (such as Sybase Power Designer, IBM Rational Rose) are used on this stage.
 
-On the third stage model of IS is constructed by loading the implemented database schema and extending it with the description of the following special database objects: \texttt{tables}, \texttt{views}, \texttt{rules}, and so called \texttt{superstructures}.  Objects \texttt{tables} describe IS database structure and relations, attribute data types and names.  These object are automatically constructed by loading and analyzing IS database schema, if it is literally devised (it must be at least in third normal form).  The lack of schemata data is compensated manually with \e{the description language} and the following interpretation.
+On the third stage model of IS is constructed by loading the implemented database schema and extending it with the description of the following special database object classes: \texttt{table}, \texttt{view}, \texttt{rule}, and so called \texttt{superstructure}.  The \texttt{table} objects describe IS database structure and relations, attribute data types and names.  These object are automatically constructed by loading and analyzing IS database schema, if it is literally devised (it must be at least in third normal form).  The lack of schemata data is compensated manually with \e{the description language} and the following interpretation.
 
 The \texttt{view} objects are more complicated than \texttt{tables} and used to generate user interface.  Here we define properties of the relation, for example, for each foreign key a loookup widget can be used to select a  record from a foreign table (a reference book).  For complex reference book and transitive references, the identification attribute set bust be specified to increase generated user interface usability.  There are other special cases of foreign key interpretations, like ``master-details'', and all of them can be specified with \e{the description language}.
 
 The \texttt{superstructure} objects support interaction of developed IS with foreign modules and libraries processing information with methods beyond the standard of rational databases and SQL, e.g., computer simulation and complex data visualizations.
 
+%\hangindent=\parindent%\hangafter=1
 The \texttt{rules} objects are responsible for specific to business-processes functions implementation in generated IS.  By means of the rules, one can describe input field logic (enabling and disabling them), implement uniqueness check routines and \e{PD} interaction, i.e., rules provide declarative means of describing and implementing relationships between in business-logic layer of IS.  The rules also affect the generated queries to IS database during editing and creating special widgets in user interface, which connect input data with spatial tables and render cartographic.
 
-On the forth stage the IS is generated as a result of the description interpretation.  It integrates according to the rules the foreign software subsystems.
+\e{For all the object classes a formal set model is devised.  We will not describe it in this paper, ...}
 
+On the forth stage the IS is generated as a result of the description interpretation.  It integrates according to the rules the foreign software subsystems. \e[blue]{Should we describe the rules of interface generation in details ?}
 
+\subsection{The Description Language}
 
+... The language has LL(1) grammar class.  Its syntactic structures describe elements of IS and a general options like database connection properties.  The specifications written in the language are \emph{precise}, \emph{understandable} and \emph{complete} according to [1,2].  The language clauses have the following general structure:
 
+\begin{asdcode}%
+<Start keyword> <List of mandatory statements> [~list of optional statements~]
+\end{asdcode}
+
+The \texttt{start keyword} can be one of the following: \texttt{ADO}, \texttt{BDE}, \texttt{CFG}, \texttt{Table}, \texttt{View}, \texttt{Plugins}, \texttt{Uses}, \texttt{Include}, \texttt{Menu}.  First two are used to describe properties of database connection.  Keyword \texttt{CFG} used to describe general application settings of IS.
 
 
 
 \section{Interpretations of the Description}
 \label{sec:interpr-descr}
+
+\e[gray]{Describe a general approach to interpretation process.}
 
 \subsection{User-Interace Form Generation}
 \label{sec:user-interace-form}
