@@ -204,13 +204,12 @@
 %\setcounter{page}{252}
 
 \begin{abstract}
-!!! Software development technologies evolved from concrete algorithm design and their programmatic implementation to modeling the whole information systems (IS).  The modeling approaches allows developers to describe the system in terms of domain, design and features of implementation platforms, and standard ways of the IS development like programming traditions in a concrete firm.  The theoretical basis of the development process is model transformation theories and their software implementations, which are developed in the field of Model Driven Engineering (MDE).  The transformations construct ultimately either source code modules realizing modeled structures or an operator interpretation of models of an intermediate level like virtual machine byte code, SQL queries realization, and executable UML.
+Software development technologies evolved from concrete algorithm design and their programmatic implementation to modeling the whole information systems (IS).  The modeling approaches allows developers to describe the system in terms of domain, design and features of implementation platforms, and standard ways of the IS development like programming traditions in a concrete firm.  In the case if a new IS is being constructed, having an already designed and realized database, Data Driven Engineering (DDE) is used.  The model of new IS is constructed by importing database structure and adding a semantic layer description reflecting the database structure to the domain terms.
 
-In the case if a new IS is being constructed, having an already designed and realized database, Data Driven Engineering (DDE, a kind of MDE) is widely used.  The model of new IS is constructed by importing database structure (DDL) and adding a semantic layer description reflecting the database structure to the domain terms.  In laboratory of Complex Information Systems of Institute of System Dynamics and Control Theory at Siberian Branch of Russian Academy of Sciences, a number of DDE approaches has been developed based on declarative specifications and their interpretations as well as techniques automating the description process.  The interpretation in various aspects allows developer to construct user interface of database modification, subsystem of SQL query construction in terms of domain, etc.
+We describe a DDE approach based on declarative specifications of existing database schema and properties of the target application, as well as interpretation of the description into IS components.  The interpretation in various aspects allows developer to construct user interface of database modification, subsystem of SQL query construction in terms of domain, etc.
+\e{The report describes an approach of such kind of natural question-answering subsystem implementation for IS.  Examples of domain description has been presented for practical problems of municipal management.}
 
-The obtained description could be used to extend the capabilities of SQL query constructor to allow user formulating the query in a natural language, e.g. in Russian.  In order to do so a new layer of the domain and IS properties description should be devised.  The layer is based on an ontological description of the domain referencing the terms of the database description.  The layer also is to be reflected to morphological structures of the natural language used to formulate the queries.
-
-The report describes an approach of such kind of natural question-answering subsystem implementation for IS.  Examples of domain description has been presented for practical problems of municipal management.
+%The obtained description could be used to extend the capabilities of SQL query constructor to allow user formulating the query in a natural language, e.g. in Russian.  In order to do so a new layer of the domain and IS properties description should be devised.  The layer is based on an ontological description of the domain referencing the terms of the database description.  The layer also is to be reflected to morphological structures of the natural language used to formulate the queries.
 \end{abstract}
 
 
@@ -241,7 +240,7 @@ The report describes an approach of such kind of natural question-answering subs
 \e{In this paper, we continue the development of the approach
 \cite{fereferovDiss} within the theoretical aspect \cite{b2:15} of software unified model development, and briefly consider the approach of unification of software modeling and natural language processing.}
 
-\section{A Description of a Database}
+\section{A Description of a Database/ The Description Language}
 \label{sec:description-database}
 
 Data Driven Engineering (DDE) \cite{DDE} one of the powerful direction of Computer science allowing to construct software on the base of data models (data structure description).  Being a part of Model Driven Engineering, DDE inherits its main thesis that software development is a sequence of model transformations starting from abstract models describing information system (IS) in terms of domain \e{and software development process}.
@@ -252,10 +251,20 @@ The structural description allows developers via transformation to implement rou
 
 In Institute of System Dynamics and Control Theory at SB RAS a number of DDE technologies has been developed within economic contracts activities supported by some theoretical investigations.  One of the last description format is based on mix of the \texttt{.ini}-file and SQL-query languages.  The first format is used to describe database structure and semantic of attributes and their relations, the second part is used to describe the rules of user interface generation, and interaction with geographical information systems and other applications.
 
-\subsection{Description Synthesis Stages}
+\subsection{Developing IS with Specifications}
 \label{sec:descr-synth-stag}
 
-In a general case on the first stage of IS development, system engineer carries on structural analysts of the domain, resulting in description of concepts and their basic relations, business-processes and software requirements.  After that, the database design follows, which produces database schema ad its implementation as database server.  Common design tools (such as Sybase Power Designer, IBM Rational Rose) are used on this stage.  On the third stage model of IS is constructed by loading the implemented database schema and extending it with the description of the following objects: \texttt{tables}, \texttt{views}, \texttt{rules}, and so called \texttt{superstructures}.  Tables...
+In a general case on the first stage of IS development, system engineer carries on structural analysts of the domain, resulting in description of concepts and their basic relations, business-processes and software requirements.  After that, the database design follows, which produces database schema ad its implementation as database server.  Common design tools (such as Sybase Power Designer, IBM Rational Rose) are used on this stage.
+
+On the third stage model of IS is constructed by loading the implemented database schema and extending it with the description of the following special database objects: \texttt{tables}, \texttt{views}, \texttt{rules}, and so called \texttt{superstructures}.  Objects \texttt{tables} describe IS database structure and relations, attribute data types and names.  These object are automatically constructed by loading and analyzing IS database schema, if it is literally devised (it must be at least in third normal form).  The lack of schemata data is compensated manually with \e{the description language} and the following interpretation.
+
+The \texttt{view} objects are more complicated than \texttt{tables} and used to generate user interface.  Here we define properties of the relation, for example, for each foreign key a loookup widget can be used to select a  record from a foreign table (a reference book).  For complex reference book and transitive references, the identification attribute set bust be specified to increase generated user interface usability.  There are other special cases of foreign key interpretations, like ``master-details'', and all of them can be specified with \e{the description language}.
+
+The \texttt{superstructure} objects support interaction of developed IS with foreign modules and libraries processing information with methods beyond the standard of rational databases and SQL, e.g., computer simulation and complex data visualizations.
+
+The \texttt{rules} objects are responsible for specific to business-processes functions implementation in generated IS.  By means of the rules, one can describe input field logic (enabling and disabling them), implement uniqueness check routines and \e{PD} interaction, i.e., rules provide declarative means of describing and implementing relationships between in business-logic layer of IS.  The rules also affect the generated queries to IS database during editing and creating special widgets in user interface, which connect input data with spatial tables and render cartographic.
+
+On the forth stage the IS is generated as a result of the description interpretation.  It integrates according to the rules the foreign software subsystems.
 
 
 
