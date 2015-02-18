@@ -319,6 +319,12 @@ selected the indicators in various projection combinations.
 
 OLAPu's design is classic client-server architecture, where server is a rational data storage, and client provide a flexible access to the indicator data by means of intuitive user interface.  The interface is configured specially to support the munidimentional OLAP.  The user by means of widgets of the interface selects and ajusts projection and indicator aggregation configuration, the results of the configuration are presented ast interactive tables and can be stored in Microdoft Excel spreadsheet pages.
 
+To convert IS data {table}, {view} and {superstructure} objects are used.  The data converts into a tree of indicators.  Each node of tree correspond data selected in a projection.  Each projection characterizes with a set of attributes.  The sets are reffered as dimentions.  They could describe regions, industries, types of ownership, etc.  A special case of the dimentions is time intervals, such as year, half a year, quartal, month.  Most of the indicators are tied with time intervals.
+
+The indicator data usually have more complex structure than just a linearly ordered set.  The set usually is a tree structure, where one inidcator aggregates data of a set of subordinal indicators, e.g., state indicator aggregates state regional data.  The same is true for industries.  The indicators are stored in a ...
+
+
+Значения показателей хранятся в таблицах значений показателей. В такой таблице должны содержаться поля с кодами значений всех измерений, от которых зависит показатель, а также числовое поле со значением показателя. Значения показателей, собираемых в одном разрезе, удобно хранить в одной таблице, а для разрезов с разными количествами влияющих измерений необходимо использовать разные таблицы значений показателей.
 
 
 \section{GIS Integration}
