@@ -314,17 +314,28 @@ In comparison to Microsoft Access the developed layout engine, which also genera
 \subsection{On-Line Analitical Processing}
 \label{sec:olap}
 
-The IS description used to implement import routines for On-Line Analitical Processing unit (OLAPu).  The unit allows user to store, select and analyze numberic indicators.  The indicators are considered as funtions of a set of attributes.  OLAPu can 
-selected the indicators in various projection combinations.  
+The IS description used to implement import routines for On-Line Analitical Processing unit (OLAPu).  The unit allows user to store, select and analyze numberic indicators.  The indicators are considered as funtions of a set of attributes.  OLAPu can
+selected the indicators in various projection combinations.
 
 OLAPu's design is classic client-server architecture, where server is a rational data storage, and client provide a flexible access to the indicator data by means of intuitive user interface.  The interface is configured specially to support the munidimentional OLAP.  The user by means of widgets of the interface selects and ajusts projection and indicator aggregation configuration, the results of the configuration are presented ast interactive tables and can be stored in Microdoft Excel spreadsheet pages.
 
 To convert IS data {table}, {view} and {superstructure} objects are used.  The data converts into a tree of indicators.  Each node of tree correspond data selected in a projection.  Each projection characterizes with a set of attributes.  The sets are reffered as dimentions.  They could describe regions, industries, types of ownership, etc.  A special case of the dimentions is time intervals, such as year, half a year, quartal, month.  Most of the indicators are tied with time intervals.
 
-The indicator data usually have more complex structure than just a linearly ordered set.  The set usually is a tree structure, where one inidcator aggregates data of a set of subordinal indicators, e.g., state indicator aggregates state regional data.  The same is true for industries.  The indicators are stored in a ...
+The indicator data usually have more complex structure than just a linearly ordered set.  The set usually is a tree structure, where one inidcator aggregates data of a set of subordinal indicators, e.g., state indicator aggregates state regional data.  The same is true for industries.  The indicators are stored in indicator value tables.  The table includes all the index dimension attribute references to the tables of the IS database and the index value itself.
 
+\begin{figure}[bt]
+  \centering
+  \includegraphics[width=\linewidth]{MDA-olap.png}
+  \caption{Main window of OLAP unit}
+  \label{fig:olapu}
+\end{figure}
 
-Значения показателей хранятся в таблицах значений показателей. В такой таблице должны содержаться поля с кодами значений всех измерений, от которых зависит показатель, а также числовое поле со значением показателя. Значения показателей, собираемых в одном разрезе, удобно хранить в одной таблице, а для разрезов с разными количествами влияющих измерений необходимо использовать разные таблицы значений показателей.
+The main windows of OLAP unit is shown in fig.~\ref{fig:olapu}.  The window has been divided on two parts.  The upper part consist of three panels with dimension lists, and the lower part is the resulting table.  User must select an indicator from the left list of dimensions as well as the dimensions associated with columns and rows of the resulting table.  The headers of rows and columns may contain combinations of dimensions.  In this case for all the combination a row (column) is inserted into the resulting table widget.  The combinations of dimensions and attribute value filters are adjusted by mouse click on the tables.
+
+The time intervals are selected with special pop up dialog widget on mouse click.  User can drag dimensions between lists and reorder them, this results in regeneration of the resulting table.  When editing is allowed, user can change values of indicators directly in the resulting table cells.  The changes are immediately stored into the original database of IS.  The table widget allows export data and table structure into system clipboard in a table format recognizable by Microsoft Excel, the same is implemented in the opposite direction.
+
+\e[blue]{Import data. Needed?}
+
 
 
 \section{GIS Integration}
