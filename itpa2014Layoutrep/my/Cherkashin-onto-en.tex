@@ -150,7 +150,7 @@ showstringspaces=false,
 identifierstyle=,
 escapeinside={||},
 mathescape=true,
-morekeywords={TABLE,FOR,AS,READONLY,FIELDS},
+morekeywords={TABLE,FOR,AS,READONLY,FIELDS,MAPFD,MAPLNKTBL,MAPKIND,VIEW},
 morestring=[b]',
 stringstyle=\ttfamily,
 }
@@ -305,7 +305,7 @@ This statement describes table \texttt{SP\_ADR} of IS, the table is renamed as \
 \begin{lstlisting}
 FIELDS (ID_BUIL_G P AS 'Building Code',
         ID_NREG ^SP_NREG AS 'Region Code',
- ID_SR_GM ^SP_SR_GM AS 'Microdistrict Code',
+ ID_MK_GM ^SP_MK_GM AS 'Microdistrict Code',
         ID_STREET ^vSP_STR AS 'Street Code',
         BUIL=S AS 'Building',
         ANN=S AS 'Annotation);
@@ -314,8 +314,6 @@ FIELDS (ID_BUIL_G P AS 'Building Code',
 Identifiers \texttt{ID\_*}, \texttt{BUIL} and \texttt{Ann} are table fields.  Sign \texttt{\^} creates a reference to a table or a view, in particular, \texttt{\^{}SP\_NREG} is a table referenced by field \texttt{ID\_NREG}, and \texttt{\^{}vSP\_STR} is a reference to a view.  Expression \texttt{ANN=S} denotes \texttt{ANN} to be a string field.  In the first line \texttt{ID\_BUIL P} denotes that the field is a key field.
 
 \e{[[Is this necessary? p46]]In addition to the references, there are \texttt{REFS(\ldots)} construction that allows one to define references of various types including ``master-details'' (\texttt{DR}).}
-
-The following description is necessary part example of the whole model as it describes the root table \e[blue]{and its view}.
 
 
 
@@ -392,6 +390,29 @@ The time intervals are selected with special pop up dialog widget on mouse click
 
 \section{Query Synthesis [NG]}
 \label{sec:query-synthesis-ng}
+
+\section{Usage Example: GIS}
+\label{sec:usage-gis}
+
+...
+
+The following description is necessary part example of the whole model as it describes the root table \e[blue]{and its view}.
+
+\begin{lstlisting}
+VIEW vSP_ADR FOR ADR AS 'All Addresses'
+|\texttt{NAMES}|='U;BUIL'
+|\texttt{ADDRS}| ='U;BUIL' MAPFD=ID_BUIL_G MAPLNKTBL=MAP_LNK MAPKIND=1
+FIELDS (ID_BUIL_G= AS 'Building Code',
+        [GB='Address',
+         R=ID_NREG.REGION AS 'Region',
+         M=ID_MK_GM.MK_GM AS 'Microdistrict'.
+         T=ID_STREET.STREET_TYPE AS 'Type',
+         U=ID_STREET.STREET AS 'Street',
+         BUIL= AS 'Builfing']
+        [DGB='Buildongs at Address'],
+         ANN= AS 'Annotation');
+\end{lstlisting}
+
 
 
 \begin{figure}
