@@ -141,6 +141,19 @@
 
 \usepackage{xcolor}
 \usepackage{flushend}
+%\usepackage{fancyvrb}
+\usepackage{listings}
+\lstset{%
+basicstyle=\small\ttfamily,
+keywords=\bfseries,
+showstringspaces=false,
+identifierstyle=,
+escapeinside={||},
+mathescape=true,
+morekeywords={TABLE,FOR,AS,READONLY,FIELDS},
+morestring=[b]',
+stringstyle=\ttfamily,
+}
 
 \colorlet{pcolor}{blue}
 \colorlet{fcolor}{red}
@@ -283,9 +296,30 @@ The \texttt{start keyword} can be one of the following: \texttt{ADO}, \texttt{BD
 
 Let's consider a part of an example description.
 
-\begin{asdcode}%
-\textbf{TABLE} ADR \textbf{FOR} SP\_ADDR \textbf{AS} 'Address' \textbf{READONLY}
-\end{asdcode}
+\begin{lstlisting}
+TABLE ADR FOR SP_ADDR AS 'Address' READONLY
+\end{lstlisting}
+
+This statement describes table \texttt{SP\_ADR} of IS, the table is renamed as \texttt{ADR} for usage in the rest of the description. The table will have alias \texttt{'Address'} in user interface forms.  The following language construction describes table fields.
+
+\begin{lstlisting}
+FIELDS (ID_BUIL_G P AS 'Building Code',
+        ID_NREG ^SP_NREG AS 'Region Code',
+ ID_SR_GM ^SP_SR_GM AS 'Microdistrict Code',
+        ID_STREET ^vSP_STR AS 'Street Code',
+        BUIL=S AS 'Building',
+        ANN=S AS 'Annotation);
+\end{lstlisting}
+
+Identifiers \texttt{ID\_*}, \texttt{BUIL} and \texttt{Ann} are table fields.  Sign \texttt{\^} creates a reference to a table or a view, in particular, \texttt{\^{}SP\_NREG} is a table referenced by field \texttt{ID\_NREG}, and \texttt{\^{}vSP\_STR} is a reference to a view.  Expression \texttt{ANN=S} denotes \texttt{ANN} to be a string field.  In the first line \texttt{ID\_BUIL P} denotes that the field is a key field.
+
+\e{[[Is this necessary? p46]]In addition to the references, there are \texttt{REFS(\ldots)} construction that allows one to define references of various types including ``master-details'' (\texttt{DR}).}
+
+The following description is necessary part example of the whole model as it describes the root table \e[blue]{and its view}.
+
+
+
+
 
 
 
@@ -310,6 +344,14 @@ To account the properties, an rule based engine has been developed on the base o
 
 
 In comparison to Microsoft Access the developed layout engine, which also generated user interface on the base of database structure description, the engine ....
+
+\subsection{Query Builder}
+\label{sec:query-builder}
+
+
+Query constructor of Microsoft Access allows user to design a complex SQL-queries for aggregating and modifying data.  The query builder supports definition of complex conditions for the \texttt{WHERE} and \texttt{HAVING} sections of the query.  The query builder also does not account the domain, and, thus, it is intended for programmers and experienced users accounted with database technologies.  Another problem is the availability of the SQL-query designers for web projects.
+
+
 
 \subsection{On-Line Analitical Processing}
 \label{sec:olap}
@@ -338,16 +380,11 @@ The time intervals are selected with special pop up dialog widget on mouse click
 
 
 
+
+
 \section{GIS Integration}
 \label{sec:gis-integration}
 
-
-
-\section{Query Builder}
-\label{sec:query-builder}
-
-
-Query constructor of Microsoft Access allows user to design a complex SQL-queries for aggregating and modifying data.  The query builder supports definition of complex conditions for the \texttt{WHERE} and \texttt{HAVING} sections of the query.  The query builder also does not account the domain, and, thus, it is intended for programmers and experienced users accounted with database technologies.  Another problem is the availability of the SQL-query designers for web projects.
 
 
 \section{Natural Language Processing [within the problem]}
