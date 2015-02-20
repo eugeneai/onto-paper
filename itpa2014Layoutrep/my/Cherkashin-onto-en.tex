@@ -343,6 +343,10 @@ To account the properties, an rule based engine has been developed on the base o
 
 In comparison to Microsoft Access the developed layout engine, which also generated user interface on the base of database structure description, the engine ....
 
+\paragraph{Database Editor}
+
+
+
 \subsection{Query Builder}
 \label{sec:query-builder}
 
@@ -416,18 +420,18 @@ GeoAW environment is an instrumental tool to create stand-alone Windows GIS appl
   \label{fig:architecture}
 \end{figure}
 
-The GeoAW Delphi
+\e{The GeoAW Delphi}
 
 The following description is necessary part example of the whole model as it describes the root table \e[blue]{and its view}.
 
 \begin{lstlisting}
 VIEW vSP_ADR FOR ADR AS 'All Addresses'
-|\texttt{NAMES}|='U;BUIL' |\texttt{ADDRS}| ='U;BUIL'
+|\textbf{NAMES}|='U;BUIL' |\textbf{ADDRS}| ='U;BUIL'
 MAPFD=ID_BUIL_G MAPLNKTBL=MAP_LNK MAPKIND=1
 FIELDS (ID_BUIL_G= AS 'Building Code',
         [GB='Address',
          R=ID_NREG.REGION AS 'Region',
-         M=ID_MK_GM.MK_GM AS 'Microdistrict'.
+         M=ID_MK_GM.MK_GM AS 'Microdistrict',
          T=ID_STREET.STREET_TYPE AS 'Type',
          U=ID_STREET.STREET AS 'Street',
          BUIL= AS 'Builfing']
