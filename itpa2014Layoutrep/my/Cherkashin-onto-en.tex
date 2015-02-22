@@ -188,15 +188,15 @@ stringstyle=\ttfamily,
 
 
 \begin{document}
-\title{Information System Models for Support of Natural Language Question-Answering Subsystems Construction}
+\title{A Descriptive Specification Tools for Information System Design and Configuration}
   \author{%
    \IEEEauthorblockN{%
     Alexey Hmelnov\IEEEauthorrefmark{1}\IEEEauthorrefmark{2},
     Evgeny Fereferov\IEEEauthorrefmark{1},
     Roman Fedorov\IEEEauthorrefmark{1}\IEEEauthorrefmark{2},
-    Evgeny Cherkashin\IEEEauthorrefmark{1}\IEEEauthorrefmark{2}\IEEEauthorrefmark{3}, \\
-    Polina Belykh\IEEEauthorrefmark{1},
-    Alexander Zamashikov\IEEEauthorrefmark{3}
+    Evgeny Cherkashin\IEEEauthorrefmark{1}\IEEEauthorrefmark{2}\IEEEauthorrefmark{3} %, \\
+%    Polina Belykh\IEEEauthorrefmark{1},
+%    Alexander Zamashikov\IEEEauthorrefmark{3}
    }%
   \IEEEauthorblockA{\IEEEauthorrefmark{1}Institute of System Dynamics
     and Control Theory at SB RAS, Irkutsk, Lermontov str., 134,
@@ -206,7 +206,7 @@ stringstyle=\ttfamily,
   \IEEEauthorblockA{\IEEEauthorrefmark{3}National Research Irkutsk
     State Technical University, Irkutsk, Lermontov str., 83, 664074,
     Russia}%
-\texttt{\small alex@icc.ru, fereferov@icc.ru, fedorov@icc.ru, eugeneai@icc.ru}
+\texttt{\small \{alex,fereferov,fedorov,eugeneai\}@icc.ru}
 }
 
 % use for special paper notices
@@ -345,14 +345,55 @@ In comparison to Microsoft Access the developed layout engine, which also genera
 
 \paragraph{Database Editor}
 
+Database Editor controls a dynamic user interface manipulating IS database records.  Its layout includes three areas: menu of entities, operations, and data table itself.  Menu of entities (fig.~\ref{fig:dbeditor}) consist of database and view table names described in the specification.  The entities are joined in semantic groups according to their roles and functions.
 
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=\linewidth]{dbeditor.png}
+  \caption{Database editor}
+  \label{fig:dbeditor}
+\end{figure}
+
+The task area displays widgets for construction and execution of data processing operations.  The set of widgets for each table (view) is controlled by the \e{specification}.  The minimal set contains table navigation buttons, ``Edit'', ``Export'' and ``Query'' buttons.  Optional buttons are ``Options'' and ``Cartographic''.  The layout of the widgets in under control of layout manager.
+
+The table area is used to display chosen entity.  The data is represented in two views: tabular and as a form.  Tabular form supports standard data editing operations, but they adjusted according to specification: reference fields are choice boxes and look-up widgets.  Dependable (in sense of the specification) fields are changed as soon as their ascendants become edited.  For example, in fig.~\ref{fig:dbeditor} street name in an address record is chosen from a look-up list of streets.  The street \texttt{ID} is stored in an address reference field, this results in changing address \texttt{TYPE} field according to the type of chosen street.
+
+The order and widths of the table columns can be adjusted according to user's preferences.  The customization is stored in user profile \texttt{.wsf}--file.
+
+\paragraph{Form Mode}
+
+Form mode is a generated user interface for table record editing with accounting table's references to other tables, views and visual components.  The form mode is activated from Database Editor with mouse click, button ``Edit'' and creation of new record.  The layout of the widgets of the form is generated according to the database specification and run time context: does this record belong to a main table or a reference one.  Each attribute editing widget is accompanied with a label showing user-friendly attribute name from the specification.  The label can signify attributes uniqueness, non-null condition and a membership in the primary key.
+
+For each widget, the placement, the order, the widths and width size adjustment are controlled by Layout manager component.  The order and layout of the form must conform to criteria of usability.  Upon form size change or screen resolution the widgets must be reordered, resized, and so on, conversing the usability criteria \e{as much as possible}.  The layout manager extends ideas of FlowLayout [76] (Java): the widgets a placed in rows from left to right.  FlowLayout manager implies that each widget has fixed size.  We took over the restriction, and our layout manager takes advantage of some heuristics based on minimal (\texttt{szMin}), best (\texttt{szBes}), and maximal (\texttt{szMax}) sizes of a widget.  Maximal size is equal to field data size, e.g., for \texttt{VARCHAR(150)} field, the \texttt{szMax} is equal to 150.  Experience shows that it is more ergonomic to display about 70~\% of \texttt{szMax}, and it is \texttt{szBest}.  Minimal size for strings is taken about 10 characters.
+
+The layout manager arranges the widgets according to the following strategy.  At the first stage all three sizes are queried from the widgets, and tries to figure out a layout, where all the widgets have maximal sizes and placed in rows from left to right.  If a widget is not shown in the form, the layouting immediately restarts the process, with \texttt{szBest} used as widgets sizes.  In the last case, if the layout process finished successfully and there are some free space, then the layout manager tries to extend significant widgets to their maximal sizes.  In the wort case, when the second try has failed, the manager uses \texttt{szMin}.
+
+The developed ... (group boxes) . An example of auto.... foem ish sown in fig.~\ref{fig:formex}.
+
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=\linewidth]{formex.png}
+  \caption{An example of autolayout form}
+  \label{fig:formex}
+\end{figure}
 
 \subsection{Query Builder}
 \label{sec:query-builder}
 
+Most of IS applications require components for data search and filtering.  An expressive user-friendly search engine allows one to quickly jump to a specific record and also allow subject specialist to query record data from database without programmers assistance.
 
-Query constructor of Microsoft Access allows user to design a complex SQL-queries for aggregating and modifying data.  The query builder supports definition of complex conditions for the \texttt{WHERE} and \texttt{HAVING} sections of the query.  The query builder also does not account the domain, and, thus, it is intended for programmers and experienced users accounted with database technologies.  Another problem is the availability of the SQL-query designers for web projects.
+Query constructor of Microsoft Access allows user to design a complex SQL-queries for aggregating and modifying data.  The query builder supports definition of complex conditions for the \texttt{WHERE} and \texttt{HAVING} sections of the query.  The query builder also does not account the domain, and, thus, it is intended for programmers and experienced users accounted with database technologies.  Another problem is the availability of the SQL-query designer utilities for web projects.
 
+In our work we proposed an engine [62] that supports interactive specification of field value criteria and construction of combinations of logical and filter operations sufficient to describe common user queries.  Query builder is a form that is adjusted to a table according to the specification of IS database.  The logical condition is a tree structure, which is drawn horizontally to allow long field names to be displayed correctly without overlapping.
+
+To control the tree editing, a special widget has been developed.  The widget placed inside a dialog windows is shown in fig.~\ref{fig:qbuilder}.  The widget allows to construct tree from elementary operations, move the operations between various levels of folding, operand switching, editing criteria values.
+
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=\linewidth]{qbuilder.png}
+  \caption{User controlled query builder}
+  \label{fig:qbuilder}
+\end{figure}
 
 
 \subsection{On-Line Analitical Processing}
@@ -381,22 +422,8 @@ The time intervals are selected with special pop up dialog widget on mouse click
 \e[blue]{Import data. Needed?}
 
 
-
-
-
-\section{GIS Integration}
+\section{GIS Integration: an Usage Example}
 \label{sec:gis-integration}
-
-
-
-\section{Natural Language Processing [within the problem]}
-\label{sec:natur-lang-proc}
-
-\section{Query Synthesis [NG]}
-\label{sec:query-synthesis-ng}
-
-\section{Usage Example: GeoAW}
-\label{sec:usage-gis}
 
 The developed technologies are applied in GeoAW (Geological Automatized Workplace) environment, which is aimed at construction of GIS for municipal authorities.  Its derivative GIS systems allow one to represent data accumulated in departments as GIS cartographic.  In order to construct such system developers must go through the steps described early to describe data sources and filter data to be represented in new GIS applications.  The main attention should be paid to spatial related attributes, as the attributes are used in connecting the table rows and graphics shapes of topographic base.
 
@@ -439,11 +466,12 @@ FIELDS (ID_BUIL_G= AS 'Building Code',
          ANN= AS 'Annotation');
 \end{lstlisting}
 
-
-
-
-
-
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=\linewidth]{addressplan.png}
+  \caption{Address plan GIS window}
+  \label{fig:addrplan}
+\end{figure}
 
 
 % An example of a floating figure using the graphicx package.
@@ -524,6 +552,7 @@ FIELDS (ID_BUIL_G= AS 'Building Code',
 
 The nowadays techniques of application software development are aimed at close cooperation of developer and customer.  To shift some responsibility to the customer's users and to extend the maintainability and usability of software, it is necessary to develop a techniques, which produce some processing according to a domain description.  ...
 
+\e[blue]{Say, that form generator and database editor usually generates more usable forms that used before...}
 
 % conference papers do not normally have an appendix
 
