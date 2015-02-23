@@ -102,15 +102,6 @@
 % version and documentation can be obtained at:
 % http://www.ctan.org/tex-archive/macros/latex/required/amslatex/math/
 
-
-
-
-
-
-
-
-
-
 \usepackage[font=footnotesize,labelsep=period]{caption}
 \renewcommand{\figurename}{Figure}
 %\usepackage[font=footnotesize]{subfig}
@@ -219,10 +210,9 @@ stringstyle=\ttfamily,
 %\setcounter{page}{252}
 
 \begin{abstract}
-Software development technologies evolved from concrete algorithm design and their programmatic implementation to modeling the whole information systems (IS).  The modeling approaches allows developers to describe the system in terms of domain, design and features of implementation platforms, and standard ways of the IS development like programming traditions in a concrete firm.  In the case if a new IS is being constructed, having an already designed and realized database, Data Driven Engineering (DDE) is used.  The model of new IS is constructed by importing database structure and adding a semantic layer description reflecting the database structure to the domain terms.
+Software development technologies evolved from concrete algorithm design and their programmatic implementation to modeling the whole information systems (IS).  The modeling approaches allows developers to describe the system in terms of domain, software design, properties of implementation platforms, and standard ways of the IS development such as programming traditions in a concrete firm.  In the case if a new IS is being constructed, having an already implemented database, Data Driven Engineering (DDE) is used.  The model of this IS is constructed by importing database structure and adding a semantic layer description reflecting the database structure to the domain terms.
 
-We describe a DDE approach based on declarative specifications of existing database schema and properties of the target application, as well as interpretation of the description into IS components.  The interpretation in various aspects allows developer to construct user interface of database modification, subsystem of SQL query construction in terms of domain, etc.
-\e{The report describes an approach of such kind of natural question-answering subsystem implementation for IS.  Examples of domain description has been presented for practical problems of municipal management.}
+We describe a DDE-approach based on declarative specifications of existing database schema and properties of the target application, as well as interpretation of the description into IS components.  The interpretation in various aspects allows developer to construct user interface for database modification, subsystem of SQL query construction in terms of domain, etc.  An example result is presented.
 
 %The obtained description could be used to extend the capabilities of SQL query constructor to allow user formulating the query in a natural language, e.g. in Russian.  In order to do so a new layer of the domain and IS properties description should be devised.  The layer is based on an ontological description of the domain referencing the terms of the database description.  The layer also is to be reflected to morphological structures of the natural language used to formulate the queries.
 \end{abstract}
@@ -242,57 +232,50 @@ We describe a DDE approach based on declarative specifications of existing datab
 
 \section{Introduction}
 % no \IEEEPARstart
-Software development technologies evolved from concrete algorithm design and their programmatic implementation to modeling the whole information systems (IS).  The modeling approaches allows developers to describe the system in terms of domain, engineering and software design and features of implementation platforms, and standards of the IS development of a software firm such as programming traditions, used modeling and instrumental tools, etc.  \e{Some more text transit from trends to their real implementations, like Group of a Senior Proggemmer, Extreme and Agile programming. Examples like Django..}
+Software development technologies evolved from concrete algorithm design and their programmatic implementation to modeling the whole information systems (IS).  The modeling approaches allows developers to describe the system in terms of domain, engineering and software design, features of implementation platforms and tools, and standards of the IS development of a software firm such as programming traditions, used modeling and instrumental tools, etc.  This extends nowadays production developer philosophies referred to as DRY (Do not Repeat Yourself), where each concept in a system must be defined only once.  DRY is a basis of many open-source web development frameworks such as Django [].
 
-The theoretical basis of the development process is model transformation theories and their software implementations, which are developed in the field of Model Driven Engineering (MDE).  The transformations construct ultimately either source code modules realizing modeled structures or an operator interpretation of models of an intermediate level like virtual machine byte code, SQL queries \e{realization}, and executable UML. \e{\ldots{}}.
+The theoretical basis of the modeling approach is model transformation theories and their software implementations, which are developed in the field of Model Driven Engineering (MDE).  The transformations construct ultimately either source code modules realizing modeled structures or an operator interpretation of models of an intermediate level like virtual machine byte code, SQL queries execution plan synthesis, and executable UML.  Model transformation is based on recognition of a pattern structures in the source model, relating them to the model of development platform rules of transformation.  The results of transformation are  structures of a model of more specific (concrete) level of abstraction.  At the lowest level the code generation routines are executed, which use source code templates.  Thus, from the point of view of generative programming, one of main function of the transformation process is an intelligent configuration generation for the source code generators.
 
-In the case if a new IS is being constructed, having already designed and deployed database, Data Driven Engineering (DDE, a kind of MDE) is widely used.  The model of new IS is constructed by importing database structure, e.g. DDL-queries, and adding a semantic layer of the database structure description in IS domain terms.  In laboratory of Complex Information Systems of Institute of System Dynamics and Control Theory at Siberian Branch of Russian Academy of Sciences, a number of DDE approaches has been developed based on declarative specifications and their run time interpretations, as well as techniques automating the description process.  The interpretation in various aspects allows developer to construct user interface of database modification, subsystem of SQL-queries construction in terms of domain, etc.
+In the case if new IS is being constructed, having already designed and deployed database, Data Driven Engineering (DDE, a kind of MDE) is used.  The model of this IS is constructed by importing database structure, e.g. DDL-queries, analyzing it, and adding a semantic layer of the database structure description in IS's domain concepts and relations.  In Laboratory of Complex Information Systems of Institute of System Dynamics and Control Theory at Siberian Branch of Russian Academy of Sciences, a number of DDE approaches has been developed based on declarative specifications and their run time interpretations, as well as techniques automating the description process.  The interpretation in various aspects allows developer to construct user interfaces for database modification, subsystem of SQL-queries construction in terms of domain, plugin integration, etc.
 
-The obtained description could be used to extend the capabilities of SQL-query constructor to allow user formulating the query in a natural language, e.g. in Russian, in terms of modeled domain.  In order to do so a new layer of the domain and IS properties description should be devised.  The layer expands the description of the database entities and their relationships with abstract notions of domain and relations, resulting in fibered representation of the domain of two fibers: abstract domain and database structure.  The notions and relations are mapped through the fibers via interpretation.  \e{The layer is based on an ontological description of the domain referencing the terms of the database description.  The layer also is to be reflected to morphological structures of the natural language used to formulate the queries.}
+The report describes an DDE-approach of IS development based on a special specification language describing database properties, interpretation of the description in various IS components, resulting in automatic user interface construction and layouting, constraint-oriented database editor, SQL-query builder, OLAP subsystem, etc.
 
-The report describes an approach of such kind of natural question-answering subsystem implementation for IS.  Examples of domain description has been presented for practical problems of municipal management. \e{Some word about the problem...}
-
-\e{In this paper, we continue the development of the approach
-\cite{fereferovDiss} within the theoretical aspect \cite{b2:15} of software unified model development, and briefly consider the approach of unification of software modeling and natural language processing.}
-
-\section{A Description of a Database/ The Description Language}
+\section{The Description Language}
 \label{sec:description-database}
 
-Data Driven Engineering (DDE) \cite{DDE} one of the powerful direction of Computer science allowing to construct software on the base of data models (data structure description).  Being a part of Model Driven Engineering, DDE inherits its main thesis that software development is a sequence of model transformations starting from abstract models describing information system (IS) in terms of domain \e{and software development process}.
+%Data Driven Engineering (DDE) \cite{DDE} one of the powerful direction of Computer science allowing to construct software on the base of data models (data structure description).  Being a part of Model Driven Engineering, DDE inherits its main thesis that software development is a sequence of model transformations starting from abstract models describing information system (IS) in terms of domain \e{and software development process}.
 
-DDE starts either from description of a general view of data structures used by business-logic or from already existing database.  The second case has important value in practice, when customer requires a new implementation of an exiting IS with new features and with conserving exiting data in its warehouse.  ....
+DDE starts either from description of a general view of data structures used by business-logic or from already existing database.  The second case has important value in practice, when customer requires a new implementation of an exiting IS with new features and with conserving exiting data in its warehouse.
 
-The structural description allows developers via transformation to implement routine functionality of IS such as data input forms; user interface and business-logic interaction; import, export and integration operations; etc.  Adding a domain description allows ones to refine user interface with notions familiar to user, as well as construct various query-answering subsystems like SQL-query builders and OLAP operating in terms of domain.
+The structural description allows developers via transformation to implement routine functionality of IS such as data input forms; user interface and business-logic interaction; import, export and integration operations; etc.  Adding a domain description allows one to refine user interface with notions familiar to user, as well as construct various query-answering subsystems like SQL-query builders and OLAP operating in terms of domain.
 
 In Institute of System Dynamics and Control Theory at SB RAS a number of DDE technologies has been developed within economic contracts activities supported by necessary theoretical investigations.  One of the last description format is based on mix of the \texttt{.ini}-file and SQL-query languages.  The first format is used to describe database structure and semantic of attributes and their relations, the second part is used to describe the rules of user interface generation, and interaction with geographical information systems and other applications.
 
-\subsection{Developing IS with Specifications}
+\subsection{Development Stages}
 \label{sec:descr-synth-stag}
 
-In a general case on the first stage of IS development, system engineer carries on structural analysts of the domain, resulting in description of concepts and their basic relations, business-processes and software requirements.  After that, the database design follows, which produces database schema ad its implementation as database server.  Common design tools (such as Sybase Power Designer, IBM Rational Rose) are used on this stage.
+In the proposed approach, in a general case on the first stage of IS development, system engineer carries on structural analysts of the domain, resulting in description of concepts and their basic relations, business-processes and software requirements.  After that, at the second stage, the database design follows, which produces database schema ad its implementation as database server.  Common design tools (such as Sybase Power Designer, IBM Rational Rose) are used on this stage.
 
-On the third stage model of IS is constructed by loading the implemented database schema and extending it with the description of the following special database object classes: \texttt{table}, \texttt{view}, \texttt{rule}, and so called \texttt{superstructure}.  The \texttt{table} objects describe IS database structure and relations, attribute data types and names.  These object are automatically constructed by loading and analyzing IS database schema, if it is literally devised (it must be at least in third normal form).  The lack of schemata data is compensated manually with \e{the description language} and the following interpretation.
+On the third stage, model of IS is constructed by loading the implemented database schema and extending it with the description of the following special database object classes: \texttt{TABLE}, \texttt{VIEW}, \texttt{RULE}, and so called \emph{superstructure}.  The \texttt{TABLE} objects describe IS database structure and relations, attribute data types and names.  These object are automatically constructed by loading and analyzing IS database schema, if it is literally devised (it must be at least in third normal form).  The lack of schemata data is compensated manually with the description language and the following interpretation.
 
-The \texttt{view} objects are more complicated than \texttt{tables} and used to generate user interface.  Here we define properties of the relation, for example, for each foreign key a loookup widget can be used to select a  record from a foreign table (a reference book).  For complex reference book and transitive references, the identification attribute set bust be specified to increase generated user interface usability.  There are other special cases of foreign key interpretations, like ``master-details'', and all of them can be specified with \e{the description language}.
+The \texttt{VIEW} objects are more complicated than \texttt{TABLE} ones, which is used to generate user interface.  Here we define properties of the attribute and table relations, for example, for each foreign key a look-up widget can be used to select a record from a foreign table (a reference book).  For complex reference book and transitive references, the key attribute sets bust be specified to increase generated user interface usability.  There are other special cases of foreign key interpretations, like ``master-details'', and all of them can be specified with the specification language.
 
-The \texttt{superstructure} objects support interaction of developed IS with foreign modules and libraries processing information with methods beyond the standard of rational databases and SQL, e.g., computer simulation and complex data visualizations.
+The \emph{superstructure} objects support interaction of developed IS with foreign modules and libraries, processing information with methods beyond the standard of rational databases and SQL, e.g., computer simulation and complex data visualizations.
 
 %\hangindent=\parindent%\hangafter=1
-The \texttt{rules} objects are responsible for specific to business-processes functions implementation in generated IS.  By means of the rules, one can describe input field logic (enabling and disabling them), implement uniqueness check routines and \e{PD} interaction, i.e., rules provide declarative means of describing and implementing relationships between in business-logic layer of IS.  The rules also affect the generated queries to IS database during editing and creating special widgets in user interface, which connect input data with spatial tables and render cartographic.
+The \texttt{RULE} objects are responsible for expression of functions implementation in generated IS specific to its business-processes.  By means of the rules, one can describe input field logic (enabling and disabling them), implement uniqueness check routines and plug-in modules interaction, i.e., rules provide declarative means of describing and implementing relationships between objects and components in business-logic layer of IS.  The rules also affect the generated queries to IS database during editing, as well as creating special widgets in user interfaces, which connect input data with spatial tables and render cartographic. For all the object classes a formal set model is devised [] and investigated.  %We will not describe it in this paper, ...}
 
-\e{For all the object classes a formal set model is devised.  We will not describe it in this paper, ...}
-
-On the forth stage the IS is generated as a result of the description interpretation.  It integrates according to the rules the foreign software subsystems. \e[blue]{Should we describe the rules of interface generation in details ?}
+On the forth stage the IS functionality is generated at run time as a result of the specification interpretations.  It integrates foreign software subsystems according to the rules. %\e[blue]{Should we describe the rules of interface generation in details ?}
 
 \subsection{The Description Language}
 
-... The language has LL(1) grammar class.  Its syntactic structures describe elements of IS and a general options like database connection properties.  The specifications written in the language are \emph{precise}, \emph{understandable} and \emph{complete} according to [1,2].  The language clauses have the following general structure:
+Our specification language is reasonably simple whereas complete with respect to expressive ability.  The language has LL(1) grammar class.  Its syntactic structures describe elements of IS and a general options like database connection properties.  The specifications written in the language are \emph{precise}, \emph{understandable} and \emph{complete} according to [1,2].  The language clauses have the following general structure:
 
 \begin{asdcode}%
 <Start keyword> <List of mandatory statements> [~list of optional statements~]
 \end{asdcode}
 
-The \texttt{start keyword} can be one of the following: \texttt{ADO}, \texttt{BDE}, \texttt{CFG}, \texttt{Table}, \texttt{View}, \texttt{Plugins}, \texttt{Uses}, \texttt{Include}, \texttt{Menu}.  First two are used to describe properties of database connection.  Keyword \texttt{CFG} used to describe general application settings of IS.  Keywords \texttt{Table}, \texttt{View} describe the database schema and view widgets.  Keyword \texttt{Plugins} describes interaction with outer systems, \texttt{Uses} and \texttt{Include} allow developer to break an IS description into source modules.  Keyword \texttt{Menu} controls the main menu of IS application.
+The \texttt{Start keyword} can be one of the following: \texttt{ADO}, \texttt{BDE}, \texttt{CFG}, \texttt{TABLE}, \texttt{VIEW}, \texttt{PLUGINS}, \texttt{USES}, \texttt{INCLUDE}, \texttt{MENU}.  First two are used to describe properties of database connection.  Keyword \texttt{CFG} used to describe general application settings of IS.  Keywords \texttt{TABLE}, \texttt{VIEW} describe the database schema and view widgets.  Keyword \texttt{PLUGINS} describes interaction with outer systems; \texttt{USES} and \texttt{INCLUDE} allow developer to break an IS description into source modules.  Keyword \texttt{MENU} controls the main menu of IS application.
 
 Let's consider a part of an example description.
 
@@ -300,7 +283,7 @@ Let's consider a part of an example description.
 TABLE ADR FOR SP_ADDR AS 'Address' READONLY
 \end{lstlisting}
 
-This statement describes table \texttt{SP\_ADR} of IS, the table is renamed as \texttt{ADR} for usage in the rest of the description. The table will have alias \texttt{'Address'} in user interface forms.  The following language construction describes table fields.
+This statement describes table \texttt{SP\_ADR} of IS, the table will have an alias \texttt{ADR} for usage in the rest of the specification.  The table will have also a user-friendly alias \texttt{'Address'} in user interface forms, table editor, etc.  The following language construction describes table fields.
 
 \begin{lstlisting}
 FIELDS (ID_BUIL_G P AS 'Building Code',
@@ -311,37 +294,26 @@ FIELDS (ID_BUIL_G P AS 'Building Code',
         ANN=S AS 'Annotation);
 \end{lstlisting}
 
-Identifiers \texttt{ID\_*}, \texttt{BUIL} and \texttt{Ann} are table fields.  Sign \texttt{\^} creates a reference to a table or a view, in particular, \texttt{\^{}SP\_NREG} is a table referenced by field \texttt{ID\_NREG}, and \texttt{\^{}vSP\_STR} is a reference to a view.  Expression \texttt{ANN=S} denotes \texttt{ANN} to be a string field.  In the first line \texttt{ID\_BUIL P} denotes that the field is a key field.
+Identifiers \texttt{ID\_*}, \texttt{BUIL} and \texttt{ANN} are table fields.  Sign \texttt{\^} creates a reference to a table or a view, in particular, \texttt{\^{}SP\_NREG} is a table referenced by field \texttt{ID\_NREG}, and \texttt{\^{}vSP\_STR} is a reference to a view.  Expression \texttt{ANN=S} denotes that \texttt{ANN} is a string field.  At the first line of the example, \texttt{ID\_BUIL P} denotes that the field is a key field.
 
-\e{[[Is this necessary? p46]]In addition to the references, there are \texttt{REFS(\ldots)} construction that allows one to define references of various types including ``master-details'' (\texttt{DR}).}
-
-
-
-
-
-
-
-
-
-
+There are also more sophisticated ways of various reference denotation, expressed with a general \texttt{REFS(\ldots)} construction.  Its parameters that allows one to define references of various IS business-logic interpretations including ``master-details'', special cases of ``reference book'' and so on.
 
 \section{Interpretations of the Description}
 \label{sec:interpr-descr}
 
-\e[gray]{Describe a general approach to interpretation process.}
+All the implementations of the interpretation of the specification language are run time.  After preparing the specification of the IS database, the IS developer must run the IS environment with the specification an the database as its input.  The specification is translated, and the translator creates two data structures.  One is stored in process memory and used by form an query builders.  Another one is a technical database of tables, describing IS database structures.  The technical database is used by database editor and OLAP modules.  The translator also check whether the specification is changed and corrects the database accordingly.
 
 \subsection{User-Interace Form Generation}
 \label{sec:user-interace-form}
-One of the important IS quality characteristic is its input forms.  The layouting the widgets in forms is the question of the usability.  From one hand side the widgets must efficiently consume the form area of the form, and from another hand side the user interface must be convenient and fit to the application functionality requirements.
+One of the important IS quality characteristic is its input forms.  The layouting the widgets in forms is the question of the usability.  From one hand side the widgets must efficiently consume the form area of the form, and on another hand side, the user interface must be convenient and fit to the application functionality requirements.
 
-The variation of form size results in relayouting the widgets if the form is aware of the variation.  Various instrumental systems resolves the problem differently.  E.g., in Embarcadero Delphi developer must specify \texttt{align}, \texttt{anchors} and \texttt{autosize} properties to adjust the widgets behavior upon form size change.  The operation must be performed for each widget, and in conditions of entering of a database record of many attributes the adjustment process becomes somewhat problematic.  In addition, layout mechanics of Delphi cannot distribute the size variations between inside widgets proportionally.
+The variation of form size results in relayouting the widgets if the form is aware of the variation.  Various instrumental systems resolves the problem differently.  E.g., an Embarcadero Delphi developer must specify \texttt{align}, \texttt{anchors} and \texttt{autosize} properties to adjust the widgets behavior upon form size change.  The operation must be performed for each widget, and in conditions of entering of a database record of many attributes the adjustment process becomes somewhat problematic.  In addition, layout mechanics of Delphi cannot distribute the size variations between inside widgets proportionally.
 
-The problem is solved in, e.g., open-source widget libraries, like Qt and GTK+.  The widgets are placed in so called containers (which are also a virtual widgets), which manage the order, spacing, padding, fill and expansion properties.  GTK+ widgets could also issue \texttt{size request} message to notify parent widget about required minimal size.  Nevertheless the general engines implemented in the instrumental systems are no aware of the attribute data properties of the IS database.
+The problem is solved in, e.g., open-source widget libraries, like Qt and GTK+.  The widgets are placed in so called containers (which are also a virtual widgets), which manage the order, spacing, padding, fill and expansion properties.  GTK+ widgets could also issue \emph{size request} message to notify parent widget about required minimal size.  Nevertheless the general engines implemented in the instrumental systems are no aware of the attribute data properties of the IS database.
 
-To account the properties, an rule based engine has been developed on the base of the database description.  ....
+\e{To account the properties, an rule based engine has been developed on the base of the database description.  ....}
 
-
-In comparison to Microsoft Access the developed layout engine, which also generated user interface on the base of database structure description, the engine ....
+\e{In comparison to Microsoft Access the developed layout engine, which also generated user interface on the base of database structure description, the engine ....}
 
 \paragraph{Database Editor}
 
@@ -553,6 +525,11 @@ FIELDS (ID_BUIL_G= AS 'Building Code',
 The nowadays techniques of application software development are aimed at close cooperation of developer and customer.  To shift some responsibility to the customer's users and to extend the maintainability and usability of software, it is necessary to develop a techniques, which produce some processing according to a domain description.  ...
 
 \e[blue]{Say, that form generator and database editor usually generates more usable forms that used before...}
+
+In further work the obtained description could be used to extend the capabilities of SQL-query constructor to allow user formulating the query in a natural language in terms of modeled domain.  In order to do so a new layer of the domain and IS properties description should be devised.  The layer expands the description of the database entities and their relationships with abstract notions of domain and relations, resulting in fibered representation of the domain of two fibers: abstract domain and database structure.  The notions and relations are mapped through the fibers via interpretation.  \e{The layer is based on an ontological description of the domain referencing the terms of the database description.  The layer also is to be reflected to morphological structures of the natural language used to formulate the queries.}
+
+\e{In this paper, we continue the development of the approach
+\cite{fereferovDiss} within the theoretical aspect \cite{b2:15} of software unified model development, and briefly consider the approach of unification of software modeling and natural language processing.}
 
 % conference papers do not normally have an appendix
 
