@@ -292,7 +292,7 @@ FIELDS (ID_BUIL_G P AS 'Building Code',
         ID_STREET ^vSP_STR AS 'Street Code',
         BUIL=S AS 'Building',
         ANN=S AS 'Annotation);
-\end{lstlisting}
+\end{lstlisting}%
 
 Identifiers \texttt{ID\_*}, \texttt{BUIL} and \texttt{ANN} are table fields.  Sign \texttt{\^} creates a reference to a table or a view, in particular, \texttt{\^{}SP\_NREG} is a table referenced by field \texttt{ID\_NREG}, and \texttt{\^{}vSP\_STR} is a reference to a view.  Expression \texttt{ANN=S} denotes that \texttt{ANN} is a string field.  At the first line of the example, \texttt{ID\_BUIL P} denotes that the field is a key field.
 
@@ -301,13 +301,13 @@ There are also more sophisticated ways of various reference denotation, expresse
 \section{Interpretations of the Description}
 \label{sec:interpr-descr}
 
-All the implementations of the interpretation of the specification language are run time.  After preparing the specification of the IS database, the IS developer must run the IS environment with the specification an the database as its input.  The specification is translated, and the translator creates two data structures.  One is stored in process memory and used by form an query builders.  Another one is a technical database of tables, describing IS database structures.  The technical database is used by database editor and OLAP modules.  The translator also check whether the specification is changed and corrects the database accordingly.
+All current implementations of the interpretation of the specification language are run time.  After preparing the specification of the IS database, the IS developer must run the IS environment with the specification an the database as its input.  The specification is translated, and the translator creates two data structures.  One is stored in process memory as complex data structures and used by form and query builders.  Another one is a technical database of tables, describing IS database structures.  The technical database is used by database editor and OLAP modules.  The translator also check whether the specification is changed and corrects the database accordingly.
 
-\subsection{User-Interace Form Generation}
+\subsection{Uer Interface Generation}
 \label{sec:user-interace-form}
-One of the important IS quality characteristic is its input forms.  The layouting the widgets in forms is the question of the usability.  From one hand side the widgets must efficiently consume the form area of the form, and on another hand side, the user interface must be convenient and fit to the application functionality requirements.
+One of the important IS quality characteristic is its input forms.  The layouting the widgets in forms is the question of the usability.  From one hand side the widgets must efficiently consume the area of a form, and on another hand side, the user interface must be convenient and fit to  application functionality requirements.
 
-The variation of form size results in relayouting the widgets if the form is aware of the variation.  Various instrumental systems resolves the problem differently.  E.g., an Embarcadero Delphi developer must specify \texttt{align}, \texttt{anchors} and \texttt{autosize} properties to adjust the widgets behavior upon form size change.  The operation must be performed for each widget, and in conditions of entering of a database record of many attributes the adjustment process becomes somewhat problematic.  In addition, layout mechanics of Delphi cannot distribute the size variations between inside widgets proportionally.
+The change of form size results in relayouting the widgets if the form is aware of the change.  Various software development environments support the problem solution differently.  E.g., an Embarcadero Delphi developer must specify \texttt{align}, \texttt{anchors} and \texttt{autosize} properties of a widget to adjust the widgets behavior upon form size change.  The operation must be performed for each widget, and in conditions of entering of a database record of many attributes the adjustment process becomes somewhat problematic.  In addition, layout mechanics of Delphi cannot distribute the size variations between inside widgets proportionally.
 
 The problem is solved in, e.g., open-source widget libraries, like Qt and GTK+.  The widgets are placed in so called containers (which are also a virtual widgets), which manage the order, spacing, padding, fill and expansion properties.  GTK+ widgets could also issue \emph{size request} message to notify parent widget about required minimal size.  Nevertheless the general engines implemented in the instrumental systems are no aware of the attribute data properties of the IS database.
 
@@ -530,6 +530,9 @@ In further work the obtained description could be used to extend the capabilitie
 
 \e{In this paper, we continue the development of the approach
 \cite{fereferovDiss} within the theoretical aspect \cite{b2:15} of software unified model development, and briefly consider the approach of unification of software modeling and natural language processing.}
+
+\e{Another direction is to... [Danil's Publication MIPRO'13]}
+
 
 % conference papers do not normally have an appendix
 
