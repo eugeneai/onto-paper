@@ -367,16 +367,25 @@ To control the tree editing, a special widget has been developed.  The widget pl
   \label{fig:qbuilder}
 \end{figure}
 
-В расширенном режиме поддерживается формирование условий на записи подчинённых таблиц (Рисунок 20). При формировании таких условий построитель запросов вызывается рекурсивно. В приведённом на рисунке примере формируется условие: «Район города входит в 'Ленинский р-н', 'Свердловский р-н' и Количество записей в таблице "Адреса" с (В таблице "Здания по адресу" есть записи с (Тип здания входит в 'АЗС')) >=2». Иными словами: «На каких улицах Ленинского и Свердловского районов находится более двух АЗС?». При этом используется два уровня подчинённости таблиц: Улицы содержат Адреса, а по одному Адресу может находиться несколько Зданий. Для задания условий на подчинённые таблицы формируются коррелированные подзапросы, в часть WHERE которых включаются условия связи мастер-детали. В рассматриваемом примере формируется следующий текст на SQL:
+Extended mode of Query Builder widget supports referencing subordinal tables.  Processing such references requires recursive call of the builder.  For example, the query ``Which streets of Leninsky and Sverdlovsky city districts [of Irkutsk] has more than two gas stations?'' can be expressed by means of Query Builder as the following sentence: ``City district is in 'Leninsky', 'Sverdlovsky' and Table 'Address' row count from (Table 'Address building' has records from (Building type is in 'GS')) \verb|>=2|.''  In this example two level of referencing is used: streets include addresses, at the same address can be situated several buildings.  This results in generation of correlated subqueries interpreted as ``master-detail'' relations.  The query builder generates SQL-query as follows:
 \begin{lstlisting}{escapeinside={||}}
-select T.id Id,T.reg_id reg_id,T0.type ST,T.name name,T1.name Distr,T2.name mk,T.BTI_id BTI_id,T.IsNew IsNew,T.IsChanged IsChanged from dbo.street T
-LEFT OUTER JOIN dbo.street_type T0 ON (T0.Id=T.street_type_id)
-LEFT OUTER JOIN dbo.distr T1 ON (T1.id=T.distr_id)
-LEFT OUTER JOIN dbo.mkr T2 ON (T2.id=T.mkr_id)
-WHERE (T1.id IN (8,10) and (select count(*) from dbo.buildings S
-WHERE (T.id=S.street_id)and(exists(select * from dbo.bld R
-WHERE (S.Id=R.ADDRESS_ID)and(UPPER(R.HOUSE_TYPE) IN ('АЗС')))))>=2)
-order by T.id
+SELECT T.id Id, T.reg_id reg_id, T0.type ST,
+  T.name name, T1.name Distr, T2.name mk,
+  T.BTI_id BTI_id, T.IsNew IsNew,
+  T.IsChanged IsChanged from dbo.street T
+LEFT OUTER JOIN dbo.street_type T0 ON
+  (T0.Id=T.street_type_id)
+LEFT OUTER JOIN dbo.distr T1 ON
+  (T1.id=T.distr_id)
+LEFT OUTER JOIN dbo.mkr T2 ON
+  (T2.id=T.mkr_id)
+WHERE (T1.id IN (8,10) AND (select count(*)
+  from dbo.buildings S
+WHERE (T.id=S.street_id) AND (exists
+  (select * from dbo.bld R
+WHERE (S.Id=R.ADDRESS_ID) AND (UPPER
+  (R.HOUSE_TYPE) IN ('GS')))))>=2)
+ORDER BY T.id
 \end{lstlisting}
 
 \subsection{On-Line Analitical Processing}
@@ -410,8 +419,10 @@ Report Builder unit is a plug-in module, that has access to internal representat
 <Mark Point> ::= <# <Data Domain>
                  <Place Holder> [ <Format> ] >
 <Data Domain> ::= TF | PN | IMG | DETAIL
-<Place Holder> ::= <Field Name> | <PN> | <Detail Reference>
-<FN> ::= SN=<Field Name> FN=<Field Name> MN=<Field Name>
+<Place Holder> ::= <Field Name> | <PN> |
+                 <Detail Reference>
+<FN> ::= SN=<Field Name> FN=<Field Name>
+         MN=<Field Name>
 <Field Name> ::= N=<Char>+ | <Digit>*
 <Detail Reference> ::= <Field Name>
 <Format> ::= <Case> | SHOW
@@ -471,7 +482,7 @@ FIELDS (ID_BUIL_G= AS 'Building Code',
          ANN= AS 'Annotation');
 \end{lstlisting}
 
-\begin{figure}[tb]
+\begin{figure}[bt]
   \centering
   \includegraphics[width=\linewidth]{addressplan.png}
   \caption{Address plan GIS window}
