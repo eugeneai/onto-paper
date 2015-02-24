@@ -139,7 +139,6 @@ basicstyle=\small\ttfamily,
 keywords=\bfseries,
 showstringspaces=false,
 identifierstyle=,
-escapeinside={||},
 mathescape=true,
 morekeywords={TABLE,FOR,AS,READONLY,FIELDS,MAPFD,MAPLNKTBL,MAPKIND,VIEW},
 morestring=[b]',
@@ -185,7 +184,8 @@ stringstyle=\ttfamily,
     Alexey Hmelnov\IEEEauthorrefmark{1}\IEEEauthorrefmark{2},
     Evgeny Fereferov\IEEEauthorrefmark{1},
     Roman Fedorov\IEEEauthorrefmark{1}\IEEEauthorrefmark{2},
-    Evgeny Cherkashin\IEEEauthorrefmark{1}\IEEEauthorrefmark{2}\IEEEauthorrefmark{3} %, \\
+    Evgeny Cherkashin\IEEEauthorrefmark{1}\IEEEauthorrefmark{2}\IEEEauthorrefmark{3},
+    Igor Bychkov\IEEEauthorrefmark{1},
 %    Polina Belykh\IEEEauthorrefmark{1},
 %    Alexander Zamashikov\IEEEauthorrefmark{3}
    }%
@@ -197,7 +197,7 @@ stringstyle=\ttfamily,
   \IEEEauthorblockA{\IEEEauthorrefmark{3}National Research Irkutsk
     State Technical University, Irkutsk, Lermontov str., 83, 664074,
     Russia}%
-\texttt{\small \{alex,fereferov,fedorov,eugeneai\}@icc.ru}
+\texttt{\small \{alex,fereferov,fedorov,eugeneai,bychkov\}@icc.ru}
 }
 
 % use for special paper notices
@@ -279,13 +279,13 @@ The \texttt{Start keyword} can be one of the following: \texttt{ADO}, \texttt{BD
 
 Let's consider a part of an example description.
 
-\begin{lstlisting}
+\begin{lstlisting}{escapeinside={||}}
 TABLE ADR FOR SP_ADDR AS 'Address' READONLY
-\end{lstlisting}
+\end{lstlisting}%
 
 This statement describes table \texttt{SP\_ADR} of IS, the table will have an alias \texttt{ADR} for usage in the rest of the specification.  The table will have also a user-friendly alias \texttt{'Address'} in user interface forms, table editor, etc.  The following language construction describes table fields.
 
-\begin{lstlisting}
+\begin{lstlisting}{escapeinside={||}}
 FIELDS (ID_BUIL_G P AS 'Building Code',
         ID_NREG ^SP_NREG AS 'Region Code',
  ID_MK_GM ^SP_MK_GM AS 'Microdistrict Code',
@@ -367,6 +367,17 @@ To control the tree editing, a special widget has been developed.  The widget pl
   \label{fig:qbuilder}
 \end{figure}
 
+В расширенном режиме поддерживается формирование условий на записи подчинённых таблиц (Рисунок 20). При формировании таких условий построитель запросов вызывается рекурсивно. В приведённом на рисунке примере формируется условие: «Район города входит в 'Ленинский р-н', 'Свердловский р-н' и Количество записей в таблице "Адреса" с (В таблице "Здания по адресу" есть записи с (Тип здания входит в 'АЗС')) >=2». Иными словами: «На каких улицах Ленинского и Свердловского районов находится более двух АЗС?». При этом используется два уровня подчинённости таблиц: Улицы содержат Адреса, а по одному Адресу может находиться несколько Зданий. Для задания условий на подчинённые таблицы формируются коррелированные подзапросы, в часть WHERE которых включаются условия связи мастер-детали. В рассматриваемом примере формируется следующий текст на SQL:
+\begin{lstlisting}{escapeinside={||}}
+select T.id Id,T.reg_id reg_id,T0.type ST,T.name name,T1.name Distr,T2.name mk,T.BTI_id BTI_id,T.IsNew IsNew,T.IsChanged IsChanged from dbo.street T
+LEFT OUTER JOIN dbo.street_type T0 ON (T0.Id=T.street_type_id)
+LEFT OUTER JOIN dbo.distr T1 ON (T1.id=T.distr_id)
+LEFT OUTER JOIN dbo.mkr T2 ON (T2.id=T.mkr_id)
+WHERE (T1.id IN (8,10) and (select count(*) from dbo.buildings S
+WHERE (T.id=S.street_id)and(exists(select * from dbo.bld R
+WHERE (S.Id=R.ADDRESS_ID)and(UPPER(R.HOUSE_TYPE) IN ('АЗС')))))>=2)
+order by T.id
+\end{lstlisting}
 
 \subsection{On-Line Analitical Processing}
 \label{sec:olap}
@@ -389,6 +400,32 @@ The indicator data usually have more complex structure than just a linearly orde
 The main windows of OLAP unit is shown in fig.~\ref{fig:olapu}.  The window has been divided on two parts.  The upper part consist of three panels with dimension lists, and the lower part is the resulting table.  User must select an indicator from the left list of dimensions as well as the dimensions associated with columns and rows of the resulting table.  The headers of rows and columns may contain combinations of dimensions.  In this case for all the combination a row (column) is inserted into the resulting table widget.  The combinations of dimensions and attribute value filters are adjusted by mouse clicks.
 
 The time intervals are selected with special pop up dialog widget on mouse click.  User can drag dimensions between lists and reorder them, this results in regeneration of the resulting table.  When editing is allowed, user can change values of indicators directly in the resulting table cells.  The changes are immediately stored into the intermediate database of IS and written into a journal for eventual import into original IS database.  The table widget allows export data and table structure into system clipboard in a table format recognizable by Microsoft Excel, the same is implemented in the opposite direction.
+
+\subsection{Report Builder}
+\label{sec:report-builder}
+
+Report Builder unit is a plug-in module, that has access to internal representation of the specification via API.  Report Builder functionality is based on Microsoft Word documents.  The report templates are constructed as texts with special placeholder identifiers (mark points), which are replaced with data.  Report Builder templates are listed in the specification as well as the associated \texttt{TABLE} and \texttt{VIEW} objects.  The mark point language is as follows:
+
+\begin{lstlisting}
+<Mark Point> ::= <# <Data Domain>
+                 <Place Holder> [ <Format> ] >
+<Data Domain> ::= TF | PN | IMG | DETAIL
+<Place Holder> ::= <Field Name> | <PN> | <Detail Reference>
+<FN> ::= SN=<Field Name> FN=<Field Name> MN=<Field Name>
+<Field Name> ::= N=<Char>+ | <Digit>*
+<Detail Reference> ::= <Field Name>
+<Format> ::= <Case> | SHOW
+<Case> ::= CASE= ( N | G | D | A | I | P )
+\end{lstlisting}
+%TF – значение из поля таблицы; PN – значения из полей Фамилия, Имя, Отчество (далее должны следовать метки для получения имён полей содержащих ФИО); IMG – изображение из Blob-поля таблицы DETAIL – указывает, что в этом месте будут вставлены значения полей таблицы деталей. Для реализации склонения по падежам применена библиотека padeg.dll [41].
+
+The report engine a conditional processing has been implemented.  The following special case of mark point construction is used:
+\begin{lstlisting}
+"<#" IF <Field Name> <Value> ">"
+      <Output> "<#ELSE>" <Output> "<#END>"
+<Value> ::= V=<Char>* | <Digit>*
+<Output> ::= <Mark Point> | (<Char>*|<Digit>*)
+\end{lstlisting}
 
 \section{GIS Integration: an Usage Example}
 \label{sec:gis-integration}
@@ -419,7 +456,7 @@ GeoAW environment is an instrumental tool to create stand-alone Windows GIS appl
 
 The following description is necessary part example of the whole model as it describes the root table \e[blue]{and its view}.
 
-\begin{lstlisting}
+\begin{lstlisting}{escapeinside={||}}
 VIEW vSP_ADR FOR ADR AS 'All Addresses'
 |\textbf{NAMES}|='U;BUIL' |\textbf{ADDRS}| ='U;BUIL'
 MAPFD=ID_BUIL_G MAPLNKTBL=MAP_LNK MAPKIND=1
