@@ -352,18 +352,18 @@ Attributes can also be grouped according to a logical record structure, which a 
 \subsection{Query Builder}
 \label{sec:query-builder}
 
-Most of IS applications require components for data search and filtering.  An expressive user-friendly search engine allows one to quickly jump to a specific record and also allow subject specialist to query record data from database without programmers assistance.
+Most of IS applications require components for data search and filtering.  An expressive user-friendly search engine allows one to quickly jump to a specific record and also allow a subject specialist to query record data from database without programmers assistance.
 
-Query constructor of Microsoft Access allows user to design a complex SQL-queries for aggregating and modifying data.  The query builder supports definition of complex conditions for the \texttt{WHERE} and \texttt{HAVING} sections of the query.  The query builder also does not account the domain, and, thus, it is intended for programmers and experienced users accounted with database technologies.  Another problem is the availability of the SQL-query designer utilities for web projects.
+Query constructor of Microsoft Access allows user to design a complex SQL-queries for aggregating and modifying data.  The query builder supports definition of complex conditions for the \texttt{WHERE} and \texttt{HAVING} sections of the query.  The query builder also does not account the domain, and, thus, it is intended for programmers and experienced users accounted with database technologies.  Another problem is the availability of SQL-query designer utilities for web projects.
 
-In our work we proposed an engine [62] that supports interactive specification of field value criteria and construction of combinations of logical and filter operations sufficient to describe common user queries.  Query builder is a form that is adjusted to a table according to the specification of IS database.  The logical condition is a tree structure, which is drawn horizontally to allow long field names to be displayed correctly without overlapping.
+In our work we proposed an engine [62] that supports interactive specification of field value criteria and construction of combinations of logical and filter operations sufficient to describe common user queries.  Query builder is a form that is configured in accordance to the specification and the table especially.  The logical condition is a tree structure, which is drawn horizontally to allow long field names being displayed correctly without overlapping.
 
-To control the tree editing, a special widget has been developed.  The widget placed inside a dialog windows is shown in fig.~\ref{fig:qbuilder}.  The widget allows to construct tree from elementary operations, move the operations between various levels of folding, operand switching, editing criteria values.
+To control the tree editing, a special widget has been developed.  The widget placed inside a dialog window is shown in fig.~\ref{fig:qbuilder}.  The widget allows to construct tree from elementary operations, move the operations between various levels of nesting, operand switching, editing criteria values.
 
 \begin{figure}[tb]
   \centering
   \includegraphics[width=\linewidth]{qbuilder.png}
-  \caption{User controlled query builder}
+  \caption{Subject specialist controlled query builder}
   \label{fig:qbuilder}
 \end{figure}
 
@@ -371,14 +371,13 @@ To control the tree editing, a special widget has been developed.  The widget pl
 \subsection{On-Line Analitical Processing}
 \label{sec:olap}
 
-The IS description used to implement import routines for On-Line Analitical Processing unit (OLAPu).  The unit allows user to store, select and analyze numberic indicators.  The indicators are considered as funtions of a set of attributes.  OLAPu can
-selected the indicators in various projection combinations.
+Another valuable usage of specifications is to implement import routines of IS database data for On-Line Analitical Processing unit (OLAPu).  OLAPu allows user to store, select and analyze numeric indicators.  The indicators are considered as funtions of a set of attributes.  OLAPu  user interface aids selection of indicators in various projection combinations.
 
-OLAPu's design is classic client-server architecture, where server is a rational data storage, and client provide a flexible access to the indicator data by means of intuitive user interface.  The interface is configured specially to support the munidimentional OLAP.  The user by means of widgets of the interface selects and ajusts projection and indicator aggregation configuration, the results of the configuration are presented ast interactive tables and can be stored in Microdoft Excel spreadsheet pages.
+OLAPu's design is a classic client-server architecture, where server is a rational data storage, and client provides a flexible access to the indicator data by means of intuitive user interface.  The interface is configured specially to support the munidimentional OLAP.  User by means of widgets of the interface selects and ajusts projection and indicator aggregation configuration, the results of the configuration are presented as interactive tables and can be stored in Microdoft Excel spreadsheet files.
 
-To convert IS data {table}, {view} and {superstructure} objects are used.  The data converts into a tree of indicators.  Each node of tree correspond data selected in a projection.  Each projection characterizes with a set of attributes.  The sets are reffered as dimentions.  They could describe regions, industries, types of ownership, etc.  A special case of the dimentions is time intervals, such as year, half a year, quartal, month.  Most of the indicators are tied with time intervals.
+To convert IS data \texttt{TABLE}, \texttt{VIEW} and superstructure objects are used.  The data converts into a tree of indicators.  Each node of the tree corresponds data selected in a projection.  Each projection is characterized with a set of attributes.  The sets are referred to as dimensions.  They could describe regions, industries, types of ownership, etc.  A special case of the dimensions is time intervals, such as year, half a year, quartal, month.  Most of the indicators are tied to time intervals.
 
-The indicator data usually have more complex structure than just a linearly ordered set.  The set usually is a tree structure, where one inidcator aggregates data of a set of subordinal indicators, e.g., state indicator aggregates state regional data.  The same is true for industries.  The indicators are stored in indicator value tables.  The table includes all the index dimension attribute references to the tables of the IS database and the index value itself.
+The indicator data usually have more complex structure than just a linearly ordered set.  In s general case, the set is a tree structure, where one inidcator aggregates data of a set of subordinal indicators, e.g., state indicator aggregates state regional data.  The same is true for industries.  The indicators are stored in indicator value tables.  The table includes all the index dimension attribute references to the tables of the IS database and the index value itself.
 
 \begin{figure}[bt]
   \centering
@@ -387,12 +386,9 @@ The indicator data usually have more complex structure than just a linearly orde
   \label{fig:olapu}
 \end{figure}
 
-The main windows of OLAP unit is shown in fig.~\ref{fig:olapu}.  The window has been divided on two parts.  The upper part consist of three panels with dimension lists, and the lower part is the resulting table.  User must select an indicator from the left list of dimensions as well as the dimensions associated with columns and rows of the resulting table.  The headers of rows and columns may contain combinations of dimensions.  In this case for all the combination a row (column) is inserted into the resulting table widget.  The combinations of dimensions and attribute value filters are adjusted by mouse click on the tables.
+The main windows of OLAP unit is shown in fig.~\ref{fig:olapu}.  The window has been divided on two parts.  The upper part consist of three panels with dimension lists, and the lower part is the resulting table.  User must select an indicator from the left list of dimensions as well as the dimensions associated with columns and rows of the resulting table.  The headers of rows and columns may contain combinations of dimensions.  In this case for all the combination a row (column) is inserted into the resulting table widget.  The combinations of dimensions and attribute value filters are adjusted by mouse clicks.
 
-The time intervals are selected with special pop up dialog widget on mouse click.  User can drag dimensions between lists and reorder them, this results in regeneration of the resulting table.  When editing is allowed, user can change values of indicators directly in the resulting table cells.  The changes are immediately stored into the original database of IS.  The table widget allows export data and table structure into system clipboard in a table format recognizable by Microsoft Excel, the same is implemented in the opposite direction.
-
-\e[blue]{Import data. Needed?}
-
+The time intervals are selected with special pop up dialog widget on mouse click.  User can drag dimensions between lists and reorder them, this results in regeneration of the resulting table.  When editing is allowed, user can change values of indicators directly in the resulting table cells.  The changes are immediately stored into the intermediate database of IS and written into a journal for eventual import into original IS database.  The table widget allows export data and table structure into system clipboard in a table format recognizable by Microsoft Excel, the same is implemented in the opposite direction.
 
 \section{GIS Integration: an Usage Example}
 \label{sec:gis-integration}
