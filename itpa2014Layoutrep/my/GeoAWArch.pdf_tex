@@ -52,7 +52,7 @@
     \put(0,0){\includegraphics[width=\unitlength,page=1]{GeoAWArch.pdf}}%
     \put(0.07423136,0.29605048){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{}}}%
     \put(0.07423136,0.29130514){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\db}}}%
-    \put(0.07417621,0.11101987){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\spec}}}%
+    \put(0.07417621,0.10743162){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\spec}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{GeoAWArch.pdf}}%
     \put(0.49219437,0.20674402){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\kerne}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{GeoAWArch.pdf}}%
