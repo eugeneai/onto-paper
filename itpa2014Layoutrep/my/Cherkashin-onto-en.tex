@@ -368,6 +368,15 @@ In our work we proposed an engine that supports interactive specification of fie
 To control the tree editing, a special widget has been developed.  The widget placed inside a dialog window is shown in fig.~\ref{fig:qbuilder}.  The widget allows to construct tree from elementary operations, move the operations between various levels of nesting, operand switching, editing criteria values.
 
 Extended mode of Query Builder widget supports referencing subordinal tables.  Processing such references requires recursive call of the builder.  For example, the query ``Which streets of Leninsky and Sverdlovsky city districts [of Irkutsk] has more than two gas stations?'' can be expressed by means of Query Builder as the following sentence: ``City district is in 'Leninsky', 'Sverdlovsky' and Table 'Address' row count from (Table 'Address building' has records from (Building type is in 'GS')) \verb|>=2|.''  In this example two level of referencing is used: streets include addresses, at the same address can be situated several buildings.  This results in generation of correlated subqueries interpreted as ``master-detail'' relations.  The query builder generates SQL-query as follows:
+
+\begin{figure}[b]
+  \centering
+  \includegraphics[width=\linewidth]{MDA-olap.png}
+  \caption{Main window of OLAP unit}
+  \label{fig:olapu}
+\end{figure}
+
+
 \begin{lstlisting}
 SELECT T.id Id, T.reg_id reg_id, T0.type ST,
   T.name name, T1.name Distr, T2.name mk,
@@ -399,11 +408,26 @@ To convert IS data \texttt{TABLE}, \texttt{VIEW} and superstructure objects are 
 
 The indicator data usually have more complex structure than just a linearly ordered set.  In s general case, the set is a tree structure, where one inidcator aggregates data of a set of subordinal indicators, e.g., state indicator aggregates state regional data.  The same is true for industries.  The indicators are stored in indicator value tables.  The table includes all the index dimension attribute references to the tables of the IS database and the index value itself.
 
-\begin{figure}[bt]
+
+\begin{figure}[b]
   \centering
-  \includegraphics[width=\linewidth]{MDA-olap.png}
-  \caption{Main window of OLAP unit}
-  \label{fig:olapu}
+  \begingroup
+  \def\svgwidth{\linewidth}
+  \tiny\sffamily
+  \def\db{Database}
+  \def\spec{Specification}
+  \def\sce{\vtop{Specification\break Management}}
+  \def\kerne{Kernel}
+  \def\bde{\vtop{Database\break Editor}}
+  \def\qb{\vtop{Query\break Builder}}
+  \def\map{GIS}
+  \def\gb{Graphic Base}
+  \def\plug{Plugins}
+  \def\intfs{\vtop{Plugin\break Interface}}
+  \input{GeoAWArch.pdf_tex}
+  \endgroup
+  \caption{GeoAW instrumental environment architecture}
+  \label{fig:architecture}
 \end{figure}
 
 The main windows of OLAP unit is shown in fig.~\ref{fig:olapu}.  The window has been divided on two parts.  The upper part consist of three panels with dimension lists, and the lower part is the resulting table.  User must select an indicator from the left list of dimensions as well as the dimensions associated with columns and rows of the resulting table.  The headers of rows and columns may contain combinations of dimensions.  In this case for all the combination a row (column) is inserted into the resulting table widget.  The combinations of dimensions and attribute value filters are adjusted by mouse clicks.
@@ -431,6 +455,14 @@ Report Builder unit is a plug-in module, that has access to internal representat
 %TF – значение из поля таблицы; PN – значения из полей Фамилия, Имя, Отчество (далее должны следовать метки для получения имён полей содержащих ФИО); IMG – изображение из Blob-поля таблицы DETAIL – указывает, что в этом месте будут вставлены значения полей таблицы деталей. Для реализации склонения по падежам применена библиотека padeg.dll [41].
 
 The report engine a conditional processing has been implemented.  The following special case of mark point construction is used:
+
+\begin{figure}[b]
+  \centering
+  \includegraphics[width=0.9\linewidth]{addressplan.png}
+  \caption{Address plan GIS window}
+  \label{fig:addrplan}
+\end{figure}
+
 \begin{lstlisting}
 "<#" IF <Field Name> <Value> ">"
       <Output> "<#ELSE>" <Output> "<#END>"
@@ -438,26 +470,6 @@ The report engine a conditional processing has been implemented.  The following 
 <Output> ::= <Mark Point> | (<Char>*|<Digit>*)
 \end{lstlisting}
 
-\begin{figure}[b]
-  \centering
-  \begingroup
-  \def\svgwidth{\linewidth}
-  \tiny\sffamily
-  \def\db{Database}
-  \def\spec{Specification}
-  \def\sce{\vtop{Specification\break Management}}
-  \def\kerne{Kernel}
-  \def\bde{\vtop{Database\break Editor}}
-  \def\qb{\vtop{Query\break Builder}}
-  \def\map{GIS}
-  \def\gb{Graphic Base}
-  \def\plug{Plugins}
-  \def\intfs{\vtop{Plugin\break Interface}}
-  \input{GeoAWArch.pdf_tex}
-  \endgroup
-  \caption{GeoAW instrumental environment architecture}
-  \label{fig:architecture}
-\end{figure}
 
 \section{GIS Integration: a Usage Example}
 \label{sec:gis-integration}
@@ -466,12 +478,11 @@ The developed technologies are applied in GeoAW (Geological Automatized Workplac
 
 GeoAW environment is an instrumental tool to create stand-alone Windows GIS applications.  Its architecture is shown in fig.~\ref{fig:architecture}.  GeoAW consists of the following main software components: Specification Management,  System Kernel, Database Editor, user Query Builder, Plugin Interface, and GIS as external application.
 
-\begin{figure}[b]
-  \centering
-  \includegraphics[width=\linewidth]{addressplan.png}
-  \caption{Address plan GIS window}
-  \label{fig:addrplan}
-\end{figure}
+The GeoAW GIS module is implemented on the base of authors' extension of GIS Toolkit, which is popular in Russian government  ``Panorama'' \cite{b42}. Panorama is a COM-server incorporated in applications.  The COM-server object can be configured so that the user of IS could reach only allowed GIS data on the cartographic base, namely by running under a special Windows user account.  The IS data is transferred to the COM-server process and is sown as cartographic (fig.~\ref{fig:addrplan}).
+
+The resulting integration of Address Plan IS and GIS Toolkit has functions relating to selection of objects on the map and showing tabular data with main IS module.  At the same time, filter queries over tables having spatial attributes can affect the semantic layer presentation on cartographic.
+
+Therefore, the example showed that the instrumental GeoAW environment fully supports all the functions for specification development, their interpretation as configurations of all modules related to IS data aggregation, storage and processing.  The developed technique and software technologies allows one to organize robust and productive IS development.  The resulting application is generated dynamically without compilation of any source codes.
 
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.
@@ -557,8 +568,6 @@ In further work the description should be extended with an additional superstruc
 
 Another direction of development is further extension of the interpreter and creating a code-generating version of the description language on the base of nowadays techniques of language-oriented programming \cite{annenkov}.
 
-sd
-
 \section*{Acknowledgment}
 The research is carried on under support of Integration multidisciplinary project of Siberian Branch of Russian Academy of Sciences N 17 ``Development of services and infrastructure of scientific spatial data for supporting complex multidisciplinary scientific research of Baikal nature territory''.
 
@@ -590,23 +599,22 @@ The research is carried on under support of Integration multidisciplinary projec
 \vspace{1.4em} % For no reason the reference was sticked to the
                % previous paragraph
 \begin{thebibliography}{11}
-\bibitem{django} The Web framework for perfectionists with deadlines | Django.   \url{https://www.djangoproject.com/} (access date: 10.02.2015)
-\bibitem{dde}Model-driven engineering - Wikipedia, the free encyclopedia. \url{http://en.wikipedia.org/wiki/Model-driven_engineering}. (access date: 10.02.2013)
-\bibitem{aga1}
-Агафонов В.Н. Спецификация программ: понятийные средства и их организация. Новосибирск: Наука, 1987. 240 с.
-\bibitem{aga2}
-Агафонов В.Н. Требования и спецификации в разработке программ. М.: Мир, 1984.
-\bibitem{qt}
-\bibitem{gtk}
-\bibitem{flowj}Class FlowLayout. Java™ Platform Standart Ed.7. URL:\url{http:/​/​docs.oracle.com/​javase/​7/​docs/​api/​java/​awt/​FlowLayout.html} (access date: 05.07.2013).
+\bibitem{django} The Web framework for perfectionists with deadlines | Django.   URL:~\url{https://www.djangoproject.com/} (access date: 10.02.2015)
+\bibitem{dde}Model-driven engineering - Wikipedia, the free encyclopedia. URL:~\url{http://en.wikipedia.org/wiki/Model-driven_engineering}. (access date: 10.02.2013)
+\bibitem{aga1} V.N.Agafonov. ``Program specification: concepts and their organization.'' Novosibirsk ``Nauka'' publ. co. 1987. 240~p. (in Russian)
+\bibitem{aga2} V.N.Agafonov. ``Requirements and specifications in program development.'' Moscow ``Mir'' publ. co. 1984. (in Russian)
+\bibitem{qt} Qt Project. URL:~\url{http://qt-project.org/}. (access date: 02.02.2015)
+\bibitem{gtk} The GTK+ Project. URL:~\url{http://www.gtk.org/}. (access date: 02.02.2015)
+\bibitem{flowj}Class FlowLayout. Java™ Platform Standart Ed.7. URL:~\url{http:/​/​docs.oracle.com/​javase/​7/​docs/​api/​java/​awt/​FlowLayout.html} (access date: 05.07.2013).
+\bibitem{b42}GIS Panorama. URL:~\url{http://www.gisinfo.net/}. (access date: 21.02.2015)
 \bibitem{father} A.~K.~Cherkashin. ``Polysystem Analysis and
-  Synthesis. Application in Geography,'' Novosibirsk, Russia ``Nauka'' Publ. co.
-  1997. -- 502~p. (In Russian)
+  Synthesis. Application in Geography,'' Novosibirsk ``Nauka'' publ. co.
+  1997. -- 502~p. (in Russian)
 \bibitem{b2:15} E.~Cherkashin, V.~Paramonov, et al, ``Model Driven
   Architecture is a Complex System,'' E-Society Journal Research and
   Applications. Volume 2, Number 2, 2011, pp.~15--23.
   URL:~\url{http://www.tfzr.uns.ac.rs/esociety/issues/eSocietyVol2No2.pdf} (access date: 09.01.2015).
-\bibitem{annenkov} D.V.Annenkov, E.A.Cherkashin. Generation technique for Django MVC web framework using the stratego transformation language. Procs of 36th International Convention MIPRO, 2013, 20-24 May 2013, Chroatia, Opatia, 2013, pp.~1084~--~1087.
+\bibitem{annenkov} D.V.Annenkov, E.A.Cherkashin. ``Generation technique for Django MVC web framework using the stratego transformation language.'' Procs of 36th International Convention MIPRO, 2013, 20-24 May 2013, Chroatia, Opatia, 2013, pp.~1084--1087.
 
 \end{thebibliography}
 \vspace{-2em}\mbox{} %Make the flushend work correctly with the last \bibitem
