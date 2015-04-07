@@ -209,6 +209,31 @@ stringstyle=\ttfamily,
 \def\thepage{Page \arabic{page}}
 %\setcounter{page}{252}
 
+% Reviews:
+
+% 1.
+
+% Positive aspects of the paper: The paper have shown some results obtained using and description language for building an Information Systems based on an existing database scheme and additional semantic description. Modules for database editing, query construction and report generation are described.
+% Objections to the paper: There are several useless references (which I think) that should be removed, i.e. reference to Django in Introduction and references to Wikipedia. Conclusion is not an appropriate section for references. The figures are quite small and unreadable but the more important problem is that they are positioned too far from the text that reference them.
+
+% The paper is somehow confusing. Some sentences claim that database for IS already exists and some that it should be produced in one of the steps.
+
+% There are several typos in text (bust => must, ajusts => adjusts, munidimentional => multidimensional, Microdoft => Microsoft, sown => ?).,  especially in Section III.
+
+% Also in Section III the second and the third paragraph are useless (and references in it) because it is described better in later paragraphs.
+
+% In Section III.B it is not clear if Microsoft Access is used as an comparision for query builder or it has been used?
+% In III.C there are several sentences obviously incorrect as
+% “The data converts into a tree of indicators.“ Someone converts data or data converts something?
+% “Each node of the tree corresponds data selected in a projection”. corresponds to?
+% Section IV is called A usage example but I cannot see how techniques from previous sections are applied. I suggest removing this section of improving it.
+% References are very weak. After removing useless references (1, 2, 5, 6, 8?), the paper would have only 6-7 references with 3 of them in Russian.
+% Technical Quality: Adequate
+% Originality: Adequate
+% Presentation style: Adequate
+% Relevance to the conference: Good
+% Reviewers' opinion: Recommended for acceptance after implementing recommended suggestions and corrections
+
 \begin{abstract}
 Software development technologies evolved from concrete algorithm design and their programmatic implementation to modeling the whole information systems (IS).  The modeling approaches allows developers to describe the system in terms of domain, software design, properties of implementation platforms, and standard ways of the IS development such as programming traditions in a concrete firm.  In the case if a new IS is being constructed, having an already implemented database, Data Driven Engineering (DDE) is used.  The model of this IS is constructed by importing database structure and adding a semantic layer description reflecting the database structure to the domain terms.
 
@@ -258,7 +283,7 @@ In the proposed approach, in a general case on the first stage of IS development
 
 On the third stage, model of IS is constructed by loading the implemented database schema and extending it with the description of the following special database object classes: \texttt{TABLE}, \texttt{VIEW}, \texttt{RULE}, and so called \emph{superstructure}.  The \texttt{TABLE} objects describe IS database structure and relations, attribute data types and names.  These object are automatically constructed by loading and analyzing IS database schema, if it is literally devised (it must be at least in third normal form).  The lack of schemata data is compensated manually with the description language and the following interpretation.
 
-The \texttt{VIEW} objects are more complicated than \texttt{TABLE} ones, which is used to generate user interface.  Here we define properties of the attribute and table relations, for example, for each foreign key a look-up widget can be used to select a record from a foreign table (a reference book).  For complex reference book and transitive references, the key attribute sets bust be specified to increase generated user interface usability.  There are other special cases of foreign key interpretations, like ``master-details'', and all of them can be specified with the specification language.
+The \texttt{VIEW} objects are more complicated than \texttt{TABLE} ones, which is used to generate user interface.  Here we define properties of the attribute and table relations, for example, for each foreign key a look-up widget can be used to select a record from a foreign table (a reference book).  For complex reference book and transitive references, the key attribute sets must be specified to increase generated user interface usability.  There are other special cases of foreign key interpretations, like ``master-details'', and all of them can be specified with the specification language.
 
 The \emph{superstructure} objects support interaction of developed IS with foreign modules and libraries, processing information with methods beyond the standard of rational databases and SQL, e.g., computer simulation and complex data visualizations.
 
@@ -402,9 +427,9 @@ ORDER BY T.id
 
 Another valuable usage of specifications is to implement import routines of IS database data for On-Line Analitical Processing unit (OLAPu).  OLAPu allows user to store, select and analyze numeric indicators.  The indicators are considered as funtions of a set of attributes.  OLAPu  user interface aids selection of indicators in various projection combinations.
 
-OLAPu's design is a classic client-server architecture, where server is a rational data storage, and client provides a flexible access to the indicator data by means of intuitive user interface.  The interface is configured specially to support the munidimentional OLAP.  User by means of widgets of the interface selects and ajusts projection and indicator aggregation configuration, the results of the configuration are presented as interactive tables and can be stored in Microdoft Excel spreadsheet files.
+OLAPu's design is a classic client-server architecture, where server is a rational data storage, and client provides a flexible access to the indicator data by means of intuitive user interface.  The interface is configured specially to support the multidimensional OLAP.  User by means of widgets of the interface selects and adjusts projection and indicator aggregation configuration, the results of the configuration are presented as interactive tables and can be stored in Microsoft Excel spreadsheet files.
 
-To convert IS data \texttt{TABLE}, \texttt{VIEW} and superstructure objects are used.  The data converts into a tree of indicators.  Each node of the tree corresponds data selected in a projection.  Each projection is characterized with a set of attributes.  The sets are referred to as dimensions.  They could describe regions, industries, types of ownership, etc.  A special case of the dimensions is time intervals, such as year, half a year, quartal, month.  Most of the indicators are tied to time intervals.
+To convert IS data \texttt{TABLE}, \texttt{VIEW} and superstructure objects are used.  The data is converted into a tree of indicators.  Each node of the tree corresponds to data selected in a projection.  Each projection is characterized with a set of attributes.  The sets are referred to as dimensions.  They could describe regions, industries, types of ownership, etc.  A special case of the dimensions is time intervals, such as year, half a year, quartal, month.  Most of the indicators are tied to time intervals.
 
 The indicator data usually have more complex structure than just a linearly ordered set.  In s general case, the set is a tree structure, where one inidcator aggregates data of a set of subordinal indicators, e.g., state indicator aggregates state regional data.  The same is true for industries.  The indicators are stored in indicator value tables.  The table includes all the index dimension attribute references to the tables of the IS database and the index value itself.
 
@@ -478,7 +503,7 @@ The developed technologies are applied in GeoAW (Geological Automatized Workplac
 
 GeoAW environment is an instrumental tool to create stand-alone Windows GIS applications.  Its architecture is shown in fig.~\ref{fig:architecture}.  GeoAW consists of the following main software components: Specification Management,  System Kernel, Database Editor, user Query Builder, Plugin Interface, and GIS as external application.
 
-The GeoAW GIS module is implemented on the base of authors' extension of GIS Toolkit, which is popular in Russian government  ``Panorama'' \cite{b42}. Panorama is a COM-server incorporated in applications.  The COM-server object can be configured so that the user of IS could reach only allowed GIS data on the cartographic base, namely by running under a special Windows user account.  The IS data is transferred to the COM-server process and is sown as cartographic (fig.~\ref{fig:addrplan}).
+The GeoAW GIS module is implemented on the base of authors' extension of GIS Toolkit, which is popular in Russian government  ``Panorama'' \cite{b42}. Panorama is a COM-server incorporated in applications.  The COM-server object can be configured so that the user of IS could reach only allowed GIS data on the cartographic base, namely by running under a special Windows user account.  The IS data are transferred to the COM-server process and  shown as cartographic (fig.~\ref{fig:addrplan}).
 
 The resulting integration of Address Plan IS and GIS Toolkit has functions relating to selection of objects on the map and showing tabular data with main IS module.  At the same time, filter queries over tables having spatial attributes can affect the semantic layer presentation on cartographic.
 
