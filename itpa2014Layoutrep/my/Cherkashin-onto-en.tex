@@ -235,9 +235,9 @@ stringstyle=\ttfamily,
 % Reviewers' opinion: Recommended for acceptance after implementing recommended suggestions and corrections
 
 \begin{abstract}
-Software development technologies evolved from concrete algorithm design and their programmatic implementation to modeling the whole information systems (IS).  The modeling approaches allows developers to describe the system in terms of domain, software design, properties of implementation platforms, and standard ways of the IS development such as programming traditions in a concrete firm.  In the case if a new IS is being constructed, having an already implemented database, Data Driven Engineering (DDE) is used.  The model of this IS is constructed by importing database structure and adding a semantic layer description reflecting the database structure to the domain terms.
+Software development technologies evolved from concrete algorithm design and their programmatic implementation to modeling the whole information systems (IS).  The modeling approaches allows developers to describe the system in terms of a domain, software design, properties of implementation platforms, and standard ways of the IS development such as programming traditions in a concrete firm.  In the case if a new IS is being constructed, having an already implemented database, Data Driven Engineering (DDE) is used.  The model for IS is constructed by importing database structure and adding a semantic layer description reflecting the database structure to the domain terms.
 
-We describe a DDE-approach based on declarative specifications of existing database schema and properties of the target application, as well as interpretation of the description into IS components.  The interpretation in various aspects allows developer to construct user interface for database modification, subsystem of SQL query construction in terms of domain, etc.  An example result is presented.
+We describe a DDE-approach based on declarative specifications of existing database schema and properties of the target application, as well as interpretation of the description into IS components.  The interpretation in various aspects allows developer to construct user interface for database modification, subsystem of SQL query construction in terms of domain, etc.  An example of the technique application is presented.
 
 %The obtained description could be used to extend the capabilities of SQL query constructor to allow user formulating the query in a natural language, e.g. in Russian.  In order to do so a new layer of the domain and IS properties description should be devised.  The layer is based on an ontological description of the domain referencing the terms of the database description.  The layer also is to be reflected to morphological structures of the natural language used to formulate the queries.
 \end{abstract}
@@ -257,13 +257,13 @@ We describe a DDE-approach based on declarative specifications of existing datab
 
 \section{Introduction}
 % no \IEEEPARstart
-Software development technologies evolved from concrete algorithm design and their programmatic implementation to modeling the whole information systems (IS).  The modeling approaches allows developers to describe the system in terms of domain, engineering and software design, features of implementation platforms and tools, and standards of the IS development of a software firm such as programming traditions, used modeling and instrumental tools, etc.  This extends nowadays production developer philosophies referred to as DRY (Do not Repeat Yourself), where each concept in a system must be defined only once.  DRY is a basis of many open-source web development frameworks such as Django \cite{django}.
+Software development technologies evolved from concrete algorithm design and their programmatic implementation to modeling the whole information systems (IS).  The modeling approaches allows developers to describe the system in terms of domain, engineering and software design, features of implementation platforms and tools, and standards of the IS development of a software firm such as programming traditions, used modeling and instrumental tools, etc.  Very simplified techniques of the modeling usages are infiltrated into nowadays production developer ``philosophies'', e.g., referred to as DRY (Do not Repeat Yourself), where each concept in a system must be defined only once.  DRY is a basis of many open-source web development frameworks such as Django \cite{django}.
 
-The theoretical basis of the modeling approach is model transformation theories and their software implementations, which are developed in the field of Model Driven Engineering (MDE) \cite{dde}.  The transformations construct ultimately either source code modules realizing modeled structures or an operator interpretation of models of an intermediate level like virtual machine byte code, SQL queries execution plan synthesis, and executable UML.  Model transformation is based on recognition of a pattern structures in the source model, relating them to the model of development platform rules of transformation.  The results of transformation are  structures of a model of more specific (concrete) level of abstraction.  At the lowest level the code generation routines are executed, which use source code templates.  Thus, from the point of view of generative programming, one of main function of the transformation process is an intelligent configuration generation for the source code generators.
+The theoretical basis of the modeling approach is model transformation theories and their software implementations, which are developed in the field of Model Driven Engineering (MDE) \cite{dde}.  The transformations construct ultimately either source code modules realizing modeled structures or an operator interpretation of the models of an intermediate level like virtual machine byte code, SQL queries execution plan synthesis, and executable UML.  Model transformation is based on recognition of a pattern structures in the source model, relating them to the model of development platform rules of transformation.  The results of transformation are  structures of a model of more specific (concrete) level of abstraction.  At the lowest level the code generation routines are executed, which use source code templates.  Thus, from the point of view of generative programming, one of main function of the transformation process is an intelligent configuration generation for the source code generators.
 
-In the case if new IS is being constructed, having already designed and deployed database, Data Driven Engineering (DDE, a kind of MDE) is used.  The model of this IS is constructed by importing database structure, e.g. DDL-queries, analyzing it, and adding a semantic layer of the database structure description in IS's domain concepts and relations.  In Laboratory of Complex Information Systems of Institute of System Dynamics and Control Theory at Siberian Branch of Russian Academy of Sciences, a number of DDE approaches has been developed based on declarative specifications and their run time interpretations, as well as techniques automating the description process.  The interpretation in various aspects allows developer to construct user interfaces for database modification, subsystem of SQL-queries construction in terms of domain, plugin integration, etc.
+In the case if new IS is being constructed, having already designed and deployed database, Data Driven Engineering (DDE, a kind of MDE) is used.  The model for IS is constructed by importing database structure, e.g. DDL-queries, analyzing it, and adding a semantic layer of the database structure description in IS's domain concepts and relations.  In Laboratory of Complex Information Systems of Institute of System Dynamics and Control Theory at Siberian Branch of Russian Academy of Sciences, a number of DDE approaches has been developed based on declarative specifications and their run-time interpretations, as well as techniques automating the description process.  The interpretation in various aspects allows developer to construct user interfaces for database modification, subsystem of SQL-queries construction in terms of domain, plugin integration, etc.
 
-The report describes an DDE-approach of IS development based on a special specification language describing database properties, interpretation of the description in various IS components, resulting in automatic user interface construction and layouting, constraint-oriented database editor, SQL-query builder, OLAP subsystem, etc.
+The report describes an DDE-approach of IS development based on a special specification language describing database properties, interpretation of the description in various IS components, resulting in automatic user interface construction and layouting; a configuration generation for constraint-oriented database editor, SQL-query builder, OLAP subsystem, etc.
 
 \section{The Description Language}
 \label{sec:description-database}
@@ -272,29 +272,29 @@ The report describes an DDE-approach of IS development based on a special specif
 
 The DDE-modeling of an IS starts either from description of a general view of data structures used by business-logic or from loading schema of already existing database.  The second case has important value in practice, when customer requires a new implementation of an exiting IS with new features and with conserving exiting data in its warehouse.
 
-The structural description allows developers implementing routine functionality via transformation and generation, e.g., data input forms; user interface and business-logic interaction; import, export and integration operations; etc.  Adding a domain description allows one to refine user interface with notions familiar to user, as well as construct various query-answering subsystems like SQL-query builders and OLAP operating in terms of domain.
+The structural description allows developers implementing routine functionality via transformation and generation, e.g., data input forms; user interface and business-logic interaction; import, export and integration operations.  Adding a domain description allows one to refine user interface with notions familiar to user, as well as construct various query-answering subsystems like SQL-query builders and OLAP operating in terms of the domain.
 
-In Institute of System Dynamics and Control Theory at SB RAS a number of DDE technologies has been developed within economic contracts activities supported by necessary theoretical investigations.  One of the last description format is based on mix of the \texttt{.ini}-file and SQL-query languages.  The first format is used to describe database structure and semantic of attributes and their relations, the second part is used to describe the rules of user interface generation, and interaction with geographical information systems and other applications.
+In Institute of System Dynamics and Control Theory at SB RAS a number of DDE technologies has been developed within economic contracts activities supported by necessary theoretical investigations.  One of the recent description format is based on mix of the \texttt{.ini}-file and SQL-query languages.  The first format is used to describe database structure and semantic of attributes and their relations, the second part is used to describe the rules of user interface generation, and interaction with geographical information systems and other applications.
 
 \subsection{Development Stages}
 \label{sec:descr-synth-stag}
 
-In the proposed approach, in a general case on the first stage of IS development, system engineer carries on structural analysts of the domain, resulting in description of concepts and their basic relations, business-processes and software requirements.  After that, at the second stage, the database design follows, which produces database schema ad its implementation as database server.  Common design tools (such as Sybase Power Designer, IBM Rational Rose) are used on this stage.
+In the proposed approach, in a general case on the first stage of IS development, system engineer carries on structural analysts of the domain, resulting in description of concepts and their basic relations, business-processes and software requirements.  After that, at the second stage, the database design follows, which produces database schema ad its implementation as database server.  Common design tools (such as Sybase Power Designer, IBM Rational Rose) are used on this stage.  The second stage is carried on if IS is designed from scratch, and there are no database already implemented.
 
-On the third stage, model of IS is constructed by loading the implemented database schema and extending it with the description of the following special database object classes: \texttt{TABLE}, \texttt{VIEW}, \texttt{RULE}, and so called \emph{superstructure}.  The \texttt{TABLE} objects describe IS database structure and relations, attribute data types and names.  These object are automatically constructed by loading and analyzing IS database schema, if it is literally devised (it must be at least in third normal form).  The lack of schemata data is compensated manually with the description language and the following interpretation.
+On the third stage, the model of IS database is constructed by loading the implemented database schema and extending it with the description of the following special database object classes: \texttt{TABLE}, \texttt{VIEW}, \texttt{RULE}, and so called \emph{superstructure}.  The \texttt{TABLE} objects describe IS database structure and relations, attribute names and data types.  These object are automatically constructed by loading and analyzing IS database schema, if it is literally devised (it must be at least in third normal form).  The lack of schemata data is compensated manually with the description language and the following interpretation.
 
-The \texttt{VIEW} objects are more complicated than \texttt{TABLE} ones, which is used to generate user interface.  Here we define properties of the attribute and table relations, for example, for each foreign key a look-up widget can be used to select a record from a foreign table (a reference book).  For complex reference book and transitive references, the key attribute sets must be specified to increase generated user interface usability.  There are other special cases of foreign key interpretations, like ``master-details'', and all of them can be specified with the specification language.
+The \texttt{VIEW} objects, which are more complicated than \texttt{TABLE} ones, used to generate user interface.  Here we define properties of the attribute and table relations, for example, for each foreign key a look-up widget can be used to select a record from a foreign table (a reference book).  For a complex reference book and transitive references, the key attribute sets must be specified to increase generated user interface usability.  There are other special cases of foreign key interpretations, like ``master-details'', and all of them can be described with the specification language.
 
-The \emph{superstructure} objects support interaction of developed IS with foreign modules and libraries, processing information with methods beyond the standard of rational databases and SQL, e.g., computer simulation and complex data visualizations.
+The superstructure objects support interaction of developed IS with foreign modules and libraries, processing information with methods beyond the standard of rational databases and SQL, e.g., computer simulation and complex data visualization.
 
 %\hangindent=\parindent%\hangafter=1
-The \texttt{RULE} objects are responsible for expression of functions implementation in generated IS specific to its business-processes.  By means of the rules, one can describe input field logic (enabling and disabling them), implement uniqueness check routines and plug-in modules interaction, i.e., rules provide declarative means of describing and implementing relationships between objects and components in business-logic layer of IS.  The rules also affect the generated queries to IS database during editing, as well as creating special widgets in user interfaces, which connect input data with spatial tables and render cartographic. For all the object classes a formal set model is devised and investigated.  %We will not describe it in this paper, ...}
+The \texttt{RULE} objects are responsible for expression of functions implementation in generated IS specific to its business-processes.  By means of the rules, one can describe input field logic (enabling and disabling them), implement uniqueness check routines and plug-in modules interaction, i.e., rules provide declarative means of describing and implementing relationships between objects and components in business-logic layer of IS.  The rules also affect the generated queries to IS database during editing, as well as creating special widgets in user interfaces, which connect input data with spatial tables and render cartographic. For all the object classes a formal set model is devised and investigated, resulting in a theoretical basis of the technology under development.  %We will not describe it in this paper, ...}
 
-On the forth stage the IS functionality is generated at run time as a result of the specification interpretations.  It integrates foreign software subsystems according to the rules. %\e[blue]{Should we describe the rules of interface generation in details ?}
+On the fourth stage, the IS functionality is generated at run time as a result of the specification interpretations.  It integrates foreign software subsystems according to the rules. %\e[blue]{Should we describe the rules of interface generation in details ?}
 
 \subsection{The Description Language}
 
-Our specification language is reasonably simple whereas complete with respect to expressive ability.  The language has LL(1) grammar class.  Its syntactic structures describe elements of IS and a general options like database connection properties.  The specifications written in the language are \emph{precise}, \emph{understandable} and \emph{complete} according to \cite{aga1,aga2}.  The language clauses have the following general structure:
+Our specification language is reasonably simple whereas complete with respect to expressive abilities.  The language has LL(1) grammar class.  Its syntactic structures describe elements of IS and a general options like database connection properties.  The specifications written in the language are \emph{precise}, \emph{understandable} and \emph{complete} according to \cite{aga1,aga2}.  The language clauses have the following general structure:
 
 \begin{asdcode}%
 <Start keyword> <List of mandatory statements> [~list of optional statements~]
@@ -308,7 +308,7 @@ Let's consider a part of an example description.
 TABLE ADR FOR SP_ADDR AS 'Address' READONLY
 \end{lstlisting}%
 
-This statement describes table \texttt{SP\_ADR} of IS, the table will have an alias \texttt{ADR} for usage in the rest of the specification.  The table will have also a user-friendly alias \texttt{'Address'} in user interface forms, table editor, etc.  The following language construction describes table fields.
+This statement describes table \texttt{SP\_ADDR} of IS, the table will have an alias \texttt{ADR} for usage in the rest of the specification.  The table will have also a user-friendly alias \texttt{'Address'} in user interface forms, table editor, etc.  The following language construction describes table fields.
 
 \begin{lstlisting}{escapeinside={||}}
 FIELDS (ID_BUIL_G P AS 'Building Code',
@@ -316,65 +316,58 @@ FIELDS (ID_BUIL_G P AS 'Building Code',
  ID_MK_GM ^SP_MK_GM AS 'Microdistrict Code',
         ID_STREET ^vSP_STR AS 'Street Code',
         BUIL=S AS 'Building',
-        ANN=S AS 'Annotation);
+        ANN=S AS 'Annotation');
 \end{lstlisting}%
 
 Identifiers \texttt{ID\_*}, \texttt{BUIL} and \texttt{ANN} are table fields.  Sign \texttt{\^} creates a reference to a table or a view, in particular, \texttt{\^{}SP\_NREG} is a table referenced by field \texttt{ID\_NREG}, and \texttt{\^{}vSP\_STR} is a reference to a view.  Expression \texttt{ANN=S} denotes that \texttt{ANN} is a string field.  At the first line of the example, \texttt{ID\_BUIL P} denotes that the field is a key field.
 
-\begin{figure}[b]
+There are also more sophisticated ways of various reference denotation, expressed with a general \texttt{REFS(\ldots)} construction.  Its parameters allows one to define references of various IS business-logic interpretations including ``master-details'', special cases of ``reference book'' and so on.
+
+\section{Interpretation of Database Description}
+\label{sec:interpr-descr}
+
+All current implementations of the interpretation of the specification language are run-time.  After preparing the specification of the IS database, the IS developer must run the IS environment with the specification an the database as its input.  The specification is translated, and the translator creates two data structures.  One is stored in process memory as complex data structures and used by form and query builders.  Another one is a technical database of tables, describing IS database structures.  The technical database is used by database editor and OLAP modules.  The translator also checks whether the specification is changed and corrects the database accordingly.
+
+\subsection{User Interface Generation}
+\label{sec:user-interace-form}
+One of the important IS quality characteristics is its input forms, and layouting the widgets in the forms is the question of usability.  From one hand side the widgets must efficiently consume the area of a form, and on another hand side, the user interface must be convenient and fit to  application functionality requirements.
+
+% The change of form size results in relayouting the widgets if the form is aware of the change.  Various software development environments support the problem solution differently.  E.g., an Embarcadero Delphi developer must specify \texttt{align}, \texttt{anchors} and \texttt{autosize} properties of a widget to adjust the widgets behavior upon form size change.  The operation must be performed for each widget, and in conditions of entering of a database record of many attributes the adjustment process is routine and time consuming.  In addition, layout mechanics of Delphi cannot distribute the size variations among widgets proportionally.
+
+% The problem is partially solved in, e.g., open-source widget libraries, like Qt \cite{qt} and GTK+ \cite{gtk}.  The widgets are placed in so called containers (which are also a virtual widgets), which manage thir order, spacing, padding, fill and expansion properties.  GTK+ widgets could also issue special size request message to notify parent widget about required minimal size.  Nevertheless the general engines implemented in the instrumental systems are not aware of the attribute data properties of the IS database.
+
+We considered a number of approaches of user input form constructions, such as \cite{qt} and \cite{gtk}, and come to the conclusion: in order to improve usability of user input forms, we must account the domain properties of attributes.  For the purpose, a rule-based engine has been developed, which uses the database specification to access the attribute properties.  The engine interprets the database specification, adjusts Database Editor widget, and generates form for database records modification.
+
+\paragraph{Database Editor}
+
+Database Editor controls a dynamic user interface operating over IS database records.  Its layout includes three areas (panels): menu of entities, operations, and data table itself.  Menu of entities (fig.~\ref{fig:dbeditor}, left panel) consist of database and view table names described in the specification.  The entities are joined in semantic groups according to their roles and functions.
+
+\begin{figure}[bH]
   \centering
   \includegraphics[width=\linewidth]{dbeditor.png}
   \caption{Database editor}
   \label{fig:dbeditor}
 \end{figure}
 
-There are also more sophisticated ways of various reference denotation, expressed with a general \texttt{REFS(\ldots)} construction.  Its parameters that allows one to define references of various IS business-logic interpretations including ``master-details'', special cases of ``reference book'' and so on.
+The operation area (fig.~\ref{fig:dbeditor}, top panel) displays widgets for construction and execution of data processing operations.  The set of widgets for each table (view) is controlled by the specification.  The minimal set contains table navigation buttons, ``Edit'', ``Export'' and ``Query'' buttons.  Optional buttons are ``Options'' and ``Cartographic''.  The layout of the widgets is under control of layout manager.
 
-\section{Interpretations of the Description}
-\label{sec:interpr-descr}
-
-All current implementations of the interpretation of the specification language are run time.  After preparing the specification of the IS database, the IS developer must run the IS environment with the specification an the database as its input.  The specification is translated, and the translator creates two data structures.  One is stored in process memory as complex data structures and used by form and query builders.  Another one is a technical database of tables, describing IS database structures.  The technical database is used by database editor and OLAP modules.  The translator also check whether the specification is changed and corrects the database accordingly.
-
-\subsection{User Interface Generation}
-\label{sec:user-interace-form}
-One of the important IS quality characteristics is its input forms, and layouting the widgets in the forms is the question of usability.  From one hand side the widgets must efficiently consume the area of a form, and on another hand side, the user interface must be convenient and fit to  application functionality requirements.
-
-The change of form size results in relayouting the widgets if the form is aware of the change.  Various software development environments support the problem solution differently.  E.g., an Embarcadero Delphi developer must specify \texttt{align}, \texttt{anchors} and \texttt{autosize} properties of a widget to adjust the widgets behavior upon form size change.  The operation must be performed for each widget, and in conditions of entering of a database record of many attributes the adjustment process is routine and time consuming.  In addition, layout mechanics of Delphi cannot distribute the size variations among widgets proportionally.
-
-The problem is partially solved in, e.g., open-source widget libraries, like Qt \cite{qt} and GTK+ \cite{gtk}.  The widgets are placed in so called containers (which are also a virtual widgets), which manage thir order, spacing, padding, fill and expansion properties.  GTK+ widgets could also issue special size request message to notify parent widget about required minimal size.  Nevertheless the general engines implemented in the instrumental systems are not aware of the attribute data properties of the IS database.
-
-To account the domain properties of attributes, a rule-based engine has been developed on the base of the database specification.  The engine interprets the database specification, adjusts Database Editor widget, and generates form for database records modification.
-
-\paragraph{Database Editor}
-
-Database Editor controls a dynamic user interface operating over IS database records.  Its layout includes three areas (panels): menu of entities, operations, and data table itself.  Menu of entities (fig.~\ref{fig:dbeditor}, left panel) consist of database and view table names described in the specification.  The entities are joined in semantic groups according to their roles and functions.
-
-The operation area (fig.~\ref{fig:dbeditor}, top panel) displays widgets for construction and execution of data processing operations.  The set of widgets for each table (view) is controlled by the specification.  The minimal set contains table navigation buttons, ``Edit'', ``Export'' and ``Query'' buttons.  Optional buttons are ``Options'' and ``Cartographic''.  The layout of the widgets in under control of layout manager.
-
-The table area (fig.~\ref{fig:dbeditor}, bottom-right panel) displays chosen entity.  The data is represented in two views: tabular and as a form.  Tabular form supports standard data editing operations, but they adjusted according to specification: reference fields are choice boxes and look-up widgets.  Dependable (in sense of the specification) fields are changed as soon as their ascendant become edited.  For example, in fig.~\ref{fig:dbeditor} street name in an address record is chosen from a look-up list of streets.  The street \texttt{ID} is stored in an address reference field, this results in changing address \texttt{TYPE} (boulevard or street) field according to the type of chosen street.
+The table area (fig.~\ref{fig:dbeditor}, bottom-right panel) displays the chosen entity.  The data is represented in two views: tabular and as a form.  Tabular form supports standard data editing operations, but they adjusted according to specification: reference fields are choice boxes and look-up widgets.  Dependable (in sense of the specification) fields are changed as soon as their ascendant become edited.  For example, in fig.~\ref{fig:dbeditor} street name in an address record is chosen from a look-up list of streets.  The street \texttt{ID} is stored in an address reference field, this results in changing address \texttt{TYPE} (boulevard or street) field according to the type of chosen street.
 
 The order and widths of the table columns can be adjusted according to user's preferences.  The customization is stored in user profile \texttt{.wsf}--file.
 
 \paragraph{Form Mode}
 
-Form mode is a generated user interface for table record editing with accounting table's references to other tables, views and visual components.  The form mode is activated from Database Editor with mouse click, button ``Edit'' and creation of new record.  The layout of the widgets of the form is generated according to the database specification and run time context: whether this record belongs to a main table or a reference one.  Each attribute editing widget is accompanied with a label showing user-friendly attribute alias from the specification.  The label can signify attributes uniqueness, non-null condition and a membership in the primary key.
+In form mode, user input form is generated.  The form widget set is created in accounting table's references to other tables, views and visual components.  The form is activated from Database Editor with a mouse click on ``Edit'' button, or when a creation of new record is requested.  The layout of the widgets of the form is generated according to the database specification and run time context: whether this record belongs to a main table or a reference one.  Each attribute editing widget is accompanied with a label showing user-friendly attribute alias from the specification.  The label can signify attributes uniqueness, non-null condition and a membership in the primary key.
 
 For each widget, placement, order, widths and width adjustment are controlled by layout manager component.  The order and layout of the form must conform to criteria of usability.  Upon form size change or screen resolution the widgets must be reordered, resized, and so on, conversing the usability criteria.  The layout manager extends ideas of FlowLayout \cite{flowj} (Java): the widgets a placed in rows from left to right.
+
+FlowLayout manager implies that each widget has fixed size.  We took over the restriction, and our layout manager takes advantage of some heuristics based on minimal (\texttt{szMin}), best (\texttt{szBes}), and maximal (\texttt{szMax}) sizes of a widget.  Maximal size is equal to field data size, e.g., for \texttt{VARCHAR(150)} field, the \texttt{szMax} is equal to 150.  Experience shows that it is more ergonomic to display about 70~\% of \texttt{szMax}, and it is \texttt{szBest}.  Minimal size for strings is taken about 10 characters.
 
 \begin{figure}[b]
   \centering
   \includegraphics[width=\linewidth]{formex.png}
   \caption{An example of autolayout form}
   \label{fig:formex}
-\end{figure}
-
-FlowLayout manager implies that each widget has fixed size.  We took over the restriction, and our layout manager takes advantage of some heuristics based on minimal (\texttt{szMin}), best (\texttt{szBes}), and maximal (\texttt{szMax}) sizes of a widget.  Maximal size is equal to field data size, e.g., for \texttt{VARCHAR(150)} field, the \texttt{szMax} is equal to 150.  Experience shows that it is more ergonomic to display about 70~\% of \texttt{szMax}, and it is \texttt{szBest}.  Minimal size for strings is taken about 10 characters.
-
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\linewidth]{qbuilder.png}
-  \caption{Subject specialist controlled query builder}
-  \label{fig:qbuilder}
 \end{figure}
 
 The layout manager arranges the widgets according to the following strategy.  At the first stage all three sizes are queried from the widgets, and the manager tries to figure out a layout, where all the widgets have maximal sizes and placed in rows from left to right.  If a widget is not shown in the form, the layouting immediately restarts the process, with \texttt{szBest} used as widgets sizes.  If the layout process finished successfully and there are some free space, then the layout manager tries to extend significant widgets to their maximal sizes.  In the wort case, when the second try has failed, the manager uses \texttt{szMin}.
@@ -384,7 +377,7 @@ Attributes can also be grouped according to a logical record structure, which a 
 \subsection{Query Builder}
 \label{sec:query-builder}
 
-Most of IS applications require components for data search and filtering.  An expressive user-friendly search engine allows one to quickly jump to a specific record and also allow a subject specialist to query record data from database without programmers assistance.
+Most of IS applications require components for data search and filtering.  We developed an expressive user-friendly search engine module that allows one to quickly jump to a specific record and also allow a subject specialist to query record data from database without programmers assistance.
 
 Query constructor of Microsoft Access allows user to design a complex SQL-queries for aggregating and modifying data.  The query builder supports definition of complex conditions for the \texttt{WHERE} and \texttt{HAVING} sections of the query.  The query builder also does not account the domain, and, thus, it is intended for programmers and experienced users accounted with database technologies.  Another problem is the availability of SQL-query designer utilities for web projects.
 
@@ -392,15 +385,14 @@ In our work we proposed an engine that supports interactive specification of fie
 
 To control the tree editing, a special widget has been developed.  The widget placed inside a dialog window is shown in fig.~\ref{fig:qbuilder}.  The widget allows to construct tree from elementary operations, move the operations between various levels of nesting, operand switching, editing criteria values.
 
-Extended mode of Query Builder widget supports referencing subordinal tables.  Processing such references requires recursive call of the builder.  For example, the query ``Which streets of Leninsky and Sverdlovsky city districts [of Irkutsk] has more than two gas stations?'' can be expressed by means of Query Builder as the following sentence: ``City district is in 'Leninsky', 'Sverdlovsky' and Table 'Address' row count from (Table 'Address building' has records from (Building type is in 'GS')) \verb|>=2|.''  In this example two level of referencing is used: streets include addresses, at the same address can be situated several buildings.  This results in generation of correlated subqueries interpreted as ``master-detail'' relations.  The query builder generates SQL-query as follows:
-
-\begin{figure}[b]
+\begin{figure}[t]
   \centering
-  \includegraphics[width=\linewidth]{MDA-olap.png}
-  \caption{Main window of OLAP unit}
-  \label{fig:olapu}
+  \includegraphics[width=\linewidth]{qbuilder.png}
+  \caption{Subject specialist controlled query builder}
+  \label{fig:qbuilder}
 \end{figure}
 
+Extended mode of Query Builder widget supports referencing subordinal tables.  Processing such references requires recursive call of the builder.  For example, the query ``Which streets of Leninsky and Sverdlovsky city districts [of Irkutsk] has more than two gas stations?'' can be expressed by means of Query Builder as the following sentence: ``City district is in 'Leninsky', 'Sverdlovsky' and Table 'Address' row count [is taken] from (Table 'Address building' has records from (Building type is in 'GS')) \verb|>=2|.''  In this example two level of referencing is used: streets include addresses, at the same address can be situated several buildings.  This results in generation of correlated subqueries interpreted as ``master-detail'' relations.  The query builder generates SQL-query as follows:
 
 \begin{lstlisting}
 SELECT T.id Id, T.reg_id reg_id, T0.type ST,
@@ -425,39 +417,24 @@ ORDER BY T.id
 \subsection{On-Line Analitical Processing}
 \label{sec:olap}
 
-Another valuable usage of specifications is to implement import routines of IS database data for On-Line Analitical Processing unit (OLAPu).  OLAPu allows user to store, select and analyze numeric indicators.  The indicators are considered as funtions of a set of attributes.  OLAPu  user interface aids selection of indicators in various projection combinations.
+Another valuable usage of specifications is to implement import routines of IS database data for On-Line Analitical Processing unit (OLAPu).  OLAPu allows user to store, select and analyze numeric indicators.  The indicators are considered as funtions of a set of attributes.  OLAPu  user interface aids selection of indicators in various attribute projection combinations.
 
-OLAPu's design is a classic client-server architecture, where server is a rational data storage, and client provides a flexible access to the indicator data by means of intuitive user interface.  The interface is configured specially to support the multidimensional OLAP.  User by means of widgets of the interface selects and adjusts projection and indicator aggregation configuration, the results of the configuration are presented as interactive tables and can be stored in Microsoft Excel spreadsheet files.
+OLAPu's design is a classic client-server architecture, where server is a rational data storage, and client provides a flexible access to the indicator data by means of intuitive user interface.  The interface is configured specially to support the multidimensional OLAP.  User  selects and adjusts projection and indicator aggregation configuration by means of interface widgets, the results of the selection are presented as interactive tables and can be stored in Microsoft Excel spreadsheet files.
 
-To convert IS data \texttt{TABLE}, \texttt{VIEW} and superstructure objects are used.  The data is converted into a tree of indicators.  Each node of the tree corresponds to data selected in a projection.  Each projection is characterized with a set of attributes.  The sets are referred to as dimensions.  They could describe regions, industries, types of ownership, etc.  A special case of the dimensions is time intervals, such as year, half a year, quartal, month.  Most of the indicators are tied to time intervals.
+To convert IS data into a database of indicators suitable to be processed by OLAPu, \texttt{TABLE}, \texttt{VIEW} and superstructure objects are used.  The data is converted into a tree of indicators.  Each node of the tree corresponds to data selected in a projection.  Each projection is characterized by a set of attributes.  The sets are referred to as dimensions.  They could describe regions, industries, types of ownership, etc.  A special case of the dimensions is time intervals, such as year, half a year, quartal, month.  Most of the indicators are tied to time intervals.
 
-The indicator data usually have more complex structure than just a linearly ordered set.  In s general case, the set is a tree structure, where one inidcator aggregates data of a set of subordinal indicators, e.g., state indicator aggregates state regional data.  The same is true for industries.  The indicators are stored in indicator value tables.  The table includes all the index dimension attribute references to the tables of the IS database and the index value itself.
+The indicator data usually have more complex structure than just a linearly ordered set.  In a general case, the set is a tree structure, where one indicator aggregates data of a set of subordinal indicators, e.g., state indicator aggregates state regional data.  The same is true for industries.  The indicator database includes all the index dimension attribute references to the original tables of the IS database and the index value itself.
 
+The main windows of OLAP unit is shown in fig.~\ref{fig:olapu}.  The window has been divided on two parts.  The upper part consist of three panels with dimension lists, and the lower part is the resulting table.  User must select an indicator from the left list of dimensions as well as the dimensions associated with columns and rows of the resulting table.  The headers of rows and columns may contain combinations of dimensions.  In this case for all the combination a row (column) is inserted into the resulting table widget.  The combinations of dimensions and attribute value filters are adjusted with mouse clicks.
 
-\begin{figure}[b]
+\begin{figure}[t]
   \centering
-  \begingroup
-  \def\svgwidth{\linewidth}
-  \tiny\sffamily
-  \def\db{Database}
-  \def\spec{Specification}
-  \def\sce{\vtop{Specification\break Management}}
-  \def\kerne{Kernel}
-  \def\bde{\vtop{Database\break Editor}}
-  \def\qb{\vtop{Query\break Builder}}
-  \def\map{GIS}
-  \def\gb{Graphic Base}
-  \def\plug{Plugins}
-  \def\intfs{\vtop{Plugin\break Interface}}
-  \input{GeoAWArch.pdf_tex}
-  \endgroup
-  \caption{GeoAW instrumental environment architecture}
-  \label{fig:architecture}
+  \includegraphics[width=\linewidth]{MDA-olap.png}
+  \caption{Main window of OLAP unit}
+  \label{fig:olapu}
 \end{figure}
 
-The main windows of OLAP unit is shown in fig.~\ref{fig:olapu}.  The window has been divided on two parts.  The upper part consist of three panels with dimension lists, and the lower part is the resulting table.  User must select an indicator from the left list of dimensions as well as the dimensions associated with columns and rows of the resulting table.  The headers of rows and columns may contain combinations of dimensions.  In this case for all the combination a row (column) is inserted into the resulting table widget.  The combinations of dimensions and attribute value filters are adjusted by mouse clicks.
-
-The time intervals are selected with special pop up dialog widget on mouse click.  User can drag dimensions between lists and reorder them, this results in regeneration of the resulting table.  When editing is allowed, user can change values of indicators directly in the resulting table cells.  The changes are immediately stored into the intermediate database of IS and written into a journal for eventual import into original IS database.  The table widget allows export data and table structure into system clipboard in a table format recognizable by Microsoft Excel, the same is implemented in the opposite direction.
+Time intervals are selected with a special pop up dialog widget on mouse click.  User can drag dimensions between lists and reorder them, this results in regeneration of the resulting table.  When editing is allowed, user can change values of indicators directly in the resulting table cells.  The changes are immediately stored into the intermediate database of IS and written into a journal for eventual import into original IS database.  The table widget allows exporting data and table structure into system clipboard in a table format recognizable by Microsoft Excel, the same is implemented in the opposite direction.
 
 \subsection{Report Builder}
 \label{sec:report-builder}
@@ -479,14 +456,7 @@ Report Builder unit is a plug-in module, that has access to internal representat
 \end{lstlisting}
 %TF – значение из поля таблицы; PN – значения из полей Фамилия, Имя, Отчество (далее должны следовать метки для получения имён полей содержащих ФИО); IMG – изображение из Blob-поля таблицы DETAIL – указывает, что в этом месте будут вставлены значения полей таблицы деталей. Для реализации склонения по падежам применена библиотека padeg.dll [41].
 
-The report engine a conditional processing has been implemented.  The following special case of mark point construction is used:
-
-\begin{figure}[b]
-  \centering
-  \includegraphics[width=0.9\linewidth]{addressplan.png}
-  \caption{Address plan GIS window}
-  \label{fig:addrplan}
-\end{figure}
+In the report engine, a conditional processing has been implemented.  The following special case of mark point construction is used:
 
 \begin{lstlisting}
 "<#" IF <Field Name> <Value> ">"
@@ -502,6 +472,27 @@ The report engine a conditional processing has been implemented.  The following 
 The developed technologies are applied in GeoAW (Geological Automatized Workplace) environment, which is aimed at construction of GIS for municipal authorities.  Its derivative GIS systems allow one to represent data accumulated in departments as GIS cartographic.  In order to construct such system developers must go through the steps described early to describe data sources and filter data to be represented in new GIS applications.  The main attention should be paid to spatial related attributes, as the attributes are used in connecting the table rows and graphics shapes of topographic base.
 
 GeoAW environment is an instrumental tool to create stand-alone Windows GIS applications.  Its architecture is shown in fig.~\ref{fig:architecture}.  GeoAW consists of the following main software components: Specification Management,  System Kernel, Database Editor, user Query Builder, Plugin Interface, and GIS as external application.
+
+\begin{figure}[b]
+  \centering
+  \begingroup
+  \def\svgwidth{\linewidth}
+  \tiny\sffamily
+  \def\db{Database}
+  \def\spec{Specification}
+  \def\sce{\vtop{Specification\break Management}}
+  \def\kerne{Kernel}
+  \def\bde{\vtop{Database\break Editor}}
+  \def\qb{\vtop{Query\break Builder}}
+  \def\map{GIS}
+  \def\gb{Graphic Base}
+  \def\plug{Plugins}
+  \def\intfs{\vtop{Plugin\break Interface}}
+  \input{GeoAWArch.pdf_tex}
+  \endgroup
+  \caption{GeoAW instrumental environment architecture}
+  \label{fig:architecture}
+\end{figure}
 
 The GeoAW GIS module is implemented on the base of authors' extension of GIS Toolkit, which is popular in Russian government  ``Panorama'' \cite{b42}. Panorama is a COM-server incorporated in applications.  The COM-server object can be configured so that the user of IS could reach only allowed GIS data on the cartographic base, namely by running under a special Windows user account.  The IS data are transferred to the COM-server process and  shown as cartographic (fig.~\ref{fig:addrplan}).
 
@@ -583,18 +574,29 @@ Therefore, the example showed that the instrumental GeoAW environment fully supp
 % command of the stfloats package.
 
 
-\section{Conclusion}
-
-The nowadays techniques of application software development are aimed at close cooperation of developer and customer.  To shift some responsibility to the customer's users and to extend the maintainability and usability of software, it is necessary to develop techniques, which produce some processing according to a domain description.  This description is to be connected to the models of various aspects of the software, in particular, database schema.
-
-In this report we considered such description language, which allows programmer to express database schema in terms of domain via human-readable aliases for the database structure elements, references (foreign keys) can be classified as ``master-detail'', ``reference book'' and other relationships.  The language is interpreted into configurations of modules for database editing, record adding and modification, query construction, report generation, OLAP and so on.  The language expressiveness is sufficient to support development of municipal GIS software.  As a part of programmer efforts within the proposed approach are aimed at extending language interpreter, user interfaces generated out of the description have good usability characteristics, sometimes much better, than the original software has.
+\section{Further Development}
 
 In further work the description should be extended with an additional superstructure, which could be used to extend the capabilities of SQL-query constructor to allow user formulating the query in a natural language in terms of modeled domain.  The superstructure expands the description of the database entities and their relationships with abstract notions of domain and relations, resulting in fibered representation of the domain of two fibers: abstract domain and database structure \cite{father,b2:15}.
 
 Another direction of development is further extension of the interpreter and creating a code-generating version of the description language on the base of nowadays techniques of language-oriented programming \cite{annenkov}.
 
+\section{Conclusion}
+
+The nowadays techniques of application software development are aimed at close cooperation of developer and customer.  To shift some responsibility to the customer's users and to extend the maintainability and usability of software, it is necessary to develop techniques, which produce some processing according to a domain description.  This description is to be connected to the models of various aspects of the software, in particular, database schema.
+
+In this report we considered such description language, which allows programmer to express database schema in terms of domain via human-readable aliases for the database structure elements, references (foreign keys) can be classified as ``master-detail'', ``reference book'' and other relationships.  The language is interpreted into configurations of modules for database editing, record adding and modification, query construction, report generation, OLAP and so on.  The language expressiveness is sufficient to support development of municipal GIS software.  As a part of programmer efforts within the proposed approach are aimed at extending language interpreter, user interfaces generated out of the description have good usability characteristics.  Very frequently it is much better than the original software.
+
 \section*{Acknowledgment}
 The research is carried on under support of Integration multidisciplinary project of Siberian Branch of Russian Academy of Sciences N 17 ``Development of services and infrastructure of scientific spatial data for supporting complex multidisciplinary scientific research of Baikal nature territory''.
+
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.9\linewidth]{addressplan.png}
+  \caption{Address plan GIS window}
+  \label{fig:addrplan}
+\end{figure}
+
 
 %The authors would like to thank...
 
@@ -625,7 +627,7 @@ The research is carried on under support of Integration multidisciplinary projec
                % previous paragraph
 \begin{thebibliography}{11}
 \bibitem{django} The Web framework for perfectionists with deadlines | Django.   URL:~\url{https://www.djangoproject.com/} (access date: 10.02.2015)
-\bibitem{dde}Model-driven engineering - Wikipedia, the free encyclopedia. URL:~\url{http://en.wikipedia.org/wiki/Model-driven_engineering}. (access date: 10.02.2013)
+\bibitem{dde} M.Brambilla, J.Cabot, M.Wimmer, ``Model-Driven Software Engineering in Practice.'' Morgan \& Claypool Publ. Co., 2012, 182~p.
 \bibitem{aga1} V.N.Agafonov. ``Program specification: concepts and their organization.'' Novosibirsk ``Nauka'' publ. co. 1987. 240~p. (in Russian)
 \bibitem{aga2} V.N.Agafonov. ``Requirements and specifications in program development.'' Moscow ``Mir'' publ. co. 1984. (in Russian)
 \bibitem{qt} Qt Project. URL:~\url{http://qt-project.org/}. (access date: 02.02.2015)
