@@ -1,0 +1,15 @@
+\expandafter\ifx\csname doTocEntry\endcsname\relax \expandafter\endinput\fi 
+\doTocEntry\tocsection{}{\csname a:TocLink\endcsname{1}{Q1-1-0}{}{\numberline {I}Introduction}}{Page 3}\relax 
+\doTocEntry\tocsection{}{\csname a:TocLink\endcsname{1}{Q1-1-0}{}{\numberline {II}Document Markup}}{Page 4}\relax 
+\doTocEntry\tocsection{}{\csname a:TocLink\endcsname{1}{Q1-1-0}{}{\numberline {III}The Outline of Markup Scheme Automation}}{Page 4}\relax 
+\doTocEntry\tocsection{}{\csname a:TocLink\endcsname{1}{Q1-1-0}{}{\numberline {IV}Theoretical Generalization of the Acquisition Process}}{Page 5}\relax 
+\doTocEntry\tocsection{}{\csname a:TocLink\endcsname{1}{Q1-1-0}{}{\numberline {V}Maintaining a Dialog With User}}{Page 6}\relax 
+\doTocEntry\toclof{1}{\csname a:TocLink\endcsname{1}{x1-7r1}{}{\ignorespaces A Usage Example of an Ontology Polysystem}}{figure}\relax 
+\doTocEntry\tocsection{}{\csname a:TocLink\endcsname{1}{Q1-1-1}{}{\numberline {VI}A Notary Office Usage of the Technique}}{Page 10}\relax 
+\doTocEntry\toclof{2}{\csname a:TocLink\endcsname{1}{x1-9r2}{}{\ignorespaces Upper Layer of Notary Office Ontology}}{figure}\relax 
+\doTocEntry\tocsection{}{\csname a:TocLink\endcsname{1}{Q1-1-2}{}{\numberline {VII}Software Architecture and Implementation}}{Page 13}\relax 
+\doTocEntry\toclof{3}{\csname a:TocLink\endcsname{1}{x1-17r3}{}{\ignorespaces Program System Architecture}}{figure}\relax 
+\doTocEntry\tocsubsection{}{\csname a:TocLink\endcsname{1}{Q1-1-3}{}{\numberline {\unhbox \voidb@x \hbox {\a:mbox {VII-A}\b:mbox }}Implementation Software}}{Page 16}\relax 
+\doTocEntry\tocsection{}{\csname a:TocLink\endcsname{1}{Q1-1-3}{}{\numberline {VIII}Conclusion}}{Page 16}\relax 
+\doTocEntry\tocsection{}{\csname a:TocLink\endcsname{1}{Q1-1-3}{}{References}}{Page 17}\relax 
+\par 
